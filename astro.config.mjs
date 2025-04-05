@@ -6,12 +6,10 @@ import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import tailwindcss from "@tailwindcss/vite";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
-import deno from "@deno/astro-adapter";
 
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  adapter: deno(),
   vite: {
     plugins: [tailwindcss()],
   },
