@@ -10,7 +10,7 @@ import deno from "@deno/astro-adapter";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: "static",
   adapter: deno(),
   vite: {
     plugins: [tailwindcss()],
