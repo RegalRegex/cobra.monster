@@ -9,33 +9,35 @@ const tags = defineCollection({
 
 const posts = defineCollection({
   type: "content",
-  schema: ({image}) => z.object({
-    title: z.string(),
-    subtitle: z.string(),
-    date: z.date(),
-    tags: z.array(reference("tags")).optional(),
-    blogExclude: z.boolean().optional(),
-    emoji: z.preprocess(val => `/src/assets/mutantEmoji/${val}`, 
-      image()).optional()
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      subtitle: z.string(),
+      date: z.date(),
+      tags: z.array(reference("tags")).optional(),
+      blogExclude: z.boolean().optional(),
+      emoji: z.preprocess((val) => `/src/assets/mutantEmoji/${val}`, image()).optional(),
+    }),
 });
 
 const critterBadges = defineCollection({
   type: "data",
-  schema: z.object({
-    url: z.string(),
-    image: z.string(),
-    alt: z.string(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      url: z.string(),
+      alt: z.string(),
+      image: image(),
+    }),
 });
 
 const standardBadges = defineCollection({
   type: "data",
-  schema: z.object({
-    url: z.string().optional(),
-    image: z.string(),
-    alt: z.string(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      url: z.string().optional(),
+      image: image(),
+      alt: z.string(),
+    }),
 });
 
 export const collections = {

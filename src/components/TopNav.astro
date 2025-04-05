@@ -25,8 +25,11 @@ const exceptions: Exception[] = [
   },
 ];
 const splitUrl: string[] = Astro.url.pathname.split("/").toSpliced(-1);
+
 const returnPathName = (): UrlSplitReference => {
-  const topLevel = splitUrl[splitUrl.length - 1];
+  // -1 for testing, -2 for prod.
+  const topLevel = splitUrl[splitUrl.length - 2];
+
   const exception = [...exceptions].find((item) => item.remove === topLevel);
 
   return {

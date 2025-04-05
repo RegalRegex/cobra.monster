@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { shuffleArray } from "../utils/arrayShuffle";
+import { Image } from "astro:assets";
 
 interface Props {
   collection: "critterBadges" | "standardBadges";
@@ -19,10 +20,10 @@ const badges = collection === "standardBadges" ? shuffleArray(badgesCollection) 
     badges.map((badge) => {
       return badge.data.url ? (
         <a href={badge.data.url} class={btnStyle}>
-          <img src={badge.data.image} alt={badge.data.alt} width="88" height="31" style="image-rendering:pixelated;" title={badge.data.alt} />
+          <Image src={badge.data.image} alt={badge.data.alt} width="88" height="31" title={badge.data.alt} class="badge" />
         </a>
       ) : (
-        <img src={badge.data.image} alt={badge.data.alt} width="88" height="31" style="image-rendering:pixelated;" title={badge.data.alt} />
+        <Image src={badge.data.image} alt={badge.data.alt} width="88" height="31" title={badge.data.alt} class="badge" />
       );
     })
   }
@@ -31,5 +32,8 @@ const badges = collection === "standardBadges" ? shuffleArray(badgesCollection) 
 <style>
   h3 {
     font-family: "Prospekt Regular", sans-serif;
+  }
+  .badge {
+    image-rendering: pixelated;
   }
 </style>
