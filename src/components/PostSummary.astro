@@ -24,7 +24,7 @@ const { Content } = await post.render();
       <span>{date.toLocaleDateString("en-US", { day: "numeric" })}</span>
       <span>{date.toLocaleDateString("en-US", { month: "short" })}</span>
     </div>
-    <div id="blogSummaryContainer" class="border-0 sm:border-l-2 border-slate-200">
+    <div id="blogSummaryContainer" class="border-0 sm:border-l-2 border-slate-200 sm:max-w-[90%] max-w-none">
       <div class="sm:ml-4 ml-0">
         <a class="w-max cursor-pointer visited:text-amber-600 decoration-yellow visited:decoration-amber-600 hover:text-amber-500" href=`/blog/${slug}`>
           <h2 class="headerTxt text-3xl underline font-medium">{title}</h2></a

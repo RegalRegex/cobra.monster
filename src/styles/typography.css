@@ -12,9 +12,7 @@
 
 /* Rehype Plugin Code Blocks Styling */
 .prose pre {
-  /* overflow-x: auto; */
   text-wrap: wrap;
-  /* padding: 0; */
   padding: calc(theme(--spacing) * 4);
 }
 
@@ -23,6 +21,11 @@ figcaption[data-rehype-pretty-code-title] {
   display: inline-block;
   padding: calc(theme(--spacing) * 2) calc(theme(--spacing) * 4) calc(theme(--spacing) * 1) calc(theme(--spacing) * 4);
   /* border-radius: calc(theme(--spacing) * 2) calc(theme(--spacing) * 2) 0 0; */
+}
+
+.prose p > code {
+  padding: calc(theme(--spacing) * 1) calc(theme(--spacing) * 2);
+  border-radius: calc(theme(--spacing) * 2);
 }
 
 .prose code {

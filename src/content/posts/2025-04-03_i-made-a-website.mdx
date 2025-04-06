@@ -1,8 +1,67 @@
 ---
 title: 'I Made A Website'
 subtitle: "It's this one! You're reading on it!"
-date: 2025-04-03
+date: 2025-04-05
 tags:
   - webdev
 ---
-Yo
+import TextDeco from "@components/TextDeco.astro"
+import EmojiBlockquote from "@components/EmojiBlockquote.astro"
+
+import eyy from "@assets/argent/stickers/babanasaur/eyy.png"
+
+Inspired by so many <TextDeco url="/links#88x31">amazing furry websites</TextDeco>, I decided that my first big 2025 project would be to finally make a Proper Personal Website™.
+
+# Planning/Development
+Honestly I did the worst thing possible and just started coding without actually designing. On top of that I picked the tech stack before really anything else haha. This was 100% a bad idea BUT it was still kinda fun.
+
+> The tech stack is just TailwindCSS, AstroJS and a tiny bit of React :3
+
+## AstroJS
+Shoutout to my friend [Throudin](https://bsky.app/profile/throudin.dev) for helping me lock in on [AstroJS](https://astro.build/) for this site. I'd heard about it on Fireship's pretty convincing [YouTube Video](https://www.youtube.com/watch?v=dsTXcSeAZq8&pp=ygURZmlyZXNoaXAgaW8gYXN0cm8%3D) but Throudin helped me give it a real solid try, and it rocks. Ironically it probably made my "code first, design second" approach more accessible...contributing to the ineffeciency. But once I got going it was only good.
+
+### Everything is an Astro File
+Similar to React, any file with rendered content was just an Astro file. Using [Frontmatter](https://daily-dev-tips.com/posts/what-exactly-is-frontmatter/) for compile-time Javascript and importing components, then just JSX style code for the rest of the file. It reads pretty comfortably and writing it feels intuitive.
+
+```jsx title="Error Page Component"
+---
+import { Image } from "astro:assets";
+
+import argentWhine from "@assets/argent/stickers/babanasaur/whine.png";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  goBack?: boolean;
+}
+
+const { title, subtitle, goBack = false } = Astro.props;
+---
+
+<div class="flex flex-col justify-center items-center h-full grow">
+  <h1 class="text-9xl text-slate-200 font-black">{title}</h1>
+  <h2 class="text-6xl text-slate-200 font-black capitalize">{subtitle}</h2>
+  <Image src={argentWhine} alt="Argent Whine" class="max-w-64" />
+  <a
+    class:list={[
+      "rounded-md text-slate-200 p-2 bg-redDarkest hover:cursor-pointer hover:bg-redDark ring-2 ring-yellow mt-5 text-3xl",
+      `${goBack ? "block" : "hidden"}`,
+    ]}
+    href="/links">Need Some Directions?</a
+  >
+</div>
+```
+
+### Content Collections
+Probably the coolest thing about Astro is its [Collections](https://docs.astro.build/en/guides/content-collections/) API. On this site all of the blog posts, about page sub-pages, tags, and 88x31 badges are generated on the site via the Collection system.\
+By essentially standardizing the format of these forms of data, I can do my favorite Typescript thing ever with them: `map()` into an array! My favorite thing about React, Angular, all these JS frameworks is being able ot cut down on the tedium of hardcoding things.
+
+### Recommendation
+I 100% recommend AstroJS especially for any static site. It's just great to use, and its development is active and responsive.
+
+# The Future
+Aside from (hopefully) regular blog posts, I'm not sure what else I'll add to this site, if anything. I have some pre-made unfinished links on the [Links Page](/links) suggesting future things but who knows. WebDev is not my favorite hobby since it's ever-present in my professional career...The creativity and problem solving are fun, but I really just want to finish to go back to [drawing](/about/digitalArt) and [working out](/about/weightlifting) lol.
+
+<EmojiBlockquote emoji={eyy} size="sticker">
+The one big exception is if my friends ask for help with *their* websites I'm gonna be 1000% ON for that!!
+</EmojiBlockquote>
