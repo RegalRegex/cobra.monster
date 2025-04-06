@@ -5,112 +5,50 @@ import Link from "@components/Link.astro";
 import ArgentSymmetrical from "@assets/argent/SymmetricalArgent_Orion.png";
 ---
 
-<div class="grid grid-cols-1 xs:grid-cols-2 auto-rows-min lg:flex justify-around gap-5 xs:justify-items-start justify-items-center p-0 xs:pb-5">
-  <div class="xs:hidden flex flex-col gap-5">
-    <section>
-      <h3 class="headerTxt text-4xl 2xl:text-5xl">About</h3>
-      <ul>
-        <li>
-          <Link url="/about">About Regal</Link>
-        </li>
-        <li>
-          <Link url="/blog">Blog</Link>
-        </li>
-        <li>
-          <Link url="/credits">Credits & Site Info</Link>
-          <ul class="pl-5 list-disc">
-            <li><Link url="/credits#ArgentArt">Art Credits</Link></li>
-            <li><Link url="/credits#Chicago">Design Credits</Link></li>
-            <li><Link url="/" wip={true}>WebDev Log</Link></li>
+<div class="grid grid-cols-1 auto-rows-min lg:flex justify-around gap-5 xs:justify-items-start justify-items-center p-0 xs:pb-5">
+  <div class="grid xs:grid-cols-2 lg:flex auto-rows-min gap-5 justify-around">
+    <div class="basis-1/3 flex-col gap-5 xs:col-span-1 items-center xs:m-auto lg:m-0 order-1">
+      <div class="flex flex-col gap-5 justify-around h-full">
+        <section>
+          <h3 class="headerTxt text-4xl 2xl:text-5xl underline decoration-2 decoration-yellow hover:text-amber-500"><a href="/about">About Regal</a></h3>
+          <ul class="flex flex-col gap-2 list-disc list-inside mt-2">
+            <!-- <ul class="pl-5 list-disc list-outside [&_ul]:list-[revert]"> -->
+            <li class="text-md xs:text-lg xl:text-2xl">Hobby Interests</li>
+            <li class="text-md xs:text-lg xl:text-2xl">Workout Advice</li>
           </ul>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h3 class="headerTxt text-4xl 2xl:text-5xl">Furry Stuff</h3>
-      <ul>
-        <li><Link url="/" wip={true}>Fursona Page</Link></li>
-        <li><Link url="/" wip={true}>OCs Page</Link></li>
-        <li><Link url="/links#socials">Art Galleries</Link></li>
-      </ul>
-    </section>
-    <section>
-      <h3 class="headerTxt text-4xl 2xl:text-5xl">Tools</h3>
-      <ul>
-        <li>
-          <Link url="/" wip={true}>WIP</Link>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h3 class="headerTxt text-4xl 2xl:text-5xl">Cool Links</h3>
-      <ul>
-        <li>
-          <Link url="/links#queerArt">Queer Art & Misc. Links</Link>
-        </li>
-        <li>
-          <Link url="/links#88x31">88x31 Buttons</Link>
-        </li>
-      </ul>
-    </section>
-  </div>
-  <div class="xs:flex basis-1/3 flex-col gap-5 xs:col-span-1 hidden items-center xs:m-auto lg:m-0">
-    <div class="flex flex-col gap-5">
-      <section>
-        <h3 class="headerTxt text-4xl 2xl:text-5xl">About</h3>
-        <ul class="flex flex-col gap-2">
-          <!-- <ul class="pl-5 list-disc list-outside [&_ul]:list-[revert]"> -->
-          <li>
-            <Link url="/about">About Regal</Link>
-          </li>
-          <li>
-            <Link url="/blog">Blog</Link>
-          </li>
-          <li>
-            <Link url="/credits">Credits & Site Info</Link>
-            <ul class="pl-5 list-disc flex flex-col gap-2">
-              <li><Link url="/credits#ArgentArt">Art Credits</Link></li>
-              <li><Link url="/credits#Chicago">Design Credits</Link></li>
-              <li><Link url="/" wip={true}>WebDev Log</Link></li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <h3 class="headerTxt text-4xl 2xl:text-5xl">Tools</h3>
-        <ul class="flex flex-col gap-2">
-          <li>
-            <Link url="/" wip={true}>WIP</Link>
-          </li>
-        </ul>
-      </section>
+        </section>
+        <section>
+          <h3 class="headerTxt text-4xl 2xl:text-5xl underline decoration-2 decoration-yellow hover:text-amber-500"><a href="/credits">Art Credits</a></h3>
+          <ul class="flex flex-col gap-2 list-disc list-inside mt-2">
+            <li class="text-md xs:text-lg xl:text-2xl">Mutant Standard Emoji</li>
+            <li class="text-md xs:text-lg xl:text-2xl">Chicago Typography</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <div class="basis-1/3 col-span-1 xs:col-span-2 xs:row-start-2 row-start-3 self-center order-3 xs:order-2 xs:block hidden">
+      <Image src={ArgentSymmetrical} alt="Argent Symm" class="rounded-lg max-w-[100%] sm:max-w-[80%] lg:max-w-[100%] m-auto" />
+    </div>
+    <div class="xs:flex flex-col gap-5 xs:col-span-1 basis-1/3 items-center xs:m-auto lg:m-0 order-2 xs:order-3">
+      <div class="flex flex-col gap-5 justify-around h-full">
+        <section>
+          <h3 class="headerTxt text-4xl 2xl:text-5xl underline decoration-2 decoration-yellow hover:text-amber-500"><a href="/blog">Blog</a></h3>
+        </section>
+        <section>
+          <h3 class="headerTxt text-4xl 2xl:text-5xl underline decoration-2 decoration-yellow hover:text-amber-500"><a href="/links">Cool Links</a></h3>
+          <ul class="flex list-disc list-inside flex-col gap-2 mt-2">
+            <li class="text-md xs:text-lg xl:text-2xl">Regal's Art Galleries</li>
+            <li class="text-md xs:text-lg xl:text-2xl">Regal's Socials</li>
+            <li class="text-md xs:text-lg xl:text-2xl">Queer Art</li>
+            <li class="text-md xs:text-lg xl:text-2xl">88x31 Buttons</li>
+            <li class="text-md xs:text-lg xl:text-2xl">Misc. Links</li>
+          </ul>
+        </section>
+      </div>
     </div>
   </div>
-  <div class="basis-1/3 col-span-1 xs:col-span-2 xs:row-start-2 row-start-3 self-center">
-    <Image src={ArgentSymmetrical} alt="Argent Symm" class="rounded-lg max-w-[80%] lg:max-w-[100%] m-auto" />
-  </div>
-  <div class="xs:flex flex-col gap-5 xs:col-span-1 basis-1/3 hidden items-center xs:m-auto lg:m-0">
-    <div class="flex flex-col gap-5">
-      <section>
-        <h3 class="headerTxt text-4xl 2xl:text-5xl">Furry Stuff</h3>
-        <ul class="flex flex-col gap-2">
-          <li><Link url="/" wip={true}>Fursona Page</Link></li>
-          <li><Link url="/" wip={true}>OCs Page</Link></li>
-          <li><Link url="/links#socials">Art Galleries</Link></li>
-        </ul>
-      </section>
-      <section>
-        <h3 class="headerTxt text-4xl 2xl:text-5xl">Cool Links</h3>
-        <ul class="flex flex-col gap-2">
-          <li>
-            <Link url="/links#queerArt">Queer Art & Misc. Links</Link>
-          </li>
-          <li>
-            <Link url="/links#88x31">88x31 Buttons</Link>
-          </li>
-        </ul>
-      </section>
-    </div>
+  <div class="basis-1/3 col-span-1 xs:col-span-2 xs:row-start-2 row-start-3 self-center order-3 xs:order-2 xs:hidden block">
+    <Image src={ArgentSymmetrical} alt="Argent Symm" class="rounded-lg max-w-[100%] sm:max-w-[80%] lg:max-w-[100%] m-auto" />
   </div>
 </div>
 
