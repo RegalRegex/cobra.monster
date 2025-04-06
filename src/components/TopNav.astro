@@ -24,17 +24,17 @@ const exceptions: Exception[] = [
     levels: 1,
   },
 ];
-const splitUrl: string[] = Astro.url.pathname.split("/").toSpliced(-1);
+const splitUrl: string[] = Astro.url.pathname.split("/");
+const splitUrlTrimmed = splitUrl[splitUrl.length - 1] === "" ? splitUrl.toSpliced(-1) : [...splitUrl];
 
 const returnPathName = (): UrlSplitReference => {
-  // -1 for testing, -2 for prod.
-  const topLevel = splitUrl[splitUrl.length - 2];
+  const topLevel = splitUrlTrimmed[splitUrlTrimmed.length - 2];
 
   const exception = [...exceptions].find((item) => item.remove === topLevel);
 
   return {
     urlDisplay: exception ? exception.replace : topLevel,
-    url: exception?.replace === "home" ? "/" : splitUrl.toSpliced(-1, exception?.levels).join("/"),
+    url: exception?.replace === "home" ? "/" : splitUrlTrimmed.toSpliced(-1, exception?.levels).join("/"),
   };
 };
 ---
