@@ -14,14 +14,9 @@ interface UrlSplitReference {
 
 const exceptions: Exception[] = [
   {
-    remove: "",
-    replace: "home",
-    levels: 1,
-  },
-  {
     remove: "tagged",
     replace: "blog",
-    levels: 1,
+    levels: 2,
   },
 ];
 const splitUrl: string[] = Astro.url.pathname.split("/");
@@ -34,7 +29,7 @@ const returnPathName = (): UrlSplitReference => {
 
   return {
     urlDisplay: exception ? exception.replace : topLevel,
-    url: exception?.replace === "home" ? "/" : splitUrlTrimmed.toSpliced(-1, exception?.levels).join("/"),
+    url: exception ? splitUrlTrimmed.toSpliced(splitUrlTrimmed.length - exception.levels, exception.levels).join("/") : splitUrlTrimmed.toSpliced(-1).join("/"),
   };
 };
 ---
