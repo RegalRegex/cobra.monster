@@ -23,8 +23,8 @@ const splitUrl: string[] = Astro.url.pathname.split("/");
 const splitUrlTrimmed = splitUrl[splitUrl.length - 1] === "" ? splitUrl.toSpliced(-1) : [...splitUrl];
 
 const returnPathName = (): UrlSplitReference => {
-  const topLevel = splitUrlTrimmed[splitUrlTrimmed.length - 2];
-
+  const topLevelStart = splitUrlTrimmed[splitUrlTrimmed.length - 2];
+  const topLevel = topLevelStart === "" ? "Home" : topLevelStart;
   const exception = [...exceptions].find((item) => item.remove === topLevel);
 
   return {
