@@ -10,6 +10,28 @@
   }
 }
 
+.image-container {
+  position:relative;
+}
+
+.image-container::after {
+  position:absolute;
+  inset:0;
+  box-shadow: 0 0 20px 20px inset black;
+  content: '';
+}
+.small-container {
+  position:relative;
+}
+
+.small-image {
+  position:absolute;
+  inset:0;
+  box-shadow: 0 0 20px 20px inset black;
+  content: '';
+}
+
+
 /* Tailwind Overload */
 @theme {
   /* Colors */
@@ -185,3 +207,4 @@ html {
     z-index: 0;
   }
 }
+
