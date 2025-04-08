@@ -65,7 +65,7 @@ import ChiStarHorizontalRule from "@components/ChiStarHorizontalRule.astro";
           </ul>
         </div>
         <div class="mx-2 xs:mx-20 pt-5">
-          <h2 class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">Misc Cool Sites</h2>
+          <h2 class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center" id="misc">Misc Cool Sites</h2>
           <ul class="list-disc flex flex-col gap-2 text-stone-200 text-lg">
             <LinkList linkJsonArray={links.miscLinks} />
           </ul>
@@ -75,7 +75,7 @@ import ChiStarHorizontalRule from "@components/ChiStarHorizontalRule.astro";
     <ChiStarHorizontalRule />
     <HomeContentBox columns={["lg:col-start-2 lg:col-span-5 xs:col-start-2 xs:col-span-10 col-start-1 col-span-12 mb-5 xs:mb-0"]}>
       <div class="flex flex-col text-slate-200 justify-between">
-        <h2 id="88x31" class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">Cool Folks</h2>
+        <h2 id="buttons" class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">Cool Folks</h2>
         <div class="content-center mb-5">
           <BadgeDisplay collection="critterBadges" />
         </div>
