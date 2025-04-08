@@ -12,6 +12,8 @@ import TextDeco from "@components/TextDeco.astro";
 import coffeeShopChill from "@assets/argent/CoffeShopChill_Deriaz.jpg";
 import SiteMap from "@components/SiteMap.astro";
 import HomePageBlogPosts from "@components/HomePageBlogPosts.astro";
+
+import ChicagoWellsSt from "@assets/aboutPages/chicago/wellsStBridge.jpg";
 ---
 
 <Layout homePage={true}>
@@ -45,20 +47,20 @@ import HomePageBlogPosts from "@components/HomePageBlogPosts.astro";
       <div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
           <h2 class="headerTxt font-prospekt xs:text-7xl text-5xl xl:text-8xl mb-10 underline decoration-redLight text-center md:text-left flex lg:col-span-2">
-            About Regal
+            About Rafiq
           </h2>
           <div class="text-2xl font-light flex flex-col gap-3 justify-around">
             <p>
               I'm a Chicago-based frontend software dev who spends most of his free time not doing software dev. I love my city and interacting with it and my
-              neighbors via hobbies and <span class="line-through">radical</span> progressive politics.
+              neighbors via hobbies and progressive politics.
             </p>
             <p>
               I'm into a lot of things, including <TextDeco url="/about/coffee">Fancy Coffee</TextDeco>, <TextDeco url="/about/weightlifting"
                 >Weightlifting & Bodybuilding</TextDeco
               >,
-              <TextDeco url="/about/urbanism">Urbanism & Biking</TextDeco>, <TextDeco url="/about/digitalart">Drawing</TextDeco>, Building <TextDeco
+              <TextDeco url="/about/urbanism">Urbanism & Biking</TextDeco>, <TextDeco url="/about/digitalart">Drawing</TextDeco>, and Building <TextDeco
                 url="/about/mechanicalkeyboards">Mechanical Keyboards</TextDeco
-              >, and <TextDeco url="/about/communism">Marxist Theory</TextDeco>.
+              >.
             </p>
             <p>
               More than anything, I like talking to folks and making new friends. So feel free to say hi on one of the <TextDeco url="/links"
@@ -67,11 +69,11 @@ import HomePageBlogPosts from "@components/HomePageBlogPosts.astro";
             </p>
             <br />
             <div class="mb-4">
-              <Button url="/about"> More about Regal →︎ </Button>
+              <Button url="/about"> More about Rafiq →︎ </Button>
             </div>
           </div>
           <div class="m-auto max-w-none lg:max-w-[500px]">
-            <Image src={giornoArgent} alt="Giorno Argent" class="rounded-lg" />
+            <Image src={ChicagoWellsSt} alt="Giorno Argent" class="rounded-lg" />
           </div>
         </div>
       </div>

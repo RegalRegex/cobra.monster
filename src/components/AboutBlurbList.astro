@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import vaporwaveArgent from "@assets/argent/vaporwaveArgent.png";
+import wrexLeggie from "@assets/wrexhimleggie.jpg";
 import { getCollection } from "astro:content";
 import { sortCollection } from "src/utils/sortCollection";
 const blurbEntries = await getCollection("posts");
@@ -12,7 +13,7 @@ const blurbs = sortCollection(
 
 <div class="col-start-2 col-span-10 @container">
   <ul class="grid gap-5 grid-cols-[repeat(auto-fit,minmax(min(30ch,100%),1fr))] 2xl:grid-cols-4">
-    <Image src={vaporwaveArgent} alt="Vaporwave Argent" loading="eager" class="self-center @min-[calc(30ch*2+1.25rem)]:order-first order-last row-span-2" />
+    <Image src={wrexLeggie} alt="Vaporwave Argent" loading="eager" class="self-center @min-[calc(30ch*2+1.25rem)]:order-first order-last row-span-2" />
     {
       blurbs.map((blurb) => {
         return (
