@@ -12,20 +12,17 @@ const {
     slug,
     data: { title, subtitle, date, tags },
   },
-  post,
 } = Astro.props;
-
-const { Content } = await post.render();
 ---
 
-<div class="flex flex-col sm:flex-row">
+<div class="flex flex-col sm:flex-row mb-8">
   <div id="dateSquareContainer" class="hidden sm:flex flex-col text-center px-2 text-slate-200 mr-2 h-max rounded-sm text-sm font-bold mt-1">
     <span>{date.toLocaleDateString("en-US", { day: "numeric" })}</span>
     <span>{date.toLocaleDateString("en-US", { month: "short" })}</span>
   </div>
   <div id="blogSummaryContainer" class="border-0 sm:border-l-2 border-slate-200">
     <div class="sm:ml-4 ml-0 grid grid-cols-1">
-      <a class="w-max cursor-pointer visited:text-amber-600 decoration-yellow visited:decoration-amber-600 hover:text-amber-500" href=`/blog/${slug}`>
+      <a class="w-full cursor-pointer visited:text-amber-600 decoration-yellow visited:decoration-amber-600 hover:text-amber-500" href=`/blog/${slug}`>
         <h2 class="headerTxt text-3xl underline font-medium">{title}</h2></a
       >
       <div class="block sm:hidden italic text-slate-200/70 text-sm">
@@ -34,10 +31,9 @@ const { Content } = await post.render();
         <span>{date.toLocaleDateString("en-US", { year: "numeric" })}</span>
       </div>
       <h3 class="headerTxt text-lg text-slate-100">↳ {subtitle}</h3>
-      <div class="line-clamp-3 text-slate-200 mt-1" id="content"><Content /></div>
       {
         tags && (
-          <div class="flex mt-2 text-sm">
+          <div class="flex mt-2 text-md">
             <TagContents inline={true} tagIds={tags.map((tag) => tag.id)} />
           </div>
         )

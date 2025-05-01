@@ -28,9 +28,12 @@ const bgSettings = () => {
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta property="og:title" content="Regal — Scalie WebDev Furry Artist in Chicago" />
-    <meta property="og:description" content="A communist coffee cobra's personal website" />
+    {!blog && 
+      <meta property="og:title" content="Regal — Scalie WebDev Furry Artist in Chicago" />
+      <meta property="og:description" content="A communist coffee cobra's personal website" />
+    }
     <meta property="og:image" content="https://cobra.monster/websiteMetaHeader.png" />
+    <meta property="og:site_name" content="Regal"/>
     <meta property="og:url" content="https://cobra.monster" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
