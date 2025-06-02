@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import ChiStar from "./ChiStar.astro";
+
+interface Props {
+  book: CollectionEntry<"books">;
+}
+
+const {
+  book: {
+    slug,
+    data: { title, author, summary, readDate, rating, cover, bookTags },
+  },
+} = Astro.props;
+/**
+ * Ideas:
+ *
+ * Sorting by rating or date
+ * List or Gallery view
+ */
+---
+
+<div class="flex flex-col bg-boxPrimary border-yellow border-4 p-5 text-slate-200">
+  <a href=`/books/${slug}`>
+    <h2 class="text-5xl text-center underline">{title}</h2>
+  </a>
+  <!-- TODO: 0.5 star functionality! -->
+  <span class="my-5 justify-center text-5xl flex gap-1 w-full">{[...Array(Math.floor(rating))].map(() => <ChiStar color="text-yellow" />)}</span>
+  <a href=`/books/${slug}` class="flex">
+    <Image src={cover} alt={cover.src.split("/").at(-1) || "mutant emoji"} loading="eager" class="shadow-2xl w-full px-10" />
+  </a>
+  <p>{summary}</p>
+</div>

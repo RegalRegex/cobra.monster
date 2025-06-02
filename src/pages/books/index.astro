@@ -1,0 +1,23 @@
+---
+import BookSummary from "@components/BookSummary.astro";
+import HomeContentBox from "@components/HomeContentBox.astro";
+import HomeSection from "@components/HomeSection.astro";
+import PageHeader from "@components/PageHeader.astro";
+import PostSummary from "@components/PostSummary.astro";
+import TopNav from "@components/TopNav.astro";
+import Layout from "@layouts/Layout.astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+const bookReports: Array<CollectionEntry<"books">> = await getCollection("books");
+
+// const bookReports: Array<CollectionEntry<"books">> = allPosts.filter((entry) => entry.data.postType === "book").toReversed();
+---
+
+<Layout>
+  <TopNav />
+  <PageHeader>Book Reviews</PageHeader>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(30ch,100%),1fr))] 2xl:grid-cols-3 w-full py-10 px-[var(--gutter)] gap-5">
+    {bookReports.map((book, i) => <BookSummary book={book} />)}
+  </div>
+</Layout>
