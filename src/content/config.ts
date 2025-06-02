@@ -8,7 +8,6 @@ const tags = defineCollection({
 });
 
 const posts = defineCollection({
-  type: "content",
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -40,9 +39,33 @@ const standardBadges = defineCollection({
     }),
 });
 
+const books = defineCollection({
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      author: z.string(),
+      summary: z.string(),
+      readDate: z.date(),
+      publishDate: z.date().optional(),
+      rating: z.number(),
+      cover: z.preprocess((val) => `/src/assets/books/${val}`, image()),
+      bookTags: z.array(reference("bookTags")),
+      // tags: z.array(reference("tags")).optional(),
+    }),
+});
+
+const bookTags = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+  }),
+});
+
 export const collections = {
   tags,
   posts,
   critterBadges,
   standardBadges,
+  books,
+  bookTags,
 };
