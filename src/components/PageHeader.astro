@@ -3,12 +3,12 @@ const goldGradient = "bg-linear-45 from-amber-500 via-yellow-300 via-50% to-yell
 ---
 
 <div class="flex mt-10 w-full">
-  <div class="bannerBg">
-    <h1 class:list={["xs:text-8xl text-7xl bg-clip-text text-transparent ml-10", goldGradient]}>
+  <div class="bannerBg z-20">
+    <h1 class:list={["xs:text-8xl text-7xl bg-clip-text text-transparent ml-10 -mr-5", goldGradient]}>
       <slot />
     </h1>
   </div>
-  <div class="banner min-w-20 -ml-1 mr-5"></div>
+  <div class="banner min-w-20 -ml-1 mr-5 z-10"></div>
 </div>
 
 <style>
