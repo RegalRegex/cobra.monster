@@ -13,6 +13,7 @@ interface Props {
 
 const {
   post: {
+    slug,
     data: { title, subtitle, date, tags, blogExclude },
   },
   headings,
@@ -22,6 +23,8 @@ const formattedDate = date?.toLocaleString("en-US", { day: "2-digit", month: "lo
 
 // const displayTags = tags?.map((tag) => tag.id);
 const listDecoStyle = "prose-ul:before:text-white";
+
+const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `https://cobra.monster/blog/og/${slug}.png`;
 ---
 
 <head>
@@ -31,6 +34,7 @@ const listDecoStyle = "prose-ul:before:text-white";
   <meta name="generator" content={Astro.generator} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={subtitle} />
+  <meta property="og:image" content={ogImg} />
   <title>{title}</title>
 </head>
 
