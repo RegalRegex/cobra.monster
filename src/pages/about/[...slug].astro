@@ -8,15 +8,19 @@ export const getStaticPaths = (async () => {
   const allPosts = await getCollection("posts");
   const blurbs = allPosts.filter((post) => post.data.blogExclude);
   const headings = await Promise.all(
-    blurbs.map(async (blurb) => {
-      const data = await blurb.render();
-      return data.headings;
-    }),
+    blurbs
+      .filter((entry) => entry.data.blogExclude)
+      .map(async (blurb) => {
+        const data = await blurb.render();
+        return data.headings;
+      }),
   );
-  return blurbs.map((blurb, index) => ({
-    params: { slug: blurb.slug },
-    props: { blurb, headings: headings[index] },
-  }));
+  return blurbs
+    .filter((entry) => entry.data.blogExclude)
+    .map((blurb, index) => ({
+      params: { slug: blurb.slug },
+      props: { blurb, headings: headings[index] },
+    }));
 }) satisfies GetStaticPaths;
 
 interface Props {
