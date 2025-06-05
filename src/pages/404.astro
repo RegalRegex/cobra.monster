@@ -7,7 +7,7 @@ import TopNav from "@components/TopNav.astro";
 
 <InfoPageLayout>
   <main class="min-h-[100vh] overflow-hidden flex flex-col w-full border-separate">
-    <TopNav />
+    <TopNav isErrorPage={true} />
     <ErrorPage title="404" subtitle="page not found" />
     <div class="table">
       <Footer />

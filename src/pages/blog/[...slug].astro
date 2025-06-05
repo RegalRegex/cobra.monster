@@ -14,10 +14,12 @@ export const getStaticPaths = (async () => {
     }),
   );
 
-  return blogEntries.map((entry, index) => ({
-    params: { slug: entry.slug },
-    props: { entry, headings: headings[index] },
-  }));
+  return blogEntries
+    .filter((entry) => !entry.data.blogExclude)
+    .map((entry, index) => ({
+      params: { slug: entry.slug },
+      props: { entry, headings: headings[index] },
+    }));
 }) satisfies GetStaticPaths;
 
 interface Props {

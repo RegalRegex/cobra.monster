@@ -1,6 +1,10 @@
 ---
 import CobraLogo from "@components/CobraLogo.astro";
 
+interface Props {
+  isErrorPage?: boolean;
+}
+
 interface Exception {
   remove: string;
   replace: string;
@@ -37,6 +41,8 @@ const returnPathName = (): UrlSplitReference => {
     url: exception ? splitUrlTrimmed.toSpliced(splitUrlTrimmed.length - exception.levels, exception.levels).join("/") : splitUrlTrimmed.toSpliced(-1).join("/"),
   };
 };
+
+const { isErrorPage } = Astro.props;
 ---
 
 <nav class="py-2 bg-redDark border-redLight w-full flex xs:flex-row flex-col text-white">
@@ -51,7 +57,17 @@ const returnPathName = (): UrlSplitReference => {
   <div class="hidden items-center xs:flex">
     <ul class="flex gap-5 text-redDarkest font-medium">
       <li class="hover:scale-[1.15] transition duration-300">
-        <a href={returnPathName().url} class:list={["capitalize px-2 py-1 bg-slate-200 rounded-full"]}>←︎ {returnPathName().urlDisplay}</a>
+        {
+          isErrorPage ? (
+            <a href="/" class:list={["capitalize px-2 py-1 bg-slate-200 rounded-full"]}>
+              ←︎ Home
+            </a>
+          ) : (
+            <a href={returnPathName().url} class:list={["capitalize px-2 py-1 bg-slate-200 rounded-full"]}>
+              ←︎ {returnPathName().urlDisplay}
+            </a>
+          )
+        }
       </li>
     </ul>
   </div>
