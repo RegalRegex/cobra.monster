@@ -10,14 +10,14 @@ const inlineStyling = inline ? "text-amber-400" : "p-1.5 m-0.5 bg-redDark";
 ---
 
 <div>
-  <ul class="flex gap-2">
+  <ul class="flex gap-2 flex-wrap leading-8">
     {
       tagIds.map((tagId) => (
         <li>
           <a
             href={`/blog/tagged/${tagId}`}
             class:list={[
-              "hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white ",
+              "hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white whitespace-nowrap",
               `${inlineStyling}`,
               `${selected === tagId ? " ring-2 ring-white brightness-150 grayscale-25 border-r-2 border-b-2 border-slate-200" : ""}`,
             ]}
