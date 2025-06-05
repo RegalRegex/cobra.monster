@@ -7,16 +7,12 @@ import rehypePrettyCode from "rehype-pretty-code";
 import tailwindcss from "@tailwindcss/vite";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 
-import vercel from "@astrojs/vercel";
-
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-
   vite: {
     plugins: [tailwindcss()],
   },
-
   integrations: [
     mdx({
       syntaxHighlight: false,
@@ -38,6 +34,4 @@ export default defineConfig({
     }),
     react(),
   ],
-
-  adapter: vercel(),
 });
