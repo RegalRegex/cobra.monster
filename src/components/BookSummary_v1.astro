@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import ChiStar from "./ChiStar.astro";
+
+interface Props {
+  book: CollectionEntry<"books">;
+}
+
+const {
+  book: {
+    slug,
+    data: { title, author, summary, date, rating, cover, bookTags },
+  },
+} = Astro.props;
+/**
+ * Ideas:
+ *
+ * Sorting by rating or date
+ * List or Gallery view
+ */
+---
+
+<div class="bg-boxPrimary border-yellow border-4 text-slate-200">
+  <div class="flex flex-col gap-4 p-5 pb-0">
+    <a href=`/books/${slug}`>
+      <h2 class="text-4xl text-center underline">{title}</h2>
+    </a>
+    <!-- TODO: 0.5 star functionality! -->
+    <span class="justify-center text-4xl flex gap-1 w-full">{[...Array(Math.floor(rating))].map(() => <ChiStar color="text-yellow" />)}</span>
+    <a href=`/books/${slug}` class="flex justify-center">
+      <Image src={cover} alt={} loading="eager" class="shadow-2xl max-w-32" />
+    </a>
+    <p class="px-8 text-center">{summary}</p>
+    <hr />
+  </div>
+  <div class="flex py-4 px-1 gap-2 justify-center">
+    <!-- Map the tags here -->
+    <a href="/" class="bg-redDark p-1 text-sm hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white">#Test Tag</a>
+    <span class="bg-redDark p-1 text-sm hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white">#Fiction</span>
+    <span class="bg-redDark p-1 text-sm hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white">#Scary</span>
+    <span class="bg-redDark py-1 px-2 text-sm hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white">#Sexy</span>
+  </div>
+</div>

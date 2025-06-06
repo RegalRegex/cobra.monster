@@ -1,0 +1,35 @@
+---
+import BookPostLayout from "@layouts/BookPostLayout.astro";
+import Layout from "@layouts/Layout.astro";
+import type { GetStaticPaths, MarkdownHeading } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const bookEntries = await getCollection("books");
+
+  const headings = await Promise.all(
+    bookEntries.map(async (entry) => {
+      const data = await entry.render();
+      return data.headings;
+    }),
+  );
+
+  return bookEntries.map((entry, index) => ({
+    params: { slug: entry.slug },
+    props: { entry, headings: headings[index] },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  entry: CollectionEntry<"books">;
+  headings: MarkdownHeading[];
+}
+
+const { entry, headings } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BookPostLayout bookPost={entry} headings={headings}>
+  <Content />
+</BookPostLayout>

@@ -45,12 +45,11 @@ const books = defineCollection({
       title: z.string(),
       author: z.string(),
       summary: z.string(),
-      readDate: z.date(),
+      date: z.date(),
       publishDate: z.date().optional(),
       rating: z.number(),
       cover: z.preprocess((val) => `/src/assets/books/${val}`, image()),
       bookTags: z.array(reference("bookTags")),
-      // tags: z.array(reference("tags")).optional(),
     }),
 });
 

@@ -4,20 +4,24 @@ import HomeContentBox from "@components/HomeContentBox.astro";
 import HomeSection from "@components/HomeSection.astro";
 import PageHeader from "@components/PageHeader.astro";
 import PostSummary from "@components/PostSummary.astro";
+import TagContents from "@components/TagContents.astro";
 import TopNav from "@components/TopNav.astro";
+import BookListLayout from "@layouts/BookListLayout.astro";
 import Layout from "@layouts/Layout.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import { sortCollection } from "src/utils/sortCollection";
 
 const bookReports: Array<CollectionEntry<"books">> = await getCollection("books");
 
-// const bookReports: Array<CollectionEntry<"books">> = allPosts.filter((entry) => entry.data.postType === "book").toReversed();
+const tags = await getCollection("bookTags");
 ---
 
-<Layout>
-  <TopNav />
-  <PageHeader>Book Reviews</PageHeader>
-  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(30ch,100%),1fr))] 2xl:grid-cols-3 w-full py-10 px-[var(--gutter)] gap-5">
-    {bookReports.map((book, i) => <BookSummary book={book} />)}
+<BookListLayout>
+  <TagContents slot="tag-list" pageUrl="/books/tagged/" tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
+  <div slot="book-list">
+    <ul class="grid gap-5 grid-cols-1">
+      {sortCollection(bookReports, "date").map((book, i) => <BookSummary book={book} />)}
+    </ul>
   </div>
-</Layout>
+</BookListLayout>

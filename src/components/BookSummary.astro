@@ -1,7 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import ChiStarImg from "@assets/logos/CHISTAR.png";
+import ChiStarHalfImg from "@assets/logos/CHISTAR_half.png";
 import ChiStar from "./ChiStar.astro";
+import TagContents from "./TagContents.astro";
+import writingEmoji from "@assets/mutantEmoji/hands/writing_hand_clw_y2.png";
 
 interface Props {
   book: CollectionEntry<"books">;
@@ -10,9 +14,12 @@ interface Props {
 const {
   book: {
     slug,
-    data: { title, author, summary, readDate, rating, cover, bookTags },
+    data: { title, author, summary, date, rating, cover, bookTags },
   },
 } = Astro.props;
+
+const hasHalfStar = rating % 1 !== 0;
+
 /**
  * Ideas:
  *
@@ -21,24 +28,28 @@ const {
  */
 ---
 
-<div class="bg-boxPrimary border-yellow border-4 text-slate-200">
-  <div class="flex flex-col gap-4 p-5 pb-0">
-    <a href=`/books/${slug}`>
-      <h2 class="text-4xl text-center underline">{title}</h2>
-    </a>
-    <!-- TODO: 0.5 star functionality! -->
-    <span class="justify-center text-4xl flex gap-1 w-full">{[...Array(Math.floor(rating))].map(() => <ChiStar color="text-yellow" />)}</span>
-    <a href=`/books/${slug}` class="flex justify-center">
-      <Image src={cover} alt={cover.src.split("/").at(-1) || "mutant emoji"} loading="eager" class="shadow-2xl max-w-32" />
-    </a>
-    <p class="px-8 text-center">{summary}</p>
-    <hr />
+<li class="p-5 bg-boxPrimary border-yellow border-4 text-slate-200 flex items-center min-h-48">
+  <div class="flex-[0_1_0] max-h-40">
+    <Image src={cover} alt={`${title} Book Cover Art`} class="min-w-[100px]" />
   </div>
-  <div class="flex py-4 px-1 gap-2 justify-center">
-    <!-- Map the tags here -->
-    <a href="/" class="bg-redDark p-1 text-sm hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white">#Test Tag</a>
-    <span class="bg-redDark p-1 text-sm hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white">#Fiction</span>
-    <span class="bg-redDark p-1 text-sm hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white">#Scary</span>
-    <span class="bg-redDark py-1 px-2 text-sm hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white">#Sexy</span>
+  <div class="ml-2 pl-4 flex-[3_1_0]">
+    <h2x>
+      <a
+        class="text-3xl hover:underline decoration-amber-400 decoration-2 cursor-pointer text-amber-300 visited:text-amber-600 visited:decoration-amber-600 font-medium text-wrap"
+        href={`/books/${slug}`}
+      >
+        {title}
+      </a>
+    </h2x>
+    <p class="text-lg italic flex gap-2"><Image src={writingEmoji} alt={"Writing emoji"} class={"w-6 aspect-square"} />{author}</p>
+    <p class="text-xl">{summary}</p>
+    <p class="text-4xl flex gap-1 w-full">
+      {[...Array(Math.floor(rating))].map(() => <Image src={ChiStarImg} alt={"Chicago Star"} class="max-w-6 aspect-square" />)}{
+        hasHalfStar && <Image src={ChiStarHalfImg} alt={"Half of a Chicago Star"} class="max-w-3 aspect-square" />
+      }
+    </p>
+    <div>
+      <TagContents pageUrl="/books/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
+    </div>
   </div>
-</div>
+</li>

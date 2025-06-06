@@ -1,0 +1,14 @@
+---
+import TopNav from "@components/TopNav.astro";
+import Layout from "./Layout.astro";
+import PageHeader from "@components/PageHeader.astro";
+---
+
+<Layout>
+  <TopNav />
+  <PageHeader>Book Reviews</PageHeader>
+  <div class="flex flex-col m-5 gap-5">
+    <slot name="tag-list" />
+    <slot name="book-list" />
+  </div>
+</Layout>
