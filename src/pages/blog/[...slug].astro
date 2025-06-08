@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import BlogLayout from "@layouts/BlogPostLayout.astro";
+import BlogPostLayout from "@layouts/BlogPostLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import type { GetStaticPaths, MarkdownHeading } from "astro";
 
@@ -33,6 +33,6 @@ const { entry, headings } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BlogLayout post={entry} headings={headings}>
+<BlogPostLayout post={entry} headings={headings}>
   <Content />
-</BlogLayout>
+</BlogPostLayout>

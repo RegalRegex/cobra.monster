@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import TagContents from "@components/TagContents.astro";
-import { getEntry } from "astro:content";
 
 interface Props {
   post: CollectionEntry<"posts">;
@@ -34,7 +33,7 @@ const {
       {
         tags && (
           <div class="flex mt-2 text-md">
-            <TagContents inline={true} tagIds={tags.map((tag) => tag.id)} />
+            <TagContents pageUrl="/blog/tagged/" inline={true} tagIds={tags.map((tag) => tag.id)} />
           </div>
         )
       }

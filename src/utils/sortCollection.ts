@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 
-export function sortCollection(list: Array<CollectionEntry<"posts">>, sortType: "date" | "title") {
+export function sortCollection<T extends CollectionEntry<"posts" | "books">>(list: Array<T>, sortType: "date" | "title"): Array<T> {
   return sortType === "date"
     ? list.sort((a, b) => {
         return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();

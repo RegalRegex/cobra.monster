@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import ChiStarImg from "@assets/logos/CHISTAR.png";
+import ChiStarHalfImg from "@assets/logos/CHISTAR_half.png";
+import ChiStar from "@components/ImageComponents/ChiStar.astro";
+import TagContents from "./TagContents.astro";
+import writingEmoji from "@assets/mutantEmoji/hands/writing_hand_clw_y2.png";
+
+interface Props {
+  book: CollectionEntry<"books">;
+}
+
+const {
+  book: {
+    slug,
+    data: { title, author, summary, date, rating, cover, bookTags },
+  },
+} = Astro.props;
+
+const hasHalfStar = rating % 1 !== 0;
+
+/**
+ * Ideas:
+ *
+ * Sorting by rating or date
+ * List or Gallery view
+ */
+---
+
+<li class="p-5 bg-boxPrimary border-yellow border-4 text-slate-200 flex items-center min-h-48 text-center sm:text-left">
+  <div class="flex-[0_1_0] max-h-40 sm:block hidden">
+    <Image src={cover} alt={`${title} Book Cover Art`} class="min-w-[100px]" />
+  </div>
+  <div class="ml-2 pl-4 flex-[3_1_0]">
+    <h2>
+      <a
+        class="text-3xl hover:underline decoration-amber-400 decoration-2 cursor-pointer text-amber-300 visited:text-amber-600 visited:decoration-amber-600 font-medium text-wrap"
+        href={`/books/${slug}`}
+      >
+        {title}
+      </a>
+    </h2>
+    <div class="text-lg italic gap-1 block sm:flex">
+      <Image src={writingEmoji} alt={"Writing emoji"} class={"w-6 aspect-square sm:inline-block mb-auto self-start hidden"} />
+      <p>{author}</p>
+    </div>
+    <div class="flex-[0_1_0] max-w-32 sm:hidden block mx-auto">
+      <Image src={cover} alt={`${title} Book Cover Art`} class="" />
+    </div>
+    <hr class="mt-4 mb-2" />
+    <p class="text-xl">{summary}</p>
+    <div class="text-4xl flex gap-1 w-full justify-center sm:justify-normal">
+      {[...Array(Math.floor(rating))].map(() => <Image src={ChiStarImg} alt={"Chicago Star"} class="max-w-6 aspect-square" />)}{
+        hasHalfStar && <Image src={ChiStarHalfImg} alt={"Half of a Chicago Star"} class="max-w-3 aspect-square" />
+      }
+    </div>
+    <div class="flex justify-center sm:justify-normal">
+      <TagContents pageUrl="/books/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
+    </div>
+  </div>
+</li>

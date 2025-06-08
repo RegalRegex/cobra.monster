@@ -1,0 +1,30 @@
+---
+import BookSummary from "@components/BookSummary.astro";
+import PageHeader from "@components/PageHeader.astro";
+import TagContents from "@components/TagContents.astro";
+import TopNav from "@components/TopNav.astro";
+import BookListLayout from "@layouts/BookListLayout.astro";
+import Layout from "@layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+export const getStaticPaths = (async () => {
+  const tagEntries = await getCollection("bookTags");
+  return tagEntries.map((entry) => ({
+    params: { tag: entry.id },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+const tags = await getCollection("bookTags");
+const bookReports: Array<CollectionEntry<"books">> = await getCollection("books");
+const { entry } = Astro.props;
+---
+
+<BookListLayout>
+  <TagContents slot="tag-list" pageUrl="/books/tagged/" selected={entry.id} tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
+  <div slot="book-list">
+    <ul class="grid gap-5 grid-cols-1">
+      {bookReports.filter((book) => book.data.bookTags.map((bookTag) => bookTag.id).includes(entry.id)).map((book, i) => <BookSummary book={book} />)}
+    </ul>
+  </div>
+</BookListLayout>

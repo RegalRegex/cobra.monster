@@ -5,16 +5,17 @@ import TopNav from "../components/TopNav.astro";
 import type { MarkdownHeading } from "astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import TagContents from "../components/TagContents.astro";
+import { Image } from "astro:assets";
 
 interface Props {
-  post: CollectionEntry<"posts">;
+  bookPost: CollectionEntry<"books">;
   headings: MarkdownHeading[];
 }
 
 const {
-  post: {
+  bookPost: {
     slug,
-    data: { title, subtitle, date, tags, blogExclude },
+    data: { title, author, summary, date, rating, cover, bookTags, publishDate },
   },
   headings,
 } = Astro.props;
@@ -24,7 +25,10 @@ const formattedDate = date?.toLocaleString("en-US", { day: "2-digit", month: "lo
 // const displayTags = tags?.map((tag) => tag.id);
 const listDecoStyle = "prose-ul:before:text-white";
 
-const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `https://cobra.monster/blog/og/${slug}.png`;
+// TODO: OG image
+const ogImg = `https://cobra.monster/books/og/${slug}.png`;
+
+
 ---
 
 <head>
@@ -32,10 +36,10 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
   <meta name="viewport" content="width=device-width" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
-  <meta property="og:title" content={blogExclude ? `About Regal: ${title}` : title} />
-  <meta property="og:description" content={subtitle} />
+  <meta property="og:title" content={`Regal Reviews: ${title}`} />
+  <meta property="og:description" content={summary} />
   <meta property="og:image" content={ogImg} />
-  <title>{blogExclude ? `About Regal: ${title}` : title}</title>
+  <title>Regal Reviews: {title}</title>
 </head>
 
 <Layout blog={true}>
@@ -44,15 +48,15 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
     <header class="flex flex-col md:grid grid-cols-12 md:border-0 border-b-2 border-slate-200 md:mb-0 md:pb-0 mb-2 pb-5">
       <div class="lg:col-start-2 col-span-10 md:mb-10 mb-5">
         <h1 class="font-black text-yellow decoration-4 decoration-white md:text-6xl text-4xl mb-5">{title}</h1>
-        <h2 class="text-slate-200 md:text-3xl text-lg font-medium">{subtitle}</h2>
-        <p class="md:hidden flex text-slate-200 text-sm">{blogExclude ? "Last Updated" : "Published"}: {formattedDate}</p>
+        <h2 class="text-slate-200 md:text-3xl text-lg font-medium">{summary}</h2>
+        <p class="md:hidden flex text-slate-200 text-sm">Finished Reading: {formattedDate}</p>
       </div>
       {
-        (tags || headings.length > 0) && (
+        (bookTags || headings.length > 0) && (
           <aside class="text-slate-200 md:hidden block">
-            {tags && (
+            {bookTags && (
               <div class="flex mb-8">
-                <TagContents pageUrl="/blog/tagged/" tagIds={tags.map((tag) => tag.id)} />
+                <TagContents pageUrl="/blog/tagged/" tagIds={bookTags.map((tag) => tag.id)} />
               </div>
             )}
             <div class="border-t-4 border-slate-200">{headings.length > 0 && <TableOfContents headings={headings} />}</div>
@@ -64,26 +68,39 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
     <div class="text-xl text-slate-200 md:grid grid-cols-12 gap-10 flex flex-col">
       <aside class="col-start-1 lg:col-start-2 col-span-4 lg:col-span-3 border-t-4 border-slate-200 hidden md:block mt-3">
         <div id="publishTags" class="border-b-2 border-slate-200 pb-4">
+          <div class="py-2 border-b-4 border-slate-200">
+            <h3 class="font-medium text-2xl">Author</h3>
+            <p class="text-slate-200 mb-2">{author}</p>
+            {publishDate && <h3 class="font-medium text-2xl">Published</h3>
+            <p class="text-slate-200 mb-2">{publishDate}</p>}
+          </div>
           <div class="mt-2">
-            <h3 class="font-medium text-2xl">{blogExclude ? "Last Updated" : "Published"}</h3>
-            <p>{formattedDate}</p>
+            <h3 class="font-medium text-2xl mt-2">Rating</h3>
+            <p class="text-slate-200 mb-2">{rating}/5</p>
+            <h3 class="font-medium text-2xl">Finished Reading</h3>
+            <p class="text-slate-200 mb-2">{formattedDate}</p>
+            
           </div>
           {
-            tags && (
+            bookTags && (
               <div class="mt-2 text-sm">
-                <TagContents pageUrl="/blog/tagged/" inline={true} tagIds={tags.map((tag) => tag.id)} />
+                <TagContents pageUrl="/books/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
               </div>
             )
           }
         </div>
         {headings.length > 0 && <TableOfContents headings={headings} />}
       </aside>
+
       <main
         class:list={[
           "col-span-8 prose md:prose-lg lg:prose-xl prose-slate prose-invert prose-blockquote:border-yellow prose-blockquote:border-l-8 prose-blockquote:bg-redDark/40 prose-blockquote:font-light prose-hr:border-slate-200 prose-blockquote:pr-2 prose-h5:font-bold prose-h5:text-white prose-h6:font-bold prose-h6:text-white prose-code:bg-black/35 prose-li:has-[ul]:list-none",
           `${listDecoStyle}`,
         ]}
       >
+        <div class="not-prose max-w-[50%] my-5">
+          <Image src={cover} alt={`${title} Book Cover`} />
+        </div>
         <slot />
       </main>
     </div>

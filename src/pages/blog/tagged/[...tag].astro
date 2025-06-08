@@ -18,7 +18,7 @@ const { entry } = Astro.props;
 
 <BlogLayout>
   <Fragment slot="tag-list">
-    <TagContents selected={entry.id} tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
+    <TagContents pageUrl="/blog/tagged/" selected={entry.id} tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
   </Fragment>
   <Fragment slot="post-list">
     <PostList tagId={entry.id} />
