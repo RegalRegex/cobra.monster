@@ -1,20 +1,19 @@
-import type { ImageResponse } from "@vercel/og";
-import type { APIRoute } from "astro";
-import type { AstroVNode } from "astro/jsx-runtime";
 import { readFileSync } from "fs";
 import type { ImageResponseOptions } from "node_modules/@vercel/og/dist/types";
-import type { ReactElement } from "react";
+import type { ReactNode } from "react";
 import { html } from "satori-html";
 
-interface GetMdxPageOgProps {
+interface OgHtmlGenProps {
   title: string;
   subtitle: string;
   date?: Date;
+  // Book Reviews:
+  rating?: number;
 }
 
 // Logic referenced from: https://rumaan.dev/blog/open-graph-images-using-satori
 
-export const ogHtmlGen = ({ title, subtitle, date }: GetMdxPageOgProps): { markup: AstroVNode; imgResOptions: ImageResponseOptions } => {
+export const ogHtmlGen = ({ title, subtitle, date, rating }: OgHtmlGenProps): { markup: ReactNode; imgResOptions: ImageResponseOptions } => {
   const techHeadlines = readFileSync("./src/assets/og/Tech Headlines.otf");
   const techHeadlinesItalic = readFileSync("./src/assets/og/Tech Headlines Italic.otf");
   const goreRegular = readFileSync("./src/assets/og/Gore Regular.woff");
@@ -28,18 +27,55 @@ export const ogHtmlGen = ({ title, subtitle, date }: GetMdxPageOgProps): { marku
       })} ${date.toLocaleDateString("en-US", { year: "numeric" })}`
     : "<></>";
 
+  // TODO: Yellow
+  const starRatingBuilder = (): string => {
+    if (rating) {
+      const starSize: number = 60;
+      const emptyCalc = 4 - Math.floor(rating);
+      return `${[...Array(Math.floor(rating))]
+        .map(() => `<img src="${baseUrl}/CHISTAR(yellow).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`)
+        .concat()
+        .join("")} ${
+        rating % 1 !== 0
+          ? `<img src="${baseUrl}/CHISTAR(yellow)_half-full.png" width="${starSize}px" height="${starSize}px" alt={"Half of a Chicago Star"} className="aspect-square " />`
+          : ""
+      } 
+      ${
+        emptyCalc > 0
+          ? [...Array(emptyCalc)]
+              .map(
+                () =>
+                  `<img src="${baseUrl}/CHISTAR(yellow)(outline).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`,
+              )
+              .concat()
+              .join("")
+          : ""
+      }`;
+    }
+    return "";
+  };
+
+  const subtitleElement: string = rating ? starRatingBuilder() : "";
+
   return {
     markup: html(`
     <!-- Container -->
   <div class="w-[1200px] h-[630px] flex">
     <!-- Box -->
     <div class="w-full h-full flex flex-col justify-between bg-[#450a0a] text-red-50">
+    <!-- Info Badge Top Left -->
+    <div class="absolute flex -top-8 text-xl "><h2 class="bg-[#7c0404] border-b-4 border-[#eab308] pl-1 pr-5 pt-3">${
+      rating ? "Book Review" : "Blog Post"
+    }</h2></div>
       <!-- Header, Subtitle, and Image container -->
-      <div class="flex w-full justify-between m-10 h-full">
+      <div class="flex w-full justify-between m-10 h-full"> 
         <!-- Header & Subtitle -->
-        <div class="flex flex-col w-[700px] h-[474px] justify-center">
-          <h1 class="text-6xl leading-[1.25] border-b-4 border-[#eab308] pb-10">${title}</h1>
-          <h2 class="text-3xl leading-[1.5]">${subtitle}</h2>
+        <div class="flex flex-col w-[700px] h-[474px] justify-center pt-5">
+          <h1 class="${title.length > 30 ? "text-5xl" : "text-6xl"} leading-[1.25] border-b-4 border-[#eab308] pb-10">${title}</h1>
+          <div class="flex flex-col justify-around grow">
+            <h2 class="${subtitle.length > 120 ? "text-2xl" : "text-3xl"} leading-[1.5]">${subtitle}</h2>
+            <span>${subtitleElement}</span>
+          </div>
         </div>
         <!-- Image -->
         <div class="flex max-w-[800px] h-[474px] right-5 bottom-8">
@@ -83,7 +119,7 @@ export const ogHtmlGen = ({ title, subtitle, date }: GetMdxPageOgProps): { marku
       font-family: "Gore Regular";
     }
   </style>
-    `),
+    `) as ReactNode,
     imgResOptions: {
       fonts: [
         {

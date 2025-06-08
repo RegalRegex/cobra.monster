@@ -3,15 +3,17 @@ export const prerender = true;
 import type { APIRoute } from "astro";
 import { ImageResponse } from "@vercel/og";
 import { getCollection } from "astro:content";
-import { ogHtmlGen } from "src/utils/ogGen";
-import type { ReactElement } from "react";
 
-const blogEntries = await getCollection("posts");
+import type { ReactElement } from "react";
+import { ogHtmlGen } from "src/utils/ogGen";
+
+const blogEntries = await getCollection("books");
 
 interface Props {
   title: string;
   subtitle: string;
   date: Date;
+  rating: number;
 }
 
 export const GET: APIRoute<Props> = ({ props }) => {
@@ -20,10 +22,8 @@ export const GET: APIRoute<Props> = ({ props }) => {
 };
 
 export async function getStaticPaths() {
-  return blogEntries
-    .filter((entry) => !entry.data.blogExclude)
-    .map((post) => ({
-      params: { slug: post.slug },
-      props: { title: post.data.title, subtitle: post.data.subtitle, date: post.data.date },
-    }));
+  return blogEntries.map((book) => ({
+    params: { slug: book.slug },
+    props: { title: book.data.title, subtitle: book.data.summary, date: book.data.date, rating: book.data.rating },
+  }));
 }
