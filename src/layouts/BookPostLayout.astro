@@ -1,12 +1,13 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Layout from "./Layout.astro";
-import TopNav from "../components/TopNav.astro";
+import TopNav from "@components/TopNav.astro";
 import type { MarkdownHeading } from "astro";
-import TableOfContents from "../components/TableOfContents.astro";
-import TagContents from "../components/TagContents.astro";
+import TableOfContents from "@components/TableOfContents.astro";
+import TagContents from "@components/TagContents.astro";
 import { Image } from "astro:assets";
 import { formatDate } from "src/utils/dateFormatter";
+import ChiStarRating from "@components/ImageComponents/ChiStarRating.astro";
 
 interface Props {
   bookPost: CollectionEntry<"books">;
@@ -77,7 +78,7 @@ const ogImg = `https://cobra.monster/books/og/${slug}.png`;
           </div>
           <div class="mt-2">
             <h3 class="font-medium text-2xl mt-2">Rating</h3>
-            <p class="text-slate-200 mb-2">{rating} / 5</p>
+            <div class="text-slate-200 my -2 flex"><ChiStarRating rating={rating} /></div>
             <h3 class="font-medium text-2xl">Read Date</h3>
             <p class="text-slate-200 mb-2">{formattedDate}</p>
             
