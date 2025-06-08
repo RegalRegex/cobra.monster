@@ -10,7 +10,7 @@ import TextDeco from "@components/TextDeco.astro";
 import Accordion from "@components/Accordion/Accordion"
 import { Image } from "astro:assets";
 
-import argentSmirk from "@assets/mutantEmoji/argent_smirk_512.png"
+import argentSmirk from "@assets/mutantEmoji/argent/smirk.png"
 import laptop from "@assets/mutantEmoji/laptop.png"
 
 ![VS Code Screenshot](@assets/aboutPages/webdev/vsCodeScreencap_4-3-25.png)
@@ -76,7 +76,7 @@ As an example, this is the code that takes in headers from my blog post files, p
 ---
 import type { MarkdownHeading } from "astro";
 import TextDeco from "./TextDeco.astro";
-import ChiStar from "./ChiStar.astro";
+import ChiStar from "@components/ImageComponents/ChiStar.astro";
 interface Props {
   headings: MarkdownHeading[];
 }

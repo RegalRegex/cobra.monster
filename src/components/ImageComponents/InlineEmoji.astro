@@ -1,0 +1,21 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+const argentEmoji = ["smirk", "flushed", "smile", "pleading", "thinking", "triumph", "weary"];
+const argentEmojiKeys = Object.keys(argentEmoji);
+
+interface Props {
+  emoji: (typeof argentEmojiKeys)[number];
+}
+
+const { emoji } = Astro.props;
+
+const argentEmojiPath = `/src/assets/mutantEmoji/argent/${emoji}.png`;
+
+const emojiImported = import.meta.glob<{ default: ImageMetadata }>("src/assets/mutantEmoji/argent/*.{jpeg,jpg,png}");
+
+if (!emojiImported[argentEmojiPath]) throw new Error(`"${emoji}" does not exist in glob: "src/assets/mutantEmoji/argent/*.{jpeg,jpg,png,gif}"`);
+---
+
+<span class="inline-block w-8 not-prose -mb-1"><Image src={emojiImported[argentEmojiPath]()} alt={`${emoji} emoji`} /></span>

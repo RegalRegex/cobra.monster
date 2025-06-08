@@ -32,10 +32,10 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
   <meta name="viewport" content="width=device-width" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
-  <meta property="og:title" content={title} />
+  <meta property="og:title" content={blogExclude ? `About Regal: ${title}` : title} />
   <meta property="og:description" content={subtitle} />
   <meta property="og:image" content={ogImg} />
-  <title>{title}</title>
+  <title>{blogExclude ? `About Regal: ${title}` : title}</title>
 </head>
 
 <Layout blog={true}>

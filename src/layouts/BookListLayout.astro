@@ -2,13 +2,21 @@
 import TopNav from "@components/TopNav.astro";
 import Layout from "./Layout.astro";
 import PageHeader from "@components/PageHeader.astro";
+import { Image } from "astro:assets";
+
+import commieArgent from "@assets/argent/CommieCross-transparent_Batnoise.png";
 ---
 
 <Layout>
   <TopNav />
   <PageHeader>Book Reviews</PageHeader>
-  <div class="flex flex-col m-5 gap-5">
-    <slot name="tag-list" />
-    <slot name="book-list" />
-  </div>
+  <main class="flex gap-5">
+    <div class="flex flex-col m-5 gap-5">
+      <slot name="tag-list" />
+      <slot name="book-list" />
+    </div>
+    <aside class="m-5 lg:block hidden">
+      <Image src={commieArgent} alt={'Argent holding a book labeled "The Beans of Production" '} class={"pt-[50%] sticky top-0 [transform:rotateY(180deg)"} />
+    </aside>
+  </main>
 </Layout>

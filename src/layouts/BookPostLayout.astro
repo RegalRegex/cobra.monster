@@ -27,6 +27,8 @@ const listDecoStyle = "prose-ul:before:text-white";
 
 // TODO: OG image
 const ogImg = `https://cobra.monster/books/og/${slug}.png`;
+
+
 ---
 
 <head>
@@ -68,21 +70,21 @@ const ogImg = `https://cobra.monster/books/og/${slug}.png`;
         <div id="publishTags" class="border-b-2 border-slate-200 pb-4">
           <div class="py-2 border-b-4 border-slate-200">
             <h3 class="font-medium text-2xl">Author</h3>
-            <p class="text-slate-200">{author}</p>
-            {publishDate && <h3 class="font-medium text-2xl">Publish Date</h3>
-            <p class="text-slate-200">{publishDate}</p>}
+            <p class="text-slate-200 mb-2">{author}</p>
+            {publishDate && <h3 class="font-medium text-2xl">Published</h3>
+            <p class="text-slate-200 mb-2">{publishDate}</p>}
           </div>
           <div class="mt-2">
             <h3 class="font-medium text-2xl mt-2">Rating</h3>
-            <p class="text-slate-200">{rating}/5</p>
+            <p class="text-slate-200 mb-2">{rating}/5</p>
             <h3 class="font-medium text-2xl">Finished Reading</h3>
-            <p class="text-slate-200">{formattedDate}</p>
+            <p class="text-slate-200 mb-2">{formattedDate}</p>
             
           </div>
           {
             bookTags && (
               <div class="mt-2 text-sm">
-                <TagContents pageUrl="/blog/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
+                <TagContents pageUrl="/books/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
               </div>
             )
           }

@@ -7,7 +7,7 @@ interface Props {
 }
 const { tagIds, pageUrl, inline = false, selected } = Astro.props;
 
-const inlineStyling = inline ? "text-amber-400" : "text-white p-1.5 m-0.5 bg-redDark";
+const inlineStyling = inline ? "text-amber-400" : "text-white p-1.5 m-0.5 bg-redDark underline";
 ---
 
 <div>
@@ -18,7 +18,7 @@ const inlineStyling = inline ? "text-amber-400" : "text-white p-1.5 m-0.5 bg-red
           <a
             href={`${pageUrl}${tagId}`}
             class:list={[
-              "hover:brightness-150 rounded-lg underline decoration-1 font-medium decoration-white ",
+              "hover:brightness-150 rounded-lg decoration-1 font-medium decoration-white ",
               `${inlineStyling}`,
               `${selected === tagId ? " ring-2 ring-white brightness-150 grayscale-25 border-r-2 border-b-2 border-slate-200" : ""}`,
             ]}

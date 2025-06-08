@@ -46,7 +46,7 @@ const books = defineCollection({
       author: z.string(),
       summary: z.string(),
       date: z.date(),
-      publishDate: z.date().optional(),
+      publishDate: z.number().optional(),
       rating: z.number(),
       cover: z.preprocess((val) => `/src/assets/books/${val}`, image()),
       bookTags: z.array(reference("bookTags")),
