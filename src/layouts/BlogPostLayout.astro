@@ -5,6 +5,7 @@ import TopNav from "../components/TopNav.astro";
 import type { MarkdownHeading } from "astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import TagContents from "../components/TagContents.astro";
+import { formatDate } from "src/utils/dateFormatter";
 
 interface Props {
   post: CollectionEntry<"posts">;
@@ -19,7 +20,7 @@ const {
   headings,
 } = Astro.props;
 
-const formattedDate = date?.toLocaleString("en-US", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" });
+const formattedDate = formatDate(date);
 
 // const displayTags = tags?.map((tag) => tag.id);
 const listDecoStyle = "prose-ul:before:text-white";
