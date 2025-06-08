@@ -6,6 +6,7 @@ import ChiStarHalfImg from "@assets/logos/CHISTAR_half.png";
 import ChiStar from "@components/ImageComponents/ChiStar.astro";
 import TagContents from "./TagContents.astro";
 import writingEmoji from "@assets/mutantEmoji/hands/writing_hand_clw_y2.png";
+import { formatDate } from "src/utils/dateFormatter";
 
 interface Props {
   book: CollectionEntry<"books">;
@@ -14,9 +15,11 @@ interface Props {
 const {
   book: {
     slug,
-    data: { title, author, summary, date, rating, cover, bookTags },
+    data: { title, author, summary, date, rating, cover, bookTags, publishDate },
   },
 } = Astro.props;
+
+const formattedDate = formatDate(date);
 
 const hasHalfStar = rating % 1 !== 0;
 
@@ -29,7 +32,11 @@ const hasHalfStar = rating % 1 !== 0;
 ---
 
 <li class="p-5 bg-boxPrimary border-yellow border-4 text-slate-200 flex items-center min-h-48 text-center sm:text-left">
-  <div class="flex-[0_1_0] max-h-40 sm:block hidden">
+  <div class="flex-[0_1_0] max-h-40 sm:flex hidden">
+    <div id="dateSquareContainer" class="flex flex-col text-center text-slate-200 pr-3 mr-3 text-sm font-bold border-r border-slate-200">
+      <span>{date.toLocaleDateString("en-US", { day: "numeric" })}</span>
+      <span>{date.toLocaleDateString("en-US", { month: "short" })}</span>
+    </div>
     <Image src={cover} alt={`${title} Book Cover Art`} class="min-w-[100px]" />
   </div>
   <div class="ml-2 pl-4 flex-[3_1_0]">
@@ -41,20 +48,21 @@ const hasHalfStar = rating % 1 !== 0;
         {title}
       </a>
     </h2>
-    <div class="text-lg italic gap-1 block sm:flex">
-      <Image src={writingEmoji} alt={"Writing emoji"} class={"w-6 aspect-square sm:inline-block mb-auto self-start hidden"} />
-      <p>{author}</p>
+    <div class="gap-1 block sm:flex flex-wrap">
+      <Image src={writingEmoji} alt={"Writing emoji"} class={"w-6 aspect-square sm:inline-block self-start hidden"} />
+      <p class="text-lg italic grow">{author}</p>
     </div>
     <div class="flex-[0_1_0] max-w-32 sm:hidden block mx-auto">
       <Image src={cover} alt={`${title} Book Cover Art`} class="" />
     </div>
-    <hr class="mt-4 mb-2" />
-    <p class="text-xl">{summary}</p>
+    <hr class="sm:my-2 my-0 mb-2 mt-3" />
     <div class="text-4xl flex gap-1 w-full justify-center sm:justify-normal">
       {[...Array(Math.floor(rating))].map(() => <Image src={ChiStarImg} alt={"Chicago Star"} class="max-w-6 aspect-square" />)}{
         hasHalfStar && <Image src={ChiStarHalfImg} alt={"Half of a Chicago Star"} class="max-w-3 aspect-square" />
       }
     </div>
+    <p class="text-xl">{summary}</p>
+    <p class="text-sm sm:hidden block">Read: {formattedDate}</p>
     <div class="flex justify-center sm:justify-normal">
       <TagContents pageUrl="/books/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
     </div>
