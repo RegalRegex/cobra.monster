@@ -8,7 +8,6 @@ interface Props {
 }
 const { headings } = Astro.props;
 const filteredHeadings = headings.filter((heading) => heading.text !== "Footnotes");
-
 ---
 
 <nav class="sticky top-0 pt-4">
@@ -32,10 +31,10 @@ const filteredHeadings = headings.filter((heading) => heading.text !== "Footnote
         }
         return (
           // Divider element. Separates top level headers. "arr" avoids line when multiple top-level headers in sequence
-            <div class:list={[" w-[75%]  bg-slate-200/30 p-0.5 mb-1.5", `${(i===0 || arr[i-1].depth === 1) ? 'hidden' :'inline-block'}`]}></div>
-            <li>
-              <TextDeco url={`#${heading.slug}`}>{heading.text}</TextDeco>
-            </li>
+          // <div class:list={[" w-[75%]  bg-slate-200/30 p-0.5 mb-1.5", `${(i===0 || arr[i-1].depth === 1) ? 'hidden' :'inline-block'}`]}></div>
+          <li>
+            <TextDeco url={`#${heading.slug}`}>{heading.text}</TextDeco>
+          </li>
         );
       })
     }

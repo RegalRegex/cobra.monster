@@ -1,12 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import ChiStarImg from "@assets/logos/CHISTAR.png";
-import ChiStarHalfImg from "@assets/logos/CHISTAR_half.png";
-import ChiStar from "@components/ImageComponents/ChiStar.astro";
-import TagContents from "./TagContents.astro";
+import TagContents from "@components/TagContents.astro";
 import writingEmoji from "@assets/mutantEmoji/hands/writing_hand_clw_y2.png";
 import { formatDate } from "src/utils/dateFormatter";
+import ChiStarRating from "@components/ImageComponents/ChiStarRating.astro";
 
 interface Props {
   book: CollectionEntry<"books">;
@@ -22,6 +20,7 @@ const {
 const formattedDate = formatDate(date);
 
 const hasHalfStar = rating % 1 !== 0;
+const emptyCalc = 4 - Math.floor(rating);
 
 /**
  * Ideas:
@@ -53,13 +52,11 @@ const hasHalfStar = rating % 1 !== 0;
       <p class="text-lg italic grow">{author}</p>
     </div>
     <div class="flex-[0_1_0] max-w-32 sm:hidden block mx-auto">
-      <Image src={cover} alt={`${title} Book Cover Art`} class="" />
+      <Image src={cover} alt={`${title} Book Cover Art`} />
     </div>
     <hr class="sm:my-2 my-0 mb-2 mt-3" />
     <div class="text-4xl flex gap-1 w-full justify-center sm:justify-normal">
-      {[...Array(Math.floor(rating))].map(() => <Image src={ChiStarImg} alt={"Chicago Star"} class="max-w-6 aspect-square" />)}{
-        hasHalfStar && <Image src={ChiStarHalfImg} alt={"Half of a Chicago Star"} class="max-w-3 aspect-square" />
-      }
+      <ChiStarRating rating={rating} />
     </div>
     <p class="text-xl">{summary}</p>
     <p class="text-sm sm:hidden block">Read: {formattedDate}</p>
