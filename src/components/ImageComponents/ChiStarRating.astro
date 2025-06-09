@@ -1,21 +1,25 @@
 ---
-import ChiStarImg from "@assets/logos/CHISTARs/CHISTAR.png";
-import ChiStarHalfImg from "@assets/logos/CHISTARs/CHISTAR_half-full.png";
-import ChiStarEmpty from "@assets/logos/CHISTARs/CHISTAR(outline).png";
 import { Image } from "astro:assets";
+// Red
+import redFull from "@assets/logos/chistars/red/full.png";
+import redHalfFull from "@assets/logos/chistars/red/half-full.png";
+import redOutline from "@assets/logos/chistars/red/outline.png";
+// Yellow
+import yellowFull from "@assets/logos/chistars/yellow/full.png";
+import yellowHalfFull from "@assets/logos/chistars/yellow/half-full.png";
+import yellowOutline from "@assets/logos/chistars/yellow/outline.png";
 
 interface Props {
   rating: number;
-  yellow?: boolean;
+  isYellow?: boolean;
 }
-
-const { rating, yellow = false } = Astro.props;
+const { rating, isYellow = false } = Astro.props;
 const hasHalfStar = rating % 1 !== 0;
 const emptyCalc = 4 - Math.floor(rating);
-
-const chistarsImported = import.meta.glob<{ default: ImageMetadata }>("src/assets/logos/CHISTARs/*.png");
 ---
 
-{[...Array(Math.floor(rating))].map(() => <Image src={ChiStarImg} alt={"Chicago Star"} class="max-w-6 aspect-square" />)}{
-  hasHalfStar ? <Image src={ChiStarHalfImg} alt={"Half of a Chicago Star"} class="max-w-6 aspect-square" /> : ""
-}{emptyCalc > 0 ? [...Array(emptyCalc)].map(() => <Image src={ChiStarEmpty} alt={"Chicago Star"} class="aspect-square max-w-6" />) : ""}
+{[...Array(Math.floor(rating))].map(() => <Image src={isYellow ? yellowFull : redFull} alt={"Chicago Star"} class="max-w-6 aspect-square" />)}{
+  hasHalfStar ? <Image src={isYellow ? yellowHalfFull : redHalfFull} alt={"Half of a Chicago Star"} class="max-w-6 aspect-square" /> : ""
+}{
+  emptyCalc > 0 ? [...Array(emptyCalc)].map(() => <Image src={isYellow ? yellowOutline : redOutline} alt={"Chicago Star"} class="aspect-square max-w-6" />) : ""
+}
