@@ -1,13 +1,7 @@
 ---
-import BookSummary from "@components/BookSummary.astro";
-import HomeContentBox from "@components/HomeContentBox.astro";
-import HomeSection from "@components/HomeSection.astro";
-import PageHeader from "@components/PageHeader.astro";
-import PostSummary from "@components/PostSummary.astro";
+import BookSummary from "@components/Books/BookSummary.astro";
 import TagContents from "@components/TagContents.astro";
-import TopNav from "@components/TopNav.astro";
 import BookListLayout from "@layouts/BookListLayout.astro";
-import Layout from "@layouts/Layout.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import { sortCollection } from "src/utils/sortCollection";
@@ -20,8 +14,10 @@ const tags = await getCollection("bookTags");
 <BookListLayout>
   <TagContents slot="tag-list" pageUrl="/books/tagged/" tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
   <div slot="book-list">
+    <a href="" class="bg-yellow p-1 font-medium">Default View</a>
+    <a href="/books/compact" class="bg-yellow-700 p-1 text-black/75 hover:cursor-pointer font-medium">Compact View</a>
     <ul class="grid gap-5 grid-cols-1">
-      {sortCollection(bookReports, "date").map((book, i) => <BookSummary book={book} />)}
+      {sortCollection(bookReports, "date").map((book, i) => <BookSummary book={book} view="default" />)}
     </ul>
   </div>
 </BookListLayout>

@@ -1,0 +1,26 @@
+---
+import { capitalizeFirst } from "src/utils/stringFormatters";
+const topLevelUrl = Astro.url.pathname.split("/").pop();
+
+const views = ["default", "compact"];
+---
+
+<div>
+  <ul class="flex gap-2">
+    {
+      views.map((view) => (
+        <li>
+          <a
+            href={`/books/${view}`}
+            class:list={[
+              "hover:brightness-150 rounded-lg decoration-1 font-medium decoration-white text-white p-1.5 m-0.5 bg-boxPrimary underline",
+              `${topLevelUrl === `${view}` ? " ring-2 ring-white brightness-150 grayscale-25 border-r-2 border-b-2 border-slate-200" : ""}`,
+            ]}
+          >
+            {capitalizeFirst(view)}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
