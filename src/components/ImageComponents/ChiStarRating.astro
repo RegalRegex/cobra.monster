@@ -15,11 +15,13 @@ interface Props {
 }
 const { rating, isYellow = false } = Astro.props;
 const hasHalfStar = rating % 1 !== 0;
-const emptyCalc = 4 - Math.floor(rating);
+const emptyCalc = (hasHalfStar ? 4 : 5) - Math.floor(rating);
 ---
 
-{[...Array(Math.floor(rating))].map(() => <Image src={isYellow ? yellowFull : redFull} alt={"Chicago Star"} class="max-w-6 aspect-square" />)}{
-  hasHalfStar ? <Image src={isYellow ? yellowHalfFull : redHalfFull} alt={"Half of a Chicago Star"} class="max-w-6 aspect-square" /> : ""
+{[...Array(Math.floor(rating))].map(() => <Image src={isYellow ? yellowFull : redFull} alt={"Chicago Star"} class="max-w-6  w-full h-fit aspect-square" />)}{
+  hasHalfStar ? <Image src={isYellow ? yellowHalfFull : redHalfFull} alt={"Half of a Chicago Star"} class="max-w-6  w-full h-fit aspect-square" /> : ""
 }{
-  emptyCalc > 0 ? [...Array(emptyCalc)].map(() => <Image src={isYellow ? yellowOutline : redOutline} alt={"Chicago Star"} class="aspect-square max-w-6" />) : ""
+  emptyCalc > 0
+    ? [...Array(emptyCalc)].map(() => <Image src={isYellow ? yellowOutline : redOutline} alt={"Chicago Star"} class="aspect-square max-w-6  w-full h-fit" />)
+    : ""
 }
