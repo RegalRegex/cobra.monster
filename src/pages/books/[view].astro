@@ -6,10 +6,6 @@ import BookListLayout from "@layouts/BookListLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import { sortCollection } from "src/utils/sortCollection";
-import FilterButtons from "@components/Books/FilterButtons.astro";
-import { Image } from "astro:assets";
-import phone from "@assets/mutantEmoji/phone.png";
-import tv from "@assets/mutantEmoji/tv.png";
 import { capitalizeFirst } from "src/utils/stringFormatters";
 
 const bookReports: Array<CollectionEntry<"books">> = await getCollection("books");
@@ -24,14 +20,7 @@ const { view } = Astro.params;
 ---
 
 <BookListLayout>
-  <!-- <FilterButtons slot="filter-list" /> -->
-  <TagContents slot="tag-list" pageUrl="/books/tagged/" tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
-  <!-- <div slot="filters" class="flex gap-2">
-    <button class="bg-boxPrimary rounded-md p-0.5 w-8 border-2 border-yellow hover:cursor-pointer hover:brightness-150"
-      ><Image src={phone} alt={"phone"} /></button
-    >
-    <button class="bg-boxPrimary rounded-md p-0.5 w-8 border-2 border-yellow hover:cursor-pointer hover:brightness-150"><Image src={tv} alt={"tv"} /></button>
-  </div> -->
+  <TagContents slot="tag-list" pageUrl={`/books/${view}/tagged/`} tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
   <div slot="book-list">
     <a href="/books" class="bg-yellow-700 p-1 text-black/75 hover:cursor-pointer font-medium">Default View</a>
     <a href="" class="bg-yellow p-1 font-medium">{capitalizeFirst(view)} View</a>

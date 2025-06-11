@@ -5,6 +5,7 @@ import BookListLayout from "@layouts/BookListLayout.astro";
 import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import { capitalizeFirst } from "src/utils/stringFormatters";
 export const getStaticPaths = (async () => {
   const tagEntries = await getCollection("bookTags");
   return tagEntries.map((entry) => ({
@@ -15,13 +16,21 @@ export const getStaticPaths = (async () => {
 const tags = await getCollection("bookTags");
 const bookReports: Array<CollectionEntry<"books">> = await getCollection("books");
 const { entry } = Astro.props;
+const topLevelUrl = Astro.url.pathname.split("/").pop();
 ---
 
+<!-- TODO: fix routing w/ compact view -->
 <BookListLayout>
   <TagContents slot="tag-list" pageUrl="/books/tagged/" selected={entry.id} tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
   <div slot="book-list">
+    <a href="" class="bg-yellow p-1 font-medium">Default View</a>
+    <a href="/books/compact" class="bg-yellow-700 p-1 text-black/75 hover:cursor-pointer font-medium">Compact View</a>
     <ul class="grid gap-5 grid-cols-1">
-      {bookReports.filter((book) => book.data.bookTags.map((bookTag) => bookTag.id).includes(entry.id)).map((book, i) => <BookSummary book={book} />)}
+      {
+        bookReports
+          .filter((book) => book.data.bookTags.map((bookTag) => bookTag.id).includes(entry.id))
+          .map((book, i) => <BookSummary book={book} view={"default"} />)
+      }
     </ul>
   </div>
 </BookListLayout>
