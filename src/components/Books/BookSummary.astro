@@ -53,7 +53,7 @@ const formattedDate = formatDate(date);
       <main class="ml-4 flex-[3_1_0] justify-between flex flex-col h-full gap-2">
         <h2>
           <a
-            class="lg:text-6xl sm:text-4xl text-3xl hover:underline decoration-amber-400 decoration-2 cursor-pointer text-amber-300 visited:text-amber-600 visited:decoration-amber-600 text-wrap font-extrabold"
+            class="sm:text-4xl text-3xl hover:underline decoration-amber-400 decoration-2 cursor-pointer text-amber-300 visited:text-amber-600 visited:decoration-amber-600 text-wrap font-extrabold"
             href={`/books/${slug}`}
           >
             {title}
@@ -61,9 +61,9 @@ const formattedDate = formatDate(date);
         </h2>
         <div class="flex flex-col">
           <div class="gap-1 block sm:flex flex-wrap order-2 sm:order-1">
-            <p class="text-base sm:text-xl lg:text-3xl italic grow sm:text-left flex items-center gap-2">
+            <p class="text-base sm:text-xl  italic grow sm:text-left flex items-center gap-2">
               <span class="border-r pr-2 flex-none">
-                <Image src={writingEmoji} alt={"Writing emoji"} class={"w-10 sm:w-16 mb-1"} />
+                <Image src={writingEmoji} alt={"Writing emoji"} class={"w-10 sm:w-14 mb-1"} />
               </span>
               <span class="">{author}</span>
             </p>
@@ -74,9 +74,9 @@ const formattedDate = formatDate(date);
         </div>
         <hr />
 
-        <p class="text-base sm:text-xl lg:text-3xl flex items-center gap-2 ">
+        <p class="text-base sm:text-xl  flex items-center gap-2 ">
           <span class="border-r pr-2 flex-none">
-            <Image src={argentSmile} alt={"Argent emoji"} class={"w-10 sm:w-16 mb-1"} />
+            <Image src={argentSmile} alt={"Argent emoji"} class={"w-10 sm:w-14 mb-1"} />
           </span>
           <span>{summary}</span>
         </p>
@@ -94,7 +94,7 @@ const formattedDate = formatDate(date);
             <ChiStarRating rating={rating} />
           </span>
         </div>
-        <div class="flex text-base sm:text-lg lg:text-2xl">
+        <div class="flex text-base sm:text-lg ">
           <TagContents pageUrl="/books/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
         </div>
       </main>
