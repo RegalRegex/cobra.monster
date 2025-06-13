@@ -41,10 +41,12 @@ const formattedDate = formatDate(date);
           </div>
           <Image src={cover} alt={`${title} Book Cover Art`} class="w-54 my-auto shadow-2xl" />
         </section>
-        <section class="flex pt-2 justify-center items-center">
-          <Image src={rating >= 3 ? thumbsUp : thumbsDown} alt={"Thumbs Up/Down Rating"} class={"w-16 aspect-square inline-block self-start mr-1 mb-1"} />
-          <span class="flex gap-1 max-w-56 mt-4 shrink">
-            <ChiStarRating rating={rating} maxWidth="max-w-12" />
+        <section class="grid grid-cols-7 pt-2 justify-center items-center">
+          <span class="col-span-2">
+            <Image src={rating >= 3 ? thumbsUp : thumbsDown} alt={"Thumbs Up/Down Rating"} class={"w-16 aspect-square inline-block self-start mr-1 mb-1"} />
+          </span>
+          <span class="flex gap-1 max-w-56 mt-4 col-span-5">
+            <ChiStarRating rating={rating} maxWidth="max-w-10" />
           </span>
         </section>
       </aside>
