@@ -19,7 +19,10 @@ console.log(activeTab);
 
 {
   Object.entries(BOOK_DISPLAY_VIEWS).map(([key, value]) => (
-    <a href={`/books/${value}${tagId ? "/tagged/" + tagId : ""}`} class={`${style(value)} font-semibold p-1 text-xl`}>
+    <a
+      href={`/books/${value}${tagId ? "/tagged/" + tagId : ""}`}
+      class={`${style(value)} font-semibold py-1 px-2 text-lg sm:text-xl inline-flex justify-center items-center`}
+    >
       {capitalizeFirst(key)} View
     </a>
   ))
