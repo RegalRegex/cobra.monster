@@ -8,11 +8,7 @@ const tags = await getCollection("tags");
 ---
 
 <BlogLayout>
-  <Fragment slot="tag-list">
-    <div class="py-4 rounded-lg w-full text-white">
-      <TagContents pageUrl="/blog/tagged/" tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
-    </div>
-  </Fragment>
+  <TagContents slot="tag-list" pageUrl="/blog/tagged/" tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
   <Fragment slot="post-list">
     <PostList />
   </Fragment>

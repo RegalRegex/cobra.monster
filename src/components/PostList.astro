@@ -41,19 +41,15 @@ const blogSort = (): PostsByYear[] => {
       let yearNum: number = parseInt(Object.keys(yearObj)[0]);
       {
         return (
-          <div class:list={["flex sm:flex-row flex-col w-full", `${index !== 0 ? "border-t-4 border-slate-200/40 mt-5" : ""}`]}>
+          <div class:list={["flex sm:flex-row flex-col w-full", `${index !== 0 ? "border-t-4 border-slate-200 pt-4" : ""}`]}>
             <div class="text-5xl mr-5 w-fit">
-              <h3 class="headerTxt sm:sticky relative top-0 pt-4 font-bold">{yearNum}</h3>
+              <h3 class="headerTxt sm:sticky relative top-0 pt-4 font-bold text-slate-200">{yearNum}</h3>
             </div>
-            <div class="mt-5 col-start-2">
+            <ul class="grid gap-5 grid-cols-1 w-full">
               {yearObj[yearNum].map((post): ReactElement[] => {
-                return (
-                  <div class="mb-5">
-                    <PostSummary post={post} />
-                  </div>
-                );
+                return <PostSummary post={post} />;
               })}
-            </div>
+            </ul>
           </div>
         );
       }

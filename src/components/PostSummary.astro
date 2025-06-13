@@ -14,12 +14,12 @@ const {
 } = Astro.props;
 ---
 
-<div class="flex flex-col sm:flex-row mb-8">
-  <div id="dateSquareContainer" class="hidden sm:flex flex-col text-center px-2 text-slate-200 mr-2 h-max rounded-sm text-sm font-bold mt-1">
+<li class="p-2 pl-4 bg-boxPrimary border-yellow border-4 text-slate-200 flex items-center relative">
+  <div id="dateSquareContainer" class="hidden sm:flex flex-col text-center px-2 text-slate-200 mr-2 h-max text-sm font-bold mt-1 border-r">
     <span>{date.toLocaleDateString("en-US", { day: "numeric" })}</span>
     <span>{date.toLocaleDateString("en-US", { month: "short" })}</span>
   </div>
-  <div id="blogSummaryContainer" class="border-0 sm:border-l-2 border-slate-200">
+  <div id="blogSummaryContainer">
     <div class="sm:ml-4 ml-0 grid grid-cols-1">
       <a class="w-full cursor-pointer visited:text-amber-600 decoration-yellow visited:decoration-amber-600 hover:text-amber-500" href=`/blog/${slug}`>
         <h2 class="headerTxt text-3xl underline font-medium">{title}</h2></a
@@ -39,4 +39,4 @@ const {
       }
     </div>
   </div>
-</div>
+</li>

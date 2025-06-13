@@ -2,19 +2,20 @@
 import Layout from "@layouts/Layout.astro";
 import TopNav from "@components/TopNav.astro";
 import PageHeader from "@components/PageHeader.astro";
-import HomeSection from "@components/HomeSection.astro";
-import HomeContentBox from "@components/HomeContentBox.astro";
+import commieArgent from "@assets/argent/CommieCross-transparent_Batnoise.png";
+import { Image } from "astro:assets";
 ---
 
 <Layout>
-    <TopNav />
-    <PageHeader>Blog</PageHeader>
-    <HomeSection darkBg={false} border={[]}>
-        <HomeContentBox columns={["sm:col-span-10 sm:col-start-2 col-start-1 col-span-12"]}>
-            <div class="flex flex-col">
-                <slot name="tag-list" />
-                <slot name="post-list" />
-            </div>
-        </HomeContentBox>
-    </HomeSection>
+  <TopNav />
+  <PageHeader>Blog</PageHeader>
+  <main class="flex gap-5">
+    <div class="flex flex-col m-5 gap-5 flex-2/3">
+      <slot name="tag-list" />
+      <slot name="post-list" />
+    </div>
+    <aside class={`m-5 hidden lg:block 2xl:block flex-1/3`}>
+      <Image src={commieArgent} alt={'Argent holding a book labeled "The Beans of Production" '} class={"pt-10 sticky top-0 [transform:rotateY(180deg)"} />
+    </aside>
+  </main>
 </Layout>
