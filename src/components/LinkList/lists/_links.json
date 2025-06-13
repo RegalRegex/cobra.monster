@@ -3,7 +3,7 @@
     {
       "url": "https://unionzine.neocities.org/",
       "title": "Union Zine",
-      "description": "🔞 Very cool leather, latex, bondage, etc. zine by kinky friends of mine. Great display of varied art styles with a focus on \"community\" in kink."
+      "description": "🔞 Very cool leather, latex, bondage, etc. zine by kinky friends of mine. Great display of varied art styles with a focus on \"community\" in kink"
     },
     {
       "url": "https://koboldorion.itch.io/kobold-zine-1",
@@ -13,7 +13,7 @@
     {
       "url": "https://devilwaltz.com/",
       "title": "Devil Waltz",
-      "description": "Insanely cool webcomic by a good friend about rival Tieflings in a cool, scrappy fantasy world. Features characters originally created for some DnD games I DM'd but have grown so far beyond that."
+      "description": "Insanely cool webcomic by a good friend about rival Tieflings in a cool, scrappy fantasy world. Features characters originally created for some DnD games I DM'd but have grown so far beyond that"
     },
     {
       "url": "https://ia-ia-ia.world/",
@@ -32,17 +32,17 @@
     {
       "url": "https://html5up.net",
       "title": "HTML5up",
-      "description": "Pure HTML and CSS HTML5 site templates. Cool and free. Good for projects and professional stuff, but I've just used them as tutorials/inspiration for solid web design fundamentals."
+      "description": "Pure HTML and CSS HTML5 site templates. Cool and free. Good for projects and professional stuff, but I've just used them as tutorials/inspiration for solid web design fundamentals"
     },
     {
       "url": "https://thenounproject.com",
       "title": "The Noun Project",
-      "description": "Mostly-free repo of artists' icon art. Good source of icons or inspiration."
+      "description": "Mostly-free repo of artists' icon art. Good source of icons or inspiration"
     },
     {
       "url": "https://ionic.io/ionicons",
       "title": "Ionicons",
-      "description": "Free, tidy set of icons for apps."
+      "description": "Free, tidy set of icons for apps"
     },
     {
       "url": "https://bennettfeely.com/clippy/",
@@ -59,7 +59,7 @@
     {
       "url": "https://www.beautifulaudio.biz/",
       "title": "Beautiful Audio",
-      "description": "Passionate guy making amazing mods for Grado headphones. Had very positive email interactions with him, and his custom work have made my ${1} truly a pair of 'forever' headphones.",
+      "description": "Passionate guy making amazing mods for Grado headphones. Had very positive email interactions with him, and his custom work have made my ${1} truly a pair of 'forever' headphones",
       "auxLink": "https://gradolabs.com/products/gw100x,Grado100Ws"
     },
     {
@@ -71,6 +71,11 @@
       "url": "https://unsplash.com/",
       "title": "Unsplash",
       "description": "Incredible source of free-use, easily-attributable high-quality images. I use these all over my website with great gratitude"
+    },
+    {
+      "url": "https://gifcities.org/",
+      "title": "GifCities",
+      "description": "Internet Archive's fabulously-indexed vintage GIF repository"
     }
   ]
 }
