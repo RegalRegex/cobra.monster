@@ -34,4 +34,8 @@ export default defineConfig({
     }),
     react(),
   ],
+  redirects: {
+    "/books": "/books/default",
+    "/home": "/",
+  },
 });
