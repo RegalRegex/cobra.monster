@@ -6,9 +6,9 @@ interface Props {
 }
 
 interface Exception {
-  remove: string;
-  replace: string;
-  levels: number;
+  remove: RegExp;
+  displayReplace: string;
+  pathReplace: string;
 }
 
 interface UrlSplitReference {
@@ -18,9 +18,14 @@ interface UrlSplitReference {
 
 const exceptions: Exception[] = [
   {
-    remove: "tagged",
-    replace: "blog",
-    levels: 2,
+    remove: /\/blog\/tagged\/.+/,
+    displayReplace: "blog",
+    pathReplace: "/blog",
+  },
+  {
+    remove: /\/books\/.+(\/tagged\/.+)?/,
+    displayReplace: "home",
+    pathReplace: "/",
   },
 ];
 const splitUrl: string[] = Astro.url.pathname.split("/");
@@ -34,11 +39,11 @@ const returnPathName = (): UrlSplitReference => {
       url: "/",
     };
   }
-  const exception = [...exceptions].find((item) => item.remove === topLevel);
+  const exception = [...exceptions].find((item) => Astro.url.pathname.match(item.remove));
 
   return {
-    urlDisplay: exception ? exception.replace : topLevel,
-    url: exception ? splitUrlTrimmed.toSpliced(splitUrlTrimmed.length - exception.levels, exception.levels).join("/") : splitUrlTrimmed.toSpliced(-1).join("/"),
+    urlDisplay: exception ? exception.displayReplace : topLevel,
+    url: exception ? exception.pathReplace : splitUrlTrimmed.toSpliced(-1).join("/"),
   };
 };
 

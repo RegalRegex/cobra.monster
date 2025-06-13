@@ -6,14 +6,14 @@ import BookListLayout from "@layouts/BookListLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import { sortCollection } from "src/utils/sortCollection";
-import { capitalizeFirst } from "src/utils/stringFormatters";
+import FilterButtons, { BOOK_DISPLAY_VIEWS } from "@components/Books/FilterButtons.astro";
 
 const bookReports: Array<CollectionEntry<"books">> = await getCollection("books");
 
 const tags = await getCollection("bookTags");
 
 export const getStaticPaths = (() => {
-  return [{ params: { view: "compact" } }, { params: { view: "name-sort" } }];
+  return [{ params: { view: BOOK_DISPLAY_VIEWS.DEFAULT } }, { params: { view: BOOK_DISPLAY_VIEWS.COMPACT } }];
 }) satisfies GetStaticPaths;
 
 const { view } = Astro.params;
@@ -22,8 +22,7 @@ const { view } = Astro.params;
 <BookListLayout>
   <TagContents slot="tag-list" pageUrl={`/books/${view}/tagged/`} tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
   <div slot="book-list">
-    <a href="/books" class="bg-yellow-700 p-1 text-black/75 hover:cursor-pointer font-medium">Default View</a>
-    <a href="" class="bg-yellow p-1 font-medium">{capitalizeFirst(view)} View</a>
+    <FilterButtons activeTab={view} />
     <ul class="grid gap-5 grid-cols-1">
       {sortCollection(bookReports, "date").map((book, i) => <BookSummary book={book} view={view} />)}
     </ul>

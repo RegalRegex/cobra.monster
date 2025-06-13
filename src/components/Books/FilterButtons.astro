@@ -1,26 +1,26 @@
 ---
 import { capitalizeFirst } from "src/utils/stringFormatters";
-const topLevelUrl = Astro.url.pathname.split("/").pop();
 
-const views = ["default", "compact"];
+export enum BOOK_DISPLAY_VIEWS {
+  DEFAULT = "default",
+  COMPACT = "compact",
+}
+
+interface Props {
+  activeTab: BOOK_DISPLAY_VIEWS;
+  tagId?: string;
+}
+
+const { activeTab, tagId } = Astro.props;
+
+const style = (value: string) => (activeTab === value ? "bg-yellow shadow-lg z-5" : "bg-yellow-700 text-black/75 hover:cursor-pointer z-2");
+console.log(activeTab);
 ---
 
-<div>
-  <ul class="flex gap-2">
-    {
-      views.map((view) => (
-        <li>
-          <a
-            href={`/books/${view}`}
-            class:list={[
-              "hover:brightness-150 rounded-lg decoration-1 font-medium decoration-white text-white p-1.5 m-0.5 bg-boxPrimary underline",
-              `${topLevelUrl === `${view}` ? " ring-2 ring-white brightness-150 grayscale-25 border-r-2 border-b-2 border-slate-200" : ""}`,
-            ]}
-          >
-            {capitalizeFirst(view)}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-</div>
+{
+  Object.entries(BOOK_DISPLAY_VIEWS).map(([key, value]) => (
+    <a href={`/books/${value}${tagId ? "/tagged/" + tagId : ""}`} class={`${style(value)} font-semibold p-1 text-xl`}>
+      {capitalizeFirst(key)} View
+    </a>
+  ))
+}

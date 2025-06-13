@@ -1,4 +1,5 @@
 ---
+import { upOneLevelUrl } from "src/utils/stringFormatters";
 interface Props {
   tagIds: string[];
   pageUrl: string;
@@ -7,20 +8,20 @@ interface Props {
 }
 const { tagIds, pageUrl, inline = false, selected } = Astro.props;
 
-const inlineStyling = inline ? "text-amber-400" : "text-white p-1.5 m-0.5 bg-redDark underline";
+const inlineStyling = inline ? "text-amber-400" : "text-white p-1.5 m-0.5 bg-redDark underline ring ring-yellow";
 ---
 
-<div>
+<div class=`flex flex-col gap-2`>
   <ul class="flex gap-2 flex-wrap leading-8">
     {
       tagIds.map((tagId) => (
         <li>
           <a
-            href={`${pageUrl}${tagId}`}
+            href={`${selected === tagId ? upOneLevelUrl(pageUrl) : pageUrl + tagId}`}
             class:list={[
-              "hover:brightness-150 rounded-lg decoration-1 font-medium decoration-white whitespace-nowrap",
+              "hover:brightness-150 rounded-lg decoration-1 font-medium decoration-white whitespace-nowrap relative",
               `${inlineStyling}`,
-              `${selected === tagId ? " ring-2 ring-white brightness-150 grayscale-25 border-r-2 border-b-2 border-slate-200" : ""}`,
+              `${selected === tagId ? " ring-2 brightness-125 grayscale-25 border-r-2 border-b-2 border-white" : ""}`,
             ]}
           >
             #{tagId}
@@ -29,4 +30,33 @@ const inlineStyling = inline ? "text-amber-400" : "text-white p-1.5 m-0.5 bg-red
       ))
     }
   </ul>
+  {
+    selected !== undefined && (
+      <span class="inline-block">
+        <a href={upOneLevelUrl(pageUrl)} class="text-amber-400 underline hover:cursor-pointer ">
+          Clear Selection
+        </a>
+      </span>
+    )
+  }
 </div>
+<!-- <style>
+  a.ring-white::after {
+    content: "X";
+    font-size: 1em;
+    text-align: center;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 100%;
+    height: 18px;
+    width: 18px;
+    color: black;
+    position: absolute;
+    right: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -8px;
+    vertical-align: middle;
+  }
+</style> -->

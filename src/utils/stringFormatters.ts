@@ -4,5 +4,12 @@ export const formatDate = (date: Date) => {
 
 export const capitalizeFirst = (input: string) => {
   if (!input) return input;
-  return input[0].toUpperCase() + input.slice(1);
+  return input[0].toUpperCase() + input.toLowerCase().slice(1);
+};
+
+export const upOneLevelUrl = (pathname: string) => {
+  const splitUrl: string[] = pathname.split("/");
+  const splitUrlTrimmed = splitUrl[splitUrl.length - 1] === "" ? splitUrl.toSpliced(-1) : [...splitUrl];
+
+  return splitUrlTrimmed.toSpliced(-1).join("/");
 };

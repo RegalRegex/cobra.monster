@@ -1,35 +1,42 @@
 ---
 import BookSummary from "@components/Books/BookSummary.astro";
+import FilterButtons, { BOOK_DISPLAY_VIEWS } from "@components/Books/FilterButtons.astro";
 import TagContents from "@components/TagContents.astro";
 import BookListLayout from "@layouts/BookListLayout.astro";
 import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import { capitalizeFirst } from "src/utils/stringFormatters";
+
 export const getStaticPaths = (async () => {
   const tagEntries = await getCollection("bookTags");
-  return tagEntries.map((entry) => ({
-    params: { tag: entry.id },
-    props: { entry },
-  }));
+  const test = Object.values(BOOK_DISPLAY_VIEWS).flatMap((view) =>
+    tagEntries.map((entry) => ({
+      params: { tag: entry.id, view: view },
+      props: { entry, view },
+    })),
+  );
+
+  return test;
 }) satisfies GetStaticPaths;
 const tags = await getCollection("bookTags");
 const bookReports: Array<CollectionEntry<"books">> = await getCollection("books");
-const { entry } = Astro.props;
-const topLevelUrl = Astro.url.pathname.split("/").pop();
+const { entry, view } = Astro.props;
 ---
 
-<!-- TODO: fix routing w/ compact view -->
 <BookListLayout>
-  <TagContents slot="tag-list" pageUrl="/books/tagged/" selected={entry.id} tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
+  <TagContents
+    slot="tag-list"
+    pageUrl=`/books/${view}/tagged/`
+    selected={entry.id}
+    tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)}
+  />
   <div slot="book-list">
-    <a href="" class="bg-yellow p-1 font-medium">Default View</a>
-    <a href="/books/compact" class="bg-yellow-700 p-1 text-black/75 hover:cursor-pointer font-medium">Compact View</a>
+    <FilterButtons activeTab={view} tagId={entry.id} />
     <ul class="grid gap-5 grid-cols-1">
       {
         bookReports
           .filter((book) => book.data.bookTags.map((bookTag) => bookTag.id).includes(entry.id))
-          .map((book, i) => <BookSummary book={book} view={"default"} />)
+          .map((book, i) => <BookSummary book={book} view={view} />)
       }
     </ul>
   </div>
