@@ -45,7 +45,7 @@ const blogSort = (): PostsByYear[] => {
             <div class="text-5xl mr-5 w-fit">
               <h3 class="headerTxt sm:sticky relative top-0 pt-4 font-bold text-slate-200">{yearNum}</h3>
             </div>
-            <ul class="grid gap-5 grid-cols-1 w-full">
+            <ul class="grid grid-cols-1 w-full bg-boxPrimary border-yellow border-4">
               {yearObj[yearNum].map((post): ReactElement[] => {
                 return <PostSummary post={post} />;
               })}
