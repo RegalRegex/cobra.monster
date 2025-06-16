@@ -1,10 +1,9 @@
 ---
 interface Props {
   url: string;
-  wip?: boolean;
 }
 
-const { url, wip = false } = Astro.props;
+const { url } = Astro.props;
 ---
 
 <a class:list={["font-medium text-lg  w-max"]} href={url}>

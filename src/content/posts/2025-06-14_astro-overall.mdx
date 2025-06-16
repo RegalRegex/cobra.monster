@@ -1,8 +1,164 @@
 ---
 title: 'Astro Overall 🚀'
-subtitle: "I'm 6 months and 2-websites deep into Astro–How is it?"
+subtitle: "I'm 6 months and 2-websites deep into using Astro. How is it?"
 date: 2025-06-14
 tags:
   - webdev
 ---
-# Header
+import QuoteBlock from "@components/QuoteBlock.astro"
+import EmojiBlockquote from "@components/EmojiBlockquote.astro"
+import TextDeco from "@components/TextDeco.astro"
+import ArgentThink from "@assets/mutantEmoji/argent_thinking_512.png"
+import ArgentRelief from "@assets/argent/stickers/babanasaur/relief.png"
+import ArgentYikes from "@assets/argent/stickers/babanasaur/yikes.png"
+import ArgentEyy from "@assets/argent/stickers/babanasaur/eyy.png"
+
+With so many javascript frameworks out there that the joke about it has become itself a joke, does this one stand out? I think so! It has a strong design philosophy and doesn't deviate from it.
+
+# What is Astro?
+
+From their website,
+
+<QuoteBlock size="3xl">
+Astro is a JavaScript web framework optimized for building fast, content-driven websites.
+
+<a slot="credit" href="https://astro.build/">Astro Docs</a>
+</QuoteBlock>
+
+Which is both uselessly vague and also honest in that the best parts take a bit more explanation than a pithy quote can provide. But here's my attempt:
+
+<QuoteBlock size="3xl">
+Astro is a "Static-Site Generator Framework" that excels in creating simple, speedy HTML/CSS-only websites in a modern, comfortable Frontend Developer atmosphere.
+
+<span slot="credit">Me UwU</span>
+</QuoteBlock>
+
+In my opinion, the 3 best features of Astro are:
+1. "Zero Javascript, By Default"
+2. Content Collections
+3. Astro Islands Architecture
+
+## Zero Javascript (kind of)
+
+Astro sites are built with `.Astro` files, which are a combination of `tsx` and Markdown. In the [frontmatter](https://dev.to/dailydevtips1/what-exactly-is-frontmatter-123g) section you're able to import components, create interfaces, handle Props, etc. while the rest of the file writes like a `tsx` file.
+
+The only thing shipped though is plain ol' HTML and CSS. If you want to ship javascript to the client, it must be contained in `<script>` tags.
+
+What this means is you get comfy benefits of writing in a modern React-like `tsx` file, but don't actually ship bulky React files to the client. Websites load faster, but you also can't build fully "reactive" sites as a consequence.
+
+> Grateful that I can still use Tailwind lmao
+
+```jsx title="Example Astro file: Button.astro"
+---
+interface Props {
+  url: string;
+}
+const { url } = Astro.props;
+---
+
+<a class:list={["font-medium text-lg  w-max"]} href={url}>
+  <button class:list={["border-yellow hover:bg-yellow rounded-md border-2 hover:text-black p-2 hover:cursor-pointer"]}>
+    <slot />
+  </button>
+</a>
+```
+
+### A Bunch of Page Links in a React-App Trench Coat
+
+As a React developer, Astro means no hooks or stateful management. No hot-reloading of pages in the "single-page application" style I'm used to. Astro forces you to treat every page as a static entity; if you want to change what the end-user is looking at, they must navigate to a new page.
+
+<EmojiBlockquote size="emoji" emoji={ArgentThink}>
+Astro compensates for this with [View Transitions](https://docs.astro.build/en/guides/view-transitions/) support, which has made page navigation so seamless, many of my friends/testers didn't even notice when buttons were actually navigating their browser.
+</EmojiBlockquote>
+
+I love this. I genuinely love React hooks and state, but working without it...and trying to emulate some interactivity anyways has been a very engaging puzzle-solving process.\
+For instance, on the <TextDeco url="/books">Books Page</TextDeco> I created the "Default View" and "Compact View" tabs with these limitations. So far as any casual end-user can tell, they're just tabs like any other more "interactive" site, but they're literally just styled tabs! The current view's tab is styled to be prominent, the other is dim. Clicking the dim one navigates to a new page. Astro's **View Transitions** (usually) transition smoothly to the other view's equally flat, simple, HTML/CSS page so quickly that it feels like you didn't navigate at all. It's very clever!
+
+![Default View Books Page](@assets/blog/DefaultView_6.14.25.png)_Screenshot closeup of the "tabs"_
+
+## Content Collections and Routing
+
+Routing with Astro is dead simple: any HTML file placed in the mandatory *pages/* directory becomes a route. There is a way to make this dynamic...my blog posts are automatically routed just by virtue of where I place the files. But all of the main pages of my site here are explicitly routed through the `pages/` file structure.
+
+This isn't something unique to Astro, but as part of a static-site generator design philosophy it makes a lot of sense, especially if you leverage Astro's [Content Collections](https://docs.astro.build/en/guides/content-collections/) feature.
+
+### Collections
+
+In brief, collections let you programmatically create + route new pages on your site as you create more content following predetermined schemas.
+
+Blog posts (like this one) are explicitly one of the best use-cases. You specify a collection via a zod schema object in the `config.ts` file within the mandatory `content/` directory.\
+Properties specified here are set in the frontmatter of the Markdown file, and then these can be accessed within `.Astro` files to modify behavior, style page templates...etc.
+
+```jsx title="My blog post config schema"
+const posts = defineCollection({
+  type: "content",
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      subtitle: z.string(),
+      date: z.date(),
+      tags: z.array(reference("tags")).optional(),
+      blogExclude: z.boolean().optional(),
+      emoji: z.preprocess((val) => `/src/assets/mutantEmoji/${val}`, image()).optional(),
+    }),
+});
+```
+
+In the end, when I want to make a new blog post, I just add a new markdown file to the `content/posts/` directory, and fill the frontmatter fields with the required information (title, subtitle, tags, etc.). That file automatically has a new unique route on my site, and the page is formatted automatically by filling in the templates I created in my Blog Layout page.
+
+<EmojiBlockquote size="sticker" emoji={ArgentRelief}>
+It is a LOT of work upfront nailing down your schemas and especially building your template blog/content-display page...but my god it is so convenient and satisfying to use.
+</EmojiBlockquote>
+
+### Routing Complexity
+
+I won't get into depth here[^1], but the dynamic routing capabilities of Astro get kind of nutty. Routing is dead simple...until it isn't. 
+
+In my <TextDeco url="/books">Books Page</TextDeco>, it looks like there are only 2 pages. The list page, and then the individual book-post page. But because all interactivity is just routing, it means that to have **2 Views** and **Tag Filtering**, I need a dynamic folder for the `[view]` side of things, and then a further nested `[...tags]` catch for filtering by tags on top of the views (not to mention an `og/` directory for generating custom open-graph images).\
+It works! Really well, in fact. But figuring this out took a long time and is a part of Astro I'd push a new user away from until they get more comfortable with routing overall.
+
+![Book Directory](@assets/blog/bookDirectory_6.14.25.png)_A lot of structure just to display a list of books._
+
+## Astro Islands
+
+This is probably the most important but least-interesting to me, personally. In short, you *can* make actual React, Svelte, Solid (etc.) components in your Astro app. The idea is "Islands of Interactivity" or more colloquially, "selective hydration".
+
+I'll skip ahead to an example: the only significant Island I've made here is my **Accordion component**. It was too complicated ~~(aka I couldn't be bothered)~~ trying to figure out how to manage a performant, good-looking accordion feature in my site with just `<script>` tag javascript. So I made it in React instead. When I import it into my Astro (or Markdown) files I have to specify whether it's loaded immediately, or on-view...etc.
+
+It's really cool! Makes Astro flexible, and I think so long as you don't over-do it and only rely on it when it feels like the best solution, then it's just great to have.
+
+<EmojiBlockquote size="sticker" emoji={ArgentYikes}>
+I'm just imagining new React Developer "useState hell" but with Astro Islands...
+</EmojiBlockquote>
+
+# Opinions on Astro
+
+It's probably pretty obvious that I'm a pretty big fan of Astro overall. For brevity's sake, here are my highlights:
+- I get to design webpages like I'm doing React development (conditional rendering my beloved)
+- I don't have to think about routing (with rare exceptions)
+- Explicitly encourages component architecture-driven design and building templates
+- My sites load and run so quick and smooth that my friends can't even tell they're changing pages
+- It makes using Markdown files within my broader site easy and intuitive
+
+I really like Astro! It fits my webdev personality pretty nicely, and it's the perfect combination of open-ended and opinionated for my purposes.
+
+<EmojiBlockquote size="sticker" emoji={ArgentEyy}>
+I was going to do a "Pros/Cons" thing but all of the Cons are pretty much explicitly outlined by Astro's overall premise...I really didn't find enough jank to feel like there are Cons that don't boil down to "you shouldn't be using Astro to begin with."
+</EmojiBlockquote>
+
+## My Biggest Astro Struggle So Far
+
+Not a negative (as I enjoy solving a problem like this), but it took a lot more work than I expected: Open Graph image generation. I wanted so badly to be able to generate custom images with text on them for my blog (without AI).\
+Spoilers: I did it! But it was really tricky.
+
+I'll go into more detail in a future blog post, but suffice to say it took a lot of googling and ended with me having to design the OG image template as embedded HTML within a React file. Awful! But like, fine, you know? And in the end I'm able to share my blog posts with unique, neat OG preview images without any extra work :3
+
+![Open Graph image for this blog post](@assets/blog/ogImage_6.14.25.png)_The OG image for this blog post! Generated before even posting the new blog post_
+
+## Who should use it?
+
+Most folks could probably use and enjoy Astro, but I will say that there are plenty of other simpler static-site generators such as [Eleventy](https://www.11ty.dev/). If you literally just want to build a blog, I think Astro out of the box is overkill. Or at the very least, a bit over-complicated. 
+
+It's very easy to say that if you enjoy webdev and want both full control *and* an enjoyable framework to play with, Astro is a lot of fun. I have run into very few roadblocks caused directly by either Astro's design philosophy or build quality.
+
+[^1]: An attempt was made.
