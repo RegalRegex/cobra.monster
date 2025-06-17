@@ -12,6 +12,8 @@ import links from "@components/LinkList/lists/_links.json";
 import LinkList from "@components/LinkList/LinkList.astro";
 import SiteMap from "@components/SiteMap.astro";
 import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontalRule.astro";
+import cobraMonster from "@assets/cobra.monster.gif";
+import ChiStar from "@components/ImageComponents/ChiStar.astro";
 ---
 
 <Layout>
@@ -79,11 +81,16 @@ import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontal
         <div class="content-center mb-5">
           <BadgeDisplay collection="critterBadges" />
         </div>
-        <p class="mb-5">Internet creatures with very cool personal sites! Eternally grateful to them and others for inspiration in making my own UwU</p>
-        <div class="border-t-2 border-slate-200 pt-3 self-end">
+        <div class="w-full justify-around flex gap-2 text-yellow text-2xl">
+          <ChiStar /><ChiStar /><a href="/" class={"transition duration-300 hover:scale-[1.5] cursor-pointer"}>
+            <Image src={cobraMonster} alt={"cobra.monster 88x31"} />
+          </a><ChiStar /><ChiStar />
+        </div>
+        <div class="border-t-2 border-slate-200 pt-4 mt-4 self-end">
           <p>
-            If you've linked me on your site, feel free to shoot me an email at
-            <a class="text-yellow hover:cursor-pointer" href="mailto:regal@cobra.monster">regal@cobra.monster</a> with your button and site so I can link back!
+            If you've linked me on your site with my cool button there, feel free to shoot me an email at
+            <a class="text-yellow hover:cursor-pointer" href="mailto:regal@cobra.monster">regal@cobra.monster</a> with your button and site so I can link back! Or
+            message on socials, whichever :3
           </p>
         </div>
       </div>
