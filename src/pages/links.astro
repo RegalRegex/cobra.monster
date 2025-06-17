@@ -83,7 +83,7 @@ import ChiStar from "@components/ImageComponents/ChiStar.astro";
         </div>
         <div class="w-full justify-around flex gap-2 text-yellow text-2xl">
           <ChiStar /><ChiStar /><a href="/" class={"transition duration-300 hover:scale-[1.5] cursor-pointer"}>
-            <Image src={cobraMonster} alt={"cobra.monster 88x31"} />
+            <Image src={cobraMonster} alt={"cobra.monster 88x31"} class={"badge"} />
           </a><ChiStar /><ChiStar />
         </div>
         <div class="border-t-2 border-slate-200 pt-4 mt-4 self-end">
@@ -112,5 +112,8 @@ import ChiStar from "@components/ImageComponents/ChiStar.astro";
   h2 {
     font-family: "Prospekt Regular", sans-serif;
     color: white;
+  }
+  .badge {
+    image-rendering: pixelated;
   }
 </style>
