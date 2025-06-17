@@ -23,7 +23,7 @@ const exceptions: Exception[] = [
     pathReplace: "/blog",
   },
   {
-    remove: /\/books\/.+(\/tagged\/.+)?/,
+    remove: /\/books\/(compact|default)(\/tagged\/.+)?/,
     displayReplace: "home",
     pathReplace: "/",
   },
