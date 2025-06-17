@@ -1,9 +1,19 @@
+---
+interface Props {
+  size?: "lg" | "2xl" | "3xl";
+}
+
+const { size } = Astro.props;
+
+const textSize = size ? `text-${size}` : "";
+---
+
 <blockquote class="flex italic font-light font-serif relative my-10 border-slate-200 py-10">
-  <div class="ml-20">
+  <div class=`ml-20 ${textSize}`>
     <p class="slotContent">
       <slot />
     </p>
-    <p class="slotContent">
+    <p class="slotContent text-base">
       –<slot name="credit" />
     </p>
   </div>
