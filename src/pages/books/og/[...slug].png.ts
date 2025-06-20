@@ -25,10 +25,14 @@ export const GET: APIRoute<Props> = ({ props }) => {
 
 export async function getStaticPaths() {
   return blogEntries.map((book) => {
-    const coverPath = book.data.cover.src.split("/").pop()?.split("?").shift();
+    const constructPublicPath = () => {
+      const fileType = book.data.cover.src.split(".").pop();
+      const coverPath = `${book.data.cover.src.split("/").pop()?.split("?").shift()?.split(".")[0]}.${fileType}`;
+      return coverPath;
+    };
     return {
       params: { slug: book.slug },
-      props: { title: book.data.title, subtitle: book.data.summary, date: book.data.date, rating: book.data.rating, cover: coverPath },
+      props: { title: book.data.title, subtitle: book.data.summary, date: book.data.date, rating: book.data.rating, cover: constructPublicPath() },
     };
   });
 }
