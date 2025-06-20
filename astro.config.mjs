@@ -10,6 +10,7 @@ import { transformerCopyButton } from "@rehype-pretty/transformers";
 // https://astro.build/config
 export default defineConfig({
   output: "static",
+  site: "https://cobra.monster",
   vite: {
     plugins: [tailwindcss()],
   },

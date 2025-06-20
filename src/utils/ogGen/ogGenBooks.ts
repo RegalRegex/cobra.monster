@@ -8,7 +8,7 @@ interface OgGenBlogProps {
 // FIXME: Env Var not reading in test-branch
 export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogProps): string => {
   const isProd = import.meta.env.PROD;
-  const isTest = import.meta.env.DEV;
+  const isTest = import.meta.env.PUBLIC_IS_TEST_BRANCH;
   const baseUrl = () => {
     if (isProd) {
       return "https://cobra.monster/";
@@ -26,6 +26,7 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
     : "<></>";
 
   const starRatingBuilder = (): string => {
+    console.log(import.meta.env.MODE);
     if (rating) {
       const starSize: number = 60;
       const emptyCalc = 4 - Math.floor(rating);
