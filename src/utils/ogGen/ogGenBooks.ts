@@ -8,8 +8,18 @@ interface OgGenBlogProps {
 
 export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogProps): string => {
   const isProd = import.meta.env.PROD;
+  const isTest = import.meta.env.DEV;
+  const baseUrl = () => {
+    if (isProd) {
+      return "https://cobra.monster/";
+    }
+    if (isTest) {
+      return "https://test-branch.cobra.monster/";
+    } else {
+      return "http://localhost:4321/";
+    }
+  };
 
-  const baseUrl = isProd ? "https://cobra.monster/" : "http://localhost:4321/";
   const dateStr = date
     ? `${date.toLocaleDateString("en-US", { day: "numeric" })} ${date.toLocaleDateString("en-US", {
         month: "long",
@@ -21,11 +31,13 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
       const starSize: number = 60;
       const emptyCalc = 4 - Math.floor(rating);
       return `${[...Array(Math.floor(rating))]
-        .map(() => `<img src="${baseUrl}/CHISTAR(yellow).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`)
+        .map(
+          () => `<img src="${baseUrl()}/CHISTAR(yellow).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`,
+        )
         .concat()
         .join("")} ${
         rating % 1 !== 0
-          ? `<img src="${baseUrl}/CHISTAR(yellow)_half-full.png" width="${starSize}px" height="${starSize}px" alt={"Half of a Chicago Star"} className="aspect-square " />`
+          ? `<img src="${baseUrl()}/CHISTAR(yellow)_half-full.png" width="${starSize}px" height="${starSize}px" alt={"Half of a Chicago Star"} className="aspect-square " />`
           : ""
       } 
       ${
@@ -33,7 +45,7 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
           ? [...Array(emptyCalc)]
               .map(
                 () =>
-                  `<img src="${baseUrl}/CHISTAR(yellow)(outline).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`,
+                  `<img src="${baseUrl()}/CHISTAR(yellow)(outline).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`,
               )
               .concat()
               .join("")
@@ -63,8 +75,8 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
           </div>
         </div>
         <!-- Image -->
-        <div class="flex max-w-[800px] h-[474px] right-5 bottom-8">
-          <img src="${baseUrl}books/all-systems-red.jpg" alt="Commie Argent" />
+        <div class="flex right-10 bottom-10 mb-[80px] justify-end items-end max-w-[350px] h-[550px]">
+          <img src="${baseUrl()}books/${cover}" alt="${title} Book Cover" height="550px" width="350px"/>
         </div>
       </div>
       <!-- Footer -->
