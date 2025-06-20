@@ -5,15 +5,14 @@ interface OgGenBlogProps {
   rating: number;
   cover: string;
 }
-// FIXME: Env Var not reading in test-branch
 export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogProps): string => {
   const isProd = import.meta.env.PROD;
   const isTest = import.meta.env.PUBLIC_IS_TEST_BRANCH;
   const baseUrl = () => {
-    if (isProd) {
-      return "https://cobra.monster/";
-    } else if (isTest) {
+    if (isTest) {
       return "https://test-branch.cobra.monster/";
+    } else if (isProd) {
+      return "https://cobra.monster/";
     } else {
       return "http://localhost:4321/";
     }
