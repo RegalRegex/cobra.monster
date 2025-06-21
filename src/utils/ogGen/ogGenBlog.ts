@@ -7,6 +7,7 @@ interface OgGenBlogProps {
 }
 
 export const blogHtml = ({ title, subtitle, date }: OgGenBlogProps): string => {
+  const isProd = import.meta.env.PROD;
   const dateStr = date
     ? `${date.toLocaleDateString("en-US", { day: "numeric" })} ${date.toLocaleDateString("en-US", {
         month: "long",
@@ -31,7 +32,7 @@ export const blogHtml = ({ title, subtitle, date }: OgGenBlogProps): string => {
         </div>
         <!-- Image -->
         <div class="flex max-w-[800px] h-[474px] right-5 bottom-8">
-          <img src="${import.meta.env.BASE_URL}CommieCross-transparent_Batnoise.png" alt="Commie Argent" />
+          <img src="${baseUrl()}CommieCross-transparent_Batnoise.png" alt="Commie Argent" />
         </div>
       </div>
       <!-- Footer -->

@@ -64,7 +64,7 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
         </div>
         <!-- Image -->
         <div class="flex right-10 bottom-10 mb-[80px] justify-end items-end max-w-[350px] h-[550px]">
-          <img src="${import.meta.env.BASE_URL}books/${cover}" />
+          <img src="${baseUrl()}books/${cover}" />
         </div>
       </div>
       <!-- Footer -->
