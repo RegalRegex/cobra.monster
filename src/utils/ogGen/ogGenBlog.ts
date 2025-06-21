@@ -1,3 +1,5 @@
+import { baseUrl } from "../baseUrl";
+
 interface OgGenBlogProps {
   title: string;
   subtitle: string;
@@ -6,7 +8,6 @@ interface OgGenBlogProps {
 
 export const blogHtml = ({ title, subtitle, date }: OgGenBlogProps): string => {
   const isProd = import.meta.env.PROD;
-  const baseUrl = isProd ? "https://cobra.monster/" : "http://localhost:4321/";
   const dateStr = date
     ? `${date.toLocaleDateString("en-US", { day: "numeric" })} ${date.toLocaleDateString("en-US", {
         month: "long",
@@ -31,7 +32,7 @@ export const blogHtml = ({ title, subtitle, date }: OgGenBlogProps): string => {
         </div>
         <!-- Image -->
         <div class="flex max-w-[800px] h-[474px] right-5 bottom-8">
-          <img src="${baseUrl}CommieCross-transparent_Batnoise.png" alt="Commie Argent" />
+          <img src="${baseUrl()}CommieCross-transparent_Batnoise.png" alt="Commie Argent" />
         </div>
       </div>
       <!-- Footer -->

@@ -1,3 +1,5 @@
+import { baseUrl } from "../baseUrl";
+
 interface OgGenBlogProps {
   title: string;
   subtitle: string;
@@ -6,18 +8,6 @@ interface OgGenBlogProps {
   cover: string;
 }
 export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogProps): string => {
-  const isProd = import.meta.env.PROD;
-  const isTest = import.meta.env.PUBLIC_IS_TEST_BRANCH;
-  const baseUrl = () => {
-    if (isTest) {
-      return "https://test-branch.cobra.monster/";
-    } else if (isProd) {
-      return "https://cobra.monster/";
-    } else {
-      return "http://localhost:4321/";
-    }
-  };
-
   const dateStr = date
     ? `${date.toLocaleDateString("en-US", { day: "numeric" })} ${date.toLocaleDateString("en-US", {
         month: "long",
@@ -25,7 +15,6 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
     : "<></>";
 
   const starRatingBuilder = (): string => {
-    console.log(import.meta.env.MODE);
     if (rating) {
       const starSize: number = 60;
       const emptyCalc = 4 - Math.floor(rating);
