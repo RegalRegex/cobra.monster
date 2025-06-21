@@ -14,6 +14,7 @@ interface Props {
 const { activeTab, tagId } = Astro.props;
 
 const style = (value: string) => (activeTab === value ? "bg-yellow shadow-lg z-5" : "bg-yellow-700 text-black/75 hover:cursor-pointer z-2");
+console.log(activeTab);
 ---
 
 {

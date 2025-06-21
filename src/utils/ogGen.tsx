@@ -1,31 +1,43 @@
-import { baseUrl } from "../baseUrl";
+import { readFileSync } from "fs";
+import type { ImageResponseOptions } from "node_modules/@vercel/og/dist/types";
+import type { ReactNode } from "react";
+import { html } from "satori-html";
 
-interface OgGenBlogProps {
+interface OgHtmlGenProps {
   title: string;
   subtitle: string;
   date?: Date;
-  rating: number;
-  cover: string;
+  // Book Reviews:
+  rating?: number;
 }
-export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogProps): string => {
+
+// Logic referenced from: https://rumaan.dev/blog/open-graph-images-using-satori
+
+export const ogHtmlGen = ({ title, subtitle, date, rating }: OgHtmlGenProps): { markup: ReactNode; imgResOptions: ImageResponseOptions } => {
+  const techHeadlines = readFileSync("./src/assets/og/Tech Headlines.otf");
+  const techHeadlinesItalic = readFileSync("./src/assets/og/Tech Headlines Italic.otf");
+  const goreRegular = readFileSync("./src/assets/og/Gore Regular.woff");
+  const isProd = import.meta.env.PROD;
+
+  const baseUrl = isProd ? "https://cobra.monster/" : "http://localhost:4321/";
+
   const dateStr = date
     ? `${date.toLocaleDateString("en-US", { day: "numeric" })} ${date.toLocaleDateString("en-US", {
         month: "long",
       })} ${date.toLocaleDateString("en-US", { year: "numeric" })}`
     : "<></>";
 
+  // TODO: Yellow
   const starRatingBuilder = (): string => {
     if (rating) {
       const starSize: number = 60;
       const emptyCalc = 4 - Math.floor(rating);
       return `${[...Array(Math.floor(rating))]
-        .map(
-          () => `<img src="${baseUrl()}/CHISTAR(yellow).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`,
-        )
+        .map(() => `<img src="${baseUrl}/CHISTAR(yellow).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`)
         .concat()
         .join("")} ${
         rating % 1 !== 0
-          ? `<img src="${baseUrl()}/CHISTAR(yellow)_half-full.png" width="${starSize}px" height="${starSize}px" alt={"Half of a Chicago Star"} className="aspect-square " />`
+          ? `<img src="${baseUrl}/CHISTAR(yellow)_half-full.png" width="${starSize}px" height="${starSize}px" alt={"Half of a Chicago Star"} className="aspect-square " />`
           : ""
       } 
       ${
@@ -33,7 +45,7 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
           ? [...Array(emptyCalc)]
               .map(
                 () =>
-                  `<img src="${baseUrl()}/CHISTAR(yellow)(outline).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`,
+                  `<img src="${baseUrl}/CHISTAR(yellow)(outline).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`,
               )
               .concat()
               .join("")
@@ -43,7 +55,10 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
     return "";
   };
 
-  return `
+  const subtitleElement: string = rating ? starRatingBuilder() : "";
+
+  return {
+    markup: html(`
     <!-- Container -->
   <div class="w-[1200px] h-[630px] flex">
     <!-- Box -->
@@ -59,12 +74,12 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
           <h1 class="${title.length > 30 ? "text-5xl" : "text-6xl"} leading-[1.25] border-b-4 border-[#eab308] pb-10">${title}</h1>
           <div class="flex flex-col justify-around grow">
             <h2 class="${subtitle.length > 120 ? "text-2xl" : "text-3xl"} leading-[1.5]">${subtitle}</h2>
-            <span>${starRatingBuilder()}</span>
+            <span>${subtitleElement}</span>
           </div>
         </div>
         <!-- Image -->
-        <div class="flex right-10 bottom-10 mb-[80px] justify-end items-end max-w-[350px] h-[550px]">
-          <img src="${baseUrl()}books/${cover}" />
+        <div class="flex max-w-[800px] h-[474px] right-5 bottom-8">
+          <img src="${baseUrl}CommieCross-transparent_Batnoise.png" alt="Commie Argent" />
         </div>
       </div>
       <!-- Footer -->
@@ -104,5 +119,25 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
       font-family: "Gore Regular";
     }
   </style>
-    `;
+    `) as ReactNode,
+    imgResOptions: {
+      fonts: [
+        {
+          name: "Tech Headlines",
+          data: techHeadlines,
+          style: "normal",
+        },
+        {
+          name: "Tech Headlines Italic",
+          data: techHeadlinesItalic,
+          style: "italic",
+        },
+        {
+          name: "Gore Regular",
+          data: goreRegular,
+          style: "normal",
+        },
+      ],
+    },
+  };
 };
