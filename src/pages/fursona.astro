@@ -1,28 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TopNav from "@components/TopNav.astro";
-import HomeSection from "@components/HomeSection.astro";
-import HomeContentBox from "@components/HomeContentBox.astro";
-import BadgeDisplay from "@components/BadgeDisplay.astro";
-import { Image } from "astro:assets";
 import ArgentRelax from "@assets/argent/ArgentRest_Luzzy.jpg";
 import PageHeader from "@components/PageHeader.astro";
-import SocialsList from "@components/SocialsList.astro";
-import ChiStar from "@components/ImageComponents/ChiStar.astro";
-import links from "@components/LinkList/lists/_links.json";
-import LinkList from "@components/LinkList/LinkList.astro";
-import wrench from "@assets/mutantEmoji/utility/wrench.png";
-import EmojiBlockquote from "@components/EmojiBlockquote.astro";
+import Argent2 from "@assets/argent/ArgentSvend.png";
+import Argent3 from "@assets/argent/CommieCross-transparent_Batnoise.png";
+import Argent4 from "@assets/argent/pixelArgent_Arka.png";
+import Argent5 from "@assets/argent/CommunismCoffeeArgent.png";
+import Argent6 from "@assets/argent/vaporwaveArgent.png";
+import Argent7 from "@assets/argent/SymmetricalArgent_Orion.png";
+import Accordion from "@components/Accordion/Accordion";
+import Gallery from "@components/Gallery.astro";
 ---
 
 <Layout>
   <TopNav />
   <PageHeader leftRight="left">Fursona</PageHeader>
-  <HomeSection darkBg={false} border={[]}>
-    <HomeContentBox columns={["lg:col-start-3 lg:col-span-8 xs:col-start-2 xs:col-span-10 col-start-1 col-span-12"]}>
-      <EmojiBlockquote emoji={wrench} size="emoji"> Under Construction! </EmojiBlockquote>
-    </HomeContentBox>
-  </HomeSection>
+  <div>
+    <Gallery images={[ArgentRelax, Argent2, Argent3, Argent4, Argent5, Argent6, Argent7]} />
+  </div>
 
   <style>
     h1,
