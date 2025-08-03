@@ -53,6 +53,11 @@
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
       "title": "Open-source Windows 10 Activation Tool",
       "description": "Convenient script for activating copies of Windows 10 for free. Windows 11 sucks so, this is a good tool to have :3"
+    },
+    {
+      "url": "https://lucide.dev/",
+      "title": "Lucide Icons",
+      "description": "Cool set of community-built, free icons. One of the better packs I've found in terms of breadth and configurability out the box"
     }
   ],
   "miscLinks": [
