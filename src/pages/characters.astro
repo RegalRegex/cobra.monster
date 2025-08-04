@@ -16,9 +16,10 @@ import GalleryGrid from "@components/GalleryGrid.astro";
 
 <Layout>
   <TopNav />
-  <PageHeader leftRight="left">Fursona</PageHeader>
+  <PageHeader leftRight="left">Characters</PageHeader>
   <div>
-    <GalleryGrid client:load images={[ArgentRelax, Argent2, Argent3, Argent4, Argent5, Argent6, Argent7]} />
+    <Gallery />
+    <!-- <GalleryGrid client:load images={[ArgentRelax, Argent2, Argent3, Argent4, Argent5, Argent6, Argent7]} /> -->
   </div>
 
   <style>

@@ -60,6 +60,16 @@ const bookTags = defineCollection({
   }),
 });
 
+const galleries = defineCollection({
+  schema: ({ image }) =>
+    z.object({
+      cover: image(),
+      title: z.string().optional(),
+      sorting: z.string().optional(),
+      description: z.string().optional(),
+    }),
+});
+
 export const collections = {
   tags,
   posts,
@@ -67,4 +77,5 @@ export const collections = {
   standardBadges,
   books,
   bookTags,
+  galleries,
 };
