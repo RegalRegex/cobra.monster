@@ -1,35 +1,38 @@
 ---
 /**
  * Gallery template. For the main "image gallery grid",
- * @see ImageGrid
+ * @see GalleryGrid
  * Referenced from: {@link https://jankraus.net/2024/04/05/how-to-build-a-simple-photo-gallery-with-astro/}
  */
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import GalleryGrid from "./GalleryGrid.astro";
 
 interface Props {
-  images: ImageMetadata[];
+  //   images: ImageMetadata[];
 }
 
-const { images } = Astro.props;
+// TODO: Add a filter here--so that instead of one universal "gallery" we have gallery component. A parent grid to the subgrid
+const galleries = await getCollection("galleries");
 ---
 
 <div class="p-8">
-  <h1 class="text-5xl font-bold text-center my-8">Gallery</h1>
+  <h1 class="text-5xl font-bold text-center my-8 text-slate-200">Gallery</h1>
   <div class="mx-auto container max-w-(--breakpoint-sm) grid grid-cols-2 gap-8">
     {
-      images.map((item) => (
-        <a href={`/gallery/test`} class="group transition-all mb-4 block">
+      galleries.map((gallery) => (
+        <a href={`/gallery/${gallery.id}`} class="group transition-all mb-4 block">
           <Image
-            src={item}
-            alt={item.src}
+            src={gallery.data.cover}
+            alt={gallery.data.title}
             format="avif"
             width={720}
             quality="mid"
             class:list={["rounded-lg transition-all", "group-hover:shadow-lg group-hover:opacity-90"]}
           />
           <div class="mt-4 text-center text-neutral-700">
-            <strong class="font-normal">title</strong>
-            <p class="text-xs">desc.</p>
+            <strong class="font-normal">{gallery.data.title}</strong>
+            <p class="text-xs">{gallery.data.description}</p>
           </div>
         </a>
       ))

@@ -61,10 +61,19 @@ const bookTags = defineCollection({
 });
 
 const galleries = defineCollection({
+  type: "data",
   schema: ({ image }) =>
     z.object({
-      cover: image(),
-      title: z.string().optional(),
+      // Assume png, but otherwise include as array
+      // Example: "Argent" for .png vs. ["Argent", "jpeg"] for .jpeg
+      cover: z.preprocess((val) => {
+        if (Array.isArray(val)) {
+          return `/src/assets/galleries/${val[0]}/cover.${val[1]}`;
+        } else {
+          return `/src/assets/galleries/${val}/cover.png`;
+        }
+      }, image()),
+      title: z.string(),
       sorting: z.string().optional(),
       description: z.string().optional(),
     }),
