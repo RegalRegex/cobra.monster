@@ -9,11 +9,14 @@ import { getCollection } from "astro:content";
 import GalleryGrid from "./GalleryGrid.astro";
 
 interface Props {
-  //   images: ImageMetadata[];
+  filter?: string;
 }
 
 // TODO: Add a filter here--so that instead of one universal "gallery" we have gallery component. A parent grid to the subgrid
-const galleries = await getCollection("galleries");
+const { filter } = Astro.props;
+const loadedGalleries = await getCollection("galleries");
+
+const galleries = filter ? loadedGalleries.filter((gallery) => gallery.data.sorting === filter) : loadedGalleries;
 ---
 
 <div class="p-8">
