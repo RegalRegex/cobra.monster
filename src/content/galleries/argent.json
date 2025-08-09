@@ -1,5 +1,25 @@
 {
   "title": "Argent",
   "cover": ["argent", "png"],
-  "description": "TBD"
+  "description": "TBD",
+  "sorting": "character",
+  "images": [
+    {
+      "imgSrc": "src/assets/argent/ArgentPoseSheet.jpg",
+      "imgCaption": "An 'I love my fursona!!' pose sheet :3",
+      "imgCredit": {
+        "name": "me"
+      },
+      "imgAlt": ""
+    },
+    {
+      "imgSrc": "src/assets/argent/ArgentRest_Luzzy.jpg",
+      "imgCaption": "Argent straight chillin!",
+      "imgCredit": {
+        "name": "Luzzy",
+        "link": "https://bsky.app/profile/luzzyderay.bsky.social"
+      },
+      "imgAlt": ""
+    }
+  ]
 }

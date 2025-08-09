@@ -76,6 +76,20 @@ const galleries = defineCollection({
       title: z.string(),
       sorting: z.string().optional(),
       description: z.string().optional(),
+      images: z.array(
+        z.object({
+          // preprocess?
+          imgSrc: image(),
+          imgCaption: z.string().optional(),
+          imgCredit: z
+            .object({
+              name: z.string(),
+              link: z.string().url().optional(),
+            })
+            .optional(),
+          imgAlt: z.string().optional(),
+        }),
+      ),
     }),
 });
 

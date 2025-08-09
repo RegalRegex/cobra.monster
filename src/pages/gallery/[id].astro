@@ -1,5 +1,5 @@
 ---
-import GalleryGrid from "@components/GalleryGrid.astro";
+import GalleryGrid, { type GalleryGridItem } from "@components/GalleryGrid.astro";
 import PageHeader from "@components/PageHeader.astro";
 import Layout from "@layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
@@ -26,11 +26,22 @@ interface Props {
 
 const { gallery } = Astro.props;
 
+console.log(gallery.data.images);
+
+const galleryGridArray: GalleryGridItem[] = gallery.data.images.map((galleryImg) => ({
+  image: galleryImg.imgSrc,
+  caption: galleryImg.imgCaption,
+  altText: galleryImg.imgAlt,
+  credit: {
+    name: galleryImg.imgCredit?.name,
+    link: galleryImg.imgCredit?.link,
+  },
+}));
+
 const galleryImages = await getGalleryImages(gallery.id);
-console.log(gallery.id);
 ---
 
 <Layout>
   <PageHeader>{gallery.data.title}</PageHeader>
-  <GalleryGrid images={galleryImages} />
+  <GalleryGrid galleryGridItems={galleryGridArray} />
 </Layout>
