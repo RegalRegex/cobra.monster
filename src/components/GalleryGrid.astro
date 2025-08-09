@@ -1,6 +1,8 @@
 ---
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
 export interface GalleryGridItem {
   image: ImageMetadata;
@@ -12,16 +14,38 @@ export interface GalleryGridItem {
   }
 }
 interface Props {
-  galleryGridItems: GalleryGridItem[];
+  galleryGridItems: GalleryGridItem [] | string;
 }
 const { galleryGridItems } = Astro.props;
+
+
+const mapCollection = async (collection: string):Promise<GalleryGridItem[]> => {
+
+  const allGalleries = await getCollection("galleries")
+  const galleryCollection = allGalleries.filter((gallery) => gallery.data.title === collection)
+
+  if (galleryCollection.length > 0) {
+    return galleryCollection[0].data.images.map((galleryImg) => ({
+    image: galleryImg.imgSrc,
+    caption: galleryImg.imgCaption,
+    altText: galleryImg.imgAlt,
+    credit: {
+      name: galleryImg.imgCredit?.name,
+      link: galleryImg.imgCredit?.link,
+    },
+  }))
+};
+return [];  
+}
+
+const gridItemsToRender =  Array.isArray(galleryGridItems) ? galleryGridItems : await mapCollection(galleryGridItems);
 ---
 
-<div class="text-center my-16 mb-32">
-
-  <div class="mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5">
+<div class="text-center">
+<!-- If 2 cols too small on phones, add back the "sm:" to columns-2 -->
+  <div class="mx-auto container my-8 columns-2 md:columns-3 lg:columns-4 xl:columns-5 text-slate-200">
     {
-      galleryGridItems.map((gridItem, index) => (
+      gridItemsToRender.map((gridItem) => (
         <Image
           src={gridItem.image}
           alt={gridItem.altText || 'Grid Item Image'}
@@ -40,7 +64,6 @@ const { galleryGridItems } = Astro.props;
               : <p>@{gridItem.credit?.name}</p>: ""}
             </div>
     </dialog>
-        // <Modal id={index} />
       ))
     }
   </div>

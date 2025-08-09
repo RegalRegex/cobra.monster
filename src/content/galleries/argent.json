@@ -1,6 +1,6 @@
 {
   "title": "Argent",
-  "cover": ["argent", "png"],
+  "cover": "@assets/argent/squareArgent.png",
   "description": "My King Cobra fursona",
   "sorting": "character",
   "images": [

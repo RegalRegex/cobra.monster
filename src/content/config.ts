@@ -64,21 +64,12 @@ const galleries = defineCollection({
   type: "data",
   schema: ({ image }) =>
     z.object({
-      // Assume png, but otherwise include as array
-      // Example: "Argent" for .png vs. ["Argent", "jpeg"] for .jpeg
-      cover: z.preprocess((val) => {
-        if (Array.isArray(val)) {
-          return `/src/assets/galleries/${val[0]}/cover.${val[1]}`;
-        } else {
-          return `/src/assets/galleries/${val}/cover.png`;
-        }
-      }, image()),
+      cover: image(),
       title: z.string(),
       sorting: z.string().optional(),
       description: z.string().optional(),
       images: z.array(
         z.object({
-          // preprocess?
           imgSrc: image(),
           imgCaption: z.string().optional(),
           imgCredit: z
