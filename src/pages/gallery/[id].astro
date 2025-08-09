@@ -5,7 +5,6 @@ import Layout from "@layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import { getGalleryImages } from "src/utils/galleries";
 
 export const getStaticPaths = (async () => {
   const galleries = await getCollection("galleries");
@@ -26,8 +25,6 @@ interface Props {
 
 const { gallery } = Astro.props;
 
-console.log(gallery.data.images);
-
 const galleryGridArray: GalleryGridItem[] = gallery.data.images.map((galleryImg) => ({
   image: galleryImg.imgSrc,
   caption: galleryImg.imgCaption,
@@ -37,8 +34,6 @@ const galleryGridArray: GalleryGridItem[] = gallery.data.images.map((galleryImg)
     link: galleryImg.imgCredit?.link,
   },
 }));
-
-const galleryImages = await getGalleryImages(gallery.id);
 ---
 
 <Layout>

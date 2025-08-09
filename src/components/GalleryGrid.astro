@@ -32,16 +32,13 @@ const { galleryGridItems } = Astro.props;
           id={`${gridItem.image.src.split("/").at(-1)}`}
         />
         <dialog class="fixed w-full h-full left-0 top-0 bg-black/90 backdrop-blur-sm hidden z-50 items-center justify-center flex-col" id={`dialog_${gridItem.image.src.split("/").at(-1)}`}>
-            {/* <div class="absolute top-[50%] left-[50%] translate-[-50%, -50%] text-slate-50">Loading...</div> */}
-            <Image src={gridItem.image} alt="Test" class="block mx-auto mt-4 max-w-[95vw] max-h-[95vh] object-contain rounded-sm shadow-lg relative z-20 transition-opacity duration-300 opacity-100" loading="lazy"/>
-            {/* TODO: Caption and/or Link logic here */}
-            <div class="block right-2 text-slate-50 opacity-80 text-xs rounded-full z-50 mt-2 flex flex-col">
+            <Image src={gridItem.image} alt="Test" class="block mx-auto mt-4 max-w-[90vw] max-h-[90vh] object-contain rounded-sm shadow-lg relative z-20 transition-opacity duration-300 opacity-100" loading="lazy"/>
+            <div class=" right-2 text-slate-50 opacity-80 text-xs rounded-full z-50 mt-2 flex flex-col gap-1">
               <p>{gridItem.caption}</p>
-              {gridItem.credit && gridItem.credit.link ? <a href={gridItem.credit.link}>{gridItem.credit.name}</a>: <p>{gridItem.credit?.name}</p>
-
-              
-              }
-              </div>
+              {gridItem.credit?.name !== undefined ? 
+              gridItem.credit.link ? <a class="font-bold underline" href={gridItem.credit.link}>@{gridItem.credit.name}</a> 
+              : <p>@{gridItem.credit?.name}</p>: ""}
+            </div>
     </dialog>
         // <Modal id={index} />
       ))

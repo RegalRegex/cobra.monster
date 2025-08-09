@@ -1,15 +1,12 @@
 {
   "title": "Argent",
   "cover": ["argent", "png"],
-  "description": "TBD",
+  "description": "My King Cobra fursona",
   "sorting": "character",
   "images": [
     {
       "imgSrc": "src/assets/argent/ArgentPoseSheet.jpg",
       "imgCaption": "An 'I love my fursona!!' pose sheet :3",
-      "imgCredit": {
-        "name": "me"
-      },
       "imgAlt": ""
     },
     {

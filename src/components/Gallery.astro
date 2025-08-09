@@ -12,7 +12,6 @@ interface Props {
   filter?: string;
 }
 
-// TODO: Add a filter here--so that instead of one universal "gallery" we have gallery component. A parent grid to the subgrid
 const { filter } = Astro.props;
 const loadedGalleries = await getCollection("galleries");
 
@@ -20,7 +19,6 @@ const galleries = filter ? loadedGalleries.filter((gallery) => gallery.data.sort
 ---
 
 <div class="p-8">
-  <h1 class="text-5xl font-bold text-center my-8 text-slate-200">Gallery</h1>
   <div class="mx-auto container max-w-(--breakpoint-sm) grid grid-cols-2 gap-8">
     {
       galleries.map((gallery) => (
@@ -33,7 +31,7 @@ const galleries = filter ? loadedGalleries.filter((gallery) => gallery.data.sort
             quality="mid"
             class:list={["rounded-lg transition-all", "group-hover:shadow-lg group-hover:opacity-90"]}
           />
-          <div class="mt-4 text-center text-neutral-700">
+          <div class="mt-4 text-center text-slate-200">
             <strong class="font-normal">{gallery.data.title}</strong>
             <p class="text-xs">{gallery.data.description}</p>
           </div>
