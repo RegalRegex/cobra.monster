@@ -58,7 +58,7 @@ const ogImg = `https://cobra.monster/books/og/${slug}.png`;
           <aside class="text-slate-200 md:hidden block">
             {bookTags && (
               <div class="flex mb-8">
-                <TagContents pageUrl="/blog/tagged/" tagIds={bookTags.map((tag) => tag.id)} />
+                <TagContents pageUrl="/blog/default/tagged/" tagIds={bookTags.map((tag) => tag.id)} />
               </div>
             )}
             <div class="border-t-4 border-slate-200">{headings.length > 0 && <TableOfContents headings={headings} />}</div>
@@ -86,7 +86,7 @@ const ogImg = `https://cobra.monster/books/og/${slug}.png`;
           {
             bookTags && (
               <div class="mt-2 text-sm">
-                <TagContents pageUrl="/books/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
+                <TagContents pageUrl="/books/default/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
               </div>
             )
           }
