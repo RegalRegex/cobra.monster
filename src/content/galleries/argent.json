@@ -1,0 +1,22 @@
+{
+  "title": "Argent",
+  "cover": ["argent", "png"],
+  "description": "My King Cobra fursona",
+  "sorting": "character",
+  "images": [
+    {
+      "imgSrc": "src/assets/argent/ArgentPoseSheet.jpg",
+      "imgCaption": "An 'I love my fursona!!' pose sheet :3",
+      "imgAlt": ""
+    },
+    {
+      "imgSrc": "src/assets/argent/ArgentRest_Luzzy.jpg",
+      "imgCaption": "Argent straight chillin!",
+      "imgCredit": {
+        "name": "Luzzy",
+        "link": "https://bsky.app/profile/luzzyderay.bsky.social"
+      },
+      "imgAlt": ""
+    }
+  ]
+}

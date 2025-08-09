@@ -1,0 +1,42 @@
+---
+/**
+ * Gallery template. For the main "image gallery grid",
+ * @see GalleryGrid
+ * Referenced from: {@link https://jankraus.net/2024/04/05/how-to-build-a-simple-photo-gallery-with-astro/}
+ */
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import GalleryGrid from "./GalleryGrid.astro";
+
+interface Props {
+  filter?: string;
+}
+
+const { filter } = Astro.props;
+const loadedGalleries = await getCollection("galleries");
+
+const galleries = filter ? loadedGalleries.filter((gallery) => gallery.data.sorting === filter) : loadedGalleries;
+---
+
+<div class="p-8">
+  <div class="mx-auto container max-w-(--breakpoint-sm) grid grid-cols-2 gap-8">
+    {
+      galleries.map((gallery) => (
+        <a href={`/gallery/${gallery.id}`} class="group transition-all mb-4 block">
+          <Image
+            src={gallery.data.cover}
+            alt={gallery.data.title}
+            format="avif"
+            width={720}
+            quality="mid"
+            class:list={["rounded-lg transition-all", "group-hover:shadow-lg group-hover:opacity-90"]}
+          />
+          <div class="mt-4 text-center text-slate-200">
+            <strong class="font-normal">{gallery.data.title}</strong>
+            <p class="text-xs">{gallery.data.description}</p>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</div>

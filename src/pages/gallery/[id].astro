@@ -1,0 +1,42 @@
+---
+import GalleryGrid, { type GalleryGridItem } from "@components/GalleryGrid.astro";
+import PageHeader from "@components/PageHeader.astro";
+import Layout from "@layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const galleries = await getCollection("galleries");
+
+  return (
+    galleries
+      // .filter((gallery) => gallery.data.sorting === "character")
+      .map((gallery) => ({
+        params: { id: gallery.id },
+        props: { gallery },
+      }))
+  );
+}) satisfies GetStaticPaths;
+
+interface Props {
+  gallery: CollectionEntry<"galleries">;
+}
+
+const { gallery } = Astro.props;
+
+const galleryGridArray: GalleryGridItem[] = gallery.data.images.map((galleryImg) => ({
+  image: galleryImg.imgSrc,
+  caption: galleryImg.imgCaption,
+  altText: galleryImg.imgAlt,
+  credit: {
+    name: galleryImg.imgCredit?.name,
+    link: galleryImg.imgCredit?.link,
+  },
+}));
+---
+
+<Layout>
+  <PageHeader>{gallery.data.title}</PageHeader>
+  <GalleryGrid galleryGridItems={galleryGridArray} />
+</Layout>
