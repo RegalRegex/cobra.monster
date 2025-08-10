@@ -41,7 +41,7 @@ figcaption[data-rehype-pretty-code-title] {
 }
 
 /* Forcing edits on Prose blog post styling */
-.prose img {
+.prose img:not(.gallery-grid) {
   margin-bottom: 0;
 }
 .prose blockquote > p::before {

@@ -41,7 +41,7 @@ return [];
 const gridItemsToRender =  Array.isArray(galleryGridItems) ? galleryGridItems : await mapCollection(galleryGridItems);
 ---
 
-<div class="text-center">
+<div class="text-center not-prose">
 <!-- If 2 cols too small on phones, add back the "sm:" to columns-2 -->
   <div class="mx-auto container my-8 columns-2 md:columns-3 lg:columns-4 xl:columns-5 text-slate-200">
     {
@@ -51,13 +51,13 @@ const gridItemsToRender =  Array.isArray(galleryGridItems) ? galleryGridItems : 
           alt={gridItem.altText || 'Grid Item Image'}
           format="avif"
           quality={50}
-          class="mb-4 border border-transparent hover:border-gray-300 transition-all duration-300 ease-in-out hover:shadow-lg lightboxImg hover:cursor-pointer"
+          class="gallery-grid mb-4 border border-transparent hover:border-gray-300 transition-all duration-300 ease-in-out hover:shadow-lg lightboxImg hover:cursor-pointer"
           loading="lazy"
           id={`${gridItem.image.src.split("/").at(-1)}`}
         />
         <dialog class="fixed w-full h-full left-0 top-0 bg-black/90 backdrop-blur-sm hidden z-50 items-center justify-center flex-col" id={`dialog_${gridItem.image.src.split("/").at(-1)}`}>
-            <Image src={gridItem.image} alt="Test" class="block mx-auto mt-4 max-w-[90vw] max-h-[90vh] object-contain rounded-sm shadow-lg relative z-20 transition-opacity duration-300 opacity-100" loading="lazy"/>
-            <div class=" right-2 text-slate-50 opacity-80 text-xs rounded-full z-50 mt-2 flex flex-col gap-1">
+            <Image src={gridItem.image} alt="Test" class="block mx-auto mt-4 max-w-[90vw] max-h-[90vh] object-contain rounded-sm shadow-lg relative z-20 transition-opacity duration-300 opacity-100 gallery-grid" loading="lazy"/>
+            <div class="right-2 text-slate-50 opacity-80 text-xs rounded-full z-50 mt-2 flex flex-col gap-1">
               <p>{gridItem.caption}</p>
               {gridItem.credit?.name !== undefined ? 
               gridItem.credit.link ? <a class="font-bold underline" href={gridItem.credit.link}>@{gridItem.credit.name}</a> 
