@@ -2,11 +2,13 @@
 /**
  * Gallery template. For the main "image gallery grid",
  * @see GalleryGrid
+ * @param filter - option to call a known gallery rather than supply images manually
  * Referenced from: {@link https://jankraus.net/2024/04/05/how-to-build-a-simple-photo-gallery-with-astro/}
+ *
+ * @returns Gallery page from Astro Collection {@link https://docs.astro.build/en/guides/content-collections/}
  */
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import GalleryGrid from "./GalleryGrid.astro";
 
 interface Props {
   filter?: string;
