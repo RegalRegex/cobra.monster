@@ -65,6 +65,10 @@ figcaption[data-rehype-pretty-code-title] {
 .prose .emojiBlockQuote p {
   margin: 0;
 }
+/* Footnote superscripts */
+.prose sup {
+  margin: 0 calc(var(--spacing) * 0.25);
+}
 
 .footnotes {
   border-top: 2px solid white;

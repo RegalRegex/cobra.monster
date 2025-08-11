@@ -18,18 +18,27 @@ const { numImages } = Astro.props;
 }
 {
   numImages === 2 && (
-    <div class="flex gap-2 my-4 items-end  justify-center prose-p:m-0 prose-figure:m-0">
-      <div class="max-w-[47%]">
-        <slot name="image-1" class="not-prose" />
-        <figure class="text-center text-sm">
-          <slot name="caption-1" />
-        </figure>
+    <div class="flex flex-col">
+      <div class="flex gap-2 my-4 items-center justify-center prose-p:m-0 prose-figure:m-0 w-full">
+        <div class="max-w-[47%]">
+          <slot name="image-1" class="not-prose" />
+          <figure class="text-center text-sm" />
+        </div>
+        <div class="max-w-[47%] prose-p:m-0 prose-figure:m-0">
+          <slot name="image-2" class="not-prose" />
+          <figure class="text-center text-sm" />
+        </div>
       </div>
-      <div class="max-w-[47%] prose-p:m-0 prose-figure:m-0">
-        <slot name="image-2" class="not-prose" />
-        <figure class="text-center text-sm">
+      <div class="flex text-center text-sm justify-around w-full">
+        <span class="w-full">
+          <slot name="caption" />
+        </span>
+        <span class="max-w-[47%]">
+          <slot name="caption-1" />
+        </span>
+        <span class="max-w-[47%]">
           <slot name="caption-2" />
-        </figure>
+        </span>
       </div>
     </div>
   )

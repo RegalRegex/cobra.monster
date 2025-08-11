@@ -8,23 +8,39 @@ tags:
 ---
 import GalleryGrid from "@components/GalleryGrid.astro"
 import EmojiBlockquote from "@components/EmojiBlockquote.astro"
+import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
 
 import ArgentWhine from "@assets/argent/stickers/babanasaur/whine.png"
 
 <GalleryGrid galleryGridItems={'Art Fight 2025'}/>
-_Behold my art_
 
 # Real quick: what's art fight?
 
-Art Fight is an annual event each July hosted on the Art Fight website. You can read the details from the site's [about section](https://artfight.net/info/about) if you wish, but the TL;DR is for one month you can score points for your team by drawing fanart of other peoples' characters.
+Art Fight is an annual event each July hosted on the Art Fight website. You can read the details from the site's [about section](https://artfight.net/info/about) if you wish, but the **TL;DR** is: it's a month-long competition wherein you score points for your team by drawing fanart of other peoples' characters, scored based on level of *finish* (rather than subjective quality).
 
-Importantly, art submissions are self-scored according to level of finish, rather than some arbitrary "quality" (eg. drawing vs sketch. Shaded vs unshaded. Etc.), so there's no pressure for perfection! You can totally stop at just the sketch and call it done :3
+<AccordionPhotoTemplate numImages={2}>
+<div slot="image-1">
+![Goofy furry drawing atop a photo of the Chicago Bean](@assets/blog/chicagosquad_af24_8.9.25.png)
+</div>
+
+<div slot="image-2">
+![Goofy furry drawing atop a photo of the Chicago Bean](@assets/blog/Nymeria_af24_8.9.25.png)
+</div>
+<span slot="caption">This goofy piece on the left I made last year in about an hour was scored at a whopping *192 points*, compared to just *38.5 points* for the painting on the right which I spent upwards of 4 hours on.[^1][^2]</span>
+</AccordionPhotoTemplate>
+
+This "finish, not quality" approach means that Art Fight is a fantastic opportunity to let loose! Try new things...but most importantly, just chill and not obsess over each and every piece you make.
 
 <EmojiBlockquote emoji={ArgentWhine} size={'sticker'}>
-And yet...! Gripped by the throat by perfection and maximalism...
+^Guy who can't take his own advice and predictably falls prey to perfectionism every single year.
 </EmojiBlockquote>
 
+And this is not a small event. There were **602,781** registered active participants this year![^3]
 
-It's an excuse to stretch your drawing wings a bit and draw for folks you may not even know! Personally I use each Art Fight event as an impetus to try some new techniques, or to try drawing characters I'm not normally drawn to (e.g. non-scalies).
+# 2025 Art Fight Season
 
-And this is not a small event. There were **602,781** registered active participants this year!
+I was on team fossils
+
+[^1]: https://artfight.net/attack/7308667.chicago-squad
+[^2]: https://artfight.net/attack/7581199.nymeria
+[^3]: https://artfight.net/event/11
