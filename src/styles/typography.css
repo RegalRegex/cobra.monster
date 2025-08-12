@@ -42,7 +42,7 @@ figcaption[data-rehype-pretty-code-title] {
 
 /* Forcing edits on Prose blog post styling */
 .prose img:not(.gallery-grid) {
-  margin-bottom: 0;
+  margin: 0;
 }
 .prose blockquote > p::before {
   content: none;
