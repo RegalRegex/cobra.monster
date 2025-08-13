@@ -39,8 +39,8 @@ const formattedDate = formatDate(date);
       <aside class="xs:flex flex-col hidden justify-center h-full">
         <section class="flex h-40">
           <div id="dateSquareContainer" class="flex flex-col text-center text-slate-200 pr-3 mr-3 text-sm font-bold border-r border-slate-200">
-            <span>{date.toLocaleDateString("en-US", { day: "numeric" })}</span>
-            <span>{date.toLocaleDateString("en-US", { month: "short" })}</span>
+            <span>{date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })}</span>
+            <span>{date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}</span>
             <Image src={calendar} alt={"Calendar emoji"} class={"w-6 aspect-square inline-block self-start mt-1"} />
           </div>
           <Image src={cover} alt={`${title} Book Cover Art`} class="w-[100px] my-auto" />
@@ -104,8 +104,8 @@ const formattedDate = formatDate(date);
       <aside class="flex flex-col justify-center h-full">
         <section class="flex">
           <div id="dateSquareContainer" class="flex flex-col text-center text-slate-200 mr-0 pr-3 xs:mr-3 text-sm font-bold border-r border-slate-200">
-            <span>{date.toLocaleDateString("en-US", { day: "numeric" })}</span>
-            <span>{date.toLocaleDateString("en-US", { month: "short" })}</span>
+            <span>{date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })}</span>
+            <span>{date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}</span>
           </div>
         </section>
       </aside>

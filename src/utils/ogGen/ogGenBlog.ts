@@ -9,9 +9,10 @@ interface OgGenBlogProps {
 export const blogHtml = ({ title, subtitle, date }: OgGenBlogProps): string => {
   const isProd = import.meta.env.PROD;
   const dateStr = date
-    ? `${date.toLocaleDateString("en-US", { day: "numeric" })} ${date.toLocaleDateString("en-US", {
+    ? `${date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })} ${date.toLocaleDateString("en-US", {
         month: "long",
-      })} ${date.toLocaleDateString("en-US", { year: "numeric" })}`
+        timeZone: "UTC",
+      })} ${date.toLocaleDateString("en-US", { year: "numeric", timeZone: "UTC" })}`
     : "<></>";
 
   return `

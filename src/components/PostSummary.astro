@@ -12,12 +12,13 @@ const {
     data: { title, subtitle, date, tags },
   },
 } = Astro.props;
+console.log(date.toDateString());
 ---
 
 <li class="p-2 pl-4 text-slate-200 flex relative">
   <div id="dateSquareContainer" class="hidden sm:flex flex-col text-center px-2 text-slate-200 mr-2 h-max text-sm font-bold mt-1 border-r">
-    <span>{date.toLocaleDateString("en-US", { day: "numeric" })}</span>
-    <span>{date.toLocaleDateString("en-US", { month: "short" })}</span>
+    <span>{date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })}</span>
+    <span>{date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}</span>
   </div>
   <div id="blogSummaryContainer">
     <div class="sm:ml-4 ml-0 grid grid-cols-1">
@@ -25,9 +26,9 @@ const {
         <h2 class="headerTxt text-3xl underline font-medium">{title}</h2></a
       >
       <div class="block sm:hidden italic text-slate-200/70 text-sm">
-        <span>{date.toLocaleDateString("en-US", { day: "numeric" })}</span>
-        <span>{date.toLocaleDateString("en-US", { month: "short" })}</span>
-        <span>{date.toLocaleDateString("en-US", { year: "numeric" })}</span>
+        <span>{date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })}</span>
+        <span>{date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}</span>
+        <span>{date.toLocaleDateString("en-US", { year: "numeric", timeZone: "UTC" })}</span>
       </div>
       <h3 class="headerTxt text-lg text-slate-100">↳ {subtitle}</h3>
       {
