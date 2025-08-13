@@ -1,6 +1,21 @@
 ---
+/**
+ * Returns a rendered grid of auto-arranged images with built-in "light box" click dialog elements
+ * 
+ * @remarks
+ * This is a sub-component extracted to be used alone, but is normally paired with the Gallery component. The trickiest part about this component is the <script> at the bottom. Due to intended functionality with Astro's view-transitions (responsible for styling an Astro website to _feel_ like it is a single-page application instead of loading individual pages) {@link https://docs.astro.build/en/guides/view-transitions}, added event listeners are removed upon navigating away from the page.
+ * Solution devised thanks to {@link https://stackoverflow.com/questions/77278507/javascript-is-not-working-on-page-change-in-astro}.
+ * Additionally, tested by extracting this functionality to a React Island, but it doubled Vercel build time and did not feel worth it.
+ * Programmatic ID assignment on images and dialogs = brute-force method of tying dialogs to individual images.
+ * 
+ * @see Gallery
+ * 
+ * @param galleryGridItems - Offering either to process an array of mapped Images, or to extract from a "galleries" collection.
+ * @returns a rendered Astro component
+ */
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 
 export interface GalleryGridItem {
   image: ImageMetadata;
@@ -12,59 +27,85 @@ export interface GalleryGridItem {
   }
 }
 interface Props {
-  galleryGridItems: GalleryGridItem[];
+  galleryGridItems: GalleryGridItem [] | string;
 }
 const { galleryGridItems } = Astro.props;
+
+const mapCollection = async (collection: string):Promise<GalleryGridItem[]> => {
+
+  const allGalleries = await getCollection("galleries")
+  const galleryCollection = allGalleries.filter((gallery) => gallery.data.title === collection)
+
+  if (galleryCollection.length > 0) {
+    return galleryCollection[0].data.images.map((galleryImg) => ({
+    image: galleryImg.imgSrc,
+    caption: galleryImg.imgCaption,
+    altText: galleryImg.imgAlt,
+    credit: {
+      name: galleryImg.imgCredit?.name,
+      link: galleryImg.imgCredit?.link,
+    },
+  }))
+};
+return [];  
+}
+
+const gridItemsToRender =  Array.isArray(galleryGridItems) ? galleryGridItems : await mapCollection(galleryGridItems);
 ---
 
-<div class="text-center my-16 mb-32">
-
-  <div class="mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5">
+<div class="text-center not-prose">
+<!-- If 2 cols too small on phones, add back the "sm:" to columns-2 -->
+  <div class="mx-auto container my-8 columns-2 md:columns-3 lg:columns-4 xl:columns-5 text-slate-200">
     {
-      galleryGridItems.map((gridItem, index) => (
+      gridItemsToRender.map((gridItem) => (
         <Image
           src={gridItem.image}
           alt={gridItem.altText || 'Grid Item Image'}
           format="avif"
           quality={50}
-          class="mb-4 border border-transparent hover:border-gray-300 transition-all duration-300 ease-in-out hover:shadow-lg lightboxImg hover:cursor-pointer"
+          class="gallery-grid mb-4 border border-transparent hover:border-gray-300 transition-all duration-300 ease-in-out hover:shadow-lg lightboxImg hover:cursor-pointer"
           loading="lazy"
           id={`${gridItem.image.src.split("/").at(-1)}`}
         />
         <dialog class="fixed w-full h-full left-0 top-0 bg-black/90 backdrop-blur-sm hidden z-50 items-center justify-center flex-col" id={`dialog_${gridItem.image.src.split("/").at(-1)}`}>
-            <Image src={gridItem.image} alt="Test" class="block mx-auto mt-4 max-w-[90vw] max-h-[90vh] object-contain rounded-sm shadow-lg relative z-20 transition-opacity duration-300 opacity-100" loading="lazy"/>
-            <div class=" right-2 text-slate-50 opacity-80 text-xs rounded-full z-50 mt-2 flex flex-col gap-1">
+            <Image src={gridItem.image} alt={gridItem.altText || 'Grid Item Image'} class="block mx-auto mt-4 max-w-[90vw] max-h-[90vh] object-contain rounded-sm shadow-lg relative z-20 transition-opacity duration-300 opacity-100 gallery-grid" loading="lazy"/>
+            <div class="right-2 text-slate-50 opacity-80 text-xs rounded-full z-50 mt-2 flex flex-col gap-1">
               <p>{gridItem.caption}</p>
               {gridItem.credit?.name !== undefined ? 
               gridItem.credit.link ? <a class="font-bold underline" href={gridItem.credit.link}>@{gridItem.credit.name}</a> 
               : <p>@{gridItem.credit?.name}</p>: ""}
             </div>
     </dialog>
-        // <Modal id={index} />
       ))
     }
   </div>
 </div>
 <script>
-    const lightboxImgs = document.querySelectorAll('.lightboxImg');
 
+  function setDialogOnClick() {
     // handle clicks
-    lightboxImgs.forEach((img) => {
-        img.addEventListener('click', () => {
-            const imgId = img.id;
-            const imgDialog = document.getElementById(`dialog_${imgId}`);
-            imgDialog?.addEventListener('click', () => {
-                imgDialog.classList.replace('flex', 'hidden')
-                document.body.style.overflow=""
+      const lightboxImgs = document.querySelectorAll('.lightboxImg');
+          lightboxImgs.forEach((img) => {
+            img.addEventListener('click', () => {
+                const imgId = img.id;
+                const imgDialog = document.getElementById(`dialog_${imgId}`);
+                imgDialog?.addEventListener('click', () => {
+                    imgDialog.classList.replace('flex', 'hidden')
+                    document.body.style.overflow=""
+                })
+                if (imgDialog?.classList.contains('hidden')) {
+                    imgDialog.classList.replace('hidden', 'flex');
+                    document.body.style.overflow="hidden"
+                } else {
+                    imgDialog?.classList.replace('flex', 'hidden');
+                    document.body.style.overflow=""
+                }
             })
-            if (imgDialog?.classList.contains('hidden')) {
-                imgDialog.classList.replace('hidden', 'flex');
-                document.body.style.overflow="hidden"
-            } else {
-                imgDialog?.classList.replace('flex', 'hidden');
-                document.body.style.overflow=""
-            }
-        })
-    })
+      })
+  }
+
+  setDialogOnClick();
+
+  document.addEventListener("astro:after-swap", setDialogOnClick);
 
 </script>

@@ -1,16 +1,17 @@
 ---
 interface Props {
   numImages: 1 | 2;
+  numCaptions?: 0 | 1 | 2;
 }
 
-const { numImages } = Astro.props;
+const { numImages, numCaptions=0 } = Astro.props;
 ---
 
 {
   numImages === 1 && (
     <div class="max-w-[95%] m-auto gap-2 my-4 prose-p:m-0 prose-figure:m-0">
       <slot name="image" class="not-prose" />
-      <figure class="text-center">
+      <figure class="text-center text-sm">
         <slot name="caption" />
       </figure>
     </div>
@@ -18,19 +19,28 @@ const { numImages } = Astro.props;
 }
 {
   numImages === 2 && (
-    <div class="flex gap-2 my-4 items-end  justify-center prose-p:m-0 prose-figure:m-0">
-      <div class="max-w-[47%]">
-        <slot name="image-1" class="not-prose" />
-        <figure class="text-center text-sm">
+    <div class="flex flex-col">
+      <div class="flex gap-2 my-4 items-center justify-center prose-p:m-0 prose-figure:m-0 w-full">
+        <div class="max-w-[47%]">
+          <slot name="image-1" class="not-prose" />
+          <figure class="text-center text-sm" />
+        </div>
+        <div class="max-w-[47%] prose-p:m-0 prose-figure:m-0">
+          <slot name="image-2" class="not-prose" />
+          <figure class="text-center text-sm" />
+        </div>
+      </div>
+      {numCaptions > 0 && <div class="flex text-center text-sm justify-around w-full">
+        {numCaptions === 1 && <span class="w-full">
+          <slot name="caption" />
+        </span>}
+        {numCaptions === 2 && <span class="max-w-[47%]">
           <slot name="caption-1" />
-        </figure>
-      </div>
-      <div class="max-w-[47%] prose-p:m-0 prose-figure:m-0">
-        <slot name="image-2" class="not-prose" />
-        <figure class="text-center text-sm">
+        </span>
+        <span class="max-w-[47%]">
           <slot name="caption-2" />
-        </figure>
-      </div>
+        </span>}
+      </div> }
     </div>
   )
 }

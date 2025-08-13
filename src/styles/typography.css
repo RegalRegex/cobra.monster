@@ -41,8 +41,8 @@ figcaption[data-rehype-pretty-code-title] {
 }
 
 /* Forcing edits on Prose blog post styling */
-.prose img {
-  margin-bottom: 0;
+.prose img:not(.gallery-grid) {
+  margin: 0;
 }
 .prose blockquote > p::before {
   content: none;
@@ -64,6 +64,10 @@ figcaption[data-rehype-pretty-code-title] {
 }
 .prose .emojiBlockQuote p {
   margin: 0;
+}
+/* Footnote superscripts */
+.prose sup {
+  margin: 0 calc(var(--spacing) * 0.25);
 }
 
 .footnotes {
