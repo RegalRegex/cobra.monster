@@ -81,6 +81,11 @@
       "url": "https://gifcities.org/",
       "title": "GifCities",
       "description": "Internet Archive's fabulously-indexed vintage GIF repository"
+    },
+    {
+      "url": "https://textures.neocities.org/",
+      "title": "Texture Town",
+      "description": "Free textures! And a playground to try them in! Very cool, very charming."
     }
   ]
 }
