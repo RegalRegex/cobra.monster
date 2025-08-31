@@ -3,9 +3,16 @@ import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 
+interface OpenGraphObj {
+  title: string;
+  description: string;
+  image: string;
+}
+
 interface Props {
   homePage?: boolean;
   blog?: boolean;
+  customOg?:OpenGraphObj;
 }
 
 const { homePage, blog } = Astro.props;

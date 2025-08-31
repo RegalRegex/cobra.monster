@@ -1,0 +1,36 @@
+---
+import HomeContentBox from "@components/HomeContentBox.astro";
+import HomeSection from "@components/HomeSection.astro";
+import PageHeader from "@components/PageHeader.astro";
+import TopNav from "@components/TopNav.astro";
+import Layout from "@layouts/Layout.astro";
+
+import pg1 from "@assets/zines/Rff_swimsuit_zine_2025/01.jpg";
+import { Image } from "astro:assets";
+import TextDeco from "@components/TextDeco.astro";
+import Link from "@components/Link.astro";
+---
+
+<Layout
+  customOg={{
+    title: "Real Furry Fitness Swimsuit Zine",
+    description: "A swimsuit-themed zine created by the members of the Regal Furry Fitness server",
+    image: "/pdfs/ogImg/RFF_Swimsuit_OG.png",
+  }}
+>
+  <TopNav />
+  <PageHeader>Swimsuit Zine</PageHeader>
+  <main
+    class="flex flex-col items-center md:m-10 m-5 grow text-slate-200 gap-5 text-base md:text-xl md:max-w-[50%] md:mx-auto text-center bg-boxPrimary py-5 md:px-10 px-2 border-4 border-yellow rounded-md"
+  >
+    <h2 class="text-6xl">We made a zine!</h2>
+    <p>
+      After a lot of work, the cool folks in my Fitness Server put together our very first zine! Check it out, and definitely check out the folks listed inside
+      to compliment their super cool art :3
+    </p>
+    <p class="italic">(Pardon the page layout, I'm throwing this together pretty quick. Eventually this will have nice links to folks and whatnot.)</p>
+    <p><Link url="/rff-swimsuit-zine-2025">Check out the full zine here!</Link></p>
+    <Image src={pg1} alt={"Page 1"} class="" />
+    <p><Link url="/rff-swimsuit-zine-2025">Check out the full zine here!</Link></p>
+  </main>
+</Layout>
