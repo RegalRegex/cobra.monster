@@ -26,6 +26,12 @@
       "title": "Panopticat",
       "description": "Rad comic by my friend ${1}",
       "auxLink": "https://bsky.app/profile/dregadraws.bsky.social,Drega"
+    },
+    {
+      "url": "/rff-swimsuit-zine-2025",
+      "title": "Real Furry Fitness Zine 2025: Swimsuit Edition",
+      "description": "A swimsuit-themed zine created by the community within my ${1}!",
+      "auxLink": "https://discord.gg/zHVnKRb,Fitness Server"
     }
   ],
   "webDev": [

@@ -47,8 +47,8 @@ const bgSettings = () => {
   </head>
 
   <body>
-    <div id="main" class:list={["min-h-[100vh] overflow-hidden table w-full border-separate", bgSettings()]}>
-      <div class="@container table-row">
+    <div id="main" class:list={["overflow-hidden w-full border-separate flex flex-col min-h-screen", bgSettings()]}>
+      <div class="@container grow flex flex-col">
         <slot />
       </div>
       <Footer homePage={homePage} />
