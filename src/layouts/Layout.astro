@@ -15,7 +15,7 @@ interface Props {
   customOg?:OpenGraphObj;
 }
 
-const { homePage, blog } = Astro.props;
+const { homePage, blog, customOg } = Astro.props;
 
 const bgSettings = () => {
   if (homePage) {
@@ -37,9 +37,9 @@ const bgSettings = () => {
     <link rel="me" href="https://yiff.life/@regal" />
     <meta name="generator" content={Astro.generator} />
     {!blog && 
-      <meta property="og:title" content="Regal — Scalie WebDev Furry Artist in Chicago" />
-      <meta property="og:description" content="A communist coffee cobra's personal website" />
-      <meta property="og:image" content="https://cobra.monster/websiteMetaHeader.png" />
+      <meta property="og:title" content={customOg ? customOg.title : "Regal — Scalie WebDev Furry Artist in Chicago"} />
+      <meta property="og:description" content={customOg ? customOg.description : "A communist coffee cobra's personal website"} />
+      <meta property="og:image" content={customOg ? customOg.image : "https://cobra.monster/websiteMetaHeader.png"} />
     }
     <meta property="og:site_name" content="Regal"/>
     <meta property="og:url" content="https://cobra.monster" />
