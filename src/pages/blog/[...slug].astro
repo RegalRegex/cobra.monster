@@ -1,4 +1,5 @@
 ---
+export const prerender = false;
 import { getCollection } from "astro:content";
 import BlogPostLayout from "@layouts/BlogPostLayout.astro";
 import type { CollectionEntry } from "astro:content";
@@ -30,9 +31,11 @@ interface Props {
 }
 
 const { entry, headings } = Astro.props;
+const { slug } = Astro.params;
 const { Content } = await entry.render();
 ---
 
 <BlogPostLayout post={entry} headings={headings}>
   <Content />
+  <Comments postSlug={slug} />
 </BlogPostLayout>
