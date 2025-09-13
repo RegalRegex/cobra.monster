@@ -19,12 +19,12 @@ const { homePage, blog, customOg } = Astro.props;
 
 const bgSettings = () => {
   if (homePage) {
-    return "gradientBg";
+    return "overflow-hidden gradientBg";
   }
   if (blog) {
     return "blogBg";
   }
-  return "stripedBg";
+  return "overflow-hidden stripedBg";
 };
 ---
 
@@ -54,7 +54,7 @@ const bgSettings = () => {
   </head>
 
   <body>
-    <div id="main" class:list={["overflow-hidden w-full border-separate flex flex-col min-h-screen", bgSettings()]}>
+    <div id="main" class:list={["w-full border-separate flex flex-col min-h-screen", bgSettings()]}>
       <div class="@container grow flex flex-col">
         <slot />
       </div>
