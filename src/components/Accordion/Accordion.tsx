@@ -2,7 +2,28 @@ import { useRef, useState, type ReactNode } from "react";
 import arrowRight from "@assets/mutantEmoji/utility/arrow_right.png";
 
 /**
- * Code largely inspired by Bionic Julia: https://bionicjulia.com/blog/creating-accordion-component-react-typescript-tailwind
+ * Simple React accordion component
+ *
+ * @remarks
+ * Created to allow for individual state without resorting to scripts, especially in use within MDX files.
+ * Title and Content params are inserted in MDX context via slots, but can be inserted as direct props if desired.
+ *
+ * @param {ReactNode} title - Title content
+ *
+ * Code largely inspired by Bionic Julia: {@link https://bionicjulia.com/blog/creating-accordion-component-react-typescript-tailwind}
+ * @example
+ *
+ * ```mdx
+ * <Accordion client:idle>
+ * <span slot="title"><span className="text-yellow mr-1">1.</span> Pour Overs</span>
+ * <div slot="content">
+ * Specifically a ceramic V60 or Origami dripper. There are a lot of great pour-over cones, but these two have been the best for me personally.
+ * </div>
+ * </Accordion>
+ * ```
+ *
+ * @see AccordionPhotoTemplate.astro
+ *
  */
 
 interface Props {

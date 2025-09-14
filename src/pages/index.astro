@@ -95,14 +95,19 @@ import HomePageBlogPosts from "@components/HomePageBlogPosts.astro";
 </Layout>
 
 <script>
-  const snakeBtn = document.getElementById("snakeMode");
-  snakeBtn?.addEventListener("click", () => {
-    window.scrollTo(0, 0);
-    const page = document.getElementById("main");
-    if (page) {
-      page.style.fontFamily = "Snake Chan";
-    }
-    const headerEls = Array.from(document.getElementsByClassName("headerTxt") as HTMLCollectionOf<HTMLElement>);
-    headerEls.forEach((header) => (header.style.fontFamily = "Snake Chan"));
-  });
+  function activateSnakeMode() {
+    const snakeBtn = document.getElementById("snakeMode");
+    snakeBtn?.addEventListener("click", () => {
+      window.scrollTo(0, 0);
+      const page = document.getElementById("main");
+      if (page) {
+        page.style.fontFamily = "Snake Chan";
+      }
+      const headerEls = Array.from(document.getElementsByClassName("headerTxt") as HTMLCollectionOf<HTMLElement>);
+      headerEls.forEach((header) => (header.style.fontFamily = "Snake Chan"));
+    });
+  }
+  activateSnakeMode();
+
+  document.addEventListener("astro:after-swap", activateSnakeMode);
 </script>

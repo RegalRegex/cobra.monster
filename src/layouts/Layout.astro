@@ -3,21 +3,28 @@ import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 
+interface OpenGraphObj {
+  title: string;
+  description: string;
+  image: string;
+}
+
 interface Props {
   homePage?: boolean;
   blog?: boolean;
+  customOg?:OpenGraphObj;
 }
 
-const { homePage, blog } = Astro.props;
+const { homePage, blog, customOg } = Astro.props;
 
 const bgSettings = () => {
   if (homePage) {
-    return "gradientBg";
+    return "overflow-hidden gradientBg";
   }
   if (blog) {
     return "blogBg";
   }
-  return "stripedBg";
+  return "overflow-hidden stripedBg";
 };
 ---
 
@@ -27,11 +34,12 @@ const bgSettings = () => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="me" href="https://yiff.life/@regal" />
     <meta name="generator" content={Astro.generator} />
     {!blog && 
-      <meta property="og:title" content="Regal — Scalie WebDev Furry Artist in Chicago" />
-      <meta property="og:description" content="A communist coffee cobra's personal website" />
-      <meta property="og:image" content="https://cobra.monster/websiteMetaHeader.png" />
+      <meta property="og:title" content={customOg ? customOg.title : "Regal — Scalie WebDev Furry Artist in Chicago"} />
+      <meta property="og:description" content={customOg ? customOg.description : "A communist coffee cobra's personal website"} />
+      <meta property="og:image" content={customOg ? customOg.image : "https://cobra.monster/websiteMetaHeader.png"} />
     }
     <meta property="og:site_name" content="Regal"/>
     <meta property="og:url" content="https://cobra.monster" />
@@ -40,11 +48,14 @@ const bgSettings = () => {
     <meta property="fediverse:creator" content="regal@yiff.life" />
     <title>COBRA.MONSTER</title>
     <ClientRouter />
+    <script is:inline>
+  delete window.onscrollend;
+</script>
   </head>
 
   <body>
-    <div id="main" class:list={["min-h-[100vh] overflow-hidden table w-full border-separate", bgSettings()]}>
-      <div class="@container table-row">
+    <div id="main" class:list={["w-full border-separate flex flex-col min-h-screen", bgSettings()]}>
+      <div class="@container grow flex flex-col">
         <slot />
       </div>
       <Footer homePage={homePage} />

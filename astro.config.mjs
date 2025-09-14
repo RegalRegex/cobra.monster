@@ -14,6 +14,14 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+      config: {
+        limitInputPixels: false,
+      },
+    },
+  },
   integrations: [
     mdx({
       syntaxHighlight: false,
@@ -38,5 +46,6 @@ export default defineConfig({
   redirects: {
     "/books": "/books/default",
     "/home": "/",
+    "/rff-swimsuit-zine-2025": "/pdfs/RFF_Zine-Swimsuit_Edition_08-2025.pdf",
   },
 });

@@ -26,7 +26,6 @@ const {
 } = Astro.props;
 
 const formattedDate = formatDate(date);
-// TODO: extra line for quotes--using speech bubble emoji?
 ---
 
 {
@@ -35,8 +34,8 @@ const formattedDate = formatDate(date);
       <aside class="sm:flex flex-col hidden justify-center h-full">
         <section class="flex">
           <div id="dateSquareContainer" class="flex flex-col text-center text-slate-200 pr-3 mr-3 text-lg font-bold border-r border-slate-200">
-            <span>{date.toLocaleDateString("en-US", { day: "numeric" })}</span>
-            <span>{date.toLocaleDateString("en-US", { month: "short" })}</span>
+            <span>{date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })}</span>
+            <span>{date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}</span>
             <Image src={calendar} alt={"Calendar emoji"} class={"w-10 aspect-square inline-block self-start mt-1"} />
           </div>
           <Image src={cover} alt={`${title} Book Cover Art`} class="w-54 my-auto shadow-2xl" />
@@ -95,7 +94,7 @@ const formattedDate = formatDate(date);
           </span>
         </div>
         <div class="flex text-base sm:text-lg ">
-          <TagContents pageUrl="/books/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
+          <TagContents pageUrl="/books/default/tagged/" inline={true} tagIds={bookTags.map((tag) => tag.id)} />
         </div>
       </main>
     </li>
@@ -108,8 +107,8 @@ const formattedDate = formatDate(date);
       <aside class="flex flex-col justify-center h-full">
         <section class="flex">
           <div id="dateSquareContainer" class="flex flex-col text-center text-slate-200 mr-0 pr-3 xs:mr-3 text-base font-bold border-r border-slate-200">
-            <span>{date.toLocaleDateString("en-US", { day: "numeric" })}</span>
-            <span>{date.toLocaleDateString("en-US", { month: "short" })}</span>
+            <span>{date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })}</span>
+            <span>{date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}</span>
           </div>
         </section>
       </aside>

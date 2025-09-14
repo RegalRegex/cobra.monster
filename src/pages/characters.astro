@@ -1,0 +1,23 @@
+---
+import Layout from "@layouts/Layout.astro";
+import TopNav from "@components/TopNav.astro";
+import PageHeader from "@components/PageHeader.astro";
+import Gallery from "@components/Gallery.astro";
+---
+
+<Layout>
+  <TopNav />
+  <PageHeader leftRight="left">Characters</PageHeader>
+  <div>
+    <Gallery filter="character" />
+    <!-- <GalleryGrid client:load images={[ArgentRelax, Argent2, Argent3, Argent4, Argent5, Argent6, Argent7]} /> -->
+  </div>
+
+  <style>
+    h1,
+    h2 {
+      font-family: "Prospekt Regular", sans-serif;
+      color: white;
+    }
+  </style>
+</Layout>

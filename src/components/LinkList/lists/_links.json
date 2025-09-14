@@ -26,6 +26,12 @@
       "title": "Panopticat",
       "description": "Rad comic by my friend ${1}",
       "auxLink": "https://bsky.app/profile/dregadraws.bsky.social,Drega"
+    },
+    {
+      "url": "/rff-swimsuit-zine-2025",
+      "title": "Real Furry Fitness Zine 2025: Swimsuit Edition",
+      "description": "A swimsuit-themed zine created by the community within my ${1}!",
+      "auxLink": "https://discord.gg/zHVnKRb,Fitness Server"
     }
   ],
   "webDev": [
@@ -53,6 +59,11 @@
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
       "title": "Open-source Windows 10 Activation Tool",
       "description": "Convenient script for activating copies of Windows 10 for free. Windows 11 sucks so, this is a good tool to have :3"
+    },
+    {
+      "url": "https://lucide.dev/",
+      "title": "Lucide Icons",
+      "description": "Cool set of community-built, free icons. One of the better packs I've found in terms of breadth and configurability out the box"
     }
   ],
   "miscLinks": [
@@ -76,6 +87,11 @@
       "url": "https://gifcities.org/",
       "title": "GifCities",
       "description": "Internet Archive's fabulously-indexed vintage GIF repository"
+    },
+    {
+      "url": "https://textures.neocities.org/",
+      "title": "Texture Town",
+      "description": "Free textures! And a playground to try them in! Very cool, very charming."
     }
   ]
 }

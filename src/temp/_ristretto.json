@@ -1,0 +1,25 @@
+{
+  "title": "Ristretto",
+  "cover": ["ristretto", "png"],
+  "description": "TBD",
+  "sorting": "character",
+  "images": [
+    {
+      "imgSrc": "ArgentPoseSheet.jpg",
+      "imgCaption": "",
+      "imgCredit": {
+        "name": "me"
+      },
+      "imgAlt": ""
+    },
+    {
+      "imgSrc": "ArgentRest_Luzzy.jpg",
+      "imgCaption": "",
+      "imgCredit": {
+        "name": "Luzzy",
+        "url": "https://bsky.app/profile/luzzyderay.bsky.social"
+      },
+      "imgAlt": ""
+    }
+  ]
+}
