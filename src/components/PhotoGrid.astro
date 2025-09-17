@@ -17,7 +17,7 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
-export interface GalleryGridItem {
+export interface PhotoGridItem {
   image: ImageMetadata;
   caption?: string;
   altText?: string;
@@ -27,11 +27,11 @@ export interface GalleryGridItem {
   }
 }
 interface Props {
-  galleryGridItems: GalleryGridItem [] | string;
+  photoGridItems: PhotoGridItem [] | string;
 }
-const { galleryGridItems } = Astro.props;
+const { photoGridItems } = Astro.props;
 
-const mapCollection = async (collection: string):Promise<GalleryGridItem[]> => {
+const mapCollection = async (collection: string):Promise<PhotoGridItem[]> => {
 
   const allGalleries = await getCollection("galleries")
   const galleryCollection = allGalleries.filter((gallery) => gallery.data.title === collection)
@@ -50,41 +50,30 @@ const mapCollection = async (collection: string):Promise<GalleryGridItem[]> => {
 return [];  
 }
 
-const gridItemsToRender =  Array.isArray(galleryGridItems) ? galleryGridItems : await mapCollection(galleryGridItems);
+const gridItemsToRender =  Array.isArray(photoGridItems) ? photoGridItems : await mapCollection(photoGridItems);
 ---
 
 <div class="text-center not-prose">
 <!-- If 2 cols too small on phones, add back the "sm:" to columns-2 -->
-  <div class="mx-auto grid container my-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 text-slate-200 gap-2">
+  <div class="mx-auto container my-8 columns-2 md:columns-3 lg:columns-4 xl:columns-5 text-slate-200">
     {
       gridItemsToRender.map((gridItem) => (
-        <div class="relative overflow-hidden items-center justify-center aspect-square border border-transparent hover:border-gray-300 transition-all duration-300 ease-in-out hover:shadow-lg">
-          <Image
-            src={gridItem.image}
-            alt={gridItem.altText || 'Grid Item Image'}
-            format="avif"
-            quality={50}
-            class="gallery-grid mb-4  lightboxImg hover:cursor-pointer object-contain z-10 absolute  shrink size-full"
-            loading="lazy"
-            id={`${gridItem.image.src.split("/").at(-1)}`}
-          />
-          <Image
-            src={gridItem.image}
-            alt={gridItem.altText || 'Grid Item Image'}
-            format="avif"
-            quality={50}
-            class="gallery-grid mb-4 border border-transparent hover:border-gray-300 transition-all duration-300 ease-in-out hover:shadow-lg lightboxImg hover:cursor-pointer blur-xl z-0 absolute size-[120%] object-cover "
-            loading="lazy"
-            id={`${gridItem.image.src.split("/").at(-1)} blur`}
-          />
-        </div>
+        <Image
+          src={gridItem.image}
+          alt={gridItem.altText || 'Grid Item Image'}
+          format="avif"
+          quality={50}
+          class="gallery-grid mb-4 border border-transparent hover:border-gray-300 transition-all duration-300 ease-in-out hover:shadow-lg lightboxImg hover:cursor-pointer"
+          loading="lazy"
+          id={`${gridItem.image.src.split("/").at(-1)}`}
+        />
         <dialog class="fixed w-full h-full left-0 top-0 bg-black/90 backdrop-blur-sm hidden z-50 items-center justify-center flex-col" id={`dialog_${gridItem.image.src.split("/").at(-1)}`}>
             <Image src={gridItem.image} alt={gridItem.altText || 'Grid Item Image'} class="block mx-auto mt-4 max-w-[90vw] max-h-[90vh] object-contain rounded-sm shadow-lg relative z-20 transition-opacity duration-300 opacity-100 gallery-grid" loading="lazy"/>
             <div class="right-2 text-slate-50 opacity-80 text-xs rounded-full z-50 mt-2 flex flex-col gap-1">
               <p>{gridItem.caption}</p>
               {gridItem.credit?.name !== undefined ? 
               gridItem.credit.link ? <a class="font-bold underline" href={gridItem.credit.link}>@{gridItem.credit.name}</a> 
-              : <p>{gridItem.credit?.name}</p>: ""}
+              : <p>@{gridItem.credit?.name}</p>: ""}
             </div>
     </dialog>
       ))
