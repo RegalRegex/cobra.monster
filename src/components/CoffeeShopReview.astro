@@ -1,0 +1,74 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import coffeArgentChill from "@assets/argent/CoffeShopChill_Deriaz.jpg";
+import ChiStar from "./ImageComponents/ChiStar.astro";
+import InlineEmoji from "./ImageComponents/InlineEmoji.astro";
+
+import hotDrink from "@assets/mutantEmoji/hot_drink.png";
+import sunsetCity from "@assets/mutantEmoji/sunset_city.png";
+import greenMoney from "@assets/mutantEmoji/utility/green_money.png";
+import gay from "@assets/mutantEmoji/gay.png";
+import laptop from "@assets/mutantEmoji/laptop.png";
+
+interface Props {
+  cafeCollectionItem: any;
+  favorite?: boolean;
+}
+
+const ratingArray = {
+  coffee: hotDrink,
+  cafe: sunsetCity,
+  price: greenMoney,
+  productivity: laptop,
+  vibes: gay,
+};
+// TODO: will come from collection
+const ratings = { coffee: 5, cafe: 4.5, price: 5, productivity: 3, vibes: 1 };
+
+const { cafeCollectionItem, favorite = false }: Props = Astro.props;
+---
+
+<!-- TODO: OG image -->
+<Layout blog={true}>
+  <article class="flex flex-col md:grid grid-cols-3 text-slate-200 m-5">
+    <h1 class="text-3xl underline decoration-2 underline-offset-4">Everybody's Coffee</h1>
+    <!-- <hr /> -->
+    <div class="flex justify-between text-sm">
+      <span>Chicago: Lakeview</span><span><a href="https://maps.app.goo.gl/JvLofzDkNA6FStHw8">935 W Wilson Ave</a></span>
+    </div>
+    <aside class="col-span-1 flex flex-col border-r-4 border-yellow justify-around">
+      <ul class="self-center min-w-[75%]">
+        {
+          Object.entries(ratings).map(([key, value]) => (
+            <li class="flex justify-between">
+              <span class="capitalize flex-none">
+                <InlineEmoji emoji={ratingArray[key as keyof typeof ratingArray]} size={5} />
+                {key}
+              </span>
+              <span class="d grow border-b-2 border-yellow float-left relative block border-dotted h-3.5 mx-1" />
+              <span class="text-right flex-none">{value}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </aside>
+    <main class="col-span-2 col-start-2 flex flex-col">
+      <Image src={coffeArgentChill} alt={"chill"} />
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit eveniet fugit quos deserunt, officia necessitatibus, est consequatur quaerat
+        perspiciatis sunt voluptatibus quas. Unde culpa provident a sit voluptates porro dolores, eveniet accusamus blanditiis cumque quis dolore omnis sunt qui
+        dolorum voluptatibus, eum doloremque commodi vero sint ea alias sed! Sequi, suscipit quia perferendis, quos quidem repudiandae aspernatur praesentium
+        hic quas magni aliquid ducimus iste reprehenderit incidunt corrupti vel doloremque odio nulla? Accusantium voluptas fugiat nemo omnis corrupti ut
+        expedita dolor accusamus eum? Nulla provident obcaecati nisi, veritatis pariatur consequuntur aspernatur est itaque consequatur asperiores! Dolorum iure
+        quo incidunt natus saepe placeat architecto atque quam expedita dolore sapiente odit sunt, perferendis quia praesentium dignissimos accusamus obcaecati
+        autem quibusdam laudantium accusantium! Id officia, repellendus blanditiis maxime nam quam, optio, similique dolor suscipit debitis dolores
+        reprehenderit atque! Cum numquam voluptatem inventore ex magnam consequatur fuga id error est veniam. Nemo atque dolores asperiores dicta impedit
+        explicabo a aspernatur, minus praesentium, non quasi culpa aut in debitis mollitia corporis quia porro aperiam veniam eligendi dolorem sunt. Temporibus,
+        porro atque! Eius minima amet assumenda sit debitis veritatis qui doloribus pariatur dicta sint temporibus, autem aut nemo velit, iste quasi
+        exercitationem voluptatibus a id blanditiis? Suscipit?
+      </p>
+    </main>
+  </article>
+</Layout>
