@@ -9,7 +9,7 @@ import InlineEmoji from "./ImageComponents/InlineEmoji.astro";
 import hotDrink from "@assets/mutantEmoji/hot_drink.png";
 import sunsetCity from "@assets/mutantEmoji/sunset_city.png";
 import greenMoney from "@assets/mutantEmoji/utility/green_money.png";
-import gay from "@assets/mutantEmoji/gay.png";
+import sunriseOverMountains from "@assets/mutantEmoji/sunrise_over_mountains.png";
 import laptop from "@assets/mutantEmoji/laptop.png";
 
 interface Props {
@@ -26,10 +26,12 @@ const ratingArray: ratingSystem = {
   cafe: { emoji: sunsetCity, legend: "Blah blah" },
   price: { emoji: greenMoney, legend: "Based on the price of a cappuccino" },
   productivity: { emoji: laptop, legend: "Table size, outlet availability, wifi" },
-  vibes: { emoji: gay, legend: "Subjective 'How does it feel?'" },
+  vibes: { emoji: sunriseOverMountains, legend: "Subjective 'How does it feel?'" },
 };
 // TODO: will come from collection
 const ratings = { coffee: 5, cafe: 4.5, price: 5, productivity: 3, vibes: 1 };
+
+const totalScore = Object.values(ratings).reduce((a, b) => a + b);
 
 const { cafeCollectionItem, favorite = false }: Props = Astro.props;
 ---
@@ -37,31 +39,44 @@ const { cafeCollectionItem, favorite = false }: Props = Astro.props;
 <!-- TODO: OG image -->
 <Layout blog={true}>
   <article class="flex flex-col md:grid grid-cols-3 text-slate-200 m-5">
-    <h1 class="text-3xl underline decoration-2 underline-offset-4">Everybody's Coffee</h1>
+    <h1 class="text-3xl underline decoration-2 underline-offset-4 text-center">Everybody's Coffee</h1>
     <!-- <hr /> -->
-    <span class="text-sm">Chicago: Lakeview</span>
-    <aside class="col-span-1 flex flex-col border-yellow justify-around">
-      <ul class="self-center min-w-[75%]">
+    <span class="text-sm flex justify-around my-1"><ChiStar /><ChiStar />Uptown, Chicago<ChiStar /><ChiStar /></span>
+    <aside class="col-span-1 flex flex-col border-yellow justify-around my-2">
+      <ul class="self-center min-w-[75%] text-sm">
         {
           Object.entries(ratings).map(([key, value]) => {
             const ratingItem = ratingArray[key as keyof typeof ratingArray];
             return (
               <li class="flex flex-col">
                 <div class="flex justify-between">
-                  <span class="capitalize flex-none">
-                    <InlineEmoji emoji={ratingItem.emoji} size={5} />
+                  <a href={`#${key}`} class="capitalize flex-none">
+                    <InlineEmoji emoji={ratingItem.emoji} size={4} />
                     {key}
-                  </span>
+                  </a>
                   <span class="d grow border-b-2 border-yellow float-left relative block border-dotted h-3.5 mx-1" />
                   <span class="text-right flex-none">{value}/5</span>
                 </div>
-                <span class="overflow-y-hidden transition-all duration-500 ease-in-out max-h-0 opacity-0 rating-key mb-2 text-xs">{ratingItem.legend}</span>
+                <span class="overflow-y-hidden transition-all duration-500 ease-in-out max-h-0 opacity-0 rating-key text-xs">{ratingItem.legend}</span>
               </li>
             );
           })
         }
+        <hr />
+        <li class="flex flex-col">
+          <div class="flex justify-between">
+            <span class="capitalize flex-none">
+              <InlineEmoji emoji={hotDrink} size={4} />
+              Total
+            </span>
+            <span class="d grow border-b-2 border-yellow float-left relative block border-dotted h-3.5 mx-1"></span>
+            <span class="text-right flex-none">{totalScore}/25</span>
+          </div>
+        </li>
+        <button class="toggle-legend hover:cursor-pointer text-[10px] rounded-md underline decoration-slate-200 inline-block hover:text-white"
+          >Ratings Info</button
+        >
       </ul>
-      <button class="toggle-legend hover:cursor-pointer text-xs">Rating Explanation</button>
     </aside>
     <main class="col-span-2 col-start-2 flex flex-col">
       <Image src={coffeArgentChill} alt={"chill"} />
@@ -83,11 +98,11 @@ const { cafeCollectionItem, favorite = false }: Props = Astro.props;
         if (legend.classList.contains("max-h-0")) {
           // legend.classList.remove("hidden");
           legend.classList.remove("max-h-0", "opacity-0");
-          legend.classList.add("max-h-20", "opacity-100");
+          legend.classList.add("max-h-20", "opacity-100", "mb-2");
         } else {
           // legend.classList.add("hidden");
           legend.classList.add("max-h-0", "opacity-0");
-          legend.classList.remove("max-h-20", "opacity-100");
+          legend.classList.remove("max-h-20", "opacity-100", "mb-2");
         }
       });
     });

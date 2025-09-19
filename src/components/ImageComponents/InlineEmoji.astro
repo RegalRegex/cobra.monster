@@ -4,11 +4,12 @@ import { Image } from "astro:assets";
 interface Props {
   emoji: ImageMetadata;
   size?: number;
+  styles?: string;
 }
 
-const { emoji, size = 8 } = Astro.props;
+const { emoji, size = 8, styles = "" } = Astro.props;
 
 const emojiWidth = `w-${size}`;
 ---
 
-<Image src={emoji} alt={emoji.src.split("/").at(-1) || "mutant emoji"} class=`max-w-8 ${emojiWidth} pb-2 inline-block m-auto` />
+<Image src={emoji} alt={emoji.src.split("/").at(-1) || "mutant emoji"} class:list={[`max-w-8 inline-block m-auto`, `${emojiWidth}`, `${styles}`]} />
