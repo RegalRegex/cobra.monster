@@ -70,6 +70,10 @@ figcaption[data-rehype-pretty-code-title] {
   margin: 0 calc(var(--spacing) * 0.25);
 }
 
+.prose.coffee-shop-review h2 {
+  margin-top: 0;
+}
+
 .footnotes {
   border-top: 2px solid white;
 }

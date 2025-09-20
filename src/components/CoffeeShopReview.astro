@@ -2,7 +2,6 @@
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
 
-import coffeArgentChill from "@assets/argent/CoffeShopChill_Deriaz.jpg";
 import ChiStar from "./ImageComponents/ChiStar.astro";
 import InlineEmoji from "./ImageComponents/InlineEmoji.astro";
 
@@ -11,10 +10,14 @@ import sunsetCity from "@assets/mutantEmoji/sunset_city.png";
 import greenMoney from "@assets/mutantEmoji/utility/green_money.png";
 import sunriseOverMountains from "@assets/mutantEmoji/sunrise_over_mountains.png";
 import laptop from "@assets/mutantEmoji/laptop.png";
+import finishFlag from "@assets/mutantEmoji/finish_flag.png";
+import questionMark from "@assets/mutantEmoji/utility/gray_question_mark.png";
+import heart from "@assets/mutantEmoji/utility/purple_heart.png"
+import type { CollectionEntry } from "astro:content";
+import TopNav from "./TopNav.astro";
 
 interface Props {
-  cafeCollectionItem: any;
-  favorite?: boolean;
+  cafeCollectionItem: CollectionEntry<"coffeeShopReviews">;
 }
 
 interface ratingSystem {
@@ -22,69 +25,72 @@ interface ratingSystem {
 }
 
 const ratingArray: ratingSystem = {
-  coffee: { emoji: hotDrink, legend: "Based off of a cappuccino" },
-  cafe: { emoji: sunsetCity, legend: "Blah blah" },
-  price: { emoji: greenMoney, legend: "Based on the price of a cappuccino" },
+  coffee: { emoji: hotDrink, legend: "No-holds-barred coffee quality rating" },
+  cafe: { emoji: sunsetCity, legend: "Quality of cafe re: design, theming, layout" },
+  price: { emoji: greenMoney, legend: "5 = very cheap/affordable" },
   productivity: { emoji: laptop, legend: "Table size, outlet availability, wifi" },
-  vibes: { emoji: sunriseOverMountains, legend: "Subjective 'How does it feel?'" },
+  vibes: { emoji: sunriseOverMountains, legend: "Subjective 'How does it feel being here?'" },
 };
-// TODO: will come from collection
-const ratings = { coffee: 5, cafe: 4.5, price: 5, productivity: 3, vibes: 1 };
 
+const { cafeCollectionItem }: Props = Astro.props;
+const cafeData = cafeCollectionItem.data;
+const ratings = cafeData.rating;
 const totalScore = Object.values(ratings).reduce((a, b) => a + b);
-
-const { cafeCollectionItem, favorite = false }: Props = Astro.props;
+const { Content } = await cafeCollectionItem.render();
 ---
 
 <!-- TODO: OG image -->
 <Layout blog={true}>
-  <article class="flex flex-col md:grid grid-cols-3 text-slate-200 m-5">
-    <h1 class="text-3xl underline decoration-2 underline-offset-4 text-center">Everybody's Coffee</h1>
-    <!-- <hr /> -->
-    <span class="text-sm flex justify-around my-1"><ChiStar /><ChiStar />Uptown, Chicago<ChiStar /><ChiStar /></span>
-    <aside class="col-span-1 flex flex-col border-yellow justify-around my-2">
-      <ul class="self-center min-w-[75%] text-sm">
+  <TopNav />
+  <article class="flex flex-col sm:grid sm:gap-2 grid-cols-3 text-slate-200 m-5">
+      <h1 class="text-3xl font-black text-center sm:text-left sm:text-4xl col-span-3 md:text-6xl text-yellow">{cafeData.cafeName}</h1>
+      <span class="flex justify-around mt-2 col-span-1 sm:text-lg"><ChiStar /><ChiStar />{cafeData.location}<ChiStar /><ChiStar /></span>
+    <aside class="col-span-1 col-start-1 flex flex-col border-yellow justify-around sm:justify-start my-2">
+      <ul class="self-center min-w-[75%] text-sm sm:text-lg">
         {
-          Object.entries(ratings).map(([key, value]) => {
+          Object.entries(ratings).map(([key, value], i) => {
             const ratingItem = ratingArray[key as keyof typeof ratingArray];
             return (
               <li class="flex flex-col">
                 <div class="flex justify-between">
                   <a href={`#${key}`} class="capitalize flex-none">
-                    <InlineEmoji emoji={ratingItem.emoji} size={4} />
+                    <InlineEmoji emoji={ratingItem.emoji} styles={"w-5 sm:w-7"} />
                     {key}
                   </a>
                   <span class="d grow border-b-2 border-yellow float-left relative block border-dotted h-3.5 mx-1" />
-                  <span class="text-right flex-none">{value}/5</span>
+                  <span class:list={[`text-right flex-none`]}>{value} / {i === 0 ? 10 : 5}</span>
                 </div>
-                <span class="overflow-y-hidden transition-all duration-500 ease-in-out max-h-0 opacity-0 rating-key text-xs">{ratingItem.legend}</span>
+                <span class="overflow-y-hidden transition-all duration-500 ease-in-out max-h-0 opacity-0 rating-key text-xs sm:text-base">{ratingItem.legend}</span>
               </li>
             );
           })
         }
-        <hr />
+        <span class="flex my-2 border-b  w-full"></span>
         <li class="flex flex-col">
           <div class="flex justify-between">
             <span class="capitalize flex-none">
-              <InlineEmoji emoji={hotDrink} size={4} />
+              <InlineEmoji emoji={finishFlag} styles={"w-5 sm:w-7"} />
               Total
             </span>
             <span class="d grow border-b-2 border-yellow float-left relative block border-dotted h-3.5 mx-1"></span>
-            <span class="text-right flex-none">{totalScore}/25</span>
+            <span class="text-right flex-none font-bold">{totalScore} / 30</span>
           </div>
         </li>
-        <button class="toggle-legend hover:cursor-pointer text-[10px] rounded-md underline decoration-slate-200 inline-block hover:text-white"
-          >Ratings Info</button
-        >
+        <span class="flex justify-between text-[10px] sm:text-sm">
+          <span>Updated: {cafeData.latestUpdate.toLocaleDateString("en-GB", { day: "numeric", month: "numeric", year: "2-digit", timeZone: "UTC" })}</span>
+          <button
+            class="toggle-legend hover:cursor-pointer hover:text-white hover:bg-gray-300 aspect-square p-0.5 rounded-full border-gray-400 border inline-flex shrink"
+            ><InlineEmoji emoji={questionMark} styles="w-2.5 sm:w-4" /></button
+          >
+        </span>
       </ul>
     </aside>
-    <main class="col-span-2 col-start-2 flex flex-col">
-      <Image src={coffeArgentChill} alt={"chill"} />
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod consequuntur, voluptate ratione sit minima numquam impedit unde atque. Repellendus
-        deserunt cum, aperiam, laboriosam voluptatibus odit quia modi magni autem doloremque, amet deleniti ducimus nihil quidem est unde sed ipsa nemo.
-        Doloremque soluta sunt id debitis modi cum quaerat dignissimos aliquam.
-      </p>
+    <main class="col-span-2 col-start-2 flex flex-col prose prose-invert coffee-shop-review">
+      {cafeData.headerImg && <Image src={cafeData.headerImg} alt={"chill"} />}
+      {cafeData.summary && <h2>Summary</h2>
+      <p>{cafeData.summary}</p>
+      }
+      <Content />
     </main>
   </article>
 </Layout>
@@ -110,3 +116,12 @@ const { cafeCollectionItem, favorite = false }: Props = Astro.props;
   setToggleHideOnClick();
   document.addEventListener("astro:after-swap", setToggleHideOnClick);
 </script>
+<!-- For conditionally rendering an asterisk -->
+<style> */
+.rating-score::after {
+  content: '*';
+  position: absolute;
+  margin-left: calc(var(--spacing)*0.5);
+  font-size: var(--text-xs);
+}
+</style>

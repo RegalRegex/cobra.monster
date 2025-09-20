@@ -84,6 +84,26 @@ const galleries = defineCollection({
     }),
 });
 
+const coffeeShopReviews = defineCollection({
+  schema: ({ image }) =>
+    z.object({
+      headerImg: image().optional(),
+      cafeName: z.string(),
+      location: z.string(),
+      rating: z.object({
+        coffee: z.number(),
+        cafe: z.number(),
+        price: z.number(),
+        productivity: z.number(),
+        vibes: z.number(),
+      }),
+      favorite: z.boolean(),
+      website: z.string().url().optional(),
+      latestUpdate: z.date(),
+      summary: z.string().optional(),
+    }),
+});
+
 export const collections = {
   tags,
   posts,
@@ -92,4 +112,5 @@ export const collections = {
   books,
   bookTags,
   galleries,
+  coffeeShopReviews,
 };

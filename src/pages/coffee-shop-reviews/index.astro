@@ -1,5 +1,8 @@
 ---
 import CoffeeShopReview from "@components/CoffeeShopReview.astro";
+import { getEntry } from "astro:content";
+
+const coffeeShopReviews = await getEntry("coffeeShopReviews", "everybodys-coffee")!;
 ---
 
-<CoffeeShopReview />
+<CoffeeShopReview cafeCollectionItem={coffeeShopReviews} />
