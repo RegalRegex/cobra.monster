@@ -1,0 +1,27 @@
+---
+import ChiStar from "@components/ImageComponents/ChiStar.astro";
+
+/**
+ * Template to re-use blog formatting and custom prose-edits that I've made to Tailwind's Prose package
+ */
+---
+
+<article class="m-10 md:mt-28 mt-8">
+  <header class="flex flex-col md:grid grid-cols-12 md:border-0 border-slate-200 md:mb-0 md:pb-0 mb-2">
+    <div class="col-span-10 md:mb-10 mb-5">
+      <slot name="header" />
+    </div>
+  </header>
+  <div class="text-xl text-slate-200 md:grid grid-cols-12 gap-10 flex flex-col">
+    <aside class="col-start-1 col-span-4 lg:col-span-3 md:border-t-4 border-slate-200 md:mt-3">
+      <slot name="aside" />
+    </aside>
+    <main
+      class:list={[
+        "col-span-8 prose md:prose-lg lg:prose-xl prose-slate prose-invert prose-blockquote:border-yellow prose-blockquote:border-l-8 prose-blockquote:bg-redDark/40 prose-blockquote:font-light prose-hr:border-slate-200 prose-blockquote:pr-2 prose-h5:font-bold prose-h5:text-white prose-h6:font-bold prose-h6:text-white prose-code:bg-black/35 prose-li:has-[ul]:list-none prose-ul:before:text-white",
+      ]}
+    >
+      <slot name="main" />
+    </main>
+  </div>
+</article>
