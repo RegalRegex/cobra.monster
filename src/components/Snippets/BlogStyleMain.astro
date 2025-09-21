@@ -1,5 +1,7 @@
 ---
 import ChiStar from "@components/ImageComponents/ChiStar.astro";
+import BlogAboutMe from "@components/BlogAboutMe.astro";
+import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontalRule.astro";
 
 /**
  * Template to re-use blog formatting and custom prose-edits that I've made to Tailwind's Prose package
@@ -13,7 +15,7 @@ import ChiStar from "@components/ImageComponents/ChiStar.astro";
     </div>
   </header>
   <div class="text-xl text-slate-200 md:grid grid-cols-12 gap-10 flex flex-col">
-    <aside class="col-start-1 col-span-4 lg:col-span-3 md:border-t-4 border-slate-200 md:mt-3">
+    <aside class="col-start-1 col-span-4 lg:col-span-3 md:border-t-4 border-slate-200">
       <slot name="aside" />
     </aside>
     <main
@@ -22,6 +24,10 @@ import ChiStar from "@components/ImageComponents/ChiStar.astro";
       ]}
     >
       <slot name="main" />
+      <ChiStarHorizontalRule />
+      <BlogAboutMe />
     </main>
+    <!-- <div class="col-span-12 md:col-span-8 md:col-start-5"> -->
+    <!-- </div> -->
   </div>
 </article>

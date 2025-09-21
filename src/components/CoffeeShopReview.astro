@@ -4,7 +4,6 @@ import { Image } from "astro:assets";
 
 import ChiStar from "@components/ImageComponents/ChiStar.astro";
 import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
-import BlogAboutMe from "@components/BlogAboutMe.astro"
 
 import hotDrink from "@assets/mutantEmoji/hot_drink.png";
 import sunsetCity from "@assets/mutantEmoji/sunset_city.png";
@@ -13,7 +12,7 @@ import sunriseOverMountains from "@assets/mutantEmoji/sunrise_over_mountains.png
 import laptop from "@assets/mutantEmoji/laptop.png";
 import finishFlag from "@assets/mutantEmoji/finish_flag.png";
 import questionMark from "@assets/mutantEmoji/utility/gray_question_mark.png";
-import heart from "@assets/mutantEmoji/utility/purple_heart.png"
+import heart from "@assets/mutantEmoji/utility/purple_heart.png";
 import type { CollectionEntry } from "astro:content";
 import TopNav from "./TopNav.astro";
 import BlogStyleMain from "./Snippets/BlogStyleMain.astro";
@@ -44,13 +43,16 @@ const { Content } = await cafeCollectionItem.render();
 <!-- TODO: OG image -->
 <Layout blog={true}>
   <TopNav />
-      <BlogStyleMain>
-      <Fragment slot="header"}>
-          <h1 class="font-black text-yellow decoration-4 decoration-white md:text-6xl text-4xl mb-5">{cafeData.cafeName}</h1>
-        <span class="flex justify-around my-2 col-span-1 xs:text-lg md:text-2xl text-slate-200"><ChiStar /><ChiStar />{cafeData.location}<ChiStar /><ChiStar /></span>
-
-      </Fragment>
-      <Fragment slot="aside">
+  <BlogStyleMain>
+    <Fragment slot="header" }>
+      <h1 class="font-black text-yellow decoration-4 decoration-white md:text-6xl text-3xl mb-5 order-1">{cafeData.cafeName}</h1>
+      <span class="flex justify-around my-2 col-span-1 xs:text-lg md:text-2xl text-slate-200 md:hidden"
+        ><ChiStar /><ChiStar />{cafeData.location}<ChiStar /><ChiStar /></span
+      >
+      <p class="text-slate-200 italic mt-5 md:text-2xl">{cafeData.summary}</p>
+    </Fragment>
+    <Fragment slot="aside">
+      <span class="md:flex justify-around my-2 col-span-1 text-lg text-slate-200 hidden"><ChiStar /><ChiStar />{cafeData.location}<ChiStar /><ChiStar /></span>
       <ul class="self-center min-w-[75%] text-sm sm:text-lg">
         {
           Object.entries(ratings).map(([key, value], i) => {
@@ -63,14 +65,18 @@ const { Content } = await cafeCollectionItem.render();
                     {key}
                   </a>
                   <span class="d grow border-b-2 border-yellow float-left relative block border-dotted h-3.5 mx-1" />
-                  <span class:list={[`text-right flex-none`]}>{value} / {i === 0 ? 10 : 5}</span>
+                  <span class:list={[`text-right flex-none`]}>
+                    {value} / {i === 0 ? 10 : 5}
+                  </span>
                 </div>
-                <span class="overflow-y-hidden transition-all duration-500 ease-in-out max-h-0 opacity-0 rating-key text-xs sm:text-base">{ratingItem.legend}</span>
+                <span class="overflow-y-hidden transition-all duration-500 ease-in-out max-h-0 opacity-0 rating-key text-xs sm:text-base">
+                  {ratingItem.legend}
+                </span>
               </li>
             );
           })
         }
-        <span class="flex my-2 border-b  w-full"></span>
+        <span class="flex my-2 border-b w-full"></span>
         <li class="flex flex-col">
           <div class="flex justify-between">
             <span class="capitalize flex-none">
@@ -81,7 +87,7 @@ const { Content } = await cafeCollectionItem.render();
             <span class="text-right flex-none font-bold">{totalScore} / 30</span>
           </div>
         </li>
-        <span class="flex justify-between text-[10px] sm:text-sm">
+        <span class="flex justify-between text-sm md:text-base">
           <span>Updated: {cafeData.latestUpdate.toLocaleDateString("en-US", { day: "numeric", month: "numeric", year: "2-digit", timeZone: "UTC" })}</span>
           <button
             class="toggle-legend hover:cursor-pointer hover:text-white hover:bg-gray-300 aspect-square p-0.5 rounded-full border-gray-400 border inline-flex shrink"
@@ -89,16 +95,13 @@ const { Content } = await cafeCollectionItem.render();
           >
         </span>
       </ul>
-      <BlogAboutMe />
     </Fragment>
-      <Fragment slot="main"}>
-          {cafeData.headerImg && <Image src={cafeData.headerImg} alt={"chill"} />}
-          {cafeData.summary && <h2>Summary</h2>
-          <p>{cafeData.summary}</p>
-          }
-          <Content />cafeData
-      </Fragment>
-    </BlogStyleMain>
+    <Fragment slot="main" }>
+      {cafeData.headerImg && <Image src={cafeData.headerImg} alt={"chill"} />}
+
+      <Content />
+    </Fragment>
+  </BlogStyleMain>
 </Layout>
 
 <script>
@@ -123,11 +126,11 @@ const { Content } = await cafeCollectionItem.render();
   document.addEventListener("astro:after-swap", setToggleHideOnClick);
 </script>
 <!-- For conditionally rendering an asterisk -->
-<style> */
-.rating-score::after {
-  content: '*';
-  position: absolute;
-  margin-left: calc(var(--spacing)*0.5);
-  font-size: var(--text-xs);
-}
+<style>
+  */ .rating-score::after {
+    content: "*";
+    position: absolute;
+    margin-left: calc(var(--spacing) * 0.5);
+    font-size: var(--text-xs);
+  }
 </style>
