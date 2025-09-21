@@ -1,0 +1,71 @@
+---
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
+import hotDrink from "@assets/mutantEmoji/hot_drink.png";
+import sunsetCity from "@assets/mutantEmoji/sunset_city.png";
+import greenMoney from "@assets/mutantEmoji/utility/green_money.png";
+import sunriseOverMountains from "@assets/mutantEmoji/sunrise_over_mountains.png";
+import laptop from "@assets/mutantEmoji/laptop.png";
+import finishFlag from "@assets/mutantEmoji/finish_flag.png";
+import questionMark from "@assets/mutantEmoji/utility/gray_question_mark.png";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  cafeData: CollectionEntry<"coffeeShopReviews">["data"];
+}
+
+const { cafeData }: Props = Astro.props;
+
+interface ratingSystem {
+  [key: string]: { emoji: ImageMetadata; legend: string };
+}
+
+const ratingArray: ratingSystem = {
+  coffee: { emoji: hotDrink, legend: "No-holds-barred coffee quality rating" },
+  cafe: { emoji: sunsetCity, legend: "Quality of cafe re: design, theming, layout" },
+  price: { emoji: greenMoney, legend: "5 = very reasonable prices" },
+  productivity: { emoji: laptop, legend: "Table size, outlet availability, wifi" },
+  vibes: { emoji: sunriseOverMountains, legend: "Subjective 'How does it feel being here?'" },
+};
+const totalScore = Object.values(cafeData.rating).reduce((a, b) => a + b);
+---
+
+<ul class="self-center min-w-[75%] text-sm sm:text-lg">
+  {
+    Object.entries(cafeData.rating).map(([key, value], i) => {
+      const ratingItem = ratingArray[key as keyof typeof ratingArray];
+      return (
+        <li class="flex flex-col">
+          <div class="flex justify-between">
+            <a href={`#${key}`} class="capitalize flex-none">
+              <InlineEmoji emoji={ratingItem.emoji} styles={"w-5 sm:w-7"} />
+              {key}
+            </a>
+            <span class="d grow border-b-2 border-yellow float-left relative block border-dotted h-3.5 mx-1" />
+            <span class:list={[`text-right flex-none`]}>
+              {value} / {i === 0 ? 10 : 5}
+            </span>
+          </div>
+          <span class="overflow-y-hidden transition-all duration-500 ease-in-out max-h-0 opacity-0 rating-key text-xs sm:text-base">{ratingItem.legend}</span>
+        </li>
+      );
+    })
+  }
+  <span class="flex my-2 border-b w-full"></span>
+  <li class="flex flex-col">
+    <div class="flex justify-between">
+      <span class="capitalize flex-none">
+        <InlineEmoji emoji={finishFlag} styles={"w-5 sm:w-7"} />
+        Total
+      </span>
+      <span class="d grow border-b-2 border-yellow float-left relative block border-dotted h-3.5 mx-1"></span>
+      <span class="text-right flex-none font-bold">{totalScore} / 30</span>
+    </div>
+  </li>
+  <span class="flex justify-between text-sm md:text-base">
+    <span>Updated: {cafeData.date.toLocaleDateString("en-US", { day: "numeric", month: "numeric", year: "2-digit", timeZone: "UTC" })}</span>
+    <button
+      class="toggle-legend hover:cursor-pointer hover:text-white hover:bg-gray-300 aspect-square p-0.5 rounded-full border-gray-400 border inline-flex shrink"
+      ><InlineEmoji emoji={questionMark} styles="w-2.5 sm:w-4" /></button
+    >
+  </span>
+</ul>

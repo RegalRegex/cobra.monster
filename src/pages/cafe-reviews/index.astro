@@ -1,0 +1,13 @@
+---
+import ReviewList from "@components/CoffeeShopReviews/ReviewList.astro";
+import PageHeader from "@components/PageHeader.astro";
+import TopNav from "@components/TopNav.astro";
+import Layout from "@layouts/Layout.astro";
+import { getEntry } from "astro:content";
+---
+
+<Layout>
+  <TopNav />
+  <PageHeader>Cafe Reviews</PageHeader>
+  <ReviewList />
+</Layout>

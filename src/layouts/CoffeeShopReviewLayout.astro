@@ -1,0 +1,68 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import BlogStyleMain from "@components/Snippets/BlogStyleMain.astro";
+import TopNav from "@components/TopNav.astro";
+import ReviewScore from "@components/CoffeeShopReviews/ReviewScore.astro";
+
+interface Props {
+  cafeCollectionItem: CollectionEntry<"coffeeShopReviews">;
+}
+
+const { cafeCollectionItem }: Props = Astro.props;
+const cafeData = cafeCollectionItem.data;
+---
+
+<!-- TODO: OG image -->
+<Layout blog={true}>
+  <TopNav />
+  <BlogStyleMain>
+    <Fragment slot="header" }>
+      <span class="my-2 col-span-1 text-sm md:text-xl text-slate-200 flex border-b pb-2 md:mb-6 italic md:-mt-12">{cafeData.location}</span>
+      <h1 class="font-black text-yellow decoration-4 decoration-white md:text-6xl text-3xl mb-5 order-1">{cafeData.title}</h1>
+      <p class="text-slate-200 mt-5 md:text-2xl">{cafeData.summary}</p>
+    </Fragment>
+    <Fragment slot="aside">
+      <!-- <span class="md:flex justify-around my-2 col-span-1 text-lg text-slate-200 hidden"><ChiStar /><ChiStar />{cafeData.location}<ChiStar /><ChiStar /></span> -->
+      <ReviewScore cafeData={cafeData} />
+    </Fragment>
+    <Fragment slot="main">
+      {cafeData.headerImg && <Image src={cafeData.headerImg} alt={"chill"} />}
+      <div class="prose-h2:m-0 prose-h2:first:mt-5 prose-p:last:mb-0">
+        <slot />
+      </div>
+    </Fragment>
+  </BlogStyleMain>
+</Layout>
+
+<script>
+  function setToggleHideOnClick() {
+    const legendText = document.querySelectorAll(".rating-key");
+    const legendButton = document.querySelector(".toggle-legend");
+    legendButton?.addEventListener("click", () => {
+      legendText.forEach((legend) => {
+        if (legend.classList.contains("max-h-0")) {
+          // legend.classList.remove("hidden");
+          legend.classList.remove("max-h-0", "opacity-0");
+          legend.classList.add("max-h-20", "opacity-100", "mb-2");
+        } else {
+          // legend.classList.add("hidden");
+          legend.classList.add("max-h-0", "opacity-0");
+          legend.classList.remove("max-h-20", "opacity-100", "mb-2");
+        }
+      });
+    });
+  }
+  setToggleHideOnClick();
+  document.addEventListener("astro:after-swap", setToggleHideOnClick);
+</script>
+<!-- For conditionally rendering an asterisk -->
+<style>
+  */ .rating-score::after {
+    content: "*";
+    position: absolute;
+    margin-left: calc(var(--spacing) * 0.5);
+    font-size: var(--text-xs);
+  }
+</style>

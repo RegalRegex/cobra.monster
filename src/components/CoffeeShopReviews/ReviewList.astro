@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { sortCollection } from "src/utils/sortCollection";
+import ReviewScore from "./ReviewScore.astro";
+import { Image } from "astro:assets";
+
+const reviews: Array<CollectionEntry<"coffeeShopReviews">> = await getCollection("coffeeShopReviews");
+const reviewsSorted: Array<CollectionEntry<"coffeeShopReviews">> = sortCollection(reviews, "date");
+---
+
+<ul class="m-5">
+  {
+    reviewsSorted.map((collectionItem) => {
+      const review = collectionItem.data;
+      const totalScore = Object.values(review.rating).reduce((a, b) => a + b);
+      return (
+        <li class="p-5 border-2 border-yellow bg-boxPrimary flex text-slate-200 gap-2">
+          <aside>
+            <div id="dateSquareContainer" class="flex flex-col text-center px-2 text-slate-200 mr-2 h-max text-sm font-bold mt-1 border-r gap-2">
+              <div>
+                <span>{review.date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })}</span>
+                <span>{review.date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}</span>
+              </div>
+              <span class="border-t pt-2 inline-flex">
+                {totalScore}
+                <span class="align-sub">/30</span>
+              </span>
+            </div>
+          </aside>
+          <section class="flex flex-col">
+            <a href={`/cafe-reviews/${collectionItem.slug}`}>
+              <h2 class="text-2xl underline font-black">{review.title}</h2>
+            </a>
+            <h3 class="italic">{review.location}</h3>
+            <span class="text-slate-200/70 italic text-sm">
+              {review.date.toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })}
+            </span>
+            <p class="border-t">{review.summary}</p>
+            {review.headerImg && (
+              <div class="">
+                <Image src={review.headerImg} alt={`${review.title} image`} />
+              </div>
+            )}
+          </section>
+        </li>
+      );
+    })
+  }
+</ul>

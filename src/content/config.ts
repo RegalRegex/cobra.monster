@@ -88,7 +88,7 @@ const coffeeShopReviews = defineCollection({
   schema: ({ image }) =>
     z.object({
       headerImg: image().optional(),
-      cafeName: z.string(),
+      title: z.string(),
       location: z.string(),
       rating: z.object({
         coffee: z.number(),
@@ -99,7 +99,7 @@ const coffeeShopReviews = defineCollection({
       }),
       favorite: z.boolean(),
       website: z.string().url().optional(),
-      latestUpdate: z.date(),
+      date: z.date(),
       summary: z.string().optional(),
     }),
 });
