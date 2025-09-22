@@ -87,7 +87,7 @@ const galleries = defineCollection({
 const coffeeShopReviews = defineCollection({
   schema: ({ image }) =>
     z.object({
-      headerImg: image().optional(),
+      headerImg: z.preprocess((val) => `/src/content/coffeeShopReviews/${val}`, image()).optional(),
       headerImgCaption: z.string().optional(),
       title: z.string(),
       location: z.string(),
