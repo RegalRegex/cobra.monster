@@ -5,6 +5,9 @@ import type { CollectionEntry } from "astro:content";
 import BlogStyleMain from "@components/Snippets/BlogStyleMain.astro";
 import TopNav from "@components/TopNav.astro";
 import ReviewScore from "@components/CoffeeShopReviews/ReviewScore.astro";
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
+import computer from "@assets/mutantEmoji/computer.png";
+const starMd = "<span>★</span>";
 
 interface Props {
   cafeCollectionItem: CollectionEntry<"coffeeShopReviews">;
@@ -19,50 +22,31 @@ const cafeData = cafeCollectionItem.data;
   <TopNav />
   <BlogStyleMain>
     <Fragment slot="header" }>
-      <span class="my-2 col-span-1 text-sm md:text-xl text-slate-200 flex border-b pb-2 md:mb-6 italic md:-mt-12">{cafeData.location}</span>
-      <h1 class="font-black text-yellow decoration-4 decoration-white md:text-6xl text-3xl mb-5 order-1">{cafeData.title}</h1>
+      <h1 class="font-black text-yellow decoration-4 decoration-white md:text-6xl text-3xl mb-2 order-1">
+        {cafeData.favorite && <Fragment set:html={starMd} />}
+        {cafeData.title}
+      </h1>
+      <span class="col-span-1 text-sm md:text-2xl text-slate-200 flex border-b pb-2 md:mb-6 italic">{cafeData.location}</span>
       <p class="text-slate-200 mt-5 md:text-2xl">{cafeData.summary}</p>
     </Fragment>
     <Fragment slot="aside">
-      <!-- <span class="md:flex justify-around my-2 col-span-1 text-lg text-slate-200 hidden"><ChiStar /><ChiStar />{cafeData.location}<ChiStar /><ChiStar /></span> -->
-      <ReviewScore cafeData={cafeData} />
+      <div class="pb-2">
+        <ReviewScore cafeData={cafeData} />
+      </div>
+      {
+        cafeData.orderSuggestion && (
+          <p class="border-t py-2">
+            <strong>Order Suggestion:</strong> {cafeData.orderSuggestion}
+          </p>
+        )
+      }
     </Fragment>
     <Fragment slot="main">
-      {cafeData.headerImg && <Image src={cafeData.headerImg} alt={"chill"} />}
+      {cafeData.headerImg && <Image src={cafeData.headerImg} alt={`${cafeData.title} header photo`} />}
+      {cafeData.headerImgCaption && <figcaption class="italic">{cafeData.headerImgCaption}</figcaption>}
       <div class="prose-h2:m-0 prose-h2:first:mt-5 prose-p:last:mb-0">
         <slot />
       </div>
     </Fragment>
   </BlogStyleMain>
 </Layout>
-
-<script>
-  function setToggleHideOnClick() {
-    const legendText = document.querySelectorAll(".rating-key");
-    const legendButton = document.querySelector(".toggle-legend");
-    legendButton?.addEventListener("click", () => {
-      legendText.forEach((legend) => {
-        if (legend.classList.contains("max-h-0")) {
-          // legend.classList.remove("hidden");
-          legend.classList.remove("max-h-0", "opacity-0");
-          legend.classList.add("max-h-20", "opacity-100", "mb-2");
-        } else {
-          // legend.classList.add("hidden");
-          legend.classList.add("max-h-0", "opacity-0");
-          legend.classList.remove("max-h-20", "opacity-100", "mb-2");
-        }
-      });
-    });
-  }
-  setToggleHideOnClick();
-  document.addEventListener("astro:after-swap", setToggleHideOnClick);
-</script>
-<!-- For conditionally rendering an asterisk -->
-<style>
-  */ .rating-score::after {
-    content: "*";
-    position: absolute;
-    margin-left: calc(var(--spacing) * 0.5);
-    font-size: var(--text-xs);
-  }
-</style>

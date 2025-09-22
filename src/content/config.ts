@@ -88,6 +88,7 @@ const coffeeShopReviews = defineCollection({
   schema: ({ image }) =>
     z.object({
       headerImg: image().optional(),
+      headerImgCaption: z.string().optional(),
       title: z.string(),
       location: z.string(),
       rating: z.object({
@@ -98,9 +99,9 @@ const coffeeShopReviews = defineCollection({
         vibes: z.number(),
       }),
       favorite: z.boolean(),
-      website: z.string().url().optional(),
       date: z.date(),
-      summary: z.string().optional(),
+      summary: z.string(),
+      orderSuggestion: z.string().optional(),
     }),
 });
 

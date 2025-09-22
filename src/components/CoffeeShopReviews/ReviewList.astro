@@ -4,44 +4,49 @@ import { getCollection } from "astro:content";
 import { sortCollection } from "src/utils/sortCollection";
 import ReviewScore from "./ReviewScore.astro";
 import { Image } from "astro:assets";
+import arrowRight from "@assets/mutantEmoji/utility/arrow_right.png";
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
 
+const starMd = "<span>★</span>";
 const reviews: Array<CollectionEntry<"coffeeShopReviews">> = await getCollection("coffeeShopReviews");
 const reviewsSorted: Array<CollectionEntry<"coffeeShopReviews">> = sortCollection(reviews, "date");
 ---
 
-<ul class="m-5">
+<ul class="flex flex-col lg:grid grid-cols-2 gap-4">
   {
     reviewsSorted.map((collectionItem) => {
       const review = collectionItem.data;
-      const totalScore = Object.values(review.rating).reduce((a, b) => a + b);
+      const url = `/cafe-reviews/${collectionItem.slug}`;
+
       return (
-        <li class="p-5 border-2 border-yellow bg-boxPrimary flex text-slate-200 gap-2">
-          <aside>
-            <div id="dateSquareContainer" class="flex flex-col text-center px-2 text-slate-200 mr-2 h-max text-sm font-bold mt-1 border-r gap-2">
-              <div>
+        <li class="p-4 pl-2 border-2 border-yellow bg-boxPrimary flex text-slate-200 gap-2 ">
+          <aside class="flex-1/3 sm:flex-1/4">
+            <div class="flex flex-col text-slate-200 text-sm md:text-lg lg:text-2xl font-bold border-r gap-2 w-full">
+              <div class="border-b pb-1 self-center min-w-[75%]">
                 <span>{review.date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })}</span>
                 <span>{review.date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}</span>
               </div>
-              <span class="border-t pt-2 inline-flex">
-                {totalScore}
-                <span class="align-sub">/30</span>
-              </span>
+              <ReviewScore cafeData={review} compact={true} />
             </div>
           </aside>
-          <section class="flex flex-col">
-            <a href={`/cafe-reviews/${collectionItem.slug}`}>
-              <h2 class="text-2xl underline font-black">{review.title}</h2>
-            </a>
-            <h3 class="italic">{review.location}</h3>
-            <span class="text-slate-200/70 italic text-sm">
-              {review.date.toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })}
-            </span>
-            <p class="border-t">{review.summary}</p>
-            {review.headerImg && (
-              <div class="">
-                <Image src={review.headerImg} alt={`${review.title} image`} />
-              </div>
-            )}
+          {/* Keep to 3 sections: Header, Content, Review link */}
+          <section class="flex flex-col flex-2/3 sm:flex-3/4 justify-between">
+            <div class="border-b mb-4">
+              <a href={url}>
+                <h2 class="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-black text-yellow">
+                  {review.favorite && <Fragment set:html={starMd} />}
+                  {review.title}
+                </h2>
+              </a>
+              <h3 class="italic">{review.location}</h3>
+            </div>
+            <p class="mb-4 md:text-lg">{review.summary}</p>
+            <div class="flex flex-col gap-2">
+              {review.headerImg && <Image src={review.headerImg} alt={`${review.title} image`} class="object-cover aspect-square" />}
+              <a class="border-b-2 border-yellow w-fit ml-auto hover:text-amber-500" href={url}>
+                Full Review <InlineEmoji emoji={arrowRight} styles="w-4" />
+              </a>
+            </div>
           </section>
         </li>
       );

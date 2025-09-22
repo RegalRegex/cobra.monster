@@ -8,6 +8,8 @@
   --tw-prose-bullets: theme(--color-yellow);
   --tw-prose-counters: theme(--color-yellow);
   --tw-prose-captions: theme(--color-slate-400);
+
+  max-width: none;
 }
 
 /* Rehype Plugin Code Blocks Styling */

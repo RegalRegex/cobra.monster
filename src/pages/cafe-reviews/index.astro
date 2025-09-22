@@ -3,11 +3,53 @@ import ReviewList from "@components/CoffeeShopReviews/ReviewList.astro";
 import PageHeader from "@components/PageHeader.astro";
 import TopNav from "@components/TopNav.astro";
 import Layout from "@layouts/Layout.astro";
-import { getEntry } from "astro:content";
+import TextDeco from "@components/TextDeco.astro";
+import Accordion from "@components/Accordion/Accordion";
+import InlineArgentEmoji from "@components/ImageComponents/InlineArgentEmoji.astro";
+
+const starMd = "<span>★</span>";
 ---
 
-<Layout>
+<Layout blog={true}>
   <TopNav />
   <PageHeader>Cafe Reviews</PageHeader>
-  <ReviewList />
+  <main class="m-5 md:mx-24 xl:mx-32">
+    <header class="mb-5 text-slate-200 flex flex-col gap-2 text-lg md:text-xl">
+      <div class="md:bg-boxPrimary md:border-2 border-yellow md:p-4">
+        <p>
+          My personal reviews of cafes and coffee shops that I visit. This is just for fun because I'm a nerd who loves his city and exploring new spaces. <InlineArgentEmoji
+            emoji="smile"
+          />
+        </p>
+      </div>
+
+      <!-- @ts-ignore -->
+      <Accordion client:visible bgRed={false}>
+        <span slot="title" class="text-slate-200">Reviews & Rating System Context</span>
+        <div slot="content" class="text-slate-200">
+          <hr />
+          <ul class="flex flex-col gap-2 mt-4">
+            <li>
+              1. <strong>Most importantly</strong> I am a <TextDeco url="/about/coffee">coffee-obsessed nerd</TextDeco>, and coffee quality is paramount to me.
+              This is reflected by the coffee score being the only score weighted out of 10 on my rating system.
+            </li>
+            <li>
+              2. I'm a work-from-home <TextDeco url="/about/webdev">web-developer</TextDeco> and a hobbyist artist who enjoys working out of coffee shops to code
+              or draw.
+            </li>
+            <li>
+              3. I'm an <TextDeco url="/about/urbanism">urbanist</TextDeco>, and am drawn to places that reflect the character of their neighborhood, and make
+              an attempt to bolster local community.
+            </li>
+          </ul>
+        </div>
+      </Accordion>
+    </header>
+    <p class="text-slate-200 text-lg italic">
+      A <span class="text-yellow">
+        <Fragment set:html={starMd} />
+      </span> denotes my current favorite cafes
+    </p>
+    <ReviewList />
+  </main>
 </Layout>

@@ -42,7 +42,7 @@ const returnPathName = (): UrlSplitReference => {
   const exception = [...exceptions].find((item) => Astro.url.pathname.match(item.remove));
 
   return {
-    urlDisplay: exception ? exception.displayReplace : topLevel,
+    urlDisplay: exception ? exception.displayReplace : topLevel.replace("-", " "),
     url: exception ? exception.pathReplace : splitUrlTrimmed.toSpliced(-1).join("/"),
   };
 };

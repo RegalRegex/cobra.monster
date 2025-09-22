@@ -24,7 +24,6 @@ const {
 
 const formattedDate = formatDate(date);
 
-// const displayTags = tags?.map((tag) => tag.id);
 const listDecoStyle = "prose-ul:before:text-white";
 
 const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `https://cobra.monster/blog/og/${slug}.png`;
@@ -47,18 +46,6 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
     <Fragment slot="header">
       <h1 class="font-black text-yellow decoration-4 decoration-white md:text-6xl text-4xl mb-5">{title}</h1>
       <h2 class="text-slate-200 md:text-3xl text-lg font-medium">{subtitle}</h2>
-      <!-- {
-        (tags || headings.length > 0) && (
-          <aside class="text-slate-200 md:hidden block">
-            {tags && (
-              <div class="flex my-4">
-                <TagContents pageUrl="/blog/tagged/" tagIds={tags.map((tag) => tag.id)} />
-              </div>
-            )}
-            <div class="border-t-4 border-slate-200">{headings.length > 0 && <TableOfContents headings={headings} />}</div>
-          </aside>
-        )
-      } -->
     </Fragment>
     <Fragment slot="aside">
       <div id="publishTags" class="border-t-2 border-slate-200 pb-4">
@@ -79,7 +66,7 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
           )
         }
       </div>
-      <span class="flex justify-around">
+      <span class="flex justify-around xl:text-3xl">
         <ChiStar /><ChiStar /><ChiStar /><ChiStar />
       </span>
       {headings.length > 0 && <TableOfContents headings={headings} />}
