@@ -11,12 +11,16 @@ import InlineArgentEmoji from "./ImageComponents/InlineArgentEmoji.astro";
 <section class="not-prose flex flex-col border-t-2 border-yellow gap-4 bg-red-950 p-4">
   <p class="border border-yellow p-2 mt-2 text-center text-lg inline-block md:text-3xl">Hi, I'm Regal!</p>
   <div class="flex flex-col md:flex-row gap-2">
-    <div class="flex border border-yellow rounded-full aspect-square mx-5 bg-yellow max-w-52 self-center">
-      <Image src={argentSmile} alt="Argent profile pic" class="rounded-full object-cover scale-x-[-1]" />
+    <div class="max-w-52 self-center">
+      <Image
+        src={argentSmile}
+        alt="Argent profile pic"
+        class="object-cover scale-x-[-1] self-center border border-yellow bg-yellow rounded-full aspect-square flex"
+      />
     </div>
     <div class="flex flex-col gap-2 my-auto">
       <p>
-        I'm a communist furry obsessed with coffee, weightlifting, and Chicago! <InlineEmoji emoji={city} /> This is my personal site where I <TextDeco
+        I'm a communist cobra obsessed with coffee, weightlifting, and Chicago! <InlineEmoji emoji={city} /> This is my personal site where I <TextDeco
           url="/blog">blog</TextDeco
         > about <TextDeco url="/coffee-shop-reviews">coffee shops</TextDeco> and other things. <InlineArgentEmoji emoji="smile" />
         <br />Thanks for stopping by! Hit me up on <TextDeco url="/links/#socials">the socials</TextDeco> if you have any comments or want to say hi, or if you've
