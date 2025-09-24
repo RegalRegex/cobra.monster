@@ -9,14 +9,12 @@ import { getCollection } from "astro:content";
 
 export const getStaticPaths = (async () => {
   const tagEntries = await getCollection("bookTags");
-  const test = Object.values(BOOK_DISPLAY_VIEWS).flatMap((view) =>
+  return Object.values(BOOK_DISPLAY_VIEWS).flatMap((view) =>
     tagEntries.map((entry) => ({
       params: { tag: entry.id, view: view },
       props: { entry, view },
     })),
   );
-
-  return test;
 }) satisfies GetStaticPaths;
 const tags = await getCollection("bookTags");
 const bookReports: Array<CollectionEntry<"books">> = await getCollection("books");

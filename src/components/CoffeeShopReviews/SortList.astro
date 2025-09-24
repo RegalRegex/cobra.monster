@@ -1,0 +1,52 @@
+---
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
+import { capitalizeFirst, upOneLevelUrl } from "src/utils/stringFormatters";
+import arrowDown from "@assets/mutantEmoji/utility/arrow_down.png";
+interface Props {
+  selected?: string;
+  pageUrl: string;
+}
+const { selected, pageUrl } = Astro.props;
+// export const cafeReviewSortOptions = ["Date: Newest", "Date: Oldest", "Rating: Low", "Rating: High"];
+export enum CAFE_REVIEW_SORT {
+  DATE_DESC = "date-desc",
+  DATE_ASC = "date-asc",
+  RATING_DESC = "rating-desc",
+  RATING_ASC = "rating-asc",
+}
+
+export const getSortField = (valueOfSortEnum: string): "rating" | "date" =>
+  valueOfSortEnum === CAFE_REVIEW_SORT.DATE_DESC || valueOfSortEnum === CAFE_REVIEW_SORT.DATE_ASC ? "date" : "rating";
+export const getIsDesc = (valueOfSortEnum: string): boolean =>
+  valueOfSortEnum === CAFE_REVIEW_SORT.DATE_DESC || valueOfSortEnum === CAFE_REVIEW_SORT.RATING_DESC;
+const cafeReviewSortArray = Object.keys(CAFE_REVIEW_SORT) as Array<CAFE_REVIEW_SORT>;
+
+// TODO: Fix trailing underline on tags.
+// TODO: Remove Date Desc from generation, and add dummy button fake. "cafe-reviews" should be the default, not a separate sorted page.
+---
+
+<ul class="flex gap-2" slot="sort">
+  {
+    cafeReviewSortArray.map((option, index) => {
+      // @ts-expect-error
+      const valueOfSortEnum = CAFE_REVIEW_SORT[option];
+      return (
+        <li>
+          <a
+            href={`${selected === option ? upOneLevelUrl(pageUrl) : pageUrl + option.toLocaleLowerCase().replace("_", "-")}`}
+            class:list={[
+              "hover:brightness-150 rounded-lg decoration-1 font-medium decoration-white whitespace-nowrap relative text-white p-1.5 m-0.5 bg-redDark underline ring ring-yellow",
+              `${selected === option ? " ring-2 brightness-125 grayscale-25 border-r-2 border-b-2 border-white" : ""}`,
+            ]}
+          >
+            {/* @ts-ignore */}
+            <>
+              <span>{capitalizeFirst(getSortField(valueOfSortEnum))}:</span>
+              <InlineEmoji emoji={arrowDown} styles={`w-5 ml-2 ${getIsDesc(valueOfSortEnum) ? "" : "rotate-180"}`} />
+            </>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
