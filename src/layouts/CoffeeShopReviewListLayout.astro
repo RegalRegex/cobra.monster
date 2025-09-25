@@ -12,9 +12,9 @@ const starMd = "<span>★</span>";
 <Layout>
   <TopNav />
   <PageHeader>Cafe Reviews</PageHeader>
-  <main class="m-5 md:mx-24 xl:mx-32">
+  <main class="m-5 md:mx-16 xl:mx-32">
     <header class="mb-5 text-slate-200 flex flex-col gap-2 text-lg md:text-xl">
-      <div class="md:bg-boxPrimary md:border-2 border-yellow md:p-4">
+      <div class="bg-boxPrimary border-2 border-yellow md:p-4">
         <p>
           My personal reviews of cafes and coffee shops that I visit. This is just for fun because I'm a nerd who loves his city and exploring new spaces. <InlineArgentEmoji
             emoji="smile"
@@ -43,7 +43,6 @@ const starMd = "<span>★</span>";
           </ul>
         </div>
       </Accordion>
-      <h3>Sort By:</h3>
       <slot name="sort" />
     </header>
     <p class="text-slate-200 text-lg italic">

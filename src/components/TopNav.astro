@@ -27,6 +27,11 @@ const exceptions: Exception[] = [
     displayReplace: "home",
     pathReplace: "/",
   },
+  {
+    remove: /\/cafe-reviews\/sort\/.+/,
+    displayReplace: "home",
+    pathReplace: "/",
+  },
 ];
 const splitUrl: string[] = Astro.url.pathname.split("/");
 const splitUrlTrimmed = splitUrl[splitUrl.length - 1] === "" ? splitUrl.toSpliced(-1) : [...splitUrl];

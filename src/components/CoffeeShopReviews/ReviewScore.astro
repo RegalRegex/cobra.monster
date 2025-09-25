@@ -12,9 +12,10 @@ import type { CollectionEntry } from "astro:content";
 interface Props {
   cafeData: CollectionEntry<"coffeeShopReviews">["data"];
   compact?: boolean;
+  legend?: boolean;
 }
 
-const { cafeData, compact = false }: Props = Astro.props;
+const { cafeData, compact, legend }: Props = Astro.props;
 
 interface ratingSystem {
   [key: string]: { emoji: ImageMetadata; legend: string };
@@ -28,6 +29,7 @@ const ratingArray: ratingSystem = {
   vibes: { emoji: sunriseOverMountains, legend: "Subjective 'How does it feel being here?'" },
 };
 const totalScore = Object.values(cafeData.rating).reduce((a, b) => a + b);
+console.log("Cafe Data & Compact: ", cafeData, compact)
 ---
 
 <ul class={`self-center text-xs sm:text-base min-w-fit ${compact ? 'xl:text-xl' : 'xl:text-2xl min-w-[75%]'} `}>
@@ -66,12 +68,12 @@ const totalScore = Object.values(cafeData.rating).reduce((a, b) => a + b);
    <li class="flex">
     <div class="flex gap-2">
     <InlineEmoji emoji={finishFlag} styles={"w-5 sm:w-7"} />
-      <span class="text-right flex-none font-bold">{totalScore} / 30</span>}
-
+      <span class="text-right flex-none font-bold">{totalScore} / 30</span>
     </div>
-        
-      </li>
-  {!compact && <span class="flex my-2 border-b w-full"></span>
+   </li>
+   }
+
+  {!compact ? <span class="flex my-2 border-b w-full"></span>
   <li class="flex flex-col">
     <div class="flex justify-between">
       <span class="capitalize flex-none">
@@ -82,13 +84,16 @@ const totalScore = Object.values(cafeData.rating).reduce((a, b) => a + b);
       <span class="text-right flex-none font-bold">{totalScore} / 30</span>
     </div>
   </li>
+  <>{legend ?  
   <span class="flex justify-between text-sm md:text-base">
     <span>Updated: {cafeData.date.toLocaleDateString("en-US", { day: "numeric", month: "numeric", year: "2-digit", timeZone: "UTC" })}</span>
     <button
       class="toggle-legend hover:cursor-pointer hover:text-white hover:bg-gray-300 aspect-square p-0.5 rounded-full border-gray-400 border inline-flex shrink"
       ><InlineEmoji emoji={questionMark} styles="w-2.5 sm:w-4" /></button
     >
-  </span>}
+  </span>
+  : null}</>
+  : null}
 </ul>
 <script>
   function setToggleHideOnClick() {

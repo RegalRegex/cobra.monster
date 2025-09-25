@@ -48,7 +48,7 @@ const books = defineCollection({
       date: z.date(),
       publishDate: z.number().optional(),
       rating: z.number(),
-      cover: z.preprocess((val) => `/src/assets/books/${val}`, image()),
+      cover: image(),
       bookTags: z.array(reference("bookTags")),
     }),
 });
@@ -87,7 +87,7 @@ const galleries = defineCollection({
 const coffeeShopReviews = defineCollection({
   schema: ({ image }) =>
     z.object({
-      headerImg: z.preprocess((val) => `/src/content/coffeeShopReviews/${val}`, image()).optional(),
+      headerImg: image(),
       headerImgCaption: z.string().optional(),
       title: z.string(),
       location: z.string(),
@@ -101,7 +101,7 @@ const coffeeShopReviews = defineCollection({
       favorite: z.boolean(),
       date: z.date(),
       summary: z.string(),
-      orderSuggestion: z.string().optional(),
+      orderSuggestion: z.string(),
     }),
 });
 

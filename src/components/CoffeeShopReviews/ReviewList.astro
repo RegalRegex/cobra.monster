@@ -8,24 +8,25 @@ import arrowRight from "@assets/mutantEmoji/utility/arrow_right.png";
 import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
 
 interface Props {
-  sort?: { field: "rating" | "date"; desc: boolean };
+  sort?: { field: "rating" | "date" | "favorites"; desc: boolean };
 }
 
 const { sort = { field: "date", desc: true } } = Astro.props;
 
 const starMd = "<span>★</span>";
 const reviews: Array<CollectionEntry<"coffeeShopReviews">> = await getCollection("coffeeShopReviews");
-const reviewsSorted: Array<CollectionEntry<"coffeeShopReviews">> = sort.desc
-  ? sortCollection(reviews, sort.field)
-  : sortCollection(reviews, sort.field).toReversed();
-
-console.log(sort);
-console.log(reviewsSorted);
+const reviewsSorted = (): Array<CollectionEntry<"coffeeShopReviews">> => {
+  if (sort.field !== "favorites") {
+    return sort.desc ? sortCollection(reviews, sort.field) : sortCollection(reviews, sort.field).toReversed();
+  } else {
+    return reviews.filter((review) => review.data.favorite);
+  }
+};
 ---
 
 <ul class="flex flex-col lg:grid grid-cols-2 gap-4">
   {
-    reviewsSorted.map((collectionItem) => {
+    reviewsSorted().map((collectionItem) => {
       const review = collectionItem.data;
       const url = `/cafe-reviews/${collectionItem.slug}`;
 
@@ -46,10 +47,19 @@ console.log(reviewsSorted);
                 </>
               </h3>
             </div>
-            <div class="mb-4 md:text-lg flex gap-2 items-center">
-              <p class="col-span-2 flex-3/4 md:text-xl pr-1 shrink">{review.summary}</p>
-              <div class="pl-2 border-l">
-                <ReviewScore cafeData={review} compact={true} />
+            <div class="mb-4 sm:text-lg flex gap-2 items-center h-full">
+              <div class="flex flex-col justify-between col-span-2 flex-3/4 md:text-xl pr-1 shrink h-full">
+                <p class="pb-2">{review.summary}</p>
+                <div class="block sm:hidden py-2 border-t lg:block xl:hidden">
+                  <ReviewScore cafeData={review} compact={false} legend={false} />
+                </div>
+                <p class="pt-2 border-t">
+                  <strong>Order Suggestion: </strong>
+                  {review.orderSuggestion}
+                </p>
+              </div>
+              <div class="pl-2 border-l hidden sm:block lg:hidden xl:block">
+                <ReviewScore cafeData={review} compact={true} legend={false} />
               </div>
             </div>
             <div class="flex flex-col gap-2">

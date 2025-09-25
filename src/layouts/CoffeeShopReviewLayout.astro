@@ -31,7 +31,7 @@ const cafeData = cafeCollectionItem.data;
     </Fragment>
     <Fragment slot="aside">
       <div class="pb-2">
-        <ReviewScore cafeData={cafeData} />
+        <ReviewScore cafeData={cafeData} compact={false} legend={true} />
       </div>
       {
         cafeData.orderSuggestion && (
