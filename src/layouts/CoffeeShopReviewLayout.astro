@@ -5,8 +5,6 @@ import type { CollectionEntry } from "astro:content";
 import BlogStyleMain from "@components/Snippets/BlogStyleMain.astro";
 import TopNav from "@components/TopNav.astro";
 import ReviewScore from "@components/CoffeeShopReviews/ReviewScore.astro";
-import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
-import computer from "@assets/mutantEmoji/computer.png";
 const starMd = "<span>★</span>";
 
 interface Props {
@@ -30,16 +28,18 @@ const cafeData = cafeCollectionItem.data;
       <p class="text-slate-200 mt-5 md:text-2xl">{cafeData.summary}</p>
     </Fragment>
     <Fragment slot="aside">
-      <div class="pb-2">
-        <ReviewScore cafeData={cafeData} compact={false} legend={true} />
+      <div class="sticky top-10">
+        <div class="pb-2">
+          <ReviewScore cafeData={cafeData} compact={false} legend={true} />
+        </div>
+        {
+          cafeData.orderSuggestion && (
+            <p class="border-t py-2 text-sm md:text-lg">
+              <strong>Order Suggestion:</strong> {cafeData.orderSuggestion}
+            </p>
+          )
+        }
       </div>
-      {
-        cafeData.orderSuggestion && (
-          <p class="border-t py-2 text-sm md:text-xl">
-            <strong>Order Suggestion:</strong> {cafeData.orderSuggestion}
-          </p>
-        )
-      }
     </Fragment>
     <Fragment slot="main">
       {cafeData.headerImg && <Image src={cafeData.headerImg} alt={`${cafeData.title} header photo`} />}
