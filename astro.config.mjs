@@ -11,6 +11,8 @@ import { transformerCopyButton } from "@rehype-pretty/transformers";
 export default defineConfig({
   output: "static",
   site: "https://cobra.monster",
+  // This line fixed the "Failed to scan for dependencies from entries:" error
+  base: "",
   vite: {
     plugins: [tailwindcss()],
   },
