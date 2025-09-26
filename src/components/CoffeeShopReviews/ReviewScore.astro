@@ -29,10 +29,10 @@ const ratingArray: ratingSystem = {
   vibes: { emoji: sunriseOverMountains, legend: "Subjective 'How does it feel being here?'" },
 };
 const totalScore = Object.values(cafeData.rating).reduce((a, b) => a + b);
-console.log("Cafe Data & Compact: ", cafeData, compact)
 ---
 
 <ul class={`self-center text-xs sm:text-base min-w-fit ${compact ? 'xl:text-xl' : 'xl:text-2xl min-w-[75%]'} `}>
+  
   {
     Object.entries(cafeData.rating).map(([key, value], i) => {
       const ratingItem = ratingArray[key as keyof typeof ratingArray];

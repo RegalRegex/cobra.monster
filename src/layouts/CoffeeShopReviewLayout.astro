@@ -13,9 +13,20 @@ interface Props {
 
 const { cafeCollectionItem }: Props = Astro.props;
 const cafeData = cafeCollectionItem.data;
+const ogImg = `https://cobra.monster/cafe-reviews/og/${cafeCollectionItem.slug}.png`;
 ---
 
-<!-- TODO: OG image -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <meta property="og:title" content={`Cafe Review: ${cafeCollectionItem.data.title}`} />
+  <meta property="og:description" content={cafeCollectionItem.data.summary} />
+  <meta property="og:image" content={ogImg} />
+  <title>Regal Reviews: {cafeCollectionItem.data.title}</title>
+</head>
+
 <Layout blog={true}>
   <TopNav />
   <BlogStyleMain>
