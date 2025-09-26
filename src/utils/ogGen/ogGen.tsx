@@ -1,4 +1,3 @@
-import type { ImageResponse } from "@vercel/og";
 import { readFileSync } from "fs";
 import type { ImageResponseOptions } from "node_modules/@vercel/og/dist/types";
 import type { ReactNode } from "react";

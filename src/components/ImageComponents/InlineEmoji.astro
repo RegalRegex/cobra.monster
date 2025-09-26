@@ -3,9 +3,10 @@ import { Image } from "astro:assets";
 
 interface Props {
   emoji: ImageMetadata;
+  styles?: string;
 }
 
-const { emoji } = Astro.props;
+const { emoji, styles = "" } = Astro.props;
 ---
 
-<Image src={emoji} alt={emoji.src.split("/").at(-1) || "mutant emoji"} class="max-w-8 pb-2 inline-block m-auto" />
+<Image src={emoji} alt={emoji.src.split("/").at(-1) || "mutant emoji"} class:list={[`max-w-8 inline-block m-auto`, `${styles}`]} />

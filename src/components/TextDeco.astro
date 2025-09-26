@@ -9,11 +9,6 @@ const inlineStyle = inline ? "" : "font-medium text-xl";
 ---
 
 <span class="text-nowrap"
-  ><a
-    class:list={[
-      "hover:underline decoration-amber-400 decoration-2 cursor-pointer text-amber-300 visited:text-amber-600 visited:decoration-amber-600 font-light text-wrap",
-      inlineStyle,
-    ]}
-    href={url}><slot /></a
+  ><a class:list={["hover:underline decoration-amber-400 decoration-2 cursor-pointer text-amber-300 font-light text-wrap", inlineStyle]} href={url}><slot /></a
   ></span
 >

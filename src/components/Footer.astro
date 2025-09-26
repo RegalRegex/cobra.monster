@@ -5,12 +5,8 @@ import argentAss from "@assets/argent/argentAss.png";
 import BadgeDisplay from "@components/BadgeDisplay.astro";
 import SocialsList from "@components/SocialsList.astro";
 import CobraLogo from "@components/ImageComponents/CobraLogo.astro";
-import Wrench from "@assets/mutantEmoji/utility/wrench.png";
-import InlineArgentEmoji from "./ImageComponents/InlineArgentEmoji.astro";
-
 import Gay from "@assets/mutantEmoji/gay.png";
 import SoGay from "@assets/mutantEmoji/so_gay.png";
-
 
 interface Props {
   homePage?: boolean;
@@ -68,8 +64,16 @@ const { homePage } = Astro.props;
           <li>
             <Link url="/blog"> Blog </Link>
           </li>
+        </ul>
+      </div>
+      <div class="flex flex-col ml-[25%] xs:ml-0">
+        <h2 class="text-xl xs:text-3xl xl:text-4xl font-bold headerTxt">Reviews</h2>
+        <ul>
           <li>
             <Link url="/books/default"> Book Reviews </Link>
+          </li>
+          <li>
+            <Link url="/cafe-reviews"> Cafe Reviews </Link>
           </li>
         </ul>
       </div>
@@ -80,7 +84,7 @@ const { homePage } = Astro.props;
             <Link url="/credits"> Site Credits </Link>
           </li>
           <li>
-            <Link url="https://github.com/RegalRegex/cobra.monster"> Github </Link>
+            <Link url="https://github.com/RegalRegex/cobra.monster"> Codebase </Link>
           </li>
         </ul>
       </div>

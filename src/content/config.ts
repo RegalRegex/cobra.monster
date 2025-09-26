@@ -48,7 +48,7 @@ const books = defineCollection({
       date: z.date(),
       publishDate: z.number().optional(),
       rating: z.number(),
-      cover: z.preprocess((val) => `/src/assets/books/${val}`, image()),
+      cover: image(),
       bookTags: z.array(reference("bookTags")),
     }),
 });
@@ -84,6 +84,27 @@ const galleries = defineCollection({
     }),
 });
 
+const coffeeShopReviews = defineCollection({
+  schema: ({ image }) =>
+    z.object({
+      headerImg: image(),
+      headerImgCaption: z.string().optional(),
+      title: z.string(),
+      location: z.string(),
+      rating: z.object({
+        coffee: z.number(),
+        cafe: z.number(),
+        price: z.number(),
+        productivity: z.number(),
+        vibes: z.number(),
+      }),
+      favorite: z.boolean(),
+      date: z.date(),
+      summary: z.string(),
+      orderSuggestion: z.string(),
+    }),
+});
+
 export const collections = {
   tags,
   posts,
@@ -92,4 +113,5 @@ export const collections = {
   books,
   bookTags,
   galleries,
+  coffeeShopReviews,
 };

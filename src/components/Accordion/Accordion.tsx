@@ -29,9 +29,10 @@ import arrowRight from "@assets/mutantEmoji/utility/arrow_right.png";
 interface Props {
   title: ReactNode;
   content: ReactNode;
+  bgRed?: boolean;
 }
 
-const Accordion = ({ title, content }: Props) => {
+const Accordion = ({ title, content, bgRed = true }: Props) => {
   const [expanded, setExpanded] = useState(false);
   const [height, setHeight] = useState("0px");
   const [rotate, setRotate] = useState("transform duration-700 ease");
@@ -48,7 +49,7 @@ const Accordion = ({ title, content }: Props) => {
   return (
     <div className="@container/accordion accordion flex flex-col my-5 border-l-8 border-yellow">
       {
-        <div className="bg-redDark/40 p-4 ">
+        <div className={`${bgRed ? "bg-[#510505]" : "bg-boxPrimary"} p-4 `}>
           <h3 className="font-bold not-prose">
             <button className="accordionBtn flex items-center justify-between w-full hover:cursor-pointer" onClick={toggleAccordion} aria-expanded={expanded}>
               {title}

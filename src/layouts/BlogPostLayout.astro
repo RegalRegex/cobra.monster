@@ -6,6 +6,8 @@ import type { MarkdownHeading } from "astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import TagContents from "../components/TagContents.astro";
 import { formatDate } from "src/utils/stringFormatters";
+import BlogStyleMain from "@components/Snippets/BlogStyleMain.astro";
+import ChiStar from "@components/ImageComponents/ChiStar.astro";
 
 interface Props {
   post: CollectionEntry<"posts">;
@@ -22,7 +24,6 @@ const {
 
 const formattedDate = formatDate(date);
 
-// const displayTags = tags?.map((tag) => tag.id);
 const listDecoStyle = "prose-ul:before:text-white";
 
 const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `https://cobra.monster/blog/og/${slug}.png`;
@@ -41,52 +42,37 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
 
 <Layout blog={true}>
   <TopNav />
-  <article class="m-10 md:mt-28 mt-8">
-    <header class="flex flex-col md:grid grid-cols-12 md:border-0 border-b-2 border-slate-200 md:mb-0 md:pb-0 mb-2 pb-5">
-      <div class="lg:col-start-2 col-span-10 md:mb-10 mb-5">
-        <h1 class="font-black text-yellow decoration-4 decoration-white md:text-6xl text-4xl mb-5">{title}</h1>
-        <h2 class="text-slate-200 md:text-3xl text-lg font-medium">{subtitle}</h2>
-        <p class="md:hidden flex text-slate-200 text-sm">{blogExclude ? "Last Updated" : "Published"}: {formattedDate}</p>
-      </div>
-      {
-        (tags || headings.length > 0) && (
-          <aside class="text-slate-200 md:hidden block">
-            {tags && (
-              <div class="flex mb-8">
-                <TagContents pageUrl="/blog/tagged/" tagIds={tags.map((tag) => tag.id)} />
-              </div>
-            )}
-            <div class="border-t-4 border-slate-200">{headings.length > 0 && <TableOfContents headings={headings} />}</div>
-          </aside>
-        )
-      }
-    </header>
-
-    <div class="text-xl text-slate-200 md:grid grid-cols-12 gap-10 flex flex-col">
-      <aside class="col-start-1 lg:col-start-2 col-span-4 lg:col-span-3 border-t-4 border-slate-200 hidden md:block mt-3">
-        <div id="publishTags" class="border-b-2 border-slate-200 pb-4">
-          <div class="mt-2">
+  <BlogStyleMain>
+    <Fragment slot="header">
+      <h1 class="font-black text-yellow decoration-4 decoration-white md:text-6xl text-4xl mb-5">{title}</h1>
+      <h2 class="text-slate-200 md:text-3xl text-lg font-medium">{subtitle}</h2>
+    </Fragment>
+    <Fragment slot="aside">
+      <div id="publishTags" class="border-t-2 border-slate-200 pb-4">
+        <div class="mt-2">
+          <div class="md:hidden flex">
+            <p class="text-slate-200 text-sm">{blogExclude ? "Last Updated" : "Published"}: {formattedDate}</p>
+          </div>
+          <div class="md:flex flex-col hidden">
             <h3 class="font-medium text-2xl">{blogExclude ? "Last Updated" : "Published"}</h3>
             <p>{formattedDate}</p>
           </div>
-          {
-            tags && (
-              <div class="mt-2 text-sm">
-                <TagContents pageUrl="/blog/tagged/" inline={true} tagIds={tags.map((tag) => tag.id)} />
-              </div>
-            )
-          }
         </div>
-        {headings.length > 0 && <TableOfContents headings={headings} />}
-      </aside>
-      <main
-        class:list={[
-          "col-span-8 prose md:prose-lg lg:prose-xl prose-slate prose-invert prose-blockquote:border-yellow prose-blockquote:border-l-8 prose-blockquote:bg-redDark/40 prose-blockquote:font-light prose-hr:border-slate-200 prose-blockquote:pr-2 prose-h5:font-bold prose-h5:text-white prose-h6:font-bold prose-h6:text-white prose-code:bg-black/35 prose-li:has-[ul]:list-none",
-          `${listDecoStyle}`,
-        ]}
-      >
-        <slot />
-      </main>
-    </div>
-  </article>
+        {
+          tags && (
+            <div class="mt-2 text-sm">
+              <TagContents pageUrl="/blog/tagged/" inline={true} tagIds={tags.map((tag) => tag.id)} />
+            </div>
+          )
+        }
+      </div>
+      <span class="flex justify-around xl:text-3xl">
+        <ChiStar /><ChiStar /><ChiStar /><ChiStar />
+      </span>
+      {headings.length > 0 && <TableOfContents headings={headings} />}
+    </Fragment>
+    <Fragment slot="main">
+      <slot />
+    </Fragment>
+  </BlogStyleMain>
 </Layout>

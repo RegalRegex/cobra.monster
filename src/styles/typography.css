@@ -8,6 +8,8 @@
   --tw-prose-bullets: theme(--color-yellow);
   --tw-prose-counters: theme(--color-yellow);
   --tw-prose-captions: theme(--color-slate-400);
+
+  max-width: none;
 }
 
 /* Rehype Plugin Code Blocks Styling */
@@ -68,6 +70,10 @@ figcaption[data-rehype-pretty-code-title] {
 /* Footnote superscripts */
 .prose sup {
   margin: 0 calc(var(--spacing) * 0.25);
+}
+
+.prose.coffee-shop-review h2 {
+  margin-top: 0;
 }
 
 .footnotes {

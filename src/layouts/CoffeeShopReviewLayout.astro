@@ -1,0 +1,63 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import BlogStyleMain from "@components/Snippets/BlogStyleMain.astro";
+import TopNav from "@components/TopNav.astro";
+import ReviewScore from "@components/CoffeeShopReviews/ReviewScore.astro";
+const starMd = "<span>★</span>";
+
+interface Props {
+  cafeCollectionItem: CollectionEntry<"coffeeShopReviews">;
+}
+
+const { cafeCollectionItem }: Props = Astro.props;
+const cafeData = cafeCollectionItem.data;
+const ogImg = `https://cobra.monster/cafe-reviews/og/${cafeCollectionItem.slug}.png`;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <meta property="og:title" content={`Cafe Review: ${cafeCollectionItem.data.title}`} />
+  <meta property="og:description" content={cafeCollectionItem.data.summary} />
+  <meta property="og:image" content={ogImg} />
+  <title>Regal Reviews: {cafeCollectionItem.data.title}</title>
+</head>
+
+<Layout blog={true}>
+  <TopNav />
+  <BlogStyleMain>
+    <Fragment slot="header" }>
+      <h1 class="font-black text-yellow decoration-4 decoration-white md:text-6xl text-3xl mb-2 order-1">
+        {cafeData.favorite && <Fragment set:html={starMd} />}
+        {cafeData.title}
+      </h1>
+      <span class="col-span-1 text-sm md:text-xl text-slate-200 flex border-b pb-2 md:mb-6 italic">{cafeData.location}</span>
+      <p class="text-slate-200 mt-5 md:text-2xl">{cafeData.summary}</p>
+    </Fragment>
+    <Fragment slot="aside">
+      <div class="sticky top-10">
+        <div class="pb-2">
+          <ReviewScore cafeData={cafeData} compact={false} legend={true} />
+        </div>
+        {
+          cafeData.orderSuggestion && (
+            <p class="border-t py-2 text-sm md:text-lg">
+              <strong>Order Suggestion:</strong> {cafeData.orderSuggestion}
+            </p>
+          )
+        }
+      </div>
+    </Fragment>
+    <Fragment slot="main">
+      {cafeData.headerImg && <Image src={cafeData.headerImg} alt={`${cafeData.title} header photo`} />}
+      {cafeData.headerImgCaption && <figcaption class="italic">{cafeData.headerImgCaption}</figcaption>}
+      <div class="prose-h2:m-0 prose-h2:first:mt-5 prose-p:last:mb-0">
+        <slot />
+      </div>
+    </Fragment>
+  </BlogStyleMain>
+</Layout>

@@ -1,0 +1,24 @@
+---
+import ReviewList from "@components/CoffeeShopReviews/ReviewList.astro";
+import SortList, { CAFE_REVIEW_SORT, getIsDesc, getSortField } from "@components/CoffeeShopReviews/SortList.astro";
+import CoffeeShopReviewListLayout from "@layouts/CoffeeShopReviewListLayout.astro";
+import type { GetStaticPaths } from "astro";
+
+/**
+ * @remarks I forgot that TS enums don't have reverse mapping, so this didn't really work out great. Alas.
+ */
+export const getStaticPaths = (() => {
+  return (Object.keys(CAFE_REVIEW_SORT) as Array<CAFE_REVIEW_SORT>).map((sortOption) => {
+    // @ts-expect-error
+    return { params: { sort: CAFE_REVIEW_SORT[sortOption] }, props: { sortOption: sortOption } };
+  });
+}) satisfies GetStaticPaths;
+const { sortOption } = Astro.props;
+// @ts-expect-error
+const valueOfSortEnum = CAFE_REVIEW_SORT[sortOption];
+---
+
+<CoffeeShopReviewListLayout>
+  <SortList slot="sort" selected={sortOption} pageUrl="/cafe-reviews/" />
+  <ReviewList slot="review-list" sort={{ field: getSortField(valueOfSortEnum), desc: getIsDesc(valueOfSortEnum) }} />
+</CoffeeShopReviewListLayout>

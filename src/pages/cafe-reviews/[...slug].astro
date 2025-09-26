@@ -1,0 +1,23 @@
+---
+import CoffeeShopReviewLayout from "@layouts/CoffeeShopReviewLayout.astro";
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+export const getStaticPaths = (async () => {
+  const reviewEntries = await getCollection("coffeeShopReviews");
+  return reviewEntries.map((entry, index) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  entry: CollectionEntry<"coffeeShopReviews">;
+}
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<CoffeeShopReviewLayout cafeCollectionItem={entry}>
+  <Content />
+</CoffeeShopReviewLayout>
