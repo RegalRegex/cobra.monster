@@ -13,7 +13,7 @@ interface Props {
 
 const { cafeCollectionItem }: Props = Astro.props;
 const cafeData = cafeCollectionItem.data;
-// const ogImg = `https://cobra.monster/cafe-reviews/og/${cafeCollectionItem.slug}.png`;
+const ogImg = `https://cobra.monster/cafe-reviews/og/${cafeCollectionItem.slug}.png`;
 ---
 
 <head>
@@ -23,7 +23,7 @@ const cafeData = cafeCollectionItem.data;
   <meta name="generator" content={Astro.generator} />
   <meta property="og:title" content={`Cafe Review: ${cafeCollectionItem.data.title}`} />
   <meta property="og:description" content={cafeCollectionItem.data.summary} />
-  <!-- <meta property="og:image" content={ogImg} /> -->
+  <meta property="og:image" content={ogImg} />
   <title>Regal Reviews: {cafeCollectionItem.data.title}</title>
 </head>
 
