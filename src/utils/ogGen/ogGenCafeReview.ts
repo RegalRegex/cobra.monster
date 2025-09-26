@@ -29,36 +29,63 @@ export const cafeReviewHtml = ({ reviewData }: OgGenCafeReviewProps): string => 
           <span class="border-b-4 border-[#eab308] pb-2 text-lg">${reviewData.location}</span>
         </div>
           
-          <div class="flex flex-col justify-around grow">
-            <h2 class="${reviewData.summary.length > 120 ? "text-2xl" : "text-3xl"} leading-[1.5]">${reviewData.summary}</h2>
-            <div class="flex border-t-2 border-[#fff] items-center justify-between mr-2">
-              <div class="flex w-[35px] h-[35px] mr-1">
-                <img src="${baseUrl()}mutantEmoji/hot_drink.png" />
+            <div class="flex flex-col items-center justify-between mr-2 grow flex-wrap">
+              <div class="flex items-center -mb-5 justify-between w-full">
+                <div class="flex mr-1 items-center ">
+                  <img class="m-0 h-[35px] w-[35px]" src="${baseUrl()}mutantEmoji/hot_drink.png" />
+                  <span class="ml-2 text-2xl">Coffee</span>
+                </div>
+                <span class="border-b-2 border-[#eab308] grow mx-2"></span>
+                <h3 class="text-2xl">${reviewData.rating.coffee} / 10</h3>
               </div>
-              <h3 class="text-2xl pr-2 border-[#fff] border-r-2">${reviewData.rating.coffee}/10</h3>
-              <div class="flex w-[35px] h-[35px] mr-1 ">
-                <img src="${baseUrl()}mutantEmoji/sunset_city.png" />
+
+              <div class="flex items-center -mb-5 justify-between w-full">
+                <div class="flex mr-1 items-center ">
+                  <img class="m-0 w-[35px] h-[35px]" src="${baseUrl()}mutantEmoji/sunset_city.png" />
+                  <span class="ml-2 text-2xl">Cafe</span>
+                </div>
+                <span class="border-b-2 border-[#eab308] grow mx-2"></span>
+                <h3 class="text-2xl">${reviewData.rating.cafe} / 5</h3>
               </div>
-              <h3 class="text-2xl pr-2 border-[#fff] border-r-2">${reviewData.rating.cafe}/5</h3>
-              <div class="flex w-[35px] h-[35px] mr-1 ">
-                <img src="${baseUrl()}mutantEmoji/green_money.png" />
+
+              <div class="flex items-center -mb-5 justify-between w-full">
+                <div class="flex mr-1 items-center ">
+                  <img class="m-0 w-[35px] h-[35px]" src="${baseUrl()}mutantEmoji/green_money.png" />
+                  <span class="ml-2 text-2xl">Price</span>
+                </div>
+                <span class="border-b-2 border-[#eab308] grow mx-2"></span>
+                <h3 class="text-2xl">${reviewData.rating.price} / 5</h3>
               </div>
-              <h3 class="text-2xl pr-2 border-[#fff] border-r-2">${reviewData.rating.price}/5</h3>
-              <div class="flex w-[35px] h-[35px] mr-1 ">
-                <img src="${baseUrl()}mutantEmoji/laptop.png" />
+
+              <div class="flex items-center -mb-5 justify-between w-full">
+                <div class="flex mr-1 items-center ">
+                  <img class="m-0 w-[35px] h-[35px]" src="${baseUrl()}mutantEmoji/laptop.png" />
+                  <span class="ml-2 text-2xl">Productivity</span>
+                </div>
+                <span class="border-b-2 border-[#eab308] grow mx-2"></span>
+                <h3 class="text-2xl">${reviewData.rating.productivity} / 5</h3>
               </div>
-              <h3 class="text-2xl pr-2 border-[#fff] border-r-2">${reviewData.rating.productivity}/5</h3>
-              <div class="flex w-[35px] h-[35px] mr-1 ">
-                <img src="${baseUrl()}mutantEmoji/sunrise_over_mountains.png" />
+
+              <div class="flex items-center -mb-7 justify-between w-full">
+                <div class="flex mr-1 items-center ">
+                  <img class="m-0 w-[35px] h-[35px]" src="${baseUrl()}mutantEmoji/sunrise_over_mountains.png" />
+                  <span class="ml-2 text-2xl">Vibes</span>
+                </div>
+                <span class="border-b-2 border-[#eab308] grow mx-2"></span>
+                <h3 class="text-2xl">${reviewData.rating.vibes} / 5</h3>
               </div>
-              <h3 class="text-2xl pr-2 border-[#eab308] border-r-2">${reviewData.rating.vibes}/5</h3>
-              <div class="flex w-[35px] h-[35px] mr-1 ">
-                <img src="${baseUrl()}mutantEmoji/finish_flag.png" />
+
+              <div class="flex items-center -mb-5 justify-between w-full">
+                <div class="flex mr-1 items-center pt-2">
+                  <img class="m-0 w-[35px] h-[35px]" src="${baseUrl()}mutantEmoji/finish_flag.png" />
+                  <span class="ml-2 text-2xl">Total</span>
+                </div>
+                <span class="border-b-2 border-[#eab308] grow mx-2 pt-2"></span>
+                <h3 class="text-2xl pt-2 border-t-2 border-[#fff]">${Object.values(reviewData.rating).reduce((a, b) => a + b)} / 30</h3>
               </div>
-              <h3 class="text-2xl">${Object.values(reviewData.rating).reduce((a, b) => a + b)}/30</h3>
+
             </div>
           </div>
-        </div>
         <!-- Image -->
         <div class="flex max-w-[600px] h-[474px] right-10 bottom-12">
           <img src="${baseUrl()}cozyCoffeeArgent_Oblvon.png" />
