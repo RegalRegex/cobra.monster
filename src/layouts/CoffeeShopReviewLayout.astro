@@ -55,7 +55,7 @@ const ogImg = `https://cobra.monster/cafe-reviews/og/${cafeCollectionItem.slug}.
     <Fragment slot="main">
       {cafeData.headerImg && <Image src={cafeData.headerImg} alt={`${cafeData.title} header photo`} />}
       {cafeData.headerImgCaption && <figcaption class="italic">{cafeData.headerImgCaption}</figcaption>}
-      <div class="prose-h2:m-0 prose-h2:first:mt-5 prose-p:last:mb-0">
+      <div class="prose-h2:mt-0 prose-h2:first:mt-5 prose-p:last:mb-0">
         <slot />
       </div>
     </Fragment>
