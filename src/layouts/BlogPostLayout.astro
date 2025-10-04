@@ -8,6 +8,8 @@ import TagContents from "../components/TagContents.astro";
 import { formatDate } from "src/utils/stringFormatters";
 import BlogStyleMain from "@components/Snippets/BlogStyleMain.astro";
 import ChiStar from "@components/ImageComponents/ChiStar.astro";
+import { CommentForm } from "@components/CommentForm";
+import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontalRule.astro";
 
 interface Props {
   post: CollectionEntry<"posts">;
@@ -73,6 +75,8 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
     </Fragment>
     <Fragment slot="main">
       <slot />
+      <ChiStarHorizontalRule />
+      <CommentForm client:load />
     </Fragment>
   </BlogStyleMain>
 </Layout>
