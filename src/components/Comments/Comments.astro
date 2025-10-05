@@ -43,7 +43,7 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
           const bskyAvi = await getBskyImg(comment.bsky);
           const avi = bskyAvi ? bskyAvi : Wrex.src;
           return (
-            <div class="text-slate-200 text-xl flex gap-4 bg-[#761416] p-4 rounded-md" id={`comment-${comment.id}`}>
+            <div class="text-slate-200 text-xl flex gap-4 bg-[#460809] p-4 rounded-md" id={`comment-${comment.id}`}>
               {bskyAvi ? (
                 <a href={`https://bsky.app/profile/${comment.bsky}`}>
                   <img src={avi} alt="" class="object-cover self-center  rounded-full aspect-square flex min-w-16 w-16 hover:scale-[1.15] transition duration-300 not-prose" />
@@ -71,7 +71,7 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
                     <span>{formatTime(comment.date)}</span>
                     </a>
                 </span>
-                {comment.text}
+                <p set:html={comment.text}></p>
                 {/* <Fragment set:html={md.render(comment.text)}/> */}
               </div>
             </div>
