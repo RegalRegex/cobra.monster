@@ -33,52 +33,59 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
 // const md = markdownit();
 ---
 
-<div class="md:py-8 md:px-20 ">
-    <p class="not-prose text-3xl text-white mb-2">Comments</p>
+<div class="md:py-8 md:px-20">
+  <p class="not-prose text-3xl text-white mb-2">Comments</p>
   {
     comments.length > 0 ? (
-        <p class="text-white text-xl">Work In Progress ATM! Please mind the jank!</p>
       <div class="pb-4 mb-4 border-yellow border-b-2 flex flex-col gap-4">
-        {comments.sort((a,b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()).map(async (comment) => {
-          const bskyAvi = await getBskyImg(comment.bsky);
-          const avi = bskyAvi ? bskyAvi : Wrex.src;
-          return (
-            <div class="text-slate-200 text-xl flex gap-4 bg-[#460809] p-4 rounded-md" id={`comment-${comment.id}`}>
-              {bskyAvi ? (
-                <a href={`https://bsky.app/profile/${comment.bsky}`}>
-                  <img src={avi} alt="" class="object-cover self-center  rounded-full aspect-square flex min-w-16 w-16 hover:scale-[1.15] transition duration-300 not-prose" />
-                </a>
-              ) : (
-                <div>
-                  <img src={Wrex.src} alt="Wrex!" class="object-cover self-center  rounded-full aspect-square flex min-w-16 w-16 not-prose" />
-                </div>
-              )}
-              <div class="flex flex-col gap-1">
-                <span class="flex gap-1 items-center flex-wrap">
+        {comments
+          .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+          .map(async (comment) => {
+            const bskyAvi = await getBskyImg(comment.bsky);
+            const avi = bskyAvi ? bskyAvi : Wrex.src;
+            return (
+              <div class="text-slate-200 text-xl flex gap-4 bg-[#460809] p-4 rounded-md" id={`comment-${comment.id}`}>
+                {bskyAvi ? (
+                  <a href={`https://bsky.app/profile/${comment.bsky}`}>
+                    <img
+                      src={avi}
+                      alt=""
+                      class="object-cover self-center  rounded-full aspect-square flex min-w-16 w-16 hover:scale-[1.15] transition duration-300 not-prose"
+                    />
+                  </a>
+                ) : (
+                  <div>
+                    <img src={Wrex.src} alt="Wrex!" class="object-cover self-center  rounded-full aspect-square flex min-w-16 w-16 not-prose" />
+                  </div>
+                )}
+                <div class="flex flex-col gap-1">
+                  <span class="flex gap-1 items-center flex-wrap">
                     {comment.url ? (
-                    <a href={comment.url} class="text-yellow font-semibold decoration-yellow hover:underline decoration-2">
+                      <a href={comment.url} class="text-yellow font-semibold decoration-yellow hover:underline decoration-2">
                         {comment.name}
-                    </a>
+                      </a>
                     ) : (
-                    <span class="text-white">{comment.name}</span>
+                      <span class="text-white">{comment.name}</span>
                     )}
                     <span class="text-slate-200/80 text-base self-center">
-                    <ChiStar />
+                      <ChiStar />
                     </span>
                     <a href={`${pageUrl}#comment-${comment.id}`} class="text-slate-200/80 hover:underline hover:cursor-pointer text-base flex gap-1">
-                    <span>{formatDate(comment.date)}</span>
-                    <span>&bull;</span>
-                    <span>{formatTime(comment.date)}</span>
+                      <span>{formatDate(comment.date)}</span>
+                      <span>&bull;</span>
+                      <span>{formatTime(comment.date)}</span>
                     </a>
-                </span>
-                <p set:html={comment.text}></p>
-                {/* <Fragment set:html={md.render(comment.text)}/> */}
+                  </span>
+                  <p set:html={comment.text} />
+                  {/* <Fragment set:html={md.render(comment.text)}/> */}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
-    ) : (<p class="pb-4 mb-4 border-yellow border-b-2">No comments yet!</p>)
+    ) : (
+      <p class="pb-4 mb-4 border-yellow border-b-2">No comments yet!</p>
+    )
   }
-    <CommentForm client:idle />
+  <CommentForm client:idle />
 </div>
