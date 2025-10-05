@@ -2,13 +2,10 @@
 import type { CollectionEntry } from "astro:content";
 import { CommentForm } from "./CommentForm";
 import { formatDate, formatTime } from "src/utils/stringFormatters";
-import markdownit from 'markdown-it';
+// import markdownit from 'markdown-it';
 
 import Wrex from "./wrex.png";
 import ChiStar from "@components/ImageComponents/ChiStar.astro";
-import Accordion from "@components/Accordion/Accordion";
-import type { ReactNode } from "react";
-import type { html } from "satori-html";
 
 /**
  * Credit for Netlify forms comments goes to Emily Goto:
@@ -33,7 +30,7 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
   const bskyData = await bskyApiData.json();
   return bskyData.avatar;
 };
-const md = markdownit();
+// const md = markdownit();
 ---
 
 <div class="md:py-8 md:px-20 ">
@@ -74,7 +71,8 @@ const md = markdownit();
                     <span>{formatTime(comment.date)}</span>
                     </a>
                 </span>
-                <Fragment set:html={md.render(comment.text)}/>
+                {comment.text}
+                {/* <Fragment set:html={md.render(comment.text)}/> */}
               </div>
             </div>
           );
