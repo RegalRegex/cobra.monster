@@ -8,8 +8,10 @@ import TagContents from "../components/TagContents.astro";
 import { formatDate } from "src/utils/stringFormatters";
 import BlogStyleMain from "@components/Snippets/BlogStyleMain.astro";
 import ChiStar from "@components/ImageComponents/ChiStar.astro";
-import { CommentForm } from "@components/CommentForm";
+import { CommentForm } from "@components/Comments/CommentForm";
 import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontalRule.astro";
+import Comments from "@components/Comments/Comments.astro";
+import { getCollection } from "astro:content";
 
 interface Props {
   post: CollectionEntry<"posts">;
@@ -26,7 +28,12 @@ const {
 
 const formattedDate = formatDate(date);
 
-const listDecoStyle = "prose-ul:before:text-white";
+const getComments = async () => {
+  const commentFiles = await getCollection("comments");
+  return commentFiles.find((file) => file.id === slug)?.data.comments || [];
+};
+
+const comments = await getComments();
 
 const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `https://cobra.monster/blog/og/${slug}.png`;
 ---
@@ -76,7 +83,7 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
     <Fragment slot="main">
       <slot />
       <ChiStarHorizontalRule />
-      <CommentForm client:load />
+      <Comments comments={comments} pageUrl={`/blog/${slug}`} />
     </Fragment>
   </BlogStyleMain>
 </Layout>
