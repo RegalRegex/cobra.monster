@@ -85,7 +85,6 @@ const galleries = defineCollection({
 });
 
 const coffeeShopReviews = defineCollection({
-  type: "data",
   schema: ({ image }) =>
     z.object({
       headerImg: image(),

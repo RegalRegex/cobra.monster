@@ -43,8 +43,10 @@ figcaption[data-rehype-pretty-code-title] {
 }
 
 /* Forcing edits on Prose blog post styling */
-.prose img:not(.gallery-grid) {
-  margin: 0;
+.prose img:not(.gallery-grid, .not-prose) {
+  margin: 0 auto;
+  max-height: 80vh;
+  object-fit: contain;
 }
 .prose blockquote > p::before {
   content: none;
@@ -57,6 +59,12 @@ figcaption[data-rehype-pretty-code-title] {
 }
 .prose code::after {
   content: none;
+}
+
+.prose img + em {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
 }
 
 .prose .emojiBlockQuote {

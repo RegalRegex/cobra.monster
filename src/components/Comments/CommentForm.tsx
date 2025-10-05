@@ -15,6 +15,7 @@ export const CommentForm = () => {
   // const md = markdownit();
 
   useEffect(() => {
+    // @ts-ignore
     document.getElementById("comment-form")?.reset();
   }, [hasSentComment]);
 
@@ -58,9 +59,7 @@ export const CommentForm = () => {
 
   return (
     <>
-      {hasSentComment && (
-        <i>Thanks for your comment! This is a static site, so comments have to be added manually, so it'll post here in about a day or two :3</i>
-      )}
+      {hasSentComment && <i>Thanks for your comment! This is a static site, so comments have to be added manually, so give me a bit please :3</i>}
       {!hasSentComment && (
         <>
           <form
@@ -86,22 +85,21 @@ export const CommentForm = () => {
             </div>
             <div className="flex flex-col">
               <label htmlFor="website" className="text-lg">
-                Website (optional)
+                Website
               </label>
               <div className="border border-yellow bg-[#761416] flex">
-                <span className="px-2 text-slate-200/75 leading-8">https://</span>
                 <input
                   type="text"
                   name="website"
                   required={false}
-                  className=" px-2 focus:outline-none  focus:border-slate-200 focus:ring focus:ring-slate-200 placeholder:text-slate-200/55 border-l border-yellow grow"
-                  placeholder="regal.bsky.social"
+                  className=" px-2 focus:outline-none  focus:border-slate-200 focus:ring focus:ring-slate-200 placeholder:text-slate-200/55 "
+                  placeholder="https://cobra.monster"
                 />
               </div>
             </div>
             <div className="flex flex-col">
               <label htmlFor="bsky" className="text-lg">
-                Bluesky (will be used to link back + fetch your avatar image)
+                Bluesky (used to link back + fetch your avatar image)
               </label>
               <div className="border border-yellow bg-[#761416] flex">
                 <span className="px-2 text-slate-200/75 leading-8">@</span>
@@ -132,7 +130,7 @@ export const CommentForm = () => {
                 name="comment"
                 required={true}
                 // onChange={handleCommentChange}
-                className={`border border-yellow bg-[#761416] px-2 focus:outline-none  focus:border-slate-200 focus:ring focus:ring-slate-200 placeholder:text-slate-200/55 `}
+                className={`border border-yellow bg-[#761416] px-2 focus:outline-none  focus:border-slate-200 focus:ring focus:ring-slate-200 placeholder:text-slate-200/55 min-h-32`}
               />
             </div>
             <div className="flex flex-col">
