@@ -92,7 +92,7 @@ export const CommentForm = () => {
                   type="text"
                   name="website"
                   required={false}
-                  className=" px-2 focus:outline-none  focus:border-slate-200 focus:ring focus:ring-slate-200 placeholder:text-slate-200/55 "
+                  className=" px-2 focus:outline-none  focus:border-slate-200 focus:ring focus:ring-slate-200 placeholder:text-slate-200/55 grow"
                   placeholder="https://cobra.monster"
                 />
               </div>
