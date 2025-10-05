@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 // import { capitalizeFirst } from "src/utils/stringFormatters";
 import ArgentWeary from "@assets/mutantEmoji/argent/weary.png";
 import exclamation from "@assets/mutantEmoji/utility/red_exclamation_mark.png";
@@ -13,6 +13,10 @@ export const CommentForm = () => {
   // const [showPreview, setShowPreview] = useState(false);
   // const [mkdownValue, setMkdownValue] = useState("");
   // const md = markdownit();
+
+  useEffect(() => {
+    document.getElementById("comment-form")?.reset();
+  }, [hasSentComment]);
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
