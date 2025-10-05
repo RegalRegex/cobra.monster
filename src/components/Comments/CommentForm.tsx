@@ -1,8 +1,8 @@
 import { Fragment, useState } from "react";
-import { capitalizeFirst } from "src/utils/stringFormatters";
+// import { capitalizeFirst } from "src/utils/stringFormatters";
 import ArgentWeary from "@assets/mutantEmoji/argent/weary.png";
 import exclamation from "@assets/mutantEmoji/utility/red_exclamation_mark.png";
-import markdownit from "markdown-it";
+// import markdownit from "markdown-it";
 
 export const CommentForm = () => {
   const [isSendingForm, setIsSendingForm] = useState(false);
