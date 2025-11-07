@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 
-export function sortCollection<T extends CollectionEntry<"posts" | "books" | "coffeeShopReviews">>(
+export function sortCollection<T extends CollectionEntry<"posts" | "books" | "coffeeShopReviews" | "aboutBlurbs">>(
   list: Array<T>,
   sortType: "date" | "title" | "rating",
 ): Array<T> {

@@ -224,6 +224,14 @@ This file is in BETA. Please test and contribute to the discussion:
 										<xsl:value-of select="title" />
 									</a>
 								</h3>
+								<img>
+									<xsl:attribute name="src">
+										<xsl:value-of select="customData" />
+									</xsl:attribute>
+								</img>
+								<div>
+									<xsl:value-of select="customData" />
+								</div>
 								<p>
 									<xsl:value-of select="description" />
 								</p>

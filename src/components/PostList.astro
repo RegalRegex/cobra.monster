@@ -18,9 +18,7 @@ const blogEntries = await getCollection("posts");
 const { tagId } = Astro.props;
 
 // Excluding About Blurbs and filtering by tag, if necessary
-const blogPosts: Array<CollectionEntry<"posts">> = tagId
-  ? blogEntries.filter((entry) => !entry.data.blogExclude && entry.data.tags?.map((tag) => tag.id).includes(tagId))
-  : blogEntries.filter((entry) => !entry.data.blogExclude);
+const blogPosts: Array<CollectionEntry<"posts">> = tagId ? blogEntries.filter((entry) => entry.data.tags?.map((tag) => tag.id).includes(tagId)) : blogEntries;
 
 // Sorting blog posts by year
 const blogSort = (): PostsByYear[] => {
