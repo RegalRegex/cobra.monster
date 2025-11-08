@@ -110,6 +110,8 @@ const coffeeShopReviews = defineCollection({
       }),
       favorite: z.boolean(),
       date: z.date(),
+      // To separate sorting from info
+      lastUpdated: z.date(),
       summary: z.string(),
       orderSuggestion: z.string(),
     }),

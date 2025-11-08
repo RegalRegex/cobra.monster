@@ -50,5 +50,6 @@ export default defineConfig({
     "/home": "/",
     "/rff-swimsuit-zine-2025": "/pdfs/RFF_Zine-Swimsuit_Edition_08-2025.pdf",
     "/feed": "/rss.xml",
+    "/rss": "/rss.xml",
   },
 });

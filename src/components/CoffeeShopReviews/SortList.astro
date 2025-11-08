@@ -11,8 +11,8 @@ const { selected, pageUrl } = Astro.props;
 export enum CAFE_REVIEW_SORT {
   DATE_DESC = "date-desc",
   DATE_ASC = "date-asc",
-  RATING_DESC = "rating-desc",
   RATING_ASC = "rating-asc",
+  RATING_DESC = "rating-desc",
   FAVORITES = "favorites",
 }
 
@@ -24,7 +24,7 @@ export const getSortField = (valueOfSortEnum: string): "rating" | "date" | "favo
 };
 
 export const getIsDesc = (valueOfSortEnum: string): boolean =>
-  valueOfSortEnum === CAFE_REVIEW_SORT.DATE_DESC || valueOfSortEnum === CAFE_REVIEW_SORT.RATING_DESC;
+  valueOfSortEnum === CAFE_REVIEW_SORT.DATE_DESC || valueOfSortEnum === CAFE_REVIEW_SORT.RATING_ASC;
 const cafeReviewSortArray = Object.keys(CAFE_REVIEW_SORT) as Array<CAFE_REVIEW_SORT>;
 const starMd = "★";
 const basePgPath = `/cafe-reviews`;

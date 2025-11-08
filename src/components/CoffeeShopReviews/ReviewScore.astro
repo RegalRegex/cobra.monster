@@ -86,7 +86,8 @@ const totalScore = Object.values(cafeData.rating).reduce((a, b) => a + b);
   </li>
   <>{legend ?  
   <span class="flex justify-between text-sm md:text-base">
-    <span>Updated: {cafeData.date.toLocaleDateString("en-US", { day: "numeric", month: "numeric", year: "2-digit", timeZone: "UTC" })}</span>
+    
+    <span class="max-h-[16px]">Updated: {cafeData.lastUpdated.toLocaleDateString("en-US", { day: "numeric", month: "numeric", year: "2-digit", timeZone: "UTC" })}</span>
     <button
       class="toggle-legend hover:cursor-pointer hover:text-white hover:bg-gray-300 aspect-square p-0.5 rounded-full border-gray-400 border inline-flex shrink"
       ><InlineEmoji emoji={questionMark} styles="w-2.5 sm:w-4" /></button

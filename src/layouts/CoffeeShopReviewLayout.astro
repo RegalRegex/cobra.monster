@@ -8,6 +8,7 @@ import ReviewScore from "@components/CoffeeShopReviews/ReviewScore.astro";
 import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontalRule.astro";
 import Comments from "@components/Comments/Comments.astro";
 import { getCollection } from "astro:content";
+import { formatDate } from "src/utils/stringFormatters";
 const starMd = "<span>★</span>";
 
 interface Props {
@@ -45,7 +46,9 @@ const comments = await getComments();
         {cafeData.favorite && <Fragment set:html={starMd} />}
         {cafeData.title}
       </h1>
-      <span class="col-span-1 text-sm md:text-xl text-slate-200 flex border-b pb-2 md:mb-6 italic">{cafeData.location}</span>
+      <span class="col-span-1 text-sm md:text-xl text-slate-200 flex border-b pb-2 md:mb-6 italic justify-between">
+        <span>{cafeData.location}</span><span>{formatDate(cafeData.date)}</span></span
+      >
       <p class="text-slate-200 mt-5 md:text-2xl">{cafeData.summary}</p>
     </Fragment>
     <Fragment slot="aside">

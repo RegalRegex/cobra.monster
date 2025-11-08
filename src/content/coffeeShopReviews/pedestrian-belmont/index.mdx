@@ -2,9 +2,9 @@
 headerImg: pedestrian.jpg
 headerImgCaption: Most of the cafe is standard tables and some bar seating, but up front closest to the baristas is a low-bar. I love sitting here, watching folks come in, and chatting w/ the baristas.
 title: Pedestrian Coffee
-location: Lakeview, Chicago
+location: East Lakeview, Chicago
 rating: {
-    coffee: 9,
+    coffee: 9.5,
     cafe: 5,
     price: 2,
     productivity: 5,
@@ -12,10 +12,12 @@ rating: {
 }
 favorite: true
 date: 2025-11-03
+lastUpdated: 2025-11-08
 summary: '"Pedestrian" in name only, this is an exceptional cafe. A beautiful shop space packed with high-effort, quality coffee and food items, all made in-house. Offerings change often as the owner tries out new ideas and products, but the coffee fundamentals are rock-solid. One of the best places in town for a consistent espresso or pour-over.'
-orderSuggestion: An Americano with their premium single-origin espresso option
+orderSuggestion: An Americano with their premium single-origin espresso or any pour-over
 ---
 import Accordion from "@components/Accordion/Accordion"
+import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
 import InlineEmoji from '@components/ImageComponents/InlineEmoji.astro'
 import EmojiBlockquote from "@components/EmojiBlockquote.astro"
 
@@ -35,7 +37,7 @@ I have a lot of thoughts, most of them very positive about this shop! But do kno
 ![White diner-style coffee mug that says "Estd 2019 PEDESTRIAN COFFEE"](IMG_1863.jpg 'tbh I hate these types of mugs lmao. Don\'t know why, they\'re just so thick!')
 _Their logo is so simple and good!_
 
-Absolutely top-tier coffee. 9/10 because they don't tend to have the crazy funky stuff that I only find in the most niche, insane-specialty shops, but don't get it twisted, this is GREAT coffee.
+Absolutely top-tier coffee. Not quite a 10 because they don't tend to have the crazy funky stuff that I only find in the most niche, insane-specialty shops, but don't get it twisted, this is GREAT coffee.
 
 Pedestrian roasts all their own coffee and they're pretty damn good at it. Large enough batches that if you like a brew, you'll have access to it for a good while. The owner, Tim, is a stickler for quality and consistency, and I think that plays to tremendous strength here.
 
@@ -45,7 +47,7 @@ Their default espresso blend is called *The Jaywalker* (very cute) and it's a pe
 Their *single-origin* (offered as a $2 up-charge) is something altogether different though. Crazy tasty. Crazy good. The only weakness it has is that it's ordered infrequently enough that its quality that day is dependent on the barista on bar at that moment, and whether they have the time (or interest) in ensuring it's dialed in perfectly.
 
 <EmojiBlockquote size="sticker" emoji={Argent_uwu}>
-First "special treatment" note: every time I've ordered a rare espresso (i.e. the $2 single-origin or the decaf espresso), the baristas on staff have made a point to pull test shots until it's perfected.\
+First "special treatment" note: every time I've ordered a premium espresso (i.e. the $2 single-origin or the decaf espresso), the baristas on staff have made a point to pull test shots until it's perfected.\
 I know they do this for others, but I'm fairly certain they take extra care for me <InlineEmoji emoji={purple_heart}/>
 </EmojiBlockquote>
 
@@ -72,10 +74,13 @@ Keeping it short and sweet: also awesome. I just prefer espresso and americanos,
 
 ## Cafe
 
+![View of cafe entryway. Door and windows to the back, coffee bar and drink fridge to the left. The foreground counter has a kettle.](ped_entryway.png 'Editing this review and the images in this seat is a little awkward but kinda funny too ngl')
+_I pretty much always sit at one of the 4 seats at this front-bar here_
+
 Possibly the best cafe space I've yet found in Chicago. Subjective, sure...but here are some facts to prove my point:
 
 - literally next-door to the Belmont red/brown/purple L station
-- connected to Devil Dawgs (shared bathroom)
+- connected to *Devil Dawgs* (shared bathroom)
 - varied seating: short bar, high bar, shared tables, cafe tables, chair seating, couch seating, and even a solo corner 'study desk'
 - climber plants all over the lights and ceiling (Danny is the GOAT for maintaining those beauties!)
 - baking done in shop, so you get fresh coffee and fresh pastry smell
@@ -85,13 +90,32 @@ I'll get into more detail in the *Productivity* section, but the cafe gets a 5/5
 
 ## Price
 
-Not cheap, but also not unfairly expensive, I'd say. As of *3 November, 2025* most 12oz lattes are ~$7. Americanos are about $5. Pour over is between $6.50 and $8.
+<AccordionPhotoTemplate numImages={2} numCaptions={1}>
+    <div slot="image-1">
+        ![1st photo of Pedestrian's menu](IMG_6920.jpg)
+    </div>
+    <div slot="image-2">
+        ![2nd photo of Pedestrian's menu](IMG_6921.jpg)
+    </div>
+    <span slot="caption">Current as of November 2025</span>
+</AccordionPhotoTemplate>
 
-Minus points for a no-cash policy too :/
+It's late 2025 and the price of everything is whack, so I'm not sure how fair these prices are but they feel on the slightly more expensive side of average.\
+Menu pictures above, but in brief:
+
+| Drink Type (8oz) | Price (USD) |
+| -------- | --------- |
+| Drip     | $3.95     |
+| Latte    | $5.75     |
+| Americano| $4.75     |
+| Mocha    | $6.95     |
 
 ## Productivity
 
-Pedestrian is peak, here. Because this is my *home base* coffee shop, I'll break it down a little more than usual.
+![Large, standard cafe space with a few long bar-style tables in the center, and 2 columns of cafe 2-person tables behind. There are many people here, all with faces blurred out.](ped_cafe_space.png "It's nearly always packed in here. These fools love the cafe tables, oblivious to the fact of how much better the chair-to-table height ratio is with the stools eheh")
+_The lighting in this photo is kinda bad, but I promise it's mostly a very attractive soft, warm light here._
+
+Pedestrian is peak here. Because this is my *home base* coffee shop, I'll break it down a little more than usual.
 
 ### Drawing
 
@@ -108,6 +132,11 @@ Pedestrian hits a sweet spot on all 3 of these, personally. Especially for table
 Just so solid overall. Invite someone or a group to hang with you here and not only will folks 100% guaranteed find something they want on the menu, but there's nearly always ample space for groups of 4 or smaller.\
 Volume is chill enough that you can comfortably hold conversations...just good!
 
+![Blue poster taped to the wall, reading: "Table Talk" "Speed Friending" with time and a QR code](IMG_6918.jpg)
+_Concurrently a little cringe and pretty cute. We need more things like this, imo_
+
+They also host a "speed-friending" event here pretty often, which is cute. I haven't been, but a barista bud assures me it's pretty successful!
+
 ### Laptop work
 
 A+. Great wifi, outlets on the walls and built into the tables, and pretty privacy options for folks who want to be in corners or with their screen to a wall.\
@@ -115,10 +144,23 @@ Moreover, it's very comfortably a cafe where you can either work on a laptop in 
 
 ## Vibes
 
-This is where things get a little awkward. 4/5 because on the whole, this cafe is comfy, fun, chill, overall just a great experience. Unless you only have cash, you're 99/100 times going to feel safe, comfy, and have a great cafe experience here.
+![Ceiling shot showing orb lights with philodendron vines crawling all around](IMG_6919.jpg)
+_Shoutout to Danny for taking care of these because in the 3 years I've been coming here these plants have gone bonkers crazy!_
 
-There are 3 concerns pulling a point away from Pedestrian, which I won't go into exhaustive detail about here but suffice to say:
+### Good Vibes
 
-1. Past labor concerns: I've been assured this has improved as of late, but concurrently in the past wages were very low and workloads/expectations very high.
-2. Treatment of unhoused: Much more I could say but TL;DR if employees are going to be trained to shoo unhoused folks out of the shop, I think the shop could spare to offer them a cup of coffee or a day-old pastry at least...
-3. Bad Macro Business: the owner has bought/leased other commercial spaces that aren't doing nearly as well, draining this Lakeview location of both profit and team morale. I have some sympathy because the Lakeview location is really 1 in a million. 
+This cafe is comfy, fun, chill, overall just a great experience. So long as you have a valid non-cash payment method available, you're 99/100 times going to feel safe, comfy, and have a great cafe experience here.\
+The lighting it perfect, the trains are present but not loud, the staff are always kind and attentive, the cafe is clean, and conversations here are near-constant but at a very reasonable volume.
+
+### Bad Vibes
+
+Due to its location on a busy street beside a very busy L station, the shop gets an outsized amount of "interesting characters" coming into the shop. And while I'm sympathetic to the realities of running a business in a hellish capitalist society where the government of the "richest country on earth" can't be bothered to provide resources to the poor and houseless, there are a few points of awkwardness that I feel makes Pedestrian drop in vibes-quality overall:
+
+1. Bathroom codes - not unique, and again I _understand_ but it's awkward seeing people ask to use the restroom and being told "no"
+2. No free drinks - imo, if someone in rough shape comes into your coffee shop and you feel you must usher them out, I feel that you could at least offer them a free, small coffee. Or even a free day-old pastry.
+3. No cash accepted - sucks for tips and sucks for the folks who don't have credit cards. Again I _get it_ but it's awkward.
+
+<EmojiBlockquote size="sticker" emoji={Argent_uwu}>
+I can't overstate enough how much I love this shop, and hope for its continued success. I can't help but make this review stand out in some unfair ways compared to others on my site, but something something "see how the sausage gets made". But I want to be clear that I'm both _not_ being compensated in any way for this review (genuinely surprised if anyone doubts that) and an extremely big fan of this place and their coffee.\
+It's not an exaggeration to say that Pedestrian has given me what I wanted so badly out of my big move to Chicago in '22...a local cafe to really fall in love with.
+</EmojiBlockquote>
