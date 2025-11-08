@@ -3,11 +3,8 @@ import { Image } from "astro:assets";
 import vaporwaveArgent from "@assets/argent/vaporwaveArgent.png";
 import { getCollection } from "astro:content";
 import { sortCollection } from "src/utils/sortCollection";
-const blurbEntries = await getCollection("posts");
-const blurbs = sortCollection(
-  blurbEntries.filter((blurb) => blurb.data.blogExclude),
-  "title",
-);
+const blurbEntries = await getCollection("aboutBlurbs");
+const blurbs = sortCollection(blurbEntries, "title");
 ---
 
 <div class="col-start-2 col-span-10 @container">

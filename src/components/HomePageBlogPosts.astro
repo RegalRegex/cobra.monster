@@ -6,7 +6,7 @@ import { sortCollection } from "src/utils/sortCollection";
 
 const blogEntries = await getCollection("posts");
 
-const blogPosts: Array<CollectionEntry<"posts">> = blogEntries.filter((entry) => !entry.data.blogExclude);
+const blogPosts: Array<CollectionEntry<"posts">> = blogEntries;
 const blogPostsSorted = sortCollection(blogPosts, "date");
 ---
 

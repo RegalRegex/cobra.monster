@@ -1,0 +1,10 @@
+---
+import rss from "@assets/rss.png";
+import { Image } from "astro:assets";
+---
+
+<button>
+  <a href="/rss.xml" class="hover:brightness-75 transition-all duration-300">
+    <Image src={rss} alt="rss icon" class="max-w-6" />
+  </a>
+</button>

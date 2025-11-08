@@ -22,10 +22,8 @@ export const GET: APIRoute<Props> = ({ props }) => {
 };
 
 export async function getStaticPaths() {
-  return blogEntries
-    .filter((entry) => !entry.data.blogExclude)
-    .map((post) => ({
-      params: { slug: post.slug },
-      props: { title: post.data.title, subtitle: post.data.subtitle, date: post.data.date },
-    }));
+  return blogEntries.map((post) => ({
+    params: { slug: post.slug },
+    props: { title: post.data.title, subtitle: post.data.subtitle, date: post.data.date },
+  }));
 }

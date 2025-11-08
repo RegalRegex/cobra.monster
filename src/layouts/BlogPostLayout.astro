@@ -12,6 +12,7 @@ import { CommentForm } from "@components/Comments/CommentForm";
 import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontalRule.astro";
 import Comments from "@components/Comments/Comments.astro";
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 
 interface Props {
   post: CollectionEntry<"posts">;
@@ -21,7 +22,7 @@ interface Props {
 const {
   post: {
     slug,
-    data: { title, subtitle, date, tags, blogExclude },
+    data: { title, subtitle, date, tags, headerImg, headerImgCaption },
   },
   headings,
 } = Astro.props;
@@ -35,7 +36,7 @@ const getComments = async () => {
 
 const comments = await getComments();
 
-const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `https://cobra.monster/blog/og/${slug}.png`;
+const ogImg = `https://cobra.monster/blog/og/${slug}.png`;
 ---
 
 <head>
@@ -43,10 +44,10 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
   <meta name="viewport" content="width=device-width" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
-  <meta property="og:title" content={blogExclude ? `About Regal: ${title}` : title} />
+  <meta property="og:title" content={title} />
   <meta property="og:description" content={subtitle} />
   <meta property="og:image" content={ogImg} />
-  <title>{blogExclude ? `About Regal: ${title}` : title}</title>
+  <title>{title}</title>
 </head>
 
 <Layout blog={true}>
@@ -60,10 +61,10 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
       <div id="publishTags" class="border-t-2 border-slate-200 pb-4">
         <div class="mt-2">
           <div class="md:hidden flex">
-            <p class="text-slate-200 text-sm">{blogExclude ? "Last Updated" : "Published"}: {formattedDate}</p>
+            <p class="text-slate-200 text-sm">{"Published"}: {formattedDate}</p>
           </div>
           <div class="md:flex flex-col hidden">
-            <h3 class="font-medium text-2xl">{blogExclude ? "Last Updated" : "Published"}</h3>
+            <h3 class="font-medium text-2xl">{"Published"}</h3>
             <p>{formattedDate}</p>
           </div>
         </div>
@@ -81,9 +82,19 @@ const ogImg = blogExclude ? "https://cobra.monster/websiteMetaHeader.png" : `htt
       {headings.length > 0 && <TableOfContents headings={headings} />}
     </Fragment>
     <Fragment slot="main">
+      {
+        headerImg && (
+          <div class="mb-16">
+            <Image src={headerImg} alt={`${title} header image`} />
+            <em>{headerImgCaption}</em>
+          </div>
+        )
+      }
       <slot />
+      <!-- Filtering out "AboutBlurbs" -->
+      {headerImg && 
       <ChiStarHorizontalRule />
-      <Comments comments={comments} pageUrl={`/blog/${slug}`} />
+      <Comments comments={comments} pageUrl={`/blog/${slug}`} />}
     </Fragment>
   </BlogStyleMain>
 </Layout>
