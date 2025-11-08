@@ -77,7 +77,8 @@ This file is in BETA. Please test and contribute to the discussion:
 			<head>
 				<title><xsl:value-of select="/rss/channel/title" /> Web Feed</title>
 				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+				<meta name="viewport"
+					content="width=device-width, initial-scale=1, maximum-scale=1" />
 				<style type="text/css">
 					* { box-sizing: border-box; }
 					svg { max-width: 100%; }
@@ -121,16 +122,17 @@ This file is in BETA. Please test and contribute to the discussion:
 				<nav class="intro">
 					<div class="container">
 						<div>
-							<p><strong>Yahaha, you found me!</strong> This is my RSS feed. You can <strong>
-								Subscribe</strong> by copy-pasting the URL into your RSS feed reader
-								or by clicking <a>
+							<p>This is my RSS feed. You can <strong>
+									Subscribe</strong> by copy-pasting the URL into your RSS feed
+								reader or by clicking <a>
 									<xsl:attribute name="href">
 										<xsl:value-of
 											select="concat('feed:', //atom:link[@rel='self']/@href)" />
 									</xsl:attribute>
 								here</a>... </p>
 							<p>
-								<small> ...or subscribe via <input type="button" onclick="subtome()"
+								<small> ...or subscribe via <input type="button"
+										onclick="subtome()"
 										value="SubToMe" />
 								</small>
 							</p>
@@ -148,8 +150,10 @@ This file is in BETA. Please test and contribute to the discussion:
 							</style>
 							<rect class="button" width="8" height="8" rx="1.5" />
 							<circle class="symbol" cx="2" cy="6" r="1" />
-							<path class="symbol" d="m 1,4 a 3,3 0 0 1 3,3 h 1 a 4,4 0 0 0 -4,-4 z" />
-							<path class="symbol" d="m 1,2 a 5,5 0 0 1 5,5 h 1 a 6,6 0 0 0 -6,-6 z" />
+							<path class="symbol"
+								d="m 1,4 a 3,3 0 0 1 3,3 h 1 a 4,4 0 0 0 -4,-4 z" />
+							<path class="symbol"
+								d="m 1,2 a 5,5 0 0 1 5,5 h 1 a 6,6 0 0 0 -6,-6 z" />
 						</svg>
 					</div>
 				</nav>
@@ -214,31 +218,35 @@ This file is in BETA. Please test and contribute to the discussion:
 						<h2>Recent Items</h2>
 
 						<!-- RSS -->
-						<xsl:for-each select="/rss/channel/item">
-							<div class="pb-5">
-								<h3>
-									<a target="_blank">
-										<xsl:attribute name="href">
-											<xsl:value-of select="link" />
-										</xsl:attribute>
-										<xsl:value-of select="title" />
-									</a>
-								</h3>
-								<img>
-									<xsl:attribute name="src">
-										<xsl:value-of select="customData" />
-									</xsl:attribute>
-								</img>
-								<div>
+						<rss xmlns:media="http://search.yahoo.com/mrss/">
+							<xsl:value-of select="customData" />
+							<xsl:for-each select="/rss/channel/item">
+								<div class="pb-5">
+									<h3>
+										<a target="_blank">
+											<xsl:attribute name="href">
+												<xsl:value-of select="link" />
+											</xsl:attribute>
+											<xsl:value-of select="title" />
+										</a>
+									</h3>
+									<media:content
+										url="https://www.53.com/content/dam/fifth-third/heroes/jd-power-nationwide.png"
+										width="600"
+										height="315"
+										medium="image" />
+									<!-- <img
+										src="https://www.53.com/content/dam/fifth-third/heroes/jd-power-nationwide.png"
+										alt="" /> -->
 									<xsl:value-of select="customData" />
+									<p>
+										<xsl:value-of select="description" />
+									</p>
+									<small class="meta"> Published: <xsl:value-of select="pubDate" />
+									</small>
 								</div>
-								<p>
-									<xsl:value-of select="description" />
-								</p>
-								<small class="meta"> Published: <xsl:value-of select="pubDate" />
-								</small>
-							</div>
-						</xsl:for-each>
+							</xsl:for-each>
+						</rss>
 
 						<!-- Atom -->
 						<xsl:for-each select="/atom:feed/atom:entry">
@@ -246,7 +254,8 @@ This file is in BETA. Please test and contribute to the discussion:
 								<h3>
 									<a target="_blank">
 										<xsl:attribute name="href">
-											<xsl:value-of select="atom:link[@rel='alternate']/@href" />
+											<xsl:value-of
+												select="atom:link[@rel='alternate']/@href" />
 										</xsl:attribute>
 										<xsl:value-of select="atom:title" />
 									</a>

@@ -17,8 +17,11 @@ export const GET: APIRoute = async ({ site }) => {
       link: `/blog/${post.slug}`,
       categories: data.tags?.map((tag) => tag.id),
       author: "regal@cobra.monster",
-      customData: `<media:content url="${site}/api/posts/thumbnails/${post.slug}" width="600" height="315" medium="image"/>`,
-      // customData: `<media:content url="${site}/api/posts/thumbnails/${post.slug}" width="600" height="315" medium="image"/>`,
+      customData: `<media:image 
+      url="${site}api/posts/thumbnails/${post.slug}"
+      width="600" 
+      height="315" 
+      medium="image"/>`,
     };
   });
 
@@ -44,17 +47,19 @@ export const GET: APIRoute = async ({ site }) => {
     };
   });
 
-  const rssItems = [...blogItems, ...cafeReviewItems, ...bookReviewItems].sort((a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf());
+  const rssItems = [...blogItems].sort((a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf());
+  // const rssItems = [...blogItems, ...cafeReviewItems, ...bookReviewItems].sort((a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf());
 
   return rss({
     trailingSlash: false,
-    stylesheet: "src/styles/rss/pretty-feed-v4.xsl",
+    stylesheet: "/pretty-feed-v4.xsl",
     title: "Regal's Blog",
-    description: "Blog",
+    description: "A communist cobra's blog posts.",
     site: site!,
     xmlns: {
       media: "http://search.yahoo.com/mrss/", // media namespace
     },
+    // Only blog items, for now
     items: rssItems,
   });
 };

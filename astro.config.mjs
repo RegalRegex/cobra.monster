@@ -10,7 +10,7 @@ import { transformerCopyButton } from "@rehype-pretty/transformers";
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  site: "https://localhost:4321",
+  site: "https://cobra.monster",
   // This line fixed the "Failed to scan for dependencies from entries:" error
   base: "",
   vite: {

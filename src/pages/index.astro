@@ -11,6 +11,7 @@ import TextDeco from "@components/TextDeco.astro";
 import coffeeShopChill from "@assets/argent/CoffeShopChill_Deriaz.jpg";
 import SiteMap from "@components/SiteMap.astro";
 import HomePageBlogPosts from "@components/HomePageBlogPosts.astro";
+import RssFeedBtn from "@components/RssFeedBtn.astro";
 ---
 
 <Layout homePage={true}>
@@ -31,8 +32,9 @@ import HomePageBlogPosts from "@components/HomePageBlogPosts.astro";
         </h2>
       </div>
       <HomePageBlogPosts />
-      <div class="sm:ml-16 mt-5">
+      <div class="sm:ml-16 mt-5 flex justify-between items-end">
         <Button url="/blog">All Blog Posts →︎</Button>
+        <RssFeedBtn />
       </div>
     </HomeContentBox>
     <div class="lg:flex w-full pr-5 col-span-4 aspect-square self-center place-items-center hidden">
