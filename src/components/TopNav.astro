@@ -64,21 +64,40 @@ const { isErrorPage } = Astro.props;
       COBRA<span class="text-4xl mb-1">★</span>MONSTER
     </div>
   </a>
-  <div class="hidden items-center xs:flex">
-    <ul class="flex gap-5 text-redDarkest font-medium">
+  <div class="items-center xs:flex w-full">
+    <ul class="flex justify-between grow gap-5 text-redDarkest font-medium mr-4">
       <li class="hover:scale-[1.15] transition duration-300">
         {
           isErrorPage ? (
-            <a href="/" class:list={["capitalize px-2 py-1 bg-slate-200 rounded-full"]}>
-              ←︎ Home
-            </a>
+            <button class:list={["capitalize px-2 py-1 bg-slate-200 rounded-full"]}>
+              <a href="/">←︎ Home</a>
+            </button>
           ) : (
-            <a href={returnPathName().url} class:list={["capitalize px-2 py-1 bg-slate-200 rounded-full"]}>
-              ←︎ {returnPathName().urlDisplay}
-            </a>
+            <button class:list={["capitalize px-2 py-1 bg-slate-200 rounded-full"]}>
+              <a href={returnPathName().url}>←︎ {returnPathName().urlDisplay}</a>
+            </button>
           )
         }
+      </li>
+      <li class="hover:scale-[1.15] transition duration-300">
+        <button id="top-nav-scroll-to-footer" class="px-2 py-1 bg-slate-200 rounded-full hover:cursor-pointer"> Nav ↓ </button>
       </li>
     </ul>
   </div>
 </nav>
+
+<script>
+  function getBackToBottomBtn() {
+    const backToTopButton = document.getElementById("top-nav-scroll-to-footer");
+    backToTopButton?.addEventListener("click", scrollToBottom);
+  }
+  getBackToBottomBtn();
+
+  function scrollToBottom() {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight - window.innerHeight,
+      behavior: "smooth",
+    });
+  }
+  document.addEventListener("astro:after-swap", getBackToBottomBtn);
+</script>

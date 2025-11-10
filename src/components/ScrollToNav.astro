@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import Arrow from "@assets/mutantEmoji/utility/arrow_down.png";
+
+interface Props {
+  left?: boolean;
+}
+
+const { left = false } = Astro.props;
+
+const position = left ? "left-0.5 md:left-6" : "right-0.5 md:right-6";
+---
+
+<button
+  aria-label="scroll-to-nav button"
+  class=`bg-yellow fixed rounded-full bottom-10 ${position} p-0.5  md:p-2 transition-all duration-300 opacity-0 invisible hover:cursor-pointer hover:scale-[1.15] ring-2 ring- flex items-center text-black gap-1 font-semibold z-100 flex-col md:flex-row`
+  id="scroll-to-footer"
+>
+  Nav<Image src={Arrow} alt={"Down arrow"} class="w-6" />
+</button>
+
+<script>
+  function setBacktoBottomBtn() {
+    const backToTopButton = document.getElementById("scroll-to-footer");
+    window.addEventListener("scroll", toggleBackToTopButton);
+    backToTopButton?.addEventListener("click", scrollToBottom);
+  }
+  function toggleBackToTopButton() {
+    const backToTopButton = document.getElementById("scroll-to-footer");
+    if (window.scrollY > 100 && !(document.body.scrollHeight <= Math.trunc(window.scrollY + window.innerHeight))) {
+      backToTopButton?.classList.remove("opacity-0", "invisible");
+      backToTopButton?.classList.add("opacity-100", "visible");
+    } else {
+      backToTopButton?.classList.add("opacity-0", "invisible");
+      backToTopButton?.classList.remove("opacity-100", "visible");
+    }
+  }
+  setBacktoBottomBtn();
+
+  function scrollToBottom() {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight - window.innerHeight,
+      behavior: "smooth",
+    });
+  }
+
+  document.addEventListener("astro:after-swap", setBacktoBottomBtn);
+</script>

@@ -12,10 +12,12 @@ import coffeeShopChill from "@assets/argent/CoffeShopChill_Deriaz.jpg";
 import SiteMap from "@components/SiteMap.astro";
 import HomePageBlogPosts from "@components/HomePageBlogPosts.astro";
 import RssFeedBtn from "@components/RssFeedBtn.astro";
+import ScrollToNav from "@components/ScrollToNav.astro";
 ---
 
 <Layout homePage={true}>
   <SiteHeader homePage={true} />
+  <ScrollToNav />
   <div class="text-center py-2">
     <span id="monsterTxt" class="headerTxt Qt text-white text-4xl md:text-6xl italic tracking-wide">
       The Crisis of Capitalism unearths a MONSTER
