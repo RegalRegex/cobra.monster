@@ -133,6 +133,17 @@ const comments = defineCollection({
   }),
 });
 
+const radicalLit = defineCollection({
+  type: "data",
+  schema: () =>
+    z.object({
+      title: z.string(),
+      author: z.array(z.string()),
+      downloadLink: z.string(),
+      comments: z.string().optional(),
+    }),
+});
+
 export const collections = {
   aboutBlurbs,
   tags,
@@ -144,4 +155,5 @@ export const collections = {
   galleries,
   coffeeShopReviews,
   comments,
+  radicalLit,
 };

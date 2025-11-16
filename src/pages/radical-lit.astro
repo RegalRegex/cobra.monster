@@ -1,0 +1,41 @@
+---
+import HomeContentBox from "@components/HomeContentBox.astro";
+import HomeSection from "@components/HomeSection.astro";
+import PageHeader from "@components/PageHeader.astro";
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const litCollection = await getCollection("radicalLit");
+console.log(litCollection);
+---
+
+<Layout>
+  <PageHeader>Radical Lit</PageHeader>
+  <HomeSection darkBg={false} border={[]}>
+    <HomeContentBox columns={["lg:col-start-3 lg:col-span-8 xs:col-start-2 xs:col-span-10 col-start-1 col-span-12"]}>
+      <table class="w-full">
+        <tr class="divide-x-2 divide-y-2 divide-yellow">
+          <th>Title</th>
+          <th>Author</th>
+          <th>Download Link</th>
+          <th class="border-b-2 border-yellow">Comments</th>
+        </tr>
+        {
+          litCollection.map((lit) => {
+            const data = lit.data;
+            return (
+              <tr class="divide-x-2 divide-y-2 divide-yellow">
+                <td>{data.title}</td>
+                <td>{data.author}</td>
+                <td>
+                  <a href={data.downloadLink}>Download</a>
+                </td>
+                <td class="border-b-2 border-yellow">{data.comments}</td>
+              </tr>
+            );
+          })
+        }
+      </table>
+    </HomeContentBox>
+  </HomeSection>
+</Layout>
