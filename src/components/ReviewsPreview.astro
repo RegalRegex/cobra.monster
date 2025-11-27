@@ -1,0 +1,101 @@
+---
+import ReviewScore from "@components/CoffeeShopReviews/ReviewScore.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { sortCollection } from "src/utils/sortCollection";
+import Link from "@components/Link.astro";
+import ChiStarRating from "@components/ImageComponents/ChiStarRating.astro";
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
+
+import writing from "@assets/mutantEmoji/hands/writing_hand_clw_y2.png";
+import Button from "@components/Button.astro";
+import { formatDate } from "src/utils/stringFormatters";
+
+const cafeReviewCol = async () => {
+  const allReviews = await getCollection("coffeeShopReviews");
+  const sortedReviews = sortCollection(allReviews, "date");
+  return sortedReviews[0];
+};
+
+const bookReviewCol = async () => {
+  const allReviews = await getCollection("books");
+  const sortedReviews = sortCollection(allReviews, "date");
+  return sortedReviews[0];
+};
+
+const cafeReviewObj = await cafeReviewCol();
+const bookReviewObj = await bookReviewCol();
+const cafeReview = cafeReviewObj.data;
+const bookReview = bookReviewObj.data;
+---
+
+<div class="hidden sm:grid grid-cols-2 sm:grid-cols-2 gap-8">
+  <div class="flex shrink w-full">
+    <Image src={cafeReview.headerImg} alt={`${cafeReview.title} Review Header Img`} class="" } />
+  </div>
+  <div class="flex shrink w-full">
+    <Image src={bookReview.cover} alt={`${bookReview.title} Book Cover`} class="" } />
+  </div>
+  <div class="flex flex-col">
+    <span class="flex">
+      <Link url={`/cafe-reviews/${cafeReviewObj.slug}`}>{cafeReview.title}</Link>
+    </span>
+    <span class="italic opacity-75">{formatDate(cafeReview.date)}</span>
+  </div>
+  <div class="flex flex-col">
+    <span class="flex">
+      <Link url={`/books/${bookReviewObj.slug}`}>{bookReview.title}</Link>
+    </span>
+    <span class="italic opacity-75">{formatDate(bookReview.date)}</span>
+  </div>
+  <ReviewScore cafeData={cafeReview} />
+  <div class="flex flex-col gap-2">
+    <div class="flex">
+      <ChiStarRating rating={bookReview.rating} maxWidth="max-w-10" isYellow />
+    </div>
+    <p class="italic grow sm:text-left flex items-center gap-2">
+      <span class="border-r pr-2 flex-none">
+        <Image src={writing} alt={"Writing emoji"} class={"w-10 mb-1"} />
+      </span>
+      <span>{bookReview.author}</span>
+    </p>
+    <p>{bookReview.summary}</p>
+  </div>
+  <Button url="/cafe-reviews">Cafe Reviews →︎</Button>
+  <Button url="/books">Book Reviews →︎</Button>
+</div>
+
+<div class="grid sm:hidden grid-cols-1">
+  <div id="cafeReviews" class="flex flex-col gap-4 border-b-4 border-yellow border-dashed mb-4 pb-4">
+    <Image src={cafeReview.headerImg} alt={`${cafeReview.title} Review Header Img`} class="" } />
+    <div class="flex flex-col">
+      <span class="flex">
+        <Link url={`/cafe-reviews/${cafeReviewObj.slug}`}>{cafeReview.title}</Link>
+      </span>
+      <span class="italic opacity-75">{formatDate(cafeReview.date)}</span>
+    </div>
+    <ReviewScore cafeData={cafeReview} />
+    <Button url="/cafe-reviews">Cafe Reviews →︎</Button>
+  </div>
+  <div id="bookReviews" class="flex flex-col gap-4">
+    <Image src={bookReview.cover} alt={`${bookReview.title} Book Cover`} class="" } />
+    <div class="flex flex-col">
+      <span class="flex">
+        <Link url={`/books/${bookReviewObj.slug}`}>{bookReview.title}</Link>
+      </span>
+      <span class="italic opacity-75">{formatDate(bookReview.date)}</span>
+    </div>
+    <div class="flex">
+      <ChiStarRating rating={bookReview.rating} maxWidth="max-w-10" isYellow />
+    </div>
+    <p class="italic grow sm:text-left flex items-center gap-2">
+      <span class="border-r pr-2 flex-none">
+        <Image src={writing} alt={"Writing emoji"} class={"w-10 mb-1"} />
+      </span>
+      <span>{bookReview.author}</span>
+    </p>
+    <p>{bookReview.summary}</p>
+
+    <Button url="/books">Book Reviews →︎</Button>
+  </div>
+</div>

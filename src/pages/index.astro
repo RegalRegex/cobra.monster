@@ -13,6 +13,7 @@ import SiteMap from "@components/SiteMap.astro";
 import HomePageBlogPosts from "@components/HomePageBlogPosts.astro";
 import RssFeedBtn from "@components/RssFeedBtn.astro";
 import ScrollToNav from "@components/ScrollToNav.astro";
+import ReviewsPreview from "@components/ReviewsPreview.astro";
 ---
 
 <Layout homePage={true}>
@@ -44,6 +45,14 @@ import ScrollToNav from "@components/ScrollToNav.astro";
     </div>
   </HomeSection>
   <HomeSection darkBg={false}>
+    <HomeContentBox columns={["col-start-1 col-span-12  z-10"]}>
+      <h2 class="headerTxt xs:text-7xl sm:text-6xl text-5xl xl:text-8xl font-bold text-white underline decoration-redLight text-wrap text-center mb-5">
+        Recent Reviews
+      </h2>
+      <ReviewsPreview />
+    </HomeContentBox>
+  </HomeSection>
+  <HomeSection darkBg={true} border={[]}>
     <HomeContentBox columns={["md:col-start-2", "md:col-span-10", "col-start-1", "col-span-12"]}>
       <div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
@@ -80,7 +89,7 @@ import ScrollToNav from "@components/ScrollToNav.astro";
       </div>
     </HomeContentBox>
   </HomeSection>
-  <HomeSection darkBg={true} border={[]}>
+  <HomeSection darkBg={false} border={["border-t-4"]}>
     <HomeContentBox columns={["lg:col-start-3 lg:col-span-8 sm:col-start-2 sm:col-span-10 col-start-1 col-span-12"]}>
       <h2 class="headerTxt font-prospekt xs:text-7xl text-5xl xl:text-8xl mb-10 underline decoration-redLight text-center lg:col-span-2">Site Map</h2>
       <SiteMap />
