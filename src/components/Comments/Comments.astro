@@ -6,6 +6,12 @@ import { formatDate, formatTime } from "src/utils/stringFormatters";
 
 import Wrex from "@assets/Wrex.png";
 import ChiStar from "@components/ImageComponents/ChiStar.astro";
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
+import questionMark from "@assets/mutantEmoji/utility/gray_question_mark.png";
+import sparkle from "@assets/mutantEmoji/sparkles.png";
+import InlineArgentEmoji from "@components/ImageComponents/InlineArgentEmoji.astro";
+import woozy from "@assets/mutantEmoji/expressions/woozy.png";
+import dragon from "@assets/mutantEmoji/western_dragon.png";
 
 /**
  * Credit for Netlify forms comments goes to Emily Goto:
@@ -34,7 +40,31 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
 ---
 
 <div class="md:py-8 md:px-20">
-  <p class="not-prose text-3xl text-white mb-2">Comments</p>
+  <div class="flex items-center gap-2">
+    <p class="not-prose text-3xl text-white mb-2">Comments</p>
+    <button
+      class="toggle-comments-exp hover:cursor-pointer hover:text-white hover:bg-gray-300 aspect-square p-0.5 rounded-full border-gray-400 border inline-flex shrink mb-1"
+      ><InlineEmoji emoji={questionMark} styles="w-2.5 sm:w-4" /></button
+    >
+  </div>
+  <div class="comments-exp overflow-y-hidden transition-all duration-1000 ease-in-out max-h-0 opacity-0 text-xs sm:text-base">
+    <p class="text-2xl">How the Comments Work:</p>
+    <ul class="list-none">
+      <li>
+        <InlineEmoji emoji={sparkle} /> This comment system is custom built–loosely following <a href="https://www.emgoto.com/astro-blog-comments/"
+          >Emily Goto's</a
+        > example on her blog.
+      </li>
+      <li>
+        <InlineArgentEmoji emoji="smile" /> This is a static site, so comments are added manually by me
+      </li>
+      <li>
+        <InlineEmoji emoji={woozy} /> I ask for a Bsky account because I'm lazily using their API to fetch avatar images from there (instead of using Gravatar, for
+        instance)
+      </li>
+      <li><InlineEmoji emoji={dragon} /> If you do not provide a Bsky account, your comment will have a picture of Wrex instead</li>
+    </ul>
+  </div>
   {
     comments.length > 0 ? (
       <div class="pb-4 mb-4 border-yellow border-b-2 flex flex-col gap-4">
@@ -77,7 +107,6 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
                     </a>
                   </span>
                   <p set:html={comment.text} />
-                  {/* <Fragment set:html={md.render(comment.text)}/> */}
                 </div>
               </div>
             );
@@ -89,3 +118,25 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
   }
   <CommentForm client:idle />
 </div>
+
+<script>
+  function setToggleCommentsExp() {
+    const legendText = document.querySelectorAll(".comments-exp");
+    const legendButton = document.querySelector(".toggle-comments-exp");
+    legendButton?.addEventListener("click", () => {
+      legendText.forEach((legend) => {
+        if (legend.classList.contains("max-h-0")) {
+          legend.classList.remove("max-h-0", "opacity-0");
+          legend.classList.add("max-h-96", "opacity-100", "mb-2");
+          legend.ariaHidden = "false";
+        } else {
+          legend.classList.add("max-h-0", "opacity-0");
+          legend.classList.remove("max-h-96", "opacity-100", "mb-2");
+          legend.ariaHidden = "true";
+        }
+      });
+    });
+  }
+  setToggleCommentsExp();
+  document.addEventListener("astro:after-swap", setToggleCommentsExp);
+</script>

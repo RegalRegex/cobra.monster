@@ -106,10 +106,12 @@ const totalScore = Object.values(cafeData.rating).reduce((a, b) => a + b);
           // legend.classList.remove("hidden");
           legend.classList.remove("max-h-0", "opacity-0");
           legend.classList.add("max-h-20", "opacity-100", "mb-2");
+          legend.ariaHidden = "false";
         } else {
           // legend.classList.add("hidden");
           legend.classList.add("max-h-0", "opacity-0");
           legend.classList.remove("max-h-20", "opacity-100", "mb-2");
+          legend.ariaHidden = "true";
         }
       });
     });

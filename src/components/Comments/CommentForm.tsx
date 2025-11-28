@@ -99,7 +99,7 @@ export const CommentForm = () => {
             </div>
             <div className="flex flex-col">
               <label htmlFor="bsky" className="text-lg">
-                Bluesky (used to link back + fetch your avatar image)
+                Bluesky
               </label>
               <div className="border border-yellow bg-[#761416] flex">
                 <span className="px-2 text-slate-200/75 leading-8">@</span>
