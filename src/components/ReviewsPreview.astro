@@ -29,13 +29,9 @@ const cafeReview = cafeReviewObj.data;
 const bookReview = bookReviewObj.data;
 ---
 
-<div class="hidden sm:grid grid-cols-2 sm:grid-cols-2 gap-8">
-  <div class="flex shrink w-full">
-    <Image src={cafeReview.headerImg} alt={`${cafeReview.title} Review Header Img`} class="" } />
-  </div>
-  <div class="flex shrink w-full">
-    <Image src={bookReview.cover} alt={`${bookReview.title} Book Cover`} class="" } />
-  </div>
+<div class="hidden sm:grid grid-cols-2 gap-8 items-center">
+  <Image src={cafeReview.headerImg} alt={`${cafeReview.title} Review Header Img`} class="object-contain aspect-square" } />
+  <Image src={bookReview.cover} alt={`${bookReview.title} Book Cover`} class="object-contain aspect-square" />
   <div class="flex flex-col">
     <span class="flex">
       <Link url={`/cafe-reviews/${cafeReviewObj.slug}`}>{cafeReview.title}</Link>
