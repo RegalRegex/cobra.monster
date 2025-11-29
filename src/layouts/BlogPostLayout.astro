@@ -86,7 +86,7 @@ const ogImg = `https://cobra.monster/blog/og/${slug}.png`;
         headerImg && (
           <div class="mb-16">
             <Image src={headerImg} alt={`${title} header image`} />
-            <em>{headerImgCaption}</em>
+            {headerImgCaption && <em>{headerImgCaption}</em>}
           </div>
         )
       }

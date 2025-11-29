@@ -53,7 +53,7 @@ const Accordion = ({ title, content, bgRed = true }: Props) => {
           <h3 className="font-bold not-prose">
             <button className="accordionBtn flex items-center justify-between w-full hover:cursor-pointer" onClick={toggleAccordion} aria-expanded={expanded}>
               {title}
-              <img className={`${rotate} w-6`} src={arrowRight.src} alt="arrow" />
+              <img className={`${rotate} w-6 not-prose`} src={arrowRight.src} alt="arrow" />
             </button>
           </h3>
           <section ref={contentSpace} style={{ maxHeight: `${height}` }} className="overflow-y-hidden transition-max-height duration-500 ease-in-out text-left">

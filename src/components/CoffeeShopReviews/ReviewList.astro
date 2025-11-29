@@ -16,11 +16,12 @@ const { sort = { field: "date", desc: true } } = Astro.props;
 
 const starMd = "<span>★</span>";
 const reviews: Array<CollectionEntry<"coffeeShopReviews">> = await getCollection("coffeeShopReviews");
+const reviewsFilter = reviews.filter((review) => !review.data.scoreOnly);
 const reviewsSorted = (): Array<CollectionEntry<"coffeeShopReviews">> => {
   if (sort.field !== "favorites") {
-    return sort.desc ? sortCollection(reviews, sort.field) : sortCollection(reviews, sort.field).toReversed();
+    return sort.desc ? sortCollection(reviewsFilter, sort.field) : sortCollection(reviewsFilter, sort.field).toReversed();
   } else {
-    return reviews.filter((review) => review.data.favorite);
+    return reviewsFilter.filter((review) => review.data.favorite);
   }
 };
 ---

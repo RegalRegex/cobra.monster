@@ -1,0 +1,50 @@
+---
+import ReviewScore from "@components/CoffeeShopReviews/ReviewScore.astro";
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
+import { getEntry } from "astro:content";
+import arrowRight from "@assets/mutantEmoji/utility/arrow_right.png";
+
+interface Props {
+  reviewName: string;
+}
+
+const { reviewName } = Astro.props;
+
+const reviewEntry = await getEntry("coffeeShopReviews", reviewName);
+const review = reviewEntry?.data;
+
+const url = review?.scoreOnly ? "" : `/cafe-reviews/${reviewEntry?.slug}`;
+---
+
+{
+  review && (
+    <section class="p-4 border-2 border-yellow bg-boxPrimary flex text-slate-200 gap-2  flex-col justify-between">
+      <div class="border-b mb-4">
+        {url ? (
+          <a href={`/cafe-reviews/${reviewEntry.slug}`} class="not-prose">
+            <h2 class="pb-2 text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-black text-yellow not-prose">{review.title}</h2>
+          </a>
+        ) : (
+          <h2 class="pb-2 text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-black text-yellow not-prose">{review.title}</h2>
+        )}
+      </div>
+      <div class="mb-4 sm:text-lg flex gap-2 items-center h-full">
+        <div class="flex flex-col justify-end flex-3/4 md:text-xl pr-1 shrink h-full">
+          <div class="flex flex-col lg:flex-row not-prose pb-4 gap-4">
+            <p class="pb-2 grow self-start lg:border-r lg:pr-2">{review.summary}</p>
+            <ReviewScore cafeData={review} compact={false} legend={false} />
+          </div>
+          <span class="pt-2 border-t">
+            <strong>Order Suggestion: </strong>
+            {review.orderSuggestion}
+          </span>
+        </div>
+      </div>
+      {url && (
+        <a class="border-b-2 border-yellow w-fit ml-auto hover:text-amber-500 md:text-lg not-prose" href={url}>
+          Full Review <InlineEmoji emoji={arrowRight} styles="w-4" />
+        </a>
+      )}
+    </section>
+  )
+}

@@ -114,6 +114,8 @@ const coffeeShopReviews = defineCollection({
       lastUpdated: z.date(),
       summary: z.string(),
       orderSuggestion: z.string(),
+      scoreOnly: z.boolean().optional(),
+      notChicago: z.boolean().optional(),
     }),
 });
 
