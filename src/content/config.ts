@@ -60,6 +60,7 @@ const books = defineCollection({
       rating: z.number(),
       cover: image(),
       bookTags: z.array(reference("bookTags")),
+      ogImgBlurb: z.string().optional(),
     }),
 });
 

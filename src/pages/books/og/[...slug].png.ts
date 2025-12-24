@@ -32,7 +32,15 @@ export async function getStaticPaths() {
     };
     return {
       params: { slug: book.slug },
-      props: { title: book.data.title, subtitle: book.data.summary, date: book.data.date, rating: book.data.rating, cover: constructPublicPath() },
+      props: {
+        title: book.data.title,
+        author: book.data.author,
+        subtitle: book.data.summary,
+        date: book.data.date,
+        rating: book.data.rating,
+        cover: constructPublicPath(),
+        ogImgBlurb: book.data.ogImgBlurb,
+      },
     };
   });
 }

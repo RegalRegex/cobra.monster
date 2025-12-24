@@ -2,12 +2,14 @@ import { baseUrl } from "../baseUrl";
 
 interface OgGenBlogProps {
   title: string;
+  author: string;
   subtitle: string;
   date?: Date;
   rating: number;
   cover: string;
+  ogImgBlurb?: string;
 }
-export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogProps): string => {
+export const booksHtml = ({ title, author, subtitle, date, rating, cover, ogImgBlurb }: OgGenBlogProps): string => {
   const dateStr = date
     ? `${date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })} ${date.toLocaleDateString("en-US", {
         month: "long",
@@ -44,6 +46,8 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
     return "";
   };
 
+  const displaySummary = ogImgBlurb ? ogImgBlurb : subtitle;
+
   return `
     <!-- Container -->
   <div class="w-[1200px] h-[630px] flex">
@@ -57,9 +61,10 @@ export const booksHtml = ({ title, subtitle, date, rating, cover }: OgGenBlogPro
       <div class="flex w-full justify-between m-10 h-full"> 
         <!-- Header & Subtitle -->
         <div class="flex flex-col w-[700px] h-[474px] justify-center pt-5">
-          <h1 class="${title.length > 30 ? "text-5xl" : "text-6xl"} leading-[1.25] border-b-4 border-[#eab308] pb-10">${title}</h1>
+          <h1 class="${title.length > 20 ? "text-5xl" : "text-6xl"} leading-[1.25]">${title}</h1>
+          <h2 class=" border-b-4 border-[#eab308]">- ${author}</h2>
           <div class="flex flex-col justify-around grow">
-            <h2 class="${subtitle.length > 120 ? "text-2xl" : "text-3xl"} leading-[1.5]">${subtitle}</h2>
+            <h2 class="${displaySummary.length > 120 ? "text-2xl" : "text-3xl"} leading-[1.5]">${displaySummary}</h2>
             <span>${starRatingBuilder()}</span>
           </div>
         </div>
