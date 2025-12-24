@@ -12,6 +12,7 @@ const blogEntries = await getCollection("books");
 
 interface Props {
   title: string;
+  author: string;
   subtitle: string;
   date: Date;
   rating: number;
