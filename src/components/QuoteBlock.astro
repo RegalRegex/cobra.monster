@@ -2,21 +2,26 @@
 interface Props {
   size?: "lg" | "2xl" | "3xl";
   serif?: boolean;
+  credit?: boolean;
 }
 
-const { size, serif = true } = Astro.props;
+const { size, serif = true, credit = true } = Astro.props;
 
 const textSize = size ? `text-${size}` : "";
 ---
 
 <blockquote class:list={["flex italic font-serif font-light relative my-10 border-slate-200 py-10"]}>
-  <div class=`ml-20 ${textSize} ${serif ? "font-serif" : "font-sans"}`>
+  <div class=`ml-20 ${textSize} ${serif ? "font-serif italic" : "font-sans"}`>
     <p class="slotContent">
       <slot />
     </p>
-    <p class="slotContent text-base">
-      –<slot name="credit" />
-    </p>
+    {
+      credit && (
+        <p class="slotContent text-base">
+          –<slot name="credit" />
+        </p>
+      )
+    }
   </div>
 </blockquote>
 
@@ -44,7 +49,7 @@ const textSize = size ? `text-${size}` : "";
     top: calc(-2 * var(--spacing));
     line-height: 1em;
   }
-  blockquote::after {
+  /* blockquote::after {
     position: absolute;
     display: block;
     height: 0;
@@ -56,5 +61,5 @@ const textSize = size ? `text-${size}` : "";
     bottom: calc(13 * var(--spacing));
     right: 0;
     line-height: 1em;
-  }
+  } */
 </style>
