@@ -44,9 +44,11 @@ const { homePage } = Astro.props;
         <div class="w-full grid gap-2 grid-cols-[repeat(auto-fit,minmax(min(15ch,100%),1fr))] border-b border-yellow mt-2 mb-4 pb-4">
           <NavLinks open />
         </div>
-        <Image src={ArgentSymmetrical} alt="Argent Symm" class="rounded-lg max-w-[100%] sm:max-w-[80%] lg:max-w-[100%] m-auto" />
-        <h2 class="headerTxt xs:text-5xl sm:text-4xl text-3xl xl:text-6xl font-bold text-white border-t border-yellow mt-4 pt-4">Webrings</h2>
-        <div class="flex w-full justify-around flex-wrap">
+        <div class="border-b border-yellow mb-4 pb-4 md:hidden">
+          <Image src={ArgentSymmetrical} alt="Argent Symm" class="rounded-lg max-w-96 m-auto " />
+        </div>
+        <h2 class="headerTxt xs:text-5xl sm:text-4xl text-3xl xl:text-6xl font-bold text-white">Webrings</h2>
+        <div class="flex w-full justify-around flex-wrap  mt-4">
           <div class="flex flex-col gap-2 items-start">
             <a href="https://fediring.net/" class="font-medium text-lg xs:text-2xl xl:text-3xl cursor-pointer  hover:text-amber-500 inline-flex gap-1 underline decoration-2 decoration-yellow"><InlineEmoji emoji={pentacle} styles="w-7"/>Fediring</a>
             <Link url="https://fediring.net/next?host=cobra.monster"><InlineEmoji emoji={ArrowRight} styles="w-5"/>Next</Link>
@@ -80,6 +82,16 @@ const { homePage } = Astro.props;
     )
   }
   <div class="flex flex-col flex-wrap gap-4 mt-5">
+    {!homePage &&
+    <a href="/" class="w-full justify-center  flex items-center brightness-90 py-16 xs:py-5 ">
+      <div class="w-18 -ml-10">
+        <CobraLogo />
+      </div>
+      <div class="text-white text-3xl flex items-center font-medium font-prospekt">
+        COBRA<span class="text-4xl mb-1">★</span>MONSTER
+      </div>
+    </a>
+    }
     <div class="flex flex-col bg-redDarkest p-4 rounded-md gap-2">
       <BadgeDisplay collection="critterBadges" />
       <div class="flex w-full">
@@ -92,6 +104,7 @@ const { homePage } = Astro.props;
     <div class="flex items-center justify-center mb-4">
       <Image src={ArgentDerp} alt={"Argent Derp"} class="max-w-96"/>
     </div>
+    {homePage && 
     <a href="/" class="w-full justify-center  flex items-center brightness-90 py-16 xs:py-5 border-t-2 border-slate-200">
       <div class="w-18 -ml-10">
         <CobraLogo />
@@ -100,6 +113,7 @@ const { homePage } = Astro.props;
         COBRA<span class="text-4xl mb-1">★</span>MONSTER
       </div>
     </a>
+    }
   </div>
 </footer>
 
