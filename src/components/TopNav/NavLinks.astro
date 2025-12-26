@@ -1,0 +1,66 @@
+---
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
+import Link from "@components/Link.astro";
+import linksConst from "@constants/nav.json";
+import arrowUpRight from "@assets/mutantEmoji/utility/arrow_up_right.png";
+
+interface Props {
+  open: boolean;
+}
+
+interface linksObj {
+  topLevel: string;
+  links: linkObj[];
+}
+
+interface linkObj {
+  display: string;
+  url: string;
+  external?: boolean;
+}
+const links: linksObj[] = linksConst;
+
+const { open } = Astro.props;
+---
+
+{
+  links.map((section: linksObj) => {
+    return (
+      <div class="p-2">
+        <span id={`top-nav-${section.topLevel}`} class={`top-menu text-lg xs:text-xl xl:text-3xl font-bold ${open ? "" : " hover:cursor-pointer"}`}>
+          {section.topLevel}
+        </span>
+        <ul id={`sub-menu-${section.topLevel.toLocaleLowerCase()}`} class={`sub-menu flex flex-col gap-1 flex-wrap ${open ? "" : "hidden"}`}>
+          {section.links
+            .sort((a, b) => a.display.localeCompare(b.display))
+            .map((linkPair) => (
+              <Link url={`${linkPair.external ? "" : "/"}${linkPair.url}`}>
+                {linkPair.display}
+                {linkPair.external && <InlineEmoji emoji={arrowUpRight} styles="w-4 ml-0 xl:w-5" />}
+              </Link>
+              // <a href={`/${linkPair.url}`} class="hover:cursor-pointer hover:text-yellow">
+              //   {linkPair.display}
+              // </a>
+            ))}
+        </ul>
+      </div>
+    );
+  })
+}
+
+<!-- <script>
+  function toggleSubMenu() {
+    const topMenus = document.getElementsByClassName("top-menu");
+    const subMenus = document.querySelectorAll(".sub-menu");
+    console.log(subMenus);
+    for (let i = 0; i < topMenus.length; i++) {
+      const topMenu = topMenus.item(i);
+      topMenu?.addEventListener("click", function () {
+        subMenus.forEach((el) => el.classList.toggle("hidden"));
+      });
+    }
+  }
+  toggleSubMenu();
+
+  document.addEventListener("astro:after-swap", toggleSubMenu);
+</script> -->

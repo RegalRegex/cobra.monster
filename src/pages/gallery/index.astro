@@ -1,10 +1,12 @@
 ---
 import Gallery from "@components/Gallery.astro";
 import PageHeader from "@components/PageHeader.astro";
+import TopNav from "@components/TopNav/TopNav.astro";
 import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout>
+  <TopNav />
   <PageHeader leftRight="left">Gallery</PageHeader>
   <Gallery />
 </Layout>

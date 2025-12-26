@@ -1,0 +1,86 @@
+[
+  {
+    "topLevel": "Writing",
+    "links": [
+      {
+        "display": "Blog",
+        "url": "blog"
+      },
+      {
+        "display": "Book Reviews",
+        "url": "books"
+      },
+      {
+        "display": "Cafe Reviews",
+        "url": "cafe-reviews"
+      }
+    ]
+  },
+  {
+    "topLevel": "Art",
+    "links": [
+      {
+        "display": "Gallery",
+        "url": "gallery"
+      },
+      {
+        "display": "Zines",
+        "url": "zines"
+      },
+      {
+        "display": "Characters",
+        "url": "characters"
+      }
+    ]
+  },
+  {
+    "topLevel": "About",
+    "links": [
+      {
+        "display": "About Regal",
+        "url": "about"
+      },
+      {
+        "display": "Coffee Rec.",
+        "url": "about/coffee/#recommendations"
+      },
+      {
+        "display": "Workout Advice",
+        "url": "about/weightlifting/#regals-workout-advice"
+      }
+    ]
+  },
+  {
+    "topLevel": "Socials",
+    "links": [
+      {
+        "display": "Bluesky",
+        "url": "https://bsky.app/profile/coffee.cobra.monster",
+        "external": true
+      },
+      {
+        "display": "Mastodon",
+        "url": "https://yiff.life/@regal",
+        "external": true
+      }
+    ]
+  },
+  {
+    "topLevel": "Misc.",
+    "links": [
+      {
+        "display": "Links",
+        "url": "links"
+      },
+      {
+        "display": "Credits",
+        "url": "credits"
+      },
+      {
+        "display": "Sourcecode",
+        "url": "https://github.com/RegalRegex/cobra.monster",
+        "external": true
+      }
+    ]
+  }
+]

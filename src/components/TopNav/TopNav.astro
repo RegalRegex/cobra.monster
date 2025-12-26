@@ -1,0 +1,129 @@
+---
+import CobraLogo from "@components/ImageComponents/CobraLogo.astro";
+import arrowLeft from "@assets/mutantEmoji/utility/arrow_left.png";
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
+import arrowCurveDown from "@assets/mutantEmoji/utility/arrow_curve_down.png";
+import cross from "@assets/mutantEmoji/utility/cross.png";
+import NavLinks from "./NavLinks.astro";
+interface Props {
+  isErrorPage?: boolean;
+}
+
+interface Exception {
+  remove: RegExp;
+  displayReplace: string;
+  pathReplace: string;
+}
+
+interface UrlSplitReference {
+  urlDisplay: string;
+  url: string;
+}
+
+const exceptions: Exception[] = [
+  {
+    remove: /\/blog\/tagged\/.+/,
+    displayReplace: "blog",
+    pathReplace: "/blog",
+  },
+  {
+    remove: /\/books\/(compact|default)(\/tagged\/.+)?/,
+    displayReplace: "home",
+    pathReplace: "/",
+  },
+  {
+    remove: /\/cafe-reviews\/sort\/.+/,
+    displayReplace: "home",
+    pathReplace: "/",
+  },
+];
+const splitUrl: string[] = Astro.url.pathname.split("/");
+const splitUrlTrimmed = splitUrl[splitUrl.length - 1] === "" ? splitUrl.toSpliced(-1) : [...splitUrl];
+
+const returnPathName = (): UrlSplitReference => {
+  const topLevel = splitUrlTrimmed[splitUrlTrimmed.length - 2];
+  if (topLevel === "") {
+    return {
+      urlDisplay: "Home",
+      url: "/",
+    };
+  }
+  const exception = [...exceptions].find((item) => Astro.url.pathname.match(item.remove));
+
+  return {
+    urlDisplay: exception ? exception.displayReplace : topLevel.replace("-", " "),
+    url: exception ? exception.pathReplace : splitUrlTrimmed.toSpliced(-1).join("/"),
+  };
+};
+
+const { isErrorPage } = Astro.props;
+---
+
+<nav class="py-2 bg-redDark border-redLight w-full flex flex-col text-white">
+  <div id="nav-content-wrapper" class="w-full flex sm:flex-row flex-col">
+    <a
+      href="/"
+      class="text-3xl border-r-0 sm:border-r-2 border-slate-200 border-opacity-75 mx-5 pr-4 flex items-center font-medium font-prospekt self-center grow mb-auto"
+    >
+      <div class="w-12">
+        <CobraLogo />
+      </div>
+      <div class="text-white text-3xl flex items-center font-medium font-prospekt">
+        COBRA<span class="text-4xl mb-1">★</span>MONSTER
+      </div>
+    </a>
+
+    <div class="items-center sm:flex w-full hidden">
+      {
+        isErrorPage ? (
+          <a href="/" class="capitalize px-2 py-1 bg-slate-200 rounded-full flex flex-nowrap text-redDarkest font-medium mr-4 mb-auto mt-2 gap-1">
+            <InlineEmoji emoji={arrowLeft} styles={`w-5`} /> Home
+          </a>
+        ) : (
+          <a
+            href={returnPathName().url}
+            class="capitalize px-2 py-1 bg-slate-200 rounded-full flex flex-nowrap text-redDarkest font-medium mr-4 mb-auto mt-2 gap-1"
+          >
+            <InlineEmoji emoji={arrowLeft} styles={`w-5`} /> {returnPathName().urlDisplay}
+          </a>
+        )
+      }
+    </div>
+    <button class="nav-menu-btn px-2 py-1 rounded-full hover:cursor-pointer absolute right-0 top-4 block sm:hidden">
+      <svg viewBox="0 0 16 16" fill="currentColor" class="size-6"
+        ><path d="M8 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM8 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM9.5 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"
+        ></path></svg
+      >
+    </button>
+    <div class="items-center sm:flex w-full hidden">
+      <button
+        class="nav-menu-btn capitalize px-2 py-1 bg-slate-200 rounded-full flex flex-nowrap text-redDarkest font-medium mr-4 mb-auto mt-2 ml-auto hover:cursor-pointer"
+      >
+        <span class="nav-menu-display">Nav Menu <InlineEmoji emoji={arrowCurveDown} styles="w-5 ml-1" /></span>
+        <span class="nav-menu-display hidden">Nav Menu <InlineEmoji emoji={cross} styles="w-5 ml-1" /></span>
+      </button>
+    </div>
+  </div>
+  <div id="top-nav-menu" class="hidden transition-all duration-500 ease-in-out border-t border-slate-200 mt-2">
+    <div class="w-full grid gap-2 grid-cols-[repeat(auto-fit,minmax(min(15ch,100%),1fr))]">
+      <NavLinks open />
+    </div>
+  </div>
+</nav>
+
+<script>
+  function toggleNavBtn() {
+    const toggleNavBtns = document.querySelectorAll(".nav-menu-btn");
+    const toggleNavBtnsLg = document.querySelectorAll(".nav-menu-display");
+    const navMenu = document.getElementById("top-nav-menu");
+    toggleNavBtns.forEach((el) =>
+      el.addEventListener("click", function () {
+        navMenu?.classList.toggle("hidden");
+        toggleNavBtnsLg.forEach((btn) => btn.classList.toggle("hidden"));
+      }),
+    );
+  }
+  toggleNavBtn();
+
+  document.addEventListener("astro:after-swap", toggleNavBtn);
+</script>
