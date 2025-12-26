@@ -8,6 +8,16 @@ import CobraLogo from "@components/ImageComponents/CobraLogo.astro";
 import Gay from "@assets/mutantEmoji/gay.png";
 import SoGay from "@assets/mutantEmoji/so_gay.png";
 import RssFeedBtn from "./RssFeedBtn.astro";
+import cobraMonster from "@assets/cobra.monster.gif";
+import ArgentDerp from "@assets/argent/ArgentDerpSticker.png"
+import sneke from "@assets/argent/fuckingsneke.png"
+import InlineEmoji from "./ImageComponents/InlineEmoji.astro";
+import ArrowLeft from "@assets/mutantEmoji/utility/arrow_left.png"
+import ArrowRight from "@assets/mutantEmoji/utility/arrow_right.png"
+import pentacle from "@assets/mutantEmoji/pentacle.png"
+import muscle from "@assets/mutantEmoji/muscle_clw_y2.png"
+import NavLinks from "./TopNav/NavLinks.astro";
+import ArgentSymmetrical from "@assets/argent/SymmetricalArgent_Orion.png";
 
 interface Props {
   homePage?: boolean;
@@ -29,8 +39,26 @@ const { homePage } = Astro.props;
 >
   {
     homePage && (
-      <div class="flex flex-col xs:grid grid-cols-2 gap-2 m-5 pb-5 border-b-2 border-dashed border-yellow">
-        <div class="flex flex-col justify-center items-center gap-2 ">
+      <div class="flex flex-col gap-2 my-5 bg-redDarkest p-5 rounded-md ">
+          <h2 class="headerTxt xs:text-5xl sm:text-4xl text-3xl xl:text-6xl font-bold text-white">Site Map</h2>
+        <div class="w-full grid gap-2 grid-cols-[repeat(auto-fit,minmax(min(15ch,100%),1fr))] border-b border-yellow mt-2 mb-4 pb-4">
+          <NavLinks open />
+        </div>
+        <Image src={ArgentSymmetrical} alt="Argent Symm" class="rounded-lg max-w-[100%] sm:max-w-[80%] lg:max-w-[100%] m-auto" />
+        <h2 class="headerTxt xs:text-5xl sm:text-4xl text-3xl xl:text-6xl font-bold text-white border-t border-yellow mt-4 pt-4">Webrings</h2>
+        <div class="flex w-full justify-around flex-wrap">
+          <div class="flex flex-col gap-2 items-start">
+            <a href="https://fediring.net/" class="font-medium text-lg xs:text-2xl xl:text-3xl cursor-pointer  hover:text-amber-500 inline-flex gap-1 underline decoration-2 decoration-yellow"><InlineEmoji emoji={pentacle} styles="w-7"/>Fediring</a>
+            <Link url="https://fediring.net/next?host=cobra.monster"><InlineEmoji emoji={ArrowRight} styles="w-5"/>Next</Link>
+            <Link url="https://fediring.net/previous?host=cobra.monster"><InlineEmoji emoji={ArrowLeft} styles="w-5" />Previous</Link>
+          </div>
+          <div class="flex flex-col gap-2 items-start">
+            <a href="" class="font-medium text-lg xs:text-2xl xl:text-3xl cursor-pointer  hover:text-amber-500 inline-flex gap-1 line-through decoration-1 decoration-white pointer-events-none"><InlineEmoji emoji={muscle} styles="w-7"/>WIP Furry Fitness Ring</a>
+            <Link wip url=""><InlineEmoji emoji={ArrowRight} styles="w-5"/>Next</Link>
+            <Link wip url=""><InlineEmoji emoji={ArrowLeft} styles="w-5" />Previous</Link>
+          </div>
+        </div>
+        {/* <div class="flex flex-col justify-center items-center gap-2 ">
           <aside class="bg-boxPrimary border-4 border-yellow rounded-md flex flex-col justify-center items-center gap-2 p-4 text-center">
             <h2 class="text-2xl font-bold flex gap-2">
               <span class="inline-block w-8 not-prose -mb-1"><Image src={Gay} alt='gay'/></span>Furry Fitness Swimsuit Zine!!<span class="inline-block w-8 not-prose -mb-1"><Image src={SoGay} alt='so gay' /></s>
@@ -42,64 +70,29 @@ const { homePage } = Astro.props;
         </div>
         <div>
           <BadgeDisplay collection="standardBadges" />
-        </div>
+        </div> */}
       </div>
+      <div class="flex border-b-2 border-dashed border-yellow w-full grow px-5 mr-20"></div>
       <div class=" absolute bottom-4 right-4">
         <RssFeedBtn />
       </div>
       <button id="snakeMode" class="absolute bottom-0 left-0 p-1 ml-1 mb-1 border-white border-2 rounded-lg text-sm opacity-50 hover:cursor-pointer hover:opacity-80">Snake Mode?</button>
     )
   }
-  <div class="flex flex-col flex-wrap gap-4 p-5">
-    <nav id="linkBox" class="grid grid-cols-2 xs:flex col-span-3 gap-5 justify-around w-full pb-5">
-      <div class="flex flex-col ml-[25%] xs:ml-0">
-        <h2 class="text-xl xs:text-3xl xl:text-4xl font-bold headerTxt">Socials</h2>
-        <SocialsList logos={false} siteGroup="socials" />
+  <div class="flex flex-col flex-wrap gap-4 mt-5">
+    <div class="flex flex-col bg-redDarkest p-4 rounded-md gap-2">
+      <BadgeDisplay collection="critterBadges" />
+      <div class="flex w-full">
+        <span class="grow border-b border-yellow mb-4"></span>
+        <Image src={cobraMonster} alt={"cobra.monster 88x31"} class={"badge m-auto mx-2"} />
+        <span class="grow border-b border-yellow mb-4"></span>
       </div>
-      <div class="flex flex-col ml-[25%] xs:ml-0">
-        <h2 class="text-xl xs:text-3xl xl:text-4xl font-bold headerTxt">Cool Stuff</h2>
-        <ul>
-          <li>
-            <Link url="/about"> About Me </Link>
-          </li>
-          <li>
-            <Link url="/links"> Links </Link>
-          </li>
-          <li>
-            <Link url="/blog"> Blog </Link>
-          </li>
-        </ul>
-      </div>
-      <div class="flex flex-col ml-[25%] xs:ml-0">
-        <h2 class="text-xl xs:text-3xl xl:text-4xl font-bold headerTxt">Reviews</h2>
-        <ul>
-          <li>
-            <Link url="/books/default"> Book Reviews </Link>
-          </li>
-          <li>
-            <Link url="/cafe-reviews"> Cafe Reviews </Link>
-          </li>
-        </ul>
-      </div>
-      <div class="flex flex-col ml-[25%] xs:ml-0">
-        <h2 class="text-xl xs:text-3xl xl:text-4xl font-bold headerTxt">Site Info</h2>
-        <ul>
-          <li>
-            <Link url="/credits"> Site Credits </Link>
-          </li>
-          <li>
-            <Link url="https://github.com/RegalRegex/cobra.monster"> Codebase </Link>
-          </li>
-        </ul>
-      </div>
-      <a
-        href="/lick"
-        class:list={["hidden xs:flex justify-self-center aspect-square my-auto hover:animate-assJiggle", `${lickJoke ? "animate-assJiggle" : ""}`]}
-      >
-        <Image class="drop-shadow-lg" src={argentAss} alt="woohooehehee" />
-      </a>
-    </nav>
-    <a href="/" class="w-full justify-center md:hidden flex items-center brightness-90 py-16 xs:py-5 border-t-2 border-slate-200">
+      <BadgeDisplay collection="standardBadges" />
+    </div>
+    <div class="flex items-center justify-center mb-4">
+      <Image src={ArgentDerp} alt={"Argent Derp"} class="max-w-96"/>
+    </div>
+    <a href="/" class="w-full justify-center  flex items-center brightness-90 py-16 xs:py-5 border-t-2 border-slate-200">
       <div class="w-18 -ml-10">
         <CobraLogo />
       </div>

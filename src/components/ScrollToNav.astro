@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import Arrow from "@assets/mutantEmoji/utility/arrow_down.png";
+import Arrow from "@assets/mutantEmoji/utility/arrow_up.png";
 
 interface Props {
   left?: boolean;
@@ -8,15 +8,14 @@ interface Props {
 
 const { left = false } = Astro.props;
 
-const position = left ? "left-0.5 md:left-6" : "right-0.5 md:right-6";
+const position = left ? "left-2" : "right-2";
 ---
 
 <button
   aria-label="scroll-to-nav button"
-  class=`bg-yellow fixed rounded-full bottom-10 ${position} p-0.5  md:p-2 transition-all duration-300 opacity-0 invisible hover:cursor-pointer hover:scale-[1.15] ring-2 ring- flex items-center text-black gap-1 font-semibold z-100 flex-col md:flex-row`
+  class=`bg-yellow fixed rounded-full bottom-2 ${position} p-0.5  md:p-2 transition-all duration-300 opacity-0 invisible hover:cursor-pointer hover:scale-[1.15] ring-2 hidden md:flex items-center text-black gap-1 font-semibold z-100 flex-col md:flex-row`
   id="scroll-to-footer"
->
-  Nav<Image src={Arrow} alt={"Down arrow"} class="w-6" />
+  ><Image src={Arrow} alt={"Down arrow"} class="w-5" />
 </button>
 
 <script>
@@ -27,7 +26,7 @@ const position = left ? "left-0.5 md:left-6" : "right-0.5 md:right-6";
   }
   function toggleBackToTopButton() {
     const backToTopButton = document.getElementById("scroll-to-footer");
-    if (window.scrollY > 100 && !(document.body.scrollHeight <= Math.trunc(window.scrollY + window.innerHeight))) {
+    if (window.scrollY > 100) {
       backToTopButton?.classList.remove("opacity-0", "invisible");
       backToTopButton?.classList.add("opacity-100", "visible");
     } else {
@@ -39,7 +38,7 @@ const position = left ? "left-0.5 md:left-6" : "right-0.5 md:right-6";
 
   function scrollToBottom() {
     window.scrollTo({
-      top: document.documentElement.scrollHeight - window.innerHeight,
+      top: 0,
       behavior: "smooth",
     });
   }

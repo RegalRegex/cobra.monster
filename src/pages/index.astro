@@ -9,16 +9,13 @@ import HomeContentBox from "@components/HomeContentBox.astro";
 import giornoArgent from "@assets/argent/giornoArgent.png";
 import TextDeco from "@components/TextDeco.astro";
 import coffeeShopChill from "@assets/argent/CoffeShopChill_Deriaz.jpg";
-import SiteMap from "@components/SiteMap.astro";
 import HomePageBlogPosts from "@components/HomePageBlogPosts.astro";
 import RssFeedBtn from "@components/RssFeedBtn.astro";
-import ScrollToNav from "@components/ScrollToNav.astro";
 import ReviewsPreview from "@components/ReviewsPreview.astro";
 ---
 
 <Layout homePage={true}>
   <SiteHeader homePage={true} />
-  <ScrollToNav />
   <div class="text-center py-2">
     <span id="monsterTxt" class="headerTxt Qt text-white text-4xl md:text-6xl italic tracking-wide">
       The Crisis of Capitalism unearths a MONSTER
@@ -87,12 +84,6 @@ import ReviewsPreview from "@components/ReviewsPreview.astro";
           </div>
         </div>
       </div>
-    </HomeContentBox>
-  </HomeSection>
-  <HomeSection darkBg={false} border={["border-t-4"]}>
-    <HomeContentBox columns={["lg:col-start-3 lg:col-span-8 sm:col-start-2 sm:col-span-10 col-start-1 col-span-12"]}>
-      <h2 class="headerTxt font-prospekt xs:text-7xl text-5xl xl:text-8xl mb-10 underline decoration-redLight text-center lg:col-span-2">Site Map</h2>
-      <SiteMap />
     </HomeContentBox>
   </HomeSection>
 

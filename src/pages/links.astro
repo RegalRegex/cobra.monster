@@ -10,7 +10,6 @@ import PageHeader from "@components/PageHeader.astro";
 import SocialsList from "@components/SocialsList.astro";
 import links from "@components/LinkList/lists/_links.json";
 import LinkList from "@components/LinkList/LinkList.astro";
-import SiteMap from "@components/SiteMap.astro";
 import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontalRule.astro";
 import cobraMonster from "@assets/cobra.monster.gif";
 import ChiStar from "@components/ImageComponents/ChiStar.astro";
@@ -20,11 +19,6 @@ import ChiStar from "@components/ImageComponents/ChiStar.astro";
   <TopNav />
   <PageHeader leftRight="left">Links</PageHeader>
   <HomeSection darkBg={false} border={[]}>
-    <HomeContentBox columns={["lg:col-start-3 lg:col-span-8 sm:col-start-2 sm:col-span-10 col-start-1 col-span-12"]}>
-      <h2 class="text-6xl xs:text-7xl underline decoration-4 decoration-redLight mb-5 text-center">Site Map</h2>
-      <SiteMap />
-    </HomeContentBox>
-    <ChiStarHorizontalRule />
     <HomeContentBox columns={["lg:col-start-3 lg:col-span-8 sm:col-start-2 sm:col-span-10 col-start-1 col-span-12"]}>
       <h2 id="socials" class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">More Regal</h2>
       <div class="py-8 flex flex-col sm:grid grid-cols-1 lg:grid-cols-2 gap-5 text-slate-200">
@@ -74,7 +68,7 @@ import ChiStar from "@components/ImageComponents/ChiStar.astro";
         </div>
       </div>
     </HomeContentBox>
-    <ChiStarHorizontalRule />
+    <!-- <ChiStarHorizontalRule />
     <HomeContentBox columns={["lg:col-start-2 lg:col-span-5 xs:col-start-2 xs:col-span-10 col-start-1 col-span-12 mb-5 xs:mb-0"]}>
       <div class="flex flex-col text-slate-200 justify-between">
         <h2 id="buttons" class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">Cool Folks</h2>
@@ -103,7 +97,7 @@ import ChiStar from "@components/ImageComponents/ChiStar.astro";
         </div>
         <p>If I find a neat button I just plop it here. Some of them are links!</p>
       </div>
-    </HomeContentBox>
+    </HomeContentBox> -->
   </HomeSection>
 </Layout>
 

@@ -61,10 +61,23 @@ const { isErrorPage } = Astro.props;
 
 <nav class="py-2 bg-redDark border-redLight w-full flex flex-col text-white">
   <div id="nav-content-wrapper" class="w-full flex sm:flex-row flex-col">
-    <a
-      href="/"
-      class="text-3xl border-r-0 sm:border-r-2 border-slate-200 border-opacity-75 mx-5 pr-4 flex items-center font-medium font-prospekt self-center grow mb-auto"
-    >
+    <div class="items-center sm:flex w-full hidden ml-4">
+      {
+        isErrorPage ? (
+          <a href="/" class="capitalize px-2 py-1 bg-slate-200 rounded-lg flex flex-nowrap text-redDarkest font-medium mr-4 mb-auto mt-2 gap-1">
+            <InlineEmoji emoji={arrowLeft} styles={`w-5`} /> Home
+          </a>
+        ) : (
+          <a
+            href={returnPathName().url}
+            class="capitalize px-2 py-1 bg-slate-200 rounded-lg flex flex-nowrap text-redDarkest font-medium mr-4 mb-auto mt-2 gap-1"
+          >
+            <InlineEmoji emoji={arrowLeft} styles={`w-5`} /> {returnPathName().urlDisplay}
+          </a>
+        )
+      }
+    </div>
+    <a href="/" class="text-3xl mx-5 pr-4 flex items-center font-medium font-prospekt self-center grow mb-auto">
       <div class="w-12">
         <CobraLogo />
       </div>
@@ -72,24 +85,7 @@ const { isErrorPage } = Astro.props;
         COBRA<span class="text-4xl mb-1">★</span>MONSTER
       </div>
     </a>
-
-    <div class="items-center sm:flex w-full hidden">
-      {
-        isErrorPage ? (
-          <a href="/" class="capitalize px-2 py-1 bg-slate-200 rounded-full flex flex-nowrap text-redDarkest font-medium mr-4 mb-auto mt-2 gap-1">
-            <InlineEmoji emoji={arrowLeft} styles={`w-5`} /> Home
-          </a>
-        ) : (
-          <a
-            href={returnPathName().url}
-            class="capitalize px-2 py-1 bg-slate-200 rounded-full flex flex-nowrap text-redDarkest font-medium mr-4 mb-auto mt-2 gap-1"
-          >
-            <InlineEmoji emoji={arrowLeft} styles={`w-5`} /> {returnPathName().urlDisplay}
-          </a>
-        )
-      }
-    </div>
-    <button class="nav-menu-btn px-2 py-1 rounded-full hover:cursor-pointer absolute right-0 top-4 block sm:hidden">
+    <button class="nav-menu-btn px-2 py-1 rounded-lg hover:cursor-pointer absolute right-0 top-4 block sm:hidden">
       <svg viewBox="0 0 16 16" fill="currentColor" class="size-6"
         ><path d="M8 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM8 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM9.5 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"
         ></path></svg
@@ -97,33 +93,61 @@ const { isErrorPage } = Astro.props;
     </button>
     <div class="items-center sm:flex w-full hidden">
       <button
-        class="nav-menu-btn capitalize px-2 py-1 bg-slate-200 rounded-full flex flex-nowrap text-redDarkest font-medium mr-4 mb-auto mt-2 ml-auto hover:cursor-pointer"
+        class="nav-menu-btn capitalize px-2 py-1 bg-slate-200 rounded-lg flex flex-nowrap text-redDarkest font-medium mr-4 mb-auto mt-2 ml-auto hover:cursor-pointer"
       >
-        <span class="nav-menu-display">Nav Menu <InlineEmoji emoji={arrowCurveDown} styles="w-5 ml-1" /></span>
-        <span class="nav-menu-display hidden">Nav Menu <InlineEmoji emoji={cross} styles="w-5 ml-1" /></span>
+        <span class="nav-menu-display">Menu <InlineEmoji emoji={arrowCurveDown} styles="w-5" /></span>
+        <span class="nav-menu-display hidden">Menu <InlineEmoji emoji={cross} styles="w-5" /></span>
       </button>
     </div>
   </div>
-  <div id="top-nav-menu" class="hidden transition-all duration-500 ease-in-out border-t border-slate-200 mt-2">
-    <div class="w-full grid gap-2 grid-cols-[repeat(auto-fit,minmax(min(15ch,100%),1fr))]">
+  <div id="top-nav-menu" class="transition-all duration-500 ease-in-out overflow-hidden is-hidden" style="max-height: 0px;">
+    <div class="w-full grid gap-2 grid-cols-[repeat(auto-fit,minmax(min(15ch,100%),1fr))] border-t border-slate-200 mt-2">
       <NavLinks open />
     </div>
   </div>
 </nav>
 
 <script>
-  function toggleNavBtn() {
-    const toggleNavBtns = document.querySelectorAll(".nav-menu-btn");
+  function updateNavMenu() {
     const toggleNavBtnsLg = document.querySelectorAll(".nav-menu-display");
     const navMenu = document.getElementById("top-nav-menu");
-    toggleNavBtns.forEach((el) =>
-      el.addEventListener("click", function () {
-        navMenu?.classList.toggle("hidden");
-        toggleNavBtnsLg.forEach((btn) => btn.classList.toggle("hidden"));
-      }),
-    );
+    if (navMenu) {
+      updateNavMenuHeight();
+    }
+    toggleNavBtnsLg.forEach((btn) => btn.classList.toggle("hidden"));
+  }
+
+  function updateNavMenuHeight(notResize = true) {
+    const navMenu = document.getElementById("top-nav-menu");
+    if (navMenu) {
+      const scrollHeight = navMenu.scrollHeight;
+      if (notResize) {
+        if (navMenu.classList.contains("is-hidden")) {
+          navMenu.style.maxHeight = `${scrollHeight}px`;
+          navMenu.classList.remove("is-hidden");
+        } else {
+          navMenu.style.maxHeight = "0px";
+          navMenu.classList.add("is-hidden");
+        }
+      } else {
+        if (navMenu.classList.contains("is-hidden")) {
+          navMenu.style.maxHeight = "0px";
+        } else {
+          navMenu.style.maxHeight = `${scrollHeight}px`;
+        }
+      }
+    }
+  }
+
+  function toggleNavBtn() {
+    const toggleNavBtns = document.querySelectorAll(".nav-menu-btn");
+    toggleNavBtns.forEach((el) => el.addEventListener("click", updateNavMenu));
   }
   toggleNavBtn();
+
+  window.onresize = () => {
+    updateNavMenuHeight(false);
+  };
 
   document.addEventListener("astro:after-swap", toggleNavBtn);
 </script>
