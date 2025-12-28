@@ -1,8 +1,9 @@
 import webring from "@components/RffWebring/_data/webring.json";
 
 const redirectRffWebring = (isNext: boolean, redirectFrom: string) => {
-  const fromId = redirectFrom.split("/")[1];
-  const currentIndex = webring.findIndex((i) => i.id === fromId);
+  const fromId = redirectFrom.split("/");
+  // Last item in index is always /next or /prev, so 2nd to last should fit formula
+  const currentIndex = webring.findIndex((i) => i.id === fromId[fromId.length - 2]);
 
   if (currentIndex === -1) return "/webring-404";
 
