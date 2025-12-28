@@ -11,11 +11,14 @@ import { transformerCopyButton } from "@rehype-pretty/transformers";
 export default defineConfig({
   output: "static",
   site: "https://cobra.monster",
+
   // This line fixed the "Failed to scan for dependencies from entries:" error
   base: "",
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   image: {
     service: {
       entrypoint: "astro/assets/services/sharp",
@@ -24,6 +27,7 @@ export default defineConfig({
       },
     },
   },
+
   integrations: [
     mdx({
       syntaxHighlight: false,
@@ -45,6 +49,7 @@ export default defineConfig({
     }),
     react(),
   ],
+
   redirects: {
     "/books": "/books/default",
     "/home": "/",

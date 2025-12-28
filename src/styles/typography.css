@@ -1,6 +1,6 @@
 @import "tailwindcss";
 :root {
-  --header-typeface: "Roboto-VariableFont_wdth,wght";
+  --header-typeface: "Roboto";
 
   --link-color: #eab308;
 }
@@ -88,11 +88,20 @@ figcaption[data-rehype-pretty-code-title] {
   border-top: 2px solid white;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--header-typeface, sans-serif);
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--header-typeface, sans-serif);
+  }
 }
+
+/* h1 {
+  font-size: calc(var(--spacing) * 5);
+  @variant md {
+    font-size: calc(var(--spacing) * 8);
+  }
+} */

@@ -1,0 +1,32 @@
+---
+import type { GetStaticPaths } from "astro";
+import redirectRffWebring from "@components/RffWebring/utils/redirect";
+
+const path = Astro.url.pathname;
+
+const redirectTo = redirectRffWebring(false, path);
+export const getStaticPaths = (() => {
+  return [];
+}) satisfies GetStaticPaths;
+return Astro.redirect(redirectTo);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:site_name" content="Furry Fitness Webring" />
+    <meta property="og:url" content="/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Furry Fitness Webring</title>
+  </head>
+  <body>
+    <div>
+      <slot />
+    </div>
+  </body>
+</html>

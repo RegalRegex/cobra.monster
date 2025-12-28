@@ -2,10 +2,12 @@
 @import "./typography.css";
 @plugin "@tailwindcss/typography";
 
+@layer theme, base, components, utilities;
+
 :root {
   --gutter: clamp(1.125rem, 2.5vw + 0.5rem, 2.75rem);
   .chistar {
-    font-family: "BigShouldersText-VariableFont_Wght", sans-serif;
+    font-family: "BigShoulders", sans-serif;
     font-variant-ligatures: discretionary-ligatures;
   }
 }
@@ -104,14 +106,14 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "BigShouldersText-VariableFont_Wght";
+  font-family: "BigShoulders";
   src: url("/fonts/BigShoulders.ttf") format("truetype supports variations"), url("/fonts/BigShoulders.ttf") format("truetype-variations");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Roboto-VariableFont_wdth,wght";
+  font-family: "Roboto";
   src: url("/fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype supports variations"),
     url("/fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype-variations");
   font-weight: 100 900;
@@ -119,7 +121,7 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "BigShouldersText-VariableFont_Wght";
+  font-family: "BigShoulders";
   src: url("/fonts/BigShoulders.ttf") format("truetype supports variations"), url("/fonts/BigShoulders.ttf") format("truetype-variations");
   font-weight: 100 900;
   font-style: normal;

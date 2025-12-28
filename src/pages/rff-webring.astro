@@ -1,0 +1,107 @@
+---
+import { Image } from "astro:assets";
+import webring from "@components/RffWebring/_data/webring.json";
+import pointLeft from "@components/RffWebring/assets/mutantStandard/point_left_clw_y2.png";
+import pointRight from "@components/RffWebring/assets/mutantStandard/point_right_clw_y2.png";
+import rffBadge from "@components/RffWebring/assets/RffBadge.png";
+import RffLayout from "@components/RffWebring/layouts/RffLayout.astro";
+
+// CONSTANTS
+const SITE_URL = "https://cobra.monster";
+const SITE_NAME = "RFF Webring";
+const LAST_UPDATE = "December 27, 2025";
+
+const trimUrl = (url: string) => (url.endsWith("/") ? url.slice(0, -1) : url);
+---
+
+<RffLayout>
+  <div class="flex flex-col items-center">
+    <h1 class="self-center flex flex-col text-center">RFF Webring</h1>
+    <div class="max-w-72 self-center">
+      <Image src={rffBadge} alt={"Regal Furry Fitness badge"} />
+    </div>
+  </div>
+
+  <div class="my-5 flex gap-10 self-center text-lg md:text-3xl border border-table-border p-2">
+    <a class="inline-flex" href="/rff-webring/prev">
+      <div class="flex max-w-5 md:max-w-8 items-center mr-1"><Image src={pointLeft} alt={"emoji point left"} /></div>
+      PREV</a
+    >
+    <a class="inline-flex" href="/rff-webring/next"
+      >NEXT
+      <div class="flex max-w-5 md:max-w-8 items-center ml-1"><Image src={pointRight} alt={"emoji point right"} /></div></a
+    >
+  </div>
+  <span class="self-center pb-5">A webring for members of the <a href="https://discord.gg/zHVnKRb">Regal Furry Fitness</a> Discord!</span>
+
+  <h2 class="border-dashed border-t-4 border-yellow pt-5">Webring Members:</h2>
+  <span>There are <span class="text-yellow font-bold">{webring.length}</span> members in the webring</span>
+
+  <div class="pb-5">
+    <table class="w-full overflow-x-scroll">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">About</th>
+          <th scope="col">URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          webring.map((item, index) => {
+            return (
+              <tr>
+                <td>{index + 1}</td>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.about}</td>
+                <td>
+                  <a href={item.url}>{trimUrl(item.url)}</a>
+                </td>
+              </tr>
+            );
+          })
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="border-dashed border-t-4 border-yellow pt-5">How To Join</h2>
+  <ol class="list-decimal list-inside mx-5 flex flex-col gap-5 pb-5">
+    <li>Join the <a href="https://discord.gg/zHVnKRb">Regal Furry Fitness Discord</a>!</li>
+    <li>
+      Add the webring HTML somewhere on your site:
+      <pre>
+        &lt;a href="{SITE_URL}/<b>YOUR_ID</b>/previous"&gt;←&lt;/a&gt;<br />
+        &lt;a href="{SITE_URL}/rff-webring"&gt;{SITE_NAME}&lt;/a&gt;<br />
+        &lt;a href="{SITE_URL}/<b>YOUR_ID</b>/next"&gt;→&lt;/a&gt;
+      </pre>
+      Feel free to customize the content as you'd like, as long as the links are intact. make sure to replace "<b>YOUR_ID</b>" with your actual ID!
+    </li>
+    <li>
+      Open a pull request on <a href="/">github</a> and add your site to <b>webring.json</b>. Reference the table above to see how it'll look here on the site.
+      <br />Here's the format:
+      <pre>
+			&lbrace;<br />
+				<div class="json ml-4">
+					"id": "<span>your id</span>",<br />
+					"name": "<span>your name</span>",<br />
+					"about": "<span>short description of your site</span>",<br />
+					"url": "<span>your site url</span>",<br />
+				</div>
+			&rbrace;
+	  </pre>
+      <ul class="list-disc list-inside">
+        <li>Make sure everything's in quotes</li>
+        <li>Make sure there's a comma after the closing curly brace &rbrace of the previous item.</li>
+        <li>If you prefer, feel free to DM me on Discord or email me your info instead <b>(regal [at] cobra.monster)</b> and I'll add you manually :3</li>
+      </ul>
+    </li>
+  </ol>
+  <div class="flex flex-col items-center border-t-2 border-yellow w-full pt-5 text-sm text-text-secondary">
+    <span>Last Updated: {LAST_UPDATE}</span>
+    <span>Built and maintained by <a href="https://cobra.monster">Regal</a> :3</span>
+  </div>
+</RffLayout>

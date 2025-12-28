@@ -80,6 +80,10 @@
         "display": "Sourcecode",
         "url": "https://github.com/RegalRegex/cobra.monster",
         "external": true
+      },
+      {
+        "display": "RFF Webring",
+        "url": "rff-webring"
       }
     ]
   }

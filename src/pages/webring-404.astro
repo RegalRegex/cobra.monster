@@ -1,0 +1,20 @@
+---
+import Footer from "@components/Footer.astro";
+import InfoPageLayout from "@layouts/InfoPageLayout.astro";
+import ErrorPage from "@components/ErrorPage.astro";
+import TopNav from "@components/TopNav/TopNav.astro";
+import Link from "@components/Link.astro";
+---
+
+<InfoPageLayout>
+  <main class="min-h-[100vh] overflow-hidden flex flex-col w-full border-separate">
+    <TopNav isErrorPage={true} />
+    <ErrorPage title="404" subtitle="Webring Destination not found!" />
+    <span class="self-center my-4 text-white">
+      <Link url="/rff-webring">Double-check the list?</Link>
+    </span>
+    <div class="table">
+      <Footer />
+    </div>
+  </main>
+</InfoPageLayout>
