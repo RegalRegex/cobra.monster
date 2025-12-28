@@ -7,7 +7,7 @@ import rffBadge from "@components/RffWebring/assets/RffBadge.png";
 import RffLayout from "@components/RffWebring/layouts/RffLayout.astro";
 
 // CONSTANTS
-const SITE_URL = "https://cobra.monster";
+const SITE_URL = "https://cobra.monster/rff-webring";
 const SITE_NAME = "RFF Webring";
 const LAST_UPDATE = "December 27, 2025";
 
@@ -23,11 +23,11 @@ const trimUrl = (url: string) => (url.endsWith("/") ? url.slice(0, -1) : url);
   </div>
 
   <div class="my-5 flex gap-10 self-center text-lg md:text-3xl border border-table-border p-2">
-    <a class="inline-flex" href="/rff-webring/prev">
+    <a class="inline-flex" href="/rff-webring/ring-origin/prev">
       <div class="flex max-w-5 md:max-w-8 items-center mr-1"><Image src={pointLeft} alt={"emoji point left"} /></div>
       PREV</a
     >
-    <a class="inline-flex" href="/rff-webring/next"
+    <a class="inline-flex" href="/rff-webring/ring-origin/next"
       >NEXT
       <div class="flex max-w-5 md:max-w-8 items-center ml-1"><Image src={pointRight} alt={"emoji point right"} /></div></a
     >
@@ -75,7 +75,7 @@ const trimUrl = (url: string) => (url.endsWith("/") ? url.slice(0, -1) : url);
       Add the webring HTML somewhere on your site:
       <pre>
         &lt;a href="{SITE_URL}/<b>YOUR_ID</b>/previous"&gt;←&lt;/a&gt;<br />
-        &lt;a href="{SITE_URL}/rff-webring"&gt;{SITE_NAME}&lt;/a&gt;<br />
+        &lt;a href="{SITE_URL}"&gt;{SITE_NAME}&lt;/a&gt;<br />
         &lt;a href="{SITE_URL}/<b>YOUR_ID</b>/next"&gt;→&lt;/a&gt;
       </pre>
       Feel free to customize the content as you'd like, as long as the links are intact. make sure to replace "<b>YOUR_ID</b>" with your actual ID!

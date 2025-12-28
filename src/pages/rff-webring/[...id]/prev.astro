@@ -3,7 +3,6 @@ import type { GetStaticPaths } from "astro";
 import redirectRffWebring from "@components/RffWebring/utils/redirect";
 
 const path = Astro.url.pathname;
-
 const redirectTo = redirectRffWebring(false, path);
 export const getStaticPaths = (() => {
   return [];
