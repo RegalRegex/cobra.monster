@@ -3,8 +3,6 @@ import type { GetStaticPaths } from "astro";
 import redirectRffWebring from "@components/RffWebring/utils/redirect";
 import webring from "@components/RffWebring/_data/webring.json";
 
-const path = Astro.url.pathname;
-const redirectTo = redirectRffWebring(true, path);
 export const getStaticPaths = (() => {
   return webring.map((ringEntry) => {
     return {
@@ -12,19 +10,6 @@ export const getStaticPaths = (() => {
     };
   });
 }) satisfies GetStaticPaths;
-
-return Astro.redirect(redirectTo);
+const { id } = Astro.params;
+return Astro.redirect(redirectRffWebring(true, id));
 ---
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=${redirect.url}" />
-    <title>Redirecting&hellip;</title>
-  </head>
-  <body>
-    <p>Redirecting you to <a href={redirectTo}>${redirectTo}</a>&hellip;</p>
-  </body>
-</html>`
