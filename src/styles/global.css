@@ -29,8 +29,8 @@
   --animate-slideshowLeft: moveSlideshowLeft 2s linear infinite;
   --animate-slideshowRight: moveSlideshowRight 10s linear infinite;
   /* Breakpoints */
-  --breakpoint-xs: 545px;
-  --breakpoint-2xl: 1600px;
+  --breakpoint-xs: 32rem;
+  --breakpoint-2xl: 100rem;
   /* Fonts */
   --font-prospekt: "Prospekt Regular", sans-serif;
 
@@ -154,6 +154,9 @@ html,
 body {
   margin: 0;
   height: 100%;
+  @variant 2xl {
+    font-size: theme(--text-lg);
+  }
 }
 
 html {

@@ -95,7 +95,7 @@ const siteList = siteGroup === "socials" ? socialsList : galleriesList;
 {
   siteGroup === "contact" &&
     contactList.map((site) => (
-      <div>
+      <div class="font-medium text-md xs:text-lg xl:text-2xl cursor-pointer  hover:text-amber-500 gap-1">
         <div class="flex items-center">
           {logos && <Image class=" p-1 max-w-10 " src={site.logo} alt={site.id} />}
           <div class="ml-1">{site.details}</div>

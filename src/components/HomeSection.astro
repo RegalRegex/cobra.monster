@@ -6,6 +6,6 @@ interface Props {
 const { darkBg, border = ["border-y-4"] } = Astro.props;
 ---
 
-<section class:list={["grid gap-2 py-10 grid-cols-12 px-[var(--gutter)]", `${darkBg ? "bg-black/50" : "border-yellow-500 border-dashed"}`, border]}>
+<section class:list={["grid gap-2 py-10 grid-cols-12 px-[var(--gutter)] 2xl:px-72", `${darkBg ? "bg-black/50" : "border-yellow-500 border-dashed"}`, border]}>
   <slot />
 </section>
