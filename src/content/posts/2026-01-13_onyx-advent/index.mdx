@@ -1,0 +1,55 @@
+---
+title: Onyx Advent 2025
+subtitle: An extremely cool home-coffee experience that I'll nearly definitely do again
+date: 2026-01-13
+headerImg: onyx_box.png
+tags:
+  - coffee
+---
+import EmojiBlockquote from "@components/EmojiBlockquote.astro"
+import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
+import smirk from "@assets/mutantEmoji/argent/smirk.png"
+import smile from "@assets/mutantEmoji/argent/smile.png"
+import triumph from "@assets/mutantEmoji/argent/triumph.png"
+import Accordion from '@components/Accordion/Accordion'
+import relief from "@assets/argent/stickers/babanasaur/relief.png"
+import uwu from "@assets/argent/stickers/babanasaur/uwu.png"
+import frustrated from "@assets/argent/stickers/maxadisasta/frustrated.png"
+
+[Onyx Coffee](https://onyxcoffeelab.com/), a 3rd-wave roaster HQ'd in Arkansas, has always had the best packaging and presentation in the game. I was never too impressed by their coffee offerings, however. But I think that may have changed.
+
+<EmojiBlockquote emoji={smile} size="emoji">
+
+This blog post is first just me praising how pretty and cool Onyx's presentation is, but the meat and potatoes is going to be my ratings of all the coffee :3
+
+I took off-the-cuff notes every day that I tried one of the coffees, and in honor of their honesty and out of respect of current-me's time, I'm just going to reproduce them here verbatim.
+
+</EmojiBlockquote>
+
+# What is Coffee Advent?
+
+Other roasters and providers have done this before, but it seems as though Onyx is the most recognized (or perhaps the best at marketing it).\
+In brief, Coffee Advent is 24 different coffees for each of the 24 days of December preceding Christmas. Each bag is 2oz of coffee, and the idea is that every day you brew a completely unique coffee from the day before.
+
+It's a neat, simple idea. I think what really won me over was the combination of presentation and supporting media.
+
+<AccordionPhotoTemplate numImages={2} numCaptions={1}>
+    <div slot="image-1"> ![Black onyx box on a red-orange chair](image.png "A beautiful box on a beautiful chair what more could you ask for?") </div>
+    <div slot="image-2"> ![Black onyx box opened revealing a black Snake design wrapped around golden lettering reading ONYX. On the bottom flap is another snake around the words 'experience advent'](<image copy.png> "You should have heard me holler when I opened the shipping box and this thing was decked out in Gold and Snakes") </div>
+    <span slot="caption">Finally, cool snake motifs with my coffee...bless</span>
+</AccordionPhotoTemplate>
+
+Obviously the packaging is fantastic, but what really sold me was the playing cards and videos that came with it. Two decks of playing cards, one a full normal playing deck with custom coffee motifs. The other a 25-card deck hosting 1 card per coffee offering with the coffee info, a description, and a QR code to the website and accompanying videos.
+
+![A series of black playing cards with custom ONyx coffee motifs and text atop a wildly bright pink and yellow glitch design desk mat](<image copy 2.png> "I was too lazy to swap out my insane mouse mat, sorry.")
+_They're high-quality too! Genuine Bicycle playing cards!_
+
+They had a special website for this event and I have some _opinions_ on how it's coded but...I digress
+
+<EmojiBlockquote emoji={frustrated} size="sticker">
+I don't digress, actually what the fuck. I couldn't reliably open this on firefox, or safari. I had to open it on a chromium browser (Vivaldi, my beloved) just to get it to fucking work.
+
+Like my guy, this is beautiful design but if it doesn't WORK then I hate it. Bad UX kills cool UI.
+
+It's a wobbly reactive app with a spread of cards for each day, and you're supposed to side-scroll or swipe to move between cards each day, and each card has its own modal pop-up type of thing with tabs between 2 videos, and 2 screens of info. Rather than making the coffee days separate "pages" they're just held as weak fucking state and when (not if) it gets stuck and you refresh, it starts at 1, remembers that you were at 20 or whatever, but then fucks up trying to get back to to here augghg
+</EmojiBlockquote>

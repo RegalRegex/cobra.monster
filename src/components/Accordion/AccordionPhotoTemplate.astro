@@ -30,7 +30,7 @@ const { numImages, numCaptions=0 } = Astro.props;
           <figure class="text-center text-sm" />
         </div>
       </div>
-      {numCaptions > 0 && <div class="flex text-center text-sm justify-around w-full">
+      {numCaptions > 0 && <div class="flex text-center justify-around w-full italic">
         {numCaptions === 1 && <span class="w-full">
           <slot name="caption" />
         </span>}
