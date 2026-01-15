@@ -1,0 +1,45 @@
+---
+import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontalRule.astro";
+import coffeeData from "./onyx-2025.json";
+import ChiStar from "@components/ImageComponents/ChiStar.astro";
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
+
+import EarthAm from "@assets/mutantEmoji/earth_americas.png";
+import EarthAf from "@assets/mutantEmoji/earth_emea.png";
+import { Image } from "astro:assets";
+
+interface CoffeeEntry {
+  number: number;
+  name: string;
+  variety: string | string[];
+  process: string;
+  origin: string;
+  country: string;
+}
+
+const coffees: CoffeeEntry[] = coffeeData;
+const africanCountries = ["Ethiopia", "Uganda", "Kenya"];
+---
+
+<div class="flex flex-col gap-4 prose-headings:m-0 prose-p:m-0">
+  {
+    coffees.map((coffee) => {
+      return (
+        <div class="grid grid-cols-2 gap-4 divide-yellow divide-x border border-yellow p-8">
+          <div class=" pr-4 flex flex-col">
+            <p class="font-bold text-2xl">{coffee.name}</p>
+            <div class="flex w-full prose-img:m-0 items-center gap-2">
+              <Image src={africanCountries.includes(coffee.country) ? EarthAf : EarthAm} alt={"Earth Emoji"} class={"max-w-8 not-prose"} />
+              <p class="italic">
+                {coffee.origin}, {coffee.country}
+              </p>
+            </div>
+            <p>variety: {Array.isArray(coffee.variety) ? coffee.variety.join(", ") : coffee.variety}</p>
+            <p>process: {coffee.process}</p>
+          </div>
+          <div class="">Test Text</div>
+        </div>
+      );
+    })
+  }
+</div>

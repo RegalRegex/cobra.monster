@@ -7,6 +7,7 @@ tags:
   - coffee
 ---
 import EmojiBlockquote from "@components/EmojiBlockquote.astro"
+import ReviewGrid from "@components/ReviewGrid/ReviewGrid.astro"
 import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
 import smirk from "@assets/mutantEmoji/argent/smirk.png"
 import smile from "@assets/mutantEmoji/argent/smile.png"
@@ -44,12 +45,24 @@ Obviously the packaging is fantastic, but what really sold me was the playing ca
 ![A series of black playing cards with custom ONyx coffee motifs and text atop a wildly bright pink and yellow glitch design desk mat](<image copy 2.png> "I was too lazy to swap out my insane mouse mat, sorry.")
 _They're high-quality too! Genuine Bicycle playing cards!_
 
-They had a special website for this event and I have some _opinions_ on how it's coded but...I digress
+They had a special website for this event and I have some _opinions_ on how it's coded. Thematically very cool. And neat that the cards match the physical cards I actually got with the package. Neat! The coffee nerd in me just wishes that throughout the event I'd had easier access to the \*information* itself
+
+But I digress.  
+
+![animation of the Onyx Advent site, showing scrolling between cards and opening the info video modals](OnyxCards.gif)
+_Figures that it took til I recorded this in January 2026 for the site to actually work w/o a hitch_
 
 <EmojiBlockquote emoji={frustrated} size="sticker">
-I don't digress, actually what the fuck. I couldn't reliably open this on firefox, or safari. I had to open it on a chromium browser (Vivaldi, my beloved) just to get it to fucking work.
+I don't digress actually what the fuck. I couldn't reliably open this on firefox, or safari. I had to open it on a chromium browser just to get it to fucking work.
 
-Like my guy, this is beautiful design but if it doesn't WORK then I hate it. Bad UX kills cool UI.
-
-It's a wobbly reactive app with a spread of cards for each day, and you're supposed to side-scroll or swipe to move between cards each day, and each card has its own modal pop-up type of thing with tabs between 2 videos, and 2 screens of info. Rather than making the coffee days separate "pages" they're just held as weak fucking state and when (not if) it gets stuck and you refresh, it starts at 1, remembers that you were at 20 or whatever, but then fucks up trying to get back to to here augghg
+It's a wobbly reactive app with a spread of cards for each day and I hate it. Trying to swipe between cards on mobile just made safari freak out and change tabs and stuff. Sucks.
+<br/>
+Like my guy, this is cool design but if it doesn't WORK then I hate it. Bad UX kills cool UI.
 </EmojiBlockquote>
+
+# The Coffee Review
+
+<ReviewGrid>
+{/* <h2 slot="header">Header Test</h2>
+<p slot="body">This is the content test </p> */}
+</ReviewGrid>
