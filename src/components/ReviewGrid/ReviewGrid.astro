@@ -6,6 +6,11 @@ import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
 
 import EarthAm from "@assets/mutantEmoji/earth_americas.png";
 import EarthAf from "@assets/mutantEmoji/earth_emea.png";
+import WaterDrop from "@assets/mutantEmoji/water_drop.png";
+import Cherry from "@assets/mutantEmoji/cherry.png";
+import Camcorder from "@assets/mutantEmoji/camcorder.png";
+import Rose from "@assets/mutantEmoji/rose.png";
+import ThoughtBubble from "@assets/mutantEmoji/thought_bubble.png";
 import { Image } from "astro:assets";
 
 interface CoffeeEntry {
@@ -15,29 +20,68 @@ interface CoffeeEntry {
   process: string;
   origin: string;
   country: string;
+  video?: string;
+  smell?: string;
+  overall?: string;
 }
 
 const coffees: CoffeeEntry[] = coffeeData;
 const africanCountries = ["Ethiopia", "Uganda", "Kenya"];
 ---
 
-<div class="flex flex-col gap-4 prose-headings:m-0 prose-p:m-0">
+<div class="grid grid-cols-2 prose-ul:p-0">
+  <ul class="list-none">
+    <li class="text-3xl underline font-semibold">Coffee Info</li>
+    <li class="flex items-center gap-1"><Image src={EarthAf} alt={"Earth Emoji"} class={"max-w-10 not-prose"} /> = Country & Region</li>
+    <li class="flex items-center gap-1"><Image src={Cherry} alt={"Cherry Emoji"} class={"max-w-10 not-prose"} /> = Coffee Varietal</li>
+    <li class="flex items-center gap-1"><Image src={WaterDrop} alt={"Water Drop emoji"} class={"max-w-10 not-prose"} /> = Process</li>
+  </ul>
+  <ul class="list-none">
+    <li class="text-3xl underline font-semibold">My Notes</li>
+    <li class="flex items-center gap-1"><Image src={Camcorder} alt={"Camcorder Emoji"} class={"max-w-10 not-prose"} /> = Coffee Video</li>
+    <li class="flex items-center gap-1"><Image src={Rose} alt={"Rose Emoji"} class={"max-w-10 not-prose"} /> = Smell (before and after brewing)</li>
+    <li class="flex items-center gap-1"><Image src={ThoughtBubble} alt={"Thought Bubble emoji"} class={"max-w-10 not-prose"} /> = Overall thoughts</li>
+  </ul>
+</div>
+<div class="flex flex-col gap-8 prose-headings:m-0 prose-p:m-0">
   {
     coffees.map((coffee) => {
       return (
-        <div class="grid grid-cols-2 gap-4 divide-yellow divide-x border border-yellow p-8">
-          <div class=" pr-4 flex flex-col">
-            <p class="font-bold text-2xl">{coffee.name}</p>
-            <div class="flex w-full prose-img:m-0 items-center gap-2">
-              <Image src={africanCountries.includes(coffee.country) ? EarthAf : EarthAm} alt={"Earth Emoji"} class={"max-w-8 not-prose"} />
-              <p class="italic">
+        <div class="flex flex-col xs:grid grid-cols-3 gap-2 divide-yellow xs:divide-x  border-yellow p-4">
+          <p class="font-bold text-2xl col-span-3 border-b border-r-0 border-yellow">
+            <span class=" border-slate-200">{coffee.number}.</span>
+            {coffee.name}
+          </p>
+          <div class="pr-4 flex flex-col xs:border-b-0 border-b pb-2 justify-between">
+            <div class="flex w-full prose-img:m-0 items-start gap-2">
+              <Image src={africanCountries.includes(coffee.country) ? EarthAf : EarthAm} alt={"Earth Emoji"} class={"max-w-6 not-prose mt-1.5"} />
+              <p class="">
                 {coffee.origin}, {coffee.country}
               </p>
             </div>
-            <p>variety: {Array.isArray(coffee.variety) ? coffee.variety.join(", ") : coffee.variety}</p>
-            <p>process: {coffee.process}</p>
+            <div class="flex w-full prose-img:m-0 items-start gap-2">
+              <Image src={Cherry} alt={"Cherry Emoji"} class={"max-w-6 not-prose mt-1.5"} />
+              <p class="">{Array.isArray(coffee.variety) ? coffee.variety.join(", ") : coffee.variety}</p>
+            </div>
+            <div class="flex w-full prose-img:m-0 items-start gap-2">
+              <Image src={WaterDrop} alt={"Water Drop emoji"} class={"max-w-6 not-prose mt-1.5"} />
+              <p class="">{coffee.process}</p>
+            </div>
           </div>
-          <div class="">Test Text</div>
+          <div class="flex flex-col justify-between col-span-2">
+            <div class="flex w-full prose-img:m-0 items-start gap-2">
+              <Image src={Camcorder} alt={"Camcorder Emoji"} class={"max-w-6 not-prose mt-1.5"} />
+              <p class="">{coffee.video}</p>
+            </div>
+            <div class="flex w-full prose-img:m-0 items-start gap-2">
+              <Image src={Rose} alt={"Rose Emoji"} class={"max-w-6 not-prose mt-1.5"} />
+              <p class="">{coffee.smell}</p>
+            </div>
+            <div class="flex w-full prose-img:m-0 items-start gap-2">
+              <Image src={ThoughtBubble} alt={"Thought Bubble Emoji"} class={"max-w-6 not-prose mt-1.5"} />
+              <p class="">{coffee.overall}</p>
+            </div>
+          </div>
         </div>
       );
     })
