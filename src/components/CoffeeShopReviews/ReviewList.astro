@@ -45,7 +45,7 @@ const reviewsSorted = (): Array<CollectionEntry<"coffeeShopReviews">> => {
               <h3 class="italic flex justify-between">
                 <>
                   <span>{review.location}</span>
-                  <span>{review.date.toLocaleDateString("en-US", { day: "numeric", month: "short", timeZone: "UTC" })}</span>
+                  <span>{review.date.toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })}</span>
                 </>
               </h3>
             </div>
