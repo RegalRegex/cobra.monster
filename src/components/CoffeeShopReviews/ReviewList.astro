@@ -50,8 +50,8 @@ const reviewsSorted = (): Array<CollectionEntry<"coffeeShopReviews">> => {
               </h3>
             </div>
             <div class="mb-4 sm:text-lg flex gap-2 items-center h-full">
-              <div class="flex flex-col justify-end col-span-2 flex-3/4 md:text-xl pr-1 shrink h-full">
-                <p class="pb-2 line-clamp-5 grow self-start">{review.summary.length > 200 ? sliceByWord(review.summary, 200) : review.summary}</p>
+              <div class="flex flex-col justify-end col-span-2 flex-3/4 md:text-xl pr-1 shrink ">
+                <p class="mb-2 line-clamp-5 grow self-start">{review.summary}</p>
                 <div class="block sm:hidden py-2 border-t lg:block xl:hidden">
                   <ReviewScore cafeData={review} compact={false} legend={false} />
                 </div>
