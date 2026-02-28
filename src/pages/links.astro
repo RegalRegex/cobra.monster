@@ -10,12 +10,43 @@ import SocialsList from "@components/SocialsList.astro";
 import links from "@components/LinkList/lists/_links.json";
 import LinkList from "@components/LinkList/LinkList.astro";
 import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontalRule.astro";
+import TextDeco from "@components/TextDeco.astro";
 ---
 
 <Layout>
   <TopNav />
   <PageHeader leftRight="left">Links</PageHeader>
   <HomeSection darkBg={false} border={[]}>
+    <HomeContentBox columns={["lg:col-start-3 lg:col-span-8 sm:col-start-2 sm:col-span-10 col-start-1 col-span-12"]}>
+      <div class="flex flex-col divide-y-2 divide-stone-200">
+        <div class="mx-2 xs:mx-20 pb-5">
+          <h2 id="queerArt" class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">Friend Sites</h2>
+          <p>Links to friends' sites. Includes those with and without 88x31 badges <TextDeco url="#88x31Badges">(below)</TextDeco></p>
+          <ul class="list-disc flex flex-col gap-2 text-stone-200 text-lg">
+            <LinkList linkJsonArray={links.friendLinks} />
+          </ul>
+        </div>
+        <div class="mx-2 xs:mx-20 pb-5">
+          <h2 id="queerArt" class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">Queer Art</h2>
+          <ul class="list-disc flex flex-col gap-2 text-stone-200 text-lg">
+            <LinkList linkJsonArray={links.artLinks} />
+          </ul>
+        </div>
+        <div class="mx-2 xs:mx-20 py-5">
+          <h2 class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">WebDev</h2>
+          <ul class="list-disc flex flex-col gap-2 text-stone-200 text-lg">
+            <LinkList linkJsonArray={links.webDev} />
+          </ul>
+        </div>
+        <div class="mx-2 xs:mx-20 pt-5">
+          <h2 class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center" id="misc">Misc Cool Sites</h2>
+          <ul class="list-disc flex flex-col gap-2 text-stone-200 text-lg">
+            <LinkList linkJsonArray={links.miscLinks} />
+          </ul>
+        </div>
+      </div>
+    </HomeContentBox>
+    <ChiStarHorizontalRule />
     <HomeContentBox columns={["lg:col-start-3 lg:col-span-8 sm:col-start-2 sm:col-span-10 col-start-1 col-span-12"]}>
       <h2 id="socials" class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">More Regal</h2>
       <div class="py-8 flex flex-col sm:grid grid-cols-1 lg:grid-cols-2 gap-5 text-slate-200">
@@ -42,59 +73,6 @@ import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontal
         <Image class="lg:max-w-[70%] rounded-md" src={ArgentRelax} alt="Argent Chill" />
       </div>
     </HomeContentBox>
-    <ChiStarHorizontalRule />
-    <HomeContentBox columns={["lg:col-start-3 lg:col-span-8 sm:col-start-2 sm:col-span-10 col-start-1 col-span-12"]}>
-      <div class="flex flex-col divide-y-2 divide-stone-200">
-        <div class="mx-2 xs:mx-20 pb-5">
-          <h2 id="queerArt" class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">Queer Art</h2>
-          <ul class="list-disc flex flex-col gap-2 text-stone-200 text-lg">
-            <LinkList linkJsonArray={links.artLinks} />
-          </ul>
-        </div>
-        <div class="mx-2 xs:mx-20 py-5">
-          <h2 class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">WebDev</h2>
-          <ul class="list-disc flex flex-col gap-2 text-stone-200 text-lg">
-            <LinkList linkJsonArray={links.webDev} />
-          </ul>
-        </div>
-        <div class="mx-2 xs:mx-20 pt-5">
-          <h2 class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center" id="misc">Misc Cool Sites</h2>
-          <ul class="list-disc flex flex-col gap-2 text-stone-200 text-lg">
-            <LinkList linkJsonArray={links.miscLinks} />
-          </ul>
-        </div>
-      </div>
-    </HomeContentBox>
-    <!-- <ChiStarHorizontalRule />
-    <HomeContentBox columns={["lg:col-start-2 lg:col-span-5 xs:col-start-2 xs:col-span-10 col-start-1 col-span-12 mb-5 xs:mb-0"]}>
-      <div class="flex flex-col text-slate-200 justify-between">
-        <h2 id="buttons" class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">Cool Folks</h2>
-        <div class="content-center mb-5">
-          <BadgeDisplay collection="critterBadges" />
-        </div>
-        <div class="w-full justify-around flex gap-2 text-yellow text-2xl">
-          <ChiStar /><ChiStar /><a href="/" class={"transition duration-300 hover:scale-[1.5] cursor-pointer"}>
-            <Image src={cobraMonster} alt={"cobra.monster 88x31"} class={"badge"} />
-          </a><ChiStar /><ChiStar />
-        </div>
-        <div class="border-t-2 border-slate-200 pt-4 mt-4 self-end">
-          <p>
-            If you've linked me on your site with my cool button there, feel free to shoot me an email at
-            <a class="text-yellow hover:cursor-pointer" href="mailto:regal@cobra.monster">regal@cobra.monster</a> with your button and site so I can link back! Or
-            message on socials, whichever :3
-          </p>
-        </div>
-      </div>
-    </HomeContentBox>
-    <HomeContentBox columns={["lg:col-start-7 lg:col-span-5 xs:col-start-2 xs:col-span-10 col-start-1 col-span-12"]}>
-      <div class="flex flex-col text-slate-200 h-full justify-between">
-        <h2 class="text-5xl xs:text-6xl underline decoration-4 decoration-redLight mb-5 text-center">Neat Buttons</h2>
-        <div class="content-center mb-5">
-          <BadgeDisplay collection="standardBadges" />
-        </div>
-        <p>If I find a neat button I just plop it here. Some of them are links!</p>
-      </div>
-    </HomeContentBox> -->
   </HomeSection>
 </Layout>
 

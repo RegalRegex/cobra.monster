@@ -1,4 +1,23 @@
 {
+  "friendLinks": [
+    {
+      "url": "https://bourbondiablo.bearblog.dev/",
+      "title": "Bourbon Diablo",
+      "description": "🔞"
+    },
+    {
+      "url": "https://edsite.black/",
+      "title": "Edsite"
+    },
+    {
+      "url": "https://borzoi.horse/",
+      "title": "Borzoi.Horse"
+    },
+    {
+      "url": "https://busydoe.studio/",
+      "title": "BusyDoe"
+    }
+  ],
   "artLinks": [
     {
       "url": "https://unionzine.neocities.org/",

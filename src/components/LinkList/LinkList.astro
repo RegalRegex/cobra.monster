@@ -4,7 +4,7 @@ import TextDeco from "./../TextDeco.astro";
 interface jsonLink {
   url: string;
   title: string;
-  description: string;
+  description?: string;
   auxLink?: string;
   images?: string;
 }
@@ -20,7 +20,7 @@ const { linkJsonArray } = Astro.props;
     .sort((a, b) => a.title.localeCompare(b.title))
     .map((link: jsonLink) => {
       if (link.auxLink) {
-        let linkedDesc = link.description.split(/\${\d}/);
+        let linkedDesc = link?.description?.split(/\${\d}/);
         const auxLinks = link.auxLink.split("|");
         return (
           <li>
@@ -30,7 +30,7 @@ const { linkJsonArray } = Astro.props;
             <span>
               {" "}
               -{" "}
-              {linkedDesc.map((descChunk, index) => {
+              {linkedDesc?.map((descChunk, index) => {
                 if (auxLinks[index]) {
                   return (
                     <>
@@ -48,8 +48,8 @@ const { linkJsonArray } = Astro.props;
         <li>
           <TextDeco inline={false} url={link.url}>
             {link.title}
-          </TextDeco>{" "}
-          - {link.description}
+          </TextDeco>
+          {link.description && <> - {link.description}</>}
         </li>
       );
     })

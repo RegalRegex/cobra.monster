@@ -1,16 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import Link from "@components/Link.astro";
-import argentAss from "@assets/argent/argentAss.png";
 import BadgeDisplay from "@components/BadgeDisplay.astro";
-import SocialsList from "@components/SocialsList.astro";
 import CobraLogo from "@components/ImageComponents/CobraLogo.astro";
-import Gay from "@assets/mutantEmoji/gay.png";
-import SoGay from "@assets/mutantEmoji/so_gay.png";
 import RssFeedBtn from "./RssFeedBtn.astro";
 import cobraMonster from "@assets/cobra.monster.gif";
 import ArgentDerp from "@assets/argent/ArgentDerpSticker.png"
-import sneke from "@assets/argent/fuckingsneke.png"
 import InlineEmoji from "./ImageComponents/InlineEmoji.astro";
 import ArrowLeft from "@assets/mutantEmoji/utility/arrow_left.png"
 import ArrowRight from "@assets/mutantEmoji/utility/arrow_right.png"
@@ -94,7 +89,7 @@ const { homePage } = Astro.props;
       </div>
     </a>
     }
-    <div class="flex flex-col flex-wrap bg-redDarkest p-4 rounded-md gap-2">
+    <div id="88x31Badges" class="flex flex-col flex-wrap bg-redDarkest p-4 rounded-md gap-2">
       <BadgeDisplay collection="critterBadges" />
       <div class="flex w-full">
         <span class="grow border-b border-yellow mb-4"></span>
