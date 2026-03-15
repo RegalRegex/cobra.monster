@@ -41,11 +41,11 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
 ---
 
 <div class="md:py-8 md:px-20">
+  {
+    comments.length > 0 ? (
   <div class="flex items-center gap-2">
     <p class="not-prose text-3xl text-white mb-2">Comments</p>
   </div>
-  {
-    comments.length > 0 ? (
       <div class="pb-4 mb-4 border-yellow border-b-2 flex flex-col gap-4">
         {comments
           .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
@@ -91,9 +91,7 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
             );
           })}
       </div>
-    ) : (
-      <p class="pb-4 mb-4 border-yellow border-b-2">No comments yet!</p>
-    )
+    ) : ""
   }
   <div class="flex items-center gap-2">
     <p class="not-prose text-3xl text-white mb-2">Leave a comment?</p>
