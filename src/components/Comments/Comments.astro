@@ -12,6 +12,7 @@ import sparkle from "@assets/mutantEmoji/sparkles.png";
 import InlineArgentEmoji from "@components/ImageComponents/InlineArgentEmoji.astro";
 import woozy from "@assets/mutantEmoji/expressions/woozy.png";
 import dragon from "@assets/mutantEmoji/western_dragon.png";
+import { Image } from "astro:assets";
 
 /**
  * Credit for Netlify forms comments goes to Emily Goto:
@@ -42,28 +43,6 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
 <div class="md:py-8 md:px-20">
   <div class="flex items-center gap-2">
     <p class="not-prose text-3xl text-white mb-2">Comments</p>
-    <button
-      class="toggle-comments-exp hover:cursor-pointer hover:text-white hover:bg-gray-300 aspect-square p-0.5 rounded-full border-gray-400 border inline-flex shrink mb-1"
-      ><InlineEmoji emoji={questionMark} styles="w-2.5 sm:w-4" /></button
-    >
-  </div>
-  <div class="comments-exp overflow-y-hidden transition-all duration-1000 ease-in-out max-h-0 opacity-0 text-xs sm:text-base">
-    <p class="text-2xl">How the Comments Work:</p>
-    <ul class="list-none">
-      <li>
-        <InlineEmoji emoji={sparkle} /> This comment system is custom built–loosely following <a href="https://www.emgoto.com/astro-blog-comments/"
-          >Emily Goto's</a
-        > example on her blog.
-      </li>
-      <li>
-        <InlineArgentEmoji emoji="smile" /> This is a static site, so comments are added manually by me
-      </li>
-      <li>
-        <InlineEmoji emoji={woozy} /> I ask for a Bsky account because I'm lazily using their API to fetch avatar images from there (instead of using Gravatar, for
-        instance)
-      </li>
-      <li><InlineEmoji emoji={dragon} /> If you do not provide a Bsky account, your comment will have a picture of Wrex instead</li>
-    </ul>
   </div>
   {
     comments.length > 0 ? (
@@ -116,6 +95,36 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
       <p class="pb-4 mb-4 border-yellow border-b-2">No comments yet!</p>
     )
   }
+  <div class="flex items-center gap-2">
+    <p class="not-prose text-3xl text-white mb-2">Leave a comment?</p>
+    <button
+      class="toggle-comments-exp hover:cursor-pointer hover:text-white hover:bg-gray-300 aspect-square p-0.5 rounded-full border-gray-400 border inline-flex shrink mb-1"
+      ><InlineEmoji emoji={questionMark} styles="w-2.5 sm:w-4" /></button
+    >
+  </div>
+  <div class="comments-exp overflow-y-hidden transition-all duration-1000 ease-in-out max-h-0 opacity-0 text-xs sm:text-base">
+    <ul class="list-none">
+      <li>
+        <InlineEmoji emoji={sparkle} /> This comment system is custom built–loosely following <a href="https://www.emgoto.com/astro-blog-comments/"
+          >Emily Goto's</a
+        > example on her blog.
+      </li>
+      <li>
+        <InlineArgentEmoji emoji="smile" /> This is a static site, so comments are added manually by me
+      </li>
+      <li>
+        <InlineEmoji emoji={woozy} /> I ask for a Bsky account because I'm lazily using their API to fetch avatar images from there (instead of using Gravatar, for
+        instance)
+      </li>
+      <li class="inline-flex gap-2 items-center">
+        <InlineEmoji emoji={dragon} /> If you do not provide a Bsky account, your comment will have this picture of Wrex instead: <Image
+          src={Wrex}
+          alt="Wrex!"
+          class={"max-w-10 rounded-full"}
+        />
+      </li>
+    </ul>
+  </div>
   <CommentForm client:idle />
 </div>
 

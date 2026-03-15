@@ -102,7 +102,7 @@ export const CommentForm = () => {
                 Bluesky
               </label>
               <div className="border border-yellow bg-[#761416] flex">
-                <span className="px-2 text-slate-200/75 leading-8">@</span>
+                <span className="px-2 text-slate-200/75">@</span>
                 <input
                   type="text"
                   name="bsky"
@@ -139,7 +139,7 @@ export const CommentForm = () => {
                 disabled={isSendingForm}
                 className="border border-yellow hover:cursor-pointer font-bold hover:bg-redDark disabled:text-gray-500"
               >
-                Send Comment
+                Leave Comment
               </button>
             </div>
           </form>
