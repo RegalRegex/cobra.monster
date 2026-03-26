@@ -6,6 +6,7 @@ import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import tailwindcss from "@tailwindcss/vite";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
+import embeds from "astro-embed/integration";
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,6 +30,7 @@ export default defineConfig({
   },
 
   integrations: [
+    embeds(),
     mdx({
       syntaxHighlight: false,
       rehypePlugins: [

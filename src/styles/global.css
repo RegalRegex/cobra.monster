@@ -107,14 +107,17 @@
 }
 @font-face {
   font-family: "BigShoulders";
-  src: url("/fonts/BigShoulders.ttf") format("truetype supports variations"), url("/fonts/BigShoulders.ttf") format("truetype-variations");
+  src:
+    url("/fonts/BigShoulders.ttf") format("truetype supports variations"),
+    url("/fonts/BigShoulders.ttf") format("truetype-variations");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Roboto";
-  src: url("/fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype supports variations"),
+  src:
+    url("/fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype supports variations"),
     url("/fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype-variations");
   font-weight: 100 900;
   font-style: normal;
@@ -122,7 +125,9 @@
 }
 @font-face {
   font-family: "BigShoulders";
-  src: url("/fonts/BigShoulders.ttf") format("truetype supports variations"), url("/fonts/BigShoulders.ttf") format("truetype-variations");
+  src:
+    url("/fonts/BigShoulders.ttf") format("truetype supports variations"),
+    url("/fonts/BigShoulders.ttf") format("truetype-variations");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;

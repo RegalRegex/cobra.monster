@@ -14,6 +14,8 @@ import Comments from "@components/Comments/Comments.astro";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 
+import WrexPlaceholder from "@assets/WrexPlaceholder_long.png"
+
 interface Props {
   post: CollectionEntry<"posts">;
   headings: MarkdownHeading[];
@@ -83,10 +85,15 @@ const ogImg = `https://cobra.monster/blog/og/${slug}.png`;
     </Fragment>
     <Fragment slot="main">
       {
-        headerImg && (
+        headerImg ? (
           <div class="mb-16">
             <Image src={headerImg} alt={`${title} header image`} />
             {headerImgCaption && <em>{headerImgCaption}</em>}
+          </div>
+        ) : (
+          <div class="mb-16">
+            <Image src={WrexPlaceholder} alt={`Wrex Placeholder`} />
+            <em>Ooooh he long boy</em>
           </div>
         )
       }

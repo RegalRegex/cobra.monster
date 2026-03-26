@@ -99,9 +99,7 @@ figcaption[data-rehype-pretty-code-title] {
   }
 }
 
-/* h1 {
-  font-size: calc(var(--spacing) * 5);
-  @variant md {
-    font-size: calc(var(--spacing) * 8);
-  }
-} */
+/* For YT Embeds */
+lite-youtube {
+  margin: 0 auto;
+}
