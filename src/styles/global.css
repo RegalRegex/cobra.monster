@@ -31,6 +31,7 @@
   /* Breakpoints */
   --breakpoint-xs: 32rem;
   --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 110rem;
   /* Fonts */
   --font-prospekt: "Prospekt Regular", sans-serif;
 
@@ -176,6 +177,31 @@ html {
 
 .blogBg {
   background-color: #340606;
+}
+
+#table-of-contents-list {
+  scrollbar-width: thin;
+  overflow-y: hidden;
+
+  /* BG scroll shadows from: https://css-scroll-shadows.vercel.app/ */
+
+  background:
+    linear-gradient(#340606 33%, rgba(52, 6, 6, 0)),
+    linear-gradient(rgba(52, 6, 6, 0), #340606 66%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(234, 179, 8, 0.5), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(234, 179, 8, 0.5), rgba(0, 0, 0, 0)) 0 100%;
+  background-color: #340606;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
+  background-size:
+    100% 48px,
+    100% 48px,
+    100% 16px,
+    100% 16px;
+}
+#table-of-contents-list:hover {
+  scrollbar-width: thin;
+  overflow-y: auto;
 }
 @media screen and (min-width: 768px) {
   .gradientBg {

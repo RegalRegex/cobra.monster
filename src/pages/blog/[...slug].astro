@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BlogPostLayout from "@layouts/BlogPostLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import type { GetStaticPaths, MarkdownHeading } from "astro";
+import { findImage } from "@utils/images";
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("posts");
@@ -26,9 +27,11 @@ interface Props {
 }
 
 const { entry, headings } = Astro.props;
-const { Content } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await entry.render();
+
+const image = entry.data.headerOg ? ((await findImage(entry.data.headerImg)) as ImageMetadata) : null;
 ---
 
-<BlogPostLayout post={entry} headings={headings}>
+<BlogPostLayout post={entry} headings={headings} image={image} minutesRead={remarkPluginFrontmatter.minutesRead}>
   <Content />
 </BlogPostLayout>

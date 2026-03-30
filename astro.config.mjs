@@ -7,6 +7,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import tailwindcss from "@tailwindcss/vite";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import embeds from "astro-embed/integration";
+import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,6 +28,9 @@ export default defineConfig({
         limitInputPixels: false,
       },
     },
+  },
+  markdown: {
+    remarkPlugins: [remarkReadingTime],
   },
 
   integrations: [

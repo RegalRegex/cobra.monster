@@ -15,10 +15,14 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 
 import WrexPlaceholder from "@assets/WrexPlaceholder_long.png"
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
+import watch from "@assets/mutantEmoji/watch.png"
 
 interface Props {
   post: CollectionEntry<"posts">;
   headings: MarkdownHeading[];
+  image: ImageMetadata | null;
+  minutesRead: string;
 }
 
 const {
@@ -27,6 +31,8 @@ const {
     data: { title, subtitle, date, tags, headerImg, headerImgCaption },
   },
   headings,
+  image,
+  minutesRead
 } = Astro.props;
 
 const formattedDate = formatDate(date);
@@ -38,7 +44,7 @@ const getComments = async () => {
 
 const comments = await getComments();
 
-const ogImg = `https://cobra.monster/blog/og/${slug}.png`;
+const ogImg = image ? image.src : `https://cobra.monster/blog/og/${slug}.png`;
 ---
 
 <head>
@@ -47,7 +53,7 @@ const ogImg = `https://cobra.monster/blog/og/${slug}.png`;
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
   <meta property="og:title" content={title} />
-  <meta property="og:description" content={subtitle} />
+  <meta property="og:description" content={`${subtitle} - ${minutesRead}`} />
   <meta property="og:image" content={ogImg} />
   <title>{title}</title>
 </head>
@@ -69,10 +75,13 @@ const ogImg = `https://cobra.monster/blog/og/${slug}.png`;
             <h3 class="font-medium text-2xl">{"Published"}</h3>
             <p>{formattedDate}</p>
           </div>
+          <div class="text-base mt-3">
+         {minutesRead} <InlineEmoji emoji={watch} styles="w-6" /> 
+        </div>
         </div>
         {
           tags && (
-            <div class="mt-2 text-sm">
+            <div class="mt-2 text-base">
               <TagContents pageUrl="/blog/tagged/" inline={true} tagIds={tags.map((tag) => tag.id)} />
             </div>
           )
