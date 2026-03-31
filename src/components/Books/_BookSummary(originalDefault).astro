@@ -7,7 +7,7 @@ import speechBubble from "@assets/mutantEmoji/speech_bubble.png";
 import calendar from "@assets/mutantEmoji/calendar_spiral.png";
 import thumbsDown from "@assets/mutantEmoji/hands/thumbs_down_clw_y2.png";
 import thumbsUp from "@assets/mutantEmoji/hands/thumbs_up_clw_y2.png";
-import { formatDate } from "src/utils/stringFormatters";
+import { formatDateUtc } from "src/utils/stringFormatters";
 import ChiStarRating from "@components/ImageComponents/ChiStarRating.astro";
 
 interface Props {
@@ -23,7 +23,7 @@ const {
   view = "default",
 } = Astro.props;
 
-const formattedDate = formatDate(date);
+const formattedDate = formatDateUtc(date);
 
 /**
  * Ideas:

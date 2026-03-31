@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import TagContents from "@components/TagContents.astro";
-import { formatDate } from "src/utils/stringFormatters";
+import { formatDateUtc } from "src/utils/stringFormatters";
 import ChiStarRating from "@components/ImageComponents/ChiStarRating.astro";
 
 import writingEmoji from "@assets/mutantEmoji/hands/writing_hand_clw_y2.png";
@@ -24,7 +24,7 @@ const {
   view = "default",
 } = Astro.props;
 
-const formattedDate = formatDate(date);
+const formattedDate = formatDateUtc(date);
 ---
 
 {

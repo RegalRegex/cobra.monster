@@ -1,9 +1,13 @@
-export const formatDate = (date: Date) => {
+export const formatDateUtc = (date: Date) => {
   return date?.toLocaleString("en-US", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" });
 };
 
+export const formatLocalDate = (date: Date) => {
+  return date?.toLocaleString("en-US", { day: "2-digit", month: "long", year: "numeric" });
+};
+
 export const formatTime = (date: Date) => {
-  return date?.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", timeZone: "UTC" });
+  return date?.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
 };
 
 export const capitalizeFirst = (input: string) => {

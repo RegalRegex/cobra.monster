@@ -5,7 +5,7 @@ import TopNav from "@components/TopNav/TopNav.astro";
 import type { MarkdownHeading } from "astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import TagContents from "../components/TagContents.astro";
-import { formatDate } from "src/utils/stringFormatters";
+import { formatDateUtc } from "src/utils/stringFormatters";
 import BlogStyleMain from "@components/Snippets/BlogStyleMain.astro";
 import ChiStar from "@components/ImageComponents/ChiStar.astro";
 import { CommentForm } from "@components/Comments/CommentForm";
@@ -35,7 +35,7 @@ const {
   minutesRead
 } = Astro.props;
 
-const formattedDate = formatDate(date);
+const formattedDate = formatDateUtc(date);
 
 const getComments = async () => {
   const commentFiles = await getCollection("comments");
