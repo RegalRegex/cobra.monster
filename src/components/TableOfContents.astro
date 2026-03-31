@@ -10,14 +10,14 @@ const { headings } = Astro.props;
 const filteredHeadings = headings.filter((heading) => heading.text !== "Footnotes");
 ---
 
-<nav class="sticky z-1 top-0 pt-4 pl-2 mb-2 mr-5 flex flex-col">
+<nav class="sticky z-1 top-0 pt-4 pl-2 mb-2 mr-5 flex flex-col" id="table-of-contents-nav">
   <h3 class="text-3xl font-medium mb-2">Contents</h3>
   <ul class="md:max-h-[85vh]" id="table-of-contents-list">
     {
       filteredHeadings.map((heading, i, arr) => {
         if (heading.depth > 1) {
           return (
-            <li class="my-1 last-of-type:border-b-2 border-yellow">
+            <li class="my-1 last-of-type:border-b-4 border-yellow">
               <TextDeco url={`#${heading.slug}`}>
                 <div class="flex items-start gap-2">
                   <span class="text-sm items-center mt-1.5 ">
@@ -34,7 +34,7 @@ const filteredHeadings = headings.filter((heading) => heading.text !== "Footnote
         return (
           // Divider element. Separates top level headers. "arr" avoids line when multiple top-level headers in sequence
           <div class:list={[" w-[95%]  bg-slate-200/30 p-0.5 mb-1.5", `${(i===0 || arr[i-1].depth === 1) ? 'hidden' :'inline-block'}`]}></div>
-          <li class="last-of-type:border-b-2 border-yellow">
+          <li class="last-of-type:border-b-4 border-yellow">
             <TextDeco url={`#${heading.slug}`}>{heading.text}</TextDeco>
           </li>
         );

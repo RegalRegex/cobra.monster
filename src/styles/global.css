@@ -182,6 +182,7 @@ html {
 #table-of-contents-list {
   scrollbar-width: thin;
   overflow-y: hidden;
+  scrollbar-gutter: stable;
 
   /* BG scroll shadows from: https://css-scroll-shadows.vercel.app/ */
 
