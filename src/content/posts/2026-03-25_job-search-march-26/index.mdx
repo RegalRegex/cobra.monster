@@ -25,6 +25,7 @@ import snake from "@assets/mutantEmoji/snake.png"
 import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro"
 import InlineArgentEmoji from "@components/ImageComponents/InlineArgentEmoji.astro"
 import QuoteBlock from "@components/QuoteBlock.astro"
+import CrtGreen from "@assets/mutantEmoji/crt_green_lines.png"
 
 import { YouTube } from "astro-embed";
 
@@ -494,6 +495,9 @@ Unsurprisingly, I had a lot of fun with the visual and UX design elements of the
 
 ![The New Transaction modal pop-up in my take home app. It just lists the fields from the table in a pleasing way as an interactive form.](<image copy 18.png>)
 
+<Accordion client:idle>
+<span slot="title"><InlineEmoji emoji={CrtGreen}/> Some of my PHP code</span>
+<div slot="content">
 ```php title="Auth.php"
 <?php
 session_start();
@@ -539,14 +543,15 @@ try {
 } catch (Exception $e) {
     die(header('HTTP/1.1 500 Internal Server Error'));
 }
-
 ```
+</div>
+</Accordion>
 
 Honestly just getting a local PHP server running on my computer was hard enough, but yeah this was a struggle. I didn't fall in love with PHP. But it was cool and genuinely exciting to learn something new like this.
 
 ##### Javascript 😁
 
-![](<image copy 17.png>)
+![My New Transaction modal from the take-home assessment](<image copy 17.png>)
 
 I hadn't had to use JQuery in ages but it was like riding a bike, and I just had to look up a few of the functions here and there.
 
@@ -564,6 +569,9 @@ It's shorthand but only rewards people who already know what they're doing. This
 
 I did some very cool things. I'm particularly proud of the "New Transaction" modal (pictured above), and the clever way I handled the fact that the `GetTransactions` API endpoint returned over 12,000 records over the course of 12 seconds <InlineArgentEmoji emoji="flushed"/>
 
+<Accordion client:idle>
+<span slot="title"><InlineEmoji emoji={CrtGreen}/> My Modal's JS Code</span>
+<div slot="content">
 ```javascript title="modal.js"
 import { showSection } from "./cssHelpers.js";
 
@@ -704,9 +712,14 @@ function resetNewTransactionForm(isSuccess = false) {
   }
 }
 ```
+</div>
+</Accordion>
 
 I built a form AND implemented some simple-but-useful form validation :3 Not bad for a guy who has only ever done that with a full Angular or React framework!
 
+<Accordion client:idle>
+<span slot="title"><InlineEmoji emoji={CrtGreen}/> My Table-Chunking JS Code</span>
+<div slot="content">
 ```javascript title="createTable.js"
 import { formatAmount, setNoRecordsFound } from "./dataUtils.js";
 
@@ -773,6 +786,8 @@ export function createTable(data) {
   renderNextChunk();
 }
 ```
+</div>
+</Accordion>
 
 I don't know why I kept with the word "Chunk" to describe what is clearly "Batching"...Anyways. Yeah I've never used `requestAnimationFrame()` before! I felt super clever for figuring this out AND I cleverly used this to create an intuitive and honest loading bar (see first screenshot above) :3\
 I'm also proud of how I figured out that I could just build the table as large strings first and THEN append them as actual html.
@@ -881,6 +896,206 @@ I still had to turn in my code. Which didn't work, remember. And wait 5 minutes 
 _Me forreal_
 
 Fucking blew it, man. Feels bad. Real bad.
+
+##### Asteroids After
+
+The interviewer suggested to me that I finish the task anyways, just to practice. I gave myself another 30 min and did as much as I could, partly because "sure" but also very much because my mental state was in disarray and this was a great distraction.
+
+![Screenshot of my Astroid "Game". It's a large red grid of squares with 4 green squares, 1 black square, and a line of yellow squares "shooting off" from the black square on a white background](<image copy 19.png>)
+_\*sad pew pew sounds*_
+
+I got as far as making the laser. I could probably eke out turning the asteroids red, but I was trying to be extra fair just in case. Idk. I clearly \*can* do it. Just nerves.
+
+<Accordion client:idle>
+<span slot="title"><InlineEmoji emoji={CrtGreen}/> My Asteroids Code...Remember, 30 min time limit!!</span>
+<div slot="content">
+```javascript title="main.js"
+$(document).ready(function () {
+  const N = Math.floor(Math.random() * (55 - 10) + 10);
+
+  const topAsteroid = [Math.floor(Math.random() * (N - 1) + 0), 0];
+  const rightAstroid = [N - 1, Math.floor(Math.random() * (N - 1) + 0)];
+  const leftAsteroid = [0, Math.floor(Math.random() * (N - 1) + 0)];
+  const bottomAsteroid = [Math.floor(Math.random() * (N - 1) + 0), N - 1];
+  const center = (N * N) / 2;
+
+  const asteroids = [topAsteroid, rightAstroid, leftAsteroid, bottomAsteroid];
+
+  // SETUP (runs once)
+  //   Sub-containers
+  for (let i = 0; i < N; i++) {
+    $(".container").append(`<div class="n-container" id=sub-container-${i}></div>`);
+    for (let j = 0; j < N; j++) {
+      if (i === Math.floor(N / 2) && j === Math.floor(N / 2)) {
+        $(`#sub-container-${i}`).append(`<div class="n-box n-center" id="${j}-${i}"></div>`);
+      } else {
+        $(`#sub-container-${i}`).append(`<div class="n-box" id="${j}-${i}"></div>`);
+      }
+    }
+  }
+  // Spawn asteroids
+  asteroids.forEach((asteroid, index) => {
+    let names = ["down", "left", "right", "up"];
+    let asteroidName;
+    $(`#${asteroid[0]}-${asteroid[1]}`).addClass(`asteroid ${names[index]}`);
+  });
+
+  let currentPos = () => [Math.floor(N / 2), Math.floor(N / 2)];
+  document.onkeydown = function (e) {
+    // A key = 65
+    // Space = 32
+
+    let currentPos = $(".n-center");
+    let currentPosCoord = currentPos.attr("id").split("-");
+    let currentPosCoordNum = [Number(currentPosCoord[0]), Number(currentPosCoord[1])];
+    switch (e.which) {
+      case 32:
+        fireLaser(currentPosCoordNum, status);
+        break;
+
+      case 65:
+        currentPos.removeClass("n-center");
+        const newPosId = incrementShipLocation(currentPosCoordNum, status);
+        incrementAsteroids();
+        const newShipLoc = $(`#${newPosId[0]}-${newPosId[1]}`);
+        newShipLoc.addClass("n-center");
+        break;
+
+      case 37: // left
+        if (status === "up") {
+          status = "left";
+          $(".n-center").css("border-width", "0px 0px 0px 2px");
+        } else if (status === "left") {
+          status = "down";
+          $(".n-center").css("border-width", "0px 0px 2px 0px");
+        } else if (status === "down") {
+          status = "right";
+          $(".n-center").css("border-width", "0px 2px 0px 0px ");
+        } else if (status === "right") {
+          status = "up";
+          $(".n-center").css("border-width", "2px 0px 0px 0px");
+        }
+        //   top, right, bottom, left
+
+        break;
+
+      case 39: // right
+        if (status === "up") {
+          status = "right";
+          $(".n-center").css("border-width", "0px 2px 0px 0px ");
+        } else if (status === "left") {
+          status = "up";
+          $(".n-center").css("border-width", "2px 0px 0px 0px");
+        } else if (status === "down") {
+          status = "left";
+          $(".n-center").css("border-width", "0px 0px 0px 2px");
+        } else if (status === "right") {
+          status = "down";
+          $(".n-center").css("border-width", "0px 0px 2px 0px");
+        }
+
+        break;
+
+      default:
+        return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+  };
+  function incrementAsteroids() {
+    const topAsteroid = $(".asteroid.down");
+    const rightAstroid = $(".asteroid.left");
+    const leftAsteroid = $(".asteroid.right");
+    const bottomAsteroid = $(".asteroid.up");
+    const asteroids = [topAsteroid, rightAstroid, leftAsteroid, bottomAsteroid];
+    const directions = ["down", "left", "right", "up"];
+
+    asteroids.forEach((asteroid, index) => {
+      const id = asteroid.attr("id");
+      let currentPosCoord = id.split("-");
+      let currentPosCoordNum = [Number(currentPosCoord[0]), Number(currentPosCoord[1])];
+      const newPosId = incrementShipLocation(currentPosCoordNum, directions[index]);
+      const newAstLoc = $(`#${newPosId[0]}-${newPosId[1]}`);
+      $(asteroid).removeClass("asteroid");
+      newAstLoc.addClass(`asteroid`);
+      newAstLoc.addClass(`${directions[index]}`);
+    });
+  }
+  function incrementShipLocation(currentPos, direction) {
+    $(".n-box").removeClass("laser");
+    let newLocation = currentPos;
+    if (direction === "up") {
+      const change = newLocation[1] - 1;
+
+      if (change < 0) {
+        newLocation[1] = N - 1;
+      } else {
+        newLocation[1]--;
+      }
+      return newLocation;
+    }
+    if (direction === "left") {
+      const change = newLocation[0] - 1;
+
+      if (change < 0) {
+        newLocation[0] = N - 1;
+      } else {
+        newLocation[0]--;
+      }
+      return newLocation;
+    }
+    if (direction === "right") {
+      const change = newLocation[0] + 1;
+
+      if (change > N - 1) {
+        newLocation[0] = 0;
+      } else {
+        newLocation[0]++;
+      }
+      return newLocation;
+    }
+    if (direction === "down") {
+      const change = newLocation[1] + 1;
+
+      if (change > N - 1) {
+        newLocation[1] = 0;
+      } else {
+        newLocation[1]++;
+      }
+      return newLocation;
+    }
+  }
+
+  function fireLaser(currentPos, direction) {
+    $(".n-box").removeClass("laser");
+    if (direction === "up") {
+      for (let i = currentPos[1] - 1; i >= 0; i--) {
+        $(`#${currentPos[0]}-${i}`).addClass("laser");
+      }
+    }
+    if (direction === "left") {
+      for (let i = currentPos[0] - 1; i >= 0; i--) {
+        $(`#${i}-${currentPos[1]}`).addClass("laser");
+      }
+    }
+    if (direction === "right") {
+      for (let i = currentPos[0] + 1; i < N; i++) {
+        $(`#${i}-${currentPos[1]}`).addClass("laser");
+      }
+    }
+    if (direction === "down") {
+      for (let i = currentPos[1] + 1; i < N; i++) {
+        $(`#${currentPos[0]}-${i}`).addClass("laser");
+      }
+    }
+  }
+});
+let status = "up";
+let trackedPos;
+
+// return Math.random() * (max - min) + min;
+```
+</div>
+</Accordion>
 
 # Final Thoughts/Sobs
 
