@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { CommentForm } from "./CommentForm";
-import { formatLocalDate, formatTime } from "src/utils/stringFormatters";
+import { formatLocalDate } from "src/utils/stringFormatters";
 // import markdownit from 'markdown-it';
 
 import Wrex from "@assets/Wrex.png";
@@ -55,10 +55,10 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
             return (
               <div class="text-slate-200 text-xl flex gap-4 bg-[#460809] p-4 rounded-md" id={`comment-${comment.id}`}>
                 {bskyAvi ? (
-                  <a href={`https://bsky.app/profile/${comment.bsky}`}>
+                  <a href={`https://bsky.app/profile/${comment.bsky}`} aria-label={`Link to ${comment.name}'s Bluesky Account'`}>
                     <img
                       src={avi}
-                      alt=""
+                      alt={`${comment.name} profile picture`}
                       class="object-cover self-center  rounded-full aspect-square flex min-w-16 w-16 hover:scale-[1.15] transition duration-300 not-prose"
                     />
                   </a>
@@ -70,7 +70,7 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
                 <div class="flex flex-col gap-1">
                   <span class="flex gap-1 items-center flex-wrap">
                     {comment.url ? (
-                      <a href={comment.url} class="text-yellow font-semibold decoration-yellow hover:underline decoration-2">
+                      <a href={comment.url} class="text-yellow font-semibold decoration-yellow hover:underline decoration-2" aria-label={`Link to ${comment.name}'s website'`}>
                         {comment.name}
                       </a>
                     ) : (

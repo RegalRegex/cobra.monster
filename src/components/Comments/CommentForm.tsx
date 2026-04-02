@@ -79,6 +79,7 @@ export const CommentForm = () => {
               <input
                 type="text"
                 name="name"
+                aria-label="name"
                 required={true}
                 className="border border-yellow bg-[#761416] px-2 focus:outline-none  focus:border-slate-200 focus:ring focus:ring-slate-200 placeholder:text-slate-200/55"
               />
@@ -92,6 +93,7 @@ export const CommentForm = () => {
                   type="text"
                   name="website"
                   required={false}
+                  aria-label="website"
                   className=" px-2 focus:outline-none  focus:border-slate-200 focus:ring focus:ring-slate-200 placeholder:text-slate-200/55 grow"
                   placeholder="https://cobra.monster"
                 />
@@ -107,6 +109,7 @@ export const CommentForm = () => {
                   type="text"
                   name="bsky"
                   required={false}
+                  aria-label="Bluesky handle"
                   className=" px-2 focus:outline-none  focus:border-slate-200 focus:ring focus:ring-slate-200 placeholder:text-slate-200/55 border-l border-yellow grow"
                   placeholder="regal.bsky.social"
                 />
@@ -129,6 +132,7 @@ export const CommentForm = () => {
               <textarea
                 name="comment"
                 required={true}
+                aria-label="comment"
                 // onChange={handleCommentChange}
                 className={`border border-yellow bg-[#761416] px-2 focus:outline-none  focus:border-slate-200 focus:ring focus:ring-slate-200 placeholder:text-slate-200/55 min-h-32`}
               />

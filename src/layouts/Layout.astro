@@ -46,6 +46,7 @@ const bgSettings = () => {
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="fediverse:creator" content="regal@yiff.life" />
+    <meta property="description" content={customOg ? customOg.description : "A communist coffee cobra's personal website"}/>
     <title>COBRA.MONSTER</title>
     <ClientRouter />
     <script is:inline>
@@ -54,11 +55,11 @@ const bgSettings = () => {
   </head>
 
   <body>
-    <div id="main" class:list={["w-full border-separate flex flex-col min-h-screen", bgSettings()]}>
+    <main id="main" class:list={["w-full border-separate flex flex-col min-h-screen", bgSettings()]}>
       <div class="@container grow flex flex-col">
         <slot />
       </div>
       <Footer homePage={homePage} />
-    </div>
+    </main>
   </body>
 </html>

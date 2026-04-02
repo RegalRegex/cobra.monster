@@ -17,25 +17,32 @@ const filteredHeadings = headings.filter((heading) => heading.text !== "Footnote
       filteredHeadings.map((heading, i, arr) => {
         if (heading.depth > 1) {
           return (
-            <li class="my-1 last-of-type:border-b-4 border-yellow">
-              <TextDeco url={`#${heading.slug}`}>
-                <div class="flex items-start gap-2">
-                  <span class="text-sm items-center mt-1.5 ">
-                    {[...Array(heading.depth - 1)].map(() => (
-                      <ChiStar />
-                    ))}
-                  </span>
+            <li class="my-1 last-of-type:border-b-4 border-yellow has-[+.buffer]:pb-2 text-amber-300">
+              <div class="flex items-start gap-2">
+                <span class="text-sm items-center mt-1.5 ">
+                  {[...Array(heading.depth - 1)].map(() => (
+                    <ChiStar />
+                  ))}
+                </span>
+                <a class="hover:no-underline underline decoration-amber-400 decoration-1 cursor-pointer font-light text-wrap" href={`#${heading.slug}`}>
                   <span class={`text-wrap`}>{heading.text}</span>
-                </div>
-              </TextDeco>
+                </a>
+              </div>
             </li>
           );
         }
         return (
           // Divider element. Separates top level headers. "arr" avoids line when multiple top-level headers in sequence
-          <div class:list={[" w-[95%]  bg-slate-200/30 p-0.5 mb-1.5", `${(i===0 || arr[i-1].depth === 1) ? 'hidden' :'inline-block'}`]}></div>
-          <li class="last-of-type:border-b-4 border-yellow">
-            <TextDeco url={`#${heading.slug}`}>{heading.text}</TextDeco>
+          // <div class:list={[" w-[95%]  bg-slate-200/30 p-0.5 mb-1.5", `${(i===0 || arr[i-1].depth === 1) ? 'hidden' :'inline-block'}`]}></div>
+          <li
+            class={`last-of-type:border-b-4 last-of-type:border-b-yellow ${i === 0 || arr[i - 1].depth === 1 ? "" : "border-t-slate-200/30 pt-2 border-t-4 buffer"}`}
+          >
+            <a
+              class="hover:no-underline underline decoration-amber-400 decoration-1 cursor-pointer text-amber-300 font-light text-wrap"
+              href={`#${heading.slug}`}
+            >
+              {heading.text}
+            </a>
           </li>
         );
       })

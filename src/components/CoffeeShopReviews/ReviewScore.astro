@@ -37,7 +37,7 @@ const totalScore = Object.values(cafeData.rating).reduce((a, b) => a + b);
     Object.entries(cafeData.rating).map(([key, value], i) => {
       const ratingItem = ratingArray[key as keyof typeof ratingArray];
       return (
-        <li class="flex flex-col w-full flex-nowrap">
+        <li class="flex flex-col w-full flex-nowrap nth-of-type-[5]:pb-2">
           {compact ?
           <div class="flex gap-2 w-full">
             <span>
@@ -64,17 +64,15 @@ const totalScore = Object.values(cafeData.rating).reduce((a, b) => a + b);
       );
     })
   }
-  {compact && <span class="flex my-2 border-b w-full"></span>
-   <li class="flex">
-    <div class="flex gap-2">
+  {compact && 
+   <li class="flex gap-2 pt-2 border-t">
     <InlineEmoji emoji={finishFlag} styles={"w-5 sm:w-7"} />
       <span class="text-right flex-none font-bold">{totalScore} / 30</span>
-    </div>
    </li>
    }
 
-  {!compact ? <span class="flex my-2 border-b w-full"></span>
-  <li class="flex flex-col">
+  {!compact ? 
+  <li class="flex flex-col pt-2 border-t">
     <div class="flex justify-between">
       <span class="capitalize flex-none">
         <InlineEmoji emoji={finishFlag} styles={"w-5 sm:w-7"} />

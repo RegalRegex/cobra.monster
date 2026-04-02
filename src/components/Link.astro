@@ -7,7 +7,7 @@ interface Props {
   wip?: boolean;
 }
 
-const { url, wip = false }: Props = Astro.props;
+const { url, wip = false, ...props }: Props = Astro.props;
 ---
 
 <a
@@ -16,6 +16,7 @@ const { url, wip = false }: Props = Astro.props;
     `${wip ? "line-through decoration-1 decoration-white pointer-events-none" : "underline decoration-2 decoration-yellow"}`,
   ]}
   href={url}
+  {...props}
 >
   <slot />
   <Image src={wrench} alt="Construction" class:list={["w-5 m-auto", `${wip ? "block" : "hidden"}`]} />

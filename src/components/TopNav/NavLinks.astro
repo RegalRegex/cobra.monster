@@ -34,10 +34,12 @@ const { open } = Astro.props;
           {section.links
             .sort((a, b) => a.display.localeCompare(b.display))
             .map((linkPair) => (
-              <Link url={`${linkPair.external ? "" : "/"}${linkPair.url}`}>
-                {linkPair.display}
-                {linkPair.external && <InlineEmoji emoji={arrowUpRight} styles="w-4 ml-0 xl:w-5" />}
-              </Link>
+              <li>
+                <Link url={`${linkPair.external ? "" : "/"}${linkPair.url}`}>
+                  {linkPair.display}
+                  {linkPair.external && <InlineEmoji emoji={arrowUpRight} styles="w-4 ml-0 xl:w-5" />}
+                </Link>
+              </li>
               // <a href={`/${linkPair.url}`} class="hover:cursor-pointer hover:text-yellow">
               //   {linkPair.display}
               // </a>

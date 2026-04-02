@@ -50,12 +50,12 @@ const Accordion = ({ title, content, bgRed = true }: Props) => {
     <div className="@container/accordion accordion flex flex-col my-5 border-l-8 border-yellow">
       {
         <div className={`${bgRed ? "bg-[#510505]" : "bg-boxPrimary"} p-4 `}>
-          <h3 className="font-bold not-prose">
+          <div className="font-bold not-prose">
             <button className="accordionBtn flex items-center justify-between w-full hover:cursor-pointer" onClick={toggleAccordion} aria-expanded={expanded}>
               {title}
               <img className={`${rotate} w-6 not-prose`} src={arrowRight.src} alt="arrow" />
             </button>
-          </h3>
+          </div>
           <section ref={contentSpace} style={{ maxHeight: `${height}` }} className="overflow-y-hidden transition-max-height duration-500 ease-in-out text-left">
             {content}
           </section>

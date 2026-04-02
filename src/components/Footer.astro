@@ -48,13 +48,13 @@ const { homePage } = Astro.props;
         <div class="flex w-full justify-around flex-wrap  mt-4">
           <div class="flex flex-col gap-2 items-start">
             <a href="https://fediring.net/" class="font-medium text-lg xs:text-2xl xl:text-3xl cursor-pointer  hover:text-amber-500 inline-flex gap-1 underline decoration-2 decoration-yellow"><InlineEmoji emoji={pentacle} styles="w-7"/>Fediring</a>
-            <Link url="https://fediring.net/next?host=cobra.monster"><InlineEmoji emoji={ArrowRight} styles="w-5"/>Next</Link>
-            <Link url="https://fediring.net/previous?host=cobra.monster"><InlineEmoji emoji={ArrowLeft} styles="w-5" />Previous</Link>
+            <Link url="https://fediring.net/next?host=cobra.monster" aria-label="Navigate to Next Fediring site"><InlineEmoji emoji={ArrowRight} styles="w-5"/>Next</Link>
+            <Link url="https://fediring.net/previous?host=cobra.monster" aria-label="Navigate to previous Fediring site"><InlineEmoji emoji={ArrowLeft} styles="w-5" />Previous</Link>
           </div>
           <div class="flex flex-col gap-2 items-start">
             <a href="https://cobra.monster/rff-webring" class="ffont-medium text-lg xs:text-2xl xl:text-3xl cursor-pointer  hover:text-amber-500 inline-flex gap-1 underline decoration-2 decoration-yellow"><InlineEmoji emoji={muscle} styles="w-7"/>Furry Fitness Ring</a>
-            <Link url="https://cobra.monster/rff-webring/cobra.monster/next"><InlineEmoji emoji={ArrowRight} styles="w-5"/>Next</Link>
-            <Link url="https://cobra.monster/rff-webring/cobra.monster/prev"><InlineEmoji emoji={ArrowLeft} styles="w-5" />Previous</Link>
+            <Link url="https://cobra.monster/rff-webring/cobra.monster/next" aria-label="Navigate to next RFF webring site"><InlineEmoji emoji={ArrowRight} styles="w-5"/>Next</Link>
+            <Link url="https://cobra.monster/rff-webring/cobra.monster/prev" aria-label="Navigate to previous RFF webring site"><InlineEmoji emoji={ArrowLeft} styles="w-5" />Previous</Link>
           </div>
         </div>
         {/* <div class="flex flex-col justify-center items-center gap-2 ">
@@ -75,7 +75,7 @@ const { homePage } = Astro.props;
       <div class=" absolute bottom-4 right-4">
         <RssFeedBtn />
       </div>
-      <button id="snakeMode" class="absolute bottom-0 left-0 p-1 ml-1 mb-1 border-white border-2 rounded-lg text-sm opacity-50 hover:cursor-pointer hover:opacity-80">Snake Mode?</button>
+      <button id="snakeMode" class="absolute bottom-0 left-0 p-1 ml-1 mb-1 border-white border-2 rounded-lg text-sm hover:cursor-pointer">Snake Mode?</button>
     )
   }
   <div class="flex flex-col gap-4 mt-5 items-center">
