@@ -8,6 +8,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import embeds from "astro-embed/integration";
 import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
+import rehypeExternalLinks from "rehype-external-links";
 
 // https://astro.build/config
 export default defineConfig({
@@ -49,6 +50,15 @@ export default defineConfig({
                 feedbackDuration: 3_000,
               }),
             ],
+          },
+        ],
+        [
+          rehypeExternalLinks,
+          {
+            properties: {
+              className: ["external"],
+            },
+            rel: [],
           },
         ],
       ],

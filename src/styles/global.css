@@ -204,6 +204,16 @@ html {
   scrollbar-width: thin;
   overflow-y: auto;
 }
+
+/* External Links */
+a.external::after {
+  content: url("/src/assets/mutantEmoji/utility/arrow_up_right.svg");
+  display: inline-block;
+  width: 0.9em;
+  position: relative;
+  top: 0.2em;
+}
+
 @media screen and (min-width: 768px) {
   .gradientBg {
     background-image: repeating-conic-gradient(at 100% 100%, #b50000 0deg 5deg, #7c0404 5deg 10deg);
