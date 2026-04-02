@@ -1,8 +1,8 @@
 ---
 import type { GetStaticPaths, MarkdownHeading } from "astro";
 import { getCollection } from "astro:content";
-import BlogLayout from "@layouts/BlogPostLayout.astro";
 import type { CollectionEntry } from "astro:content";
+import AboutBlurbLayout from "@layouts/AboutBlurbLayout.astro";
 
 export const getStaticPaths = (async () => {
   const blurbs = await getCollection("aboutBlurbs");
@@ -19,13 +19,13 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 interface Props {
-  blurb: CollectionEntry<"posts">;
+  blurb: CollectionEntry<"aboutBlurbs">;
   headings: MarkdownHeading[];
 }
 const { blurb, headings } = Astro.props;
 const { Content } = await blurb.render();
 ---
 
-<BlogLayout post={blurb} headings={headings}>
+<AboutBlurbLayout blurb={blurb} headings={headings}>
   <Content />
-</BlogLayout>
+</AboutBlurbLayout>

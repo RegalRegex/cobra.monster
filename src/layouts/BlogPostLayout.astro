@@ -21,8 +21,8 @@ import watch from "@assets/mutantEmoji/watch.png"
 interface Props {
   post: CollectionEntry<"posts">;
   headings: MarkdownHeading[];
-  image: ImageMetadata | null;
-  minutesRead: string;
+  image?: ImageMetadata | null;
+  minutesRead?: string;
 }
 
 const {
@@ -53,7 +53,7 @@ const ogImg = image ? image.src : `https://cobra.monster/blog/og/${slug}.png`;
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
   <meta property="og:title" content={title} />
-  <meta property="og:description" content={`${subtitle} - ${minutesRead}`} />
+  <meta property="og:description" content={`${subtitle}${minutesRead ? ' -' + minutesRead : ''}`} />
   <meta property="og:image" content={ogImg} />
   <title>{title}</title>
 </head>
@@ -75,9 +75,10 @@ const ogImg = image ? image.src : `https://cobra.monster/blog/og/${slug}.png`;
             <h3 class="font-medium text-2xl">{"Published"}</h3>
             <p>{formattedDate}</p>
           </div>
+          {minutesRead && 
           <div class="text-base mt-3">
          {minutesRead} <InlineEmoji emoji={watch} styles="w-6" /> 
-        </div>
+        </div>}
         </div>
         {
           tags && (

@@ -9,7 +9,6 @@ tags:
 ---
 import QuoteBlock from "@components/QuoteBlock.astro"
 import EmojiBlockquote from "@components/EmojiBlockquote.astro"
-import TextDeco from "@components/TextDeco.astro"
 import ArgentThink from "@assets/mutantEmoji/argent/thinking.png"
 import ArgentRelief from "@assets/argent/stickers/babanasaur/relief.png"
 import ArgentYikes from "@assets/argent/stickers/babanasaur/yikes.png"
@@ -74,7 +73,7 @@ Astro compensates for this with [View Transitions](https://docs.astro.build/en/g
 </EmojiBlockquote>
 
 I love this. I genuinely love React hooks and state, but working without it...and trying to emulate some interactivity anyways has been a very engaging puzzle-solving process.\
-For instance, on the <TextDeco url="/books">Books Page</TextDeco> I created the "Default View" and "Compact View" tabs with these limitations. So far as any casual end-user can tell, they're just tabs like any other more "interactive" site, but they're literally just styled tabs! The current view's tab is styled to be prominent, the other is dim. Clicking the dim one navigates to a new page. Astro's **View Transitions** (usually) transition smoothly to the other view's equally flat, simple, HTML/CSS page so quickly that it feels like you didn't navigate at all. It's very clever!
+For instance, on the [Books Page](/books) I created the "Default View" and "Compact View" tabs with these limitations. So far as any casual end-user can tell, they're just tabs like any other more "interactive" site, but they're literally just styled tabs! The current view's tab is styled to be prominent, the other is dim. Clicking the dim one navigates to a new page. Astro's **View Transitions** (usually) transition smoothly to the other view's equally flat, simple, HTML/CSS page so quickly that it feels like you didn't navigate at all. It's very clever!
 
 ![Default View Books Page](@assets/blog/DefaultView_6.14.25.png)_Screenshot closeup of the "tabs"_
 
@@ -116,7 +115,7 @@ It is a LOT of work upfront nailing down your schemas and especially building yo
 
 I won't get into depth here[^1], but the dynamic routing capabilities of Astro get kind of nutty. Routing is dead simple...until it isn't. 
 
-In my <TextDeco url="/books">Books Page</TextDeco>, it looks like there are only 2 pages. The list page, and then the individual book-post page. But because all interactivity is just routing, it means that to have **2 Views** and **Tag Filtering**, I need a dynamic folder for the `[view]` side of things, and then a further nested `[...tags]` catch for filtering by tags on top of the views (not to mention an `og/` directory for generating custom open-graph images).\
+In my [Books Page](/books), it looks like there are only 2 pages. The list page, and then the individual book-post page. But because all interactivity is just routing, it means that to have **2 Views** and **Tag Filtering**, I need a dynamic folder for the `[view]` side of things, and then a further nested `[...tags]` catch for filtering by tags on top of the views (not to mention an `og/` directory for generating custom open-graph images).\
 It works! Really well, in fact. But figuring this out took a long time and is a part of Astro I'd push a new user away from until they get more comfortable with routing overall.
 
 ![Book Directory](@assets/blog/bookDirectory_6.14.25.png)_A lot of structure just to display a list of books._
