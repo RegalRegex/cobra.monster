@@ -63,7 +63,7 @@ const sortAllComments = () => {
       <div class="pb-4 mb-4 border-yellow border-b-2 flex flex-col ">
         {sortAllComments()
           .map(async (comment, index) => {
-            const bskyAvi = await getBskyImg(comment.bsky);
+            const bskyAvi = comment.bsky ? await getBskyImg(comment.bsky) : '';
             const avi = bskyAvi ? bskyAvi : Wrex.src;
 
             const firstReply = () => {
