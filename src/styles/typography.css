@@ -61,7 +61,8 @@ figcaption[data-rehype-pretty-code-title] {
   content: none;
 }
 
-.prose img + em {
+.prose img + em,
+.prose lite-youtube + script + em {
   text-align: center;
   display: inline-block;
   width: 100%;

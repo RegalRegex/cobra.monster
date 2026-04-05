@@ -11,7 +11,7 @@ const filteredHeadings = headings.filter((heading) => heading.text !== "Footnote
 
 <nav class="sticky z-1 top-0 pt-4 pl-2 mb-2 mr-5 flex flex-col" id="table-of-contents-nav">
   <h3 class="text-3xl font-medium mb-2">Contents</h3>
-  <ul class="md:max-h-[85vh]" id="table-of-contents-list">
+  <ul class="md:max-h-[85vh] text-lg" id="table-of-contents-list">
     {
       filteredHeadings.map((heading, i, arr) => {
         if (heading.depth > 1) {
