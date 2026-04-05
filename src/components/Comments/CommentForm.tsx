@@ -2,12 +2,18 @@ import { Fragment, useEffect, useState } from "react";
 // import { capitalizeFirst } from "src/utils/stringFormatters";
 import ArgentWeary from "@assets/mutantEmoji/argent/weary.png";
 import exclamation from "@assets/mutantEmoji/utility/red_exclamation_mark.png";
+import speechBubble from "@assets/mutantEmoji/utility/speech_bubble.png";
+import cross from "@assets/mutantEmoji/utility/cross.png";
+import { useStore } from "@nanostores/react";
+import { commentReply } from "./commentReply";
 // import markdownit from "markdown-it";
 
 export const CommentForm = () => {
   const [isSendingForm, setIsSendingForm] = useState(false);
   const [hasSentComment, setHasSentComment] = useState(false);
   const [hasError, setHasError] = useState(false);
+
+  const $commentReply = useStore(commentReply);
 
   // const [commentValue, setCommentValue] = useState("");
   // const [showPreview, setShowPreview] = useState(false);
@@ -62,6 +68,21 @@ export const CommentForm = () => {
       {hasSentComment && <i>Thanks for your comment! This is a static site, so comments have to be added manually, so give me a bit please :3</i>}
       {!hasSentComment && (
         <>
+          {$commentReply.commentId && (
+            <div className="px-2 border border-yellow rounded-lg flex items-center gap-2">
+              <img src={speechBubble.src} alt="Speech Bubble" className="w-6 not-prose" />{" "}
+              <p>
+                Replying To...<span className="font-bold text-yellow">{$commentReply.name}</span>
+              </p>
+              <button
+                className="hover:cursor-pointer transition-all duration-300 flex gap-1 items-center ml-auto border-b border-yellow hover:border-transparent"
+                onClick={() => commentReply.set({ name: "", commentId: "" })}
+              >
+                <img src={cross.src} alt="Red Cross" className="w-6 h-6 not-prose" />
+                Cancel
+              </button>
+            </div>
+          )}
           <form
             id="comment-form"
             name="comment"
@@ -72,6 +93,7 @@ export const CommentForm = () => {
             className=" flex flex-col gap-8"
           >
             <input type="hidden" name="form-name" value="comment" />
+            <input type="hidden" name="reply-id" value={$commentReply.commentId} />
             <div className="flex flex-col">
               <label htmlFor="name" className="text-lg">
                 Name *

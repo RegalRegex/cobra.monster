@@ -13,6 +13,7 @@ import InlineArgentEmoji from "@components/ImageComponents/InlineArgentEmoji.ast
 import woozy from "@assets/mutantEmoji/expressions/woozy.png";
 import dragon from "@assets/mutantEmoji/western_dragon.png";
 import { Image } from "astro:assets";
+import ReplyBtn from "./ReplyBtn";
 
 /**
  * Credit for Netlify forms comments goes to Emily Goto:
@@ -37,7 +38,20 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
   const bskyData = await bskyApiData.json();
   return bskyData.avatar;
 };
-// const md = markdownit();
+
+const sortAllComments = () => {
+  const commentsSorted = comments
+          .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+  let nonReplies = commentsSorted.filter((comment) => !comment.replyId);
+  const replies = commentsSorted.filter((comment) => comment.replyId).toReversed();
+
+  const finalCommentArray = nonReplies.flatMap((comment) => {
+    let thisCommentReplies = replies.filter((replyComment) => replyComment.replyId === comment.id);
+    return [comment, ...thisCommentReplies];
+  });
+
+  return finalCommentArray;
+}
 ---
 
 <div class="md:py-8">
@@ -46,44 +60,64 @@ const getBskyImg = async (bsky: string | null): Promise<string> => {
   <div class="flex items-center gap-2">
     <p class="not-prose text-3xl text-white mb-2">Comments</p>
   </div>
-      <div class="pb-4 mb-4 border-yellow border-b-2 flex flex-col gap-4">
-        {comments
-          .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
-          .map(async (comment) => {
+      <div class="pb-4 mb-4 border-yellow border-b-2 flex flex-col ">
+        {sortAllComments()
+          .map(async (comment, index) => {
             const bskyAvi = await getBskyImg(comment.bsky);
             const avi = bskyAvi ? bskyAvi : Wrex.src;
+
+            const firstReply = () => {
+              if (index === 0) return false;
+              return comment.replyId && !sortAllComments()[index-1]?.replyId;
+            }
+
+            const hasMultipleReplies = sortAllComments()[index+1]?.replyId && sortAllComments()[index+1].replyId === comment.replyId;
+
             return (
-              <div class="text-slate-200 text-xl flex gap-4 bg-[#460809] p-4 rounded-md" id={`comment-${comment.id}`}>
-                {bskyAvi ? (
-                  <a href={`https://bsky.app/profile/${comment.bsky}`} aria-label={`Link to ${comment.name}'s Bluesky Account'`}>
-                    <img
-                      src={avi}
-                      alt={`${comment.name} profile picture`}
-                      class="object-cover self-center  rounded-full aspect-square flex min-w-16 w-16 hover:scale-[1.15] transition duration-300 not-prose"
-                    />
-                  </a>
-                ) : (
-                  <div>
-                    <img src={Wrex.src} alt="Wrex!" class="object-cover self-center  rounded-full aspect-square flex min-w-16 w-16 not-prose" />
-                  </div>
-                )}
-                <div class="flex flex-col gap-1">
-                  <span class="flex gap-1 items-center flex-wrap">
-                    {comment.url ? (
-                      <a href={comment.url} class="text-yellow font-semibold decoration-yellow hover:underline decoration-2" aria-label={`Link to ${comment.name}'s website'`}>
-                        {comment.name}
-                      </a>
-                    ) : (
-                      <span class="text-white">{comment.name}</span>
-                    )}
-                    <span class="text-slate-200/80 text-base self-center">
-                      <ChiStar />
-                    </span>
-                    <a href={`${pageUrl}#comment-${comment.id}`} class="text-slate-200/80 hover:underline hover:cursor-pointer text-base flex gap-1">
-                      <span>{formatLocalDate(comment.date)}</span>
+              <div class={`comment-container flex gap-2`}>
+                {comment.replyId && 
+                <div class="reply-deco-container grid grid-rows-2 grid-cols-1 md:flex-1/6 flex-1/12 ml-8">
+                  <div class={`border-l border-b border-yellow ${firstReply() ? 'mt-4' : ''}`}></div>
+                  {hasMultipleReplies ? 
+                  <div class="border-l border-yellow"></div>
+                  :
+                  <div></div>
+                }
+                </div>
+                }
+                <div class={`text-slate-200 text-xl flex gap-4 bg-[#460809] p-4 rounded-md grow md:flex-5/6 flex-11/12 not-[first-of-type]:mt-4`} id={`comment-${comment.id}`}>
+                  {bskyAvi ? (
+                    <a href={`https://bsky.app/profile/${comment.bsky}`} aria-label={`Link to ${comment.name}'s Bluesky Account'`}>
+                      <img
+                        src={avi}
+                        alt={`${comment.name} profile picture`}
+                        class="object-cover self-center  rounded-full aspect-square flex min-w-16 w-16 hover:scale-[1.15] transition duration-300 not-prose"
+                      />
                     </a>
-                  </span>
-                  <p set:html={comment.text} />
+                  ) : (
+                    <div>
+                      <img src={Wrex.src} alt="Wrex!" class="object-cover self-center  rounded-full aspect-square flex min-w-16 w-16 not-prose" />
+                    </div>
+                  )}
+                  <div class="flex flex-col gap-1">
+                    <span class="flex gap-1 items-center flex-wrap">
+                      {comment.url ? (
+                        <a href={comment.url} class="text-yellow font-semibold decoration-yellow hover:underline decoration-2" aria-label={`Link to ${comment.name}'s website'`}>
+                          {comment.name}
+                        </a>
+                      ) : (
+                        <span class="text-white">{comment.name}</span>
+                      )}
+                      <span class="text-slate-200/80 text-base self-center">
+                        <ChiStar />
+                      </span>
+                      <a href={`${pageUrl}#comment-${comment.id}`} class="text-slate-200/80 hover:underline hover:cursor-pointer text-base flex gap-1">
+                        <span>{formatLocalDate(comment.date)}</span>
+                      </a>
+                    </span>
+                    <p set:html={comment.text} />
+                    {!comment.replyId && <ReplyBtn client:idle commentName={comment.name} commentId={comment.id} />}
+                  </div>
                 </div>
               </div>
             );

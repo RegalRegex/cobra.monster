@@ -128,10 +128,11 @@ const comments = defineCollection({
       z.object({
         id: z.string(),
         name: z.string(),
-        url: z.string().nullable(),
-        bsky: z.string().nullable(),
+        url: z.string().nullable().optional(),
+        bsky: z.string().nullable().optional(),
         date: z.coerce.date(),
         text: z.string(),
+        replyId: z.string().nullable().optional(),
       }),
     ),
   }),
