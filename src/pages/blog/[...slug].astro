@@ -29,7 +29,7 @@ interface Props {
 const { entry, headings } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await entry.render();
 
-const image = entry.data.headerOg ? ((await findImage(entry.data.headerImg)) as ImageMetadata) : null;
+const image = entry.data.headerOgImg ? ((await findImage(entry.data.headerOgImg)) as ImageMetadata) : null;
 ---
 
 <BlogPostLayout post={entry} headings={headings} image={image} minutesRead={remarkPluginFrontmatter.minutesRead}>

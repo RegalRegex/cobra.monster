@@ -62,10 +62,19 @@ figcaption[data-rehype-pretty-code-title] {
 }
 
 .prose img + em,
+/* Styling comments under YouTube embed */
+.prose lite-youtube + em,
 .prose lite-youtube + script + em {
   text-align: center;
   display: inline-block;
   width: 100%;
+}
+
+/* Styling article embeds */
+
+.link-preview {
+  padding: calc(4 * var(--spacing));
+  border: calc(0.25 * var(--spacing)) var(--color-yellow) solid;
 }
 
 .prose .emojiBlockQuote {
