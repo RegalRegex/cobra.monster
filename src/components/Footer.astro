@@ -13,6 +13,7 @@ import pentacle from "@assets/mutantEmoji/pentacle.png"
 import muscle from "@assets/mutantEmoji/muscle_clw_y2.png"
 import NavLinks from "./TopNav/NavLinks.astro";
 import ArgentSymmetrical from "@assets/argent/SymmetricalArgent_Orion.png";
+import CRT from "@assets/mutantEmoji/crt_green_lines.png"
 
 interface Props {
   homePage?: boolean;
@@ -50,6 +51,7 @@ const { homePage } = Astro.props;
             <a href="https://fediring.net/" class="font-medium text-lg xs:text-2xl xl:text-3xl cursor-pointer  hover:text-amber-500 inline-flex gap-1 underline decoration-2 decoration-yellow"><InlineEmoji emoji={pentacle} styles="w-7"/>Fediring</a>
             <Link url="https://fediring.net/next?host=cobra.monster" aria-label="Navigate to Next Fediring site"><InlineEmoji emoji={ArrowRight} styles="w-5"/>Next</Link>
             <Link url="https://fediring.net/previous?host=cobra.monster" aria-label="Navigate to previous Fediring site"><InlineEmoji emoji={ArrowLeft} styles="w-5" />Previous</Link>
+            <Link url="https://fediring.net/random" aria-label="Navigate to a random Fediring site"><InlineEmoji emoji={CRT} styles="w-5" />Random</Link>
           </div>
           <div class="flex flex-col gap-2 items-start">
             <a href="https://cobra.monster/rff-webring" class="ffont-medium text-lg xs:text-2xl xl:text-3xl cursor-pointer  hover:text-amber-500 inline-flex gap-1 underline decoration-2 decoration-yellow"><InlineEmoji emoji={muscle} styles="w-7"/>Furry Fitness Ring</a>
