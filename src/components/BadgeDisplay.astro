@@ -18,6 +18,16 @@ const badges = collection === "standardBadges" ? shuffleArray(badgesCollection) 
 <div class="flex flex-wrap gap-2 justify-center">
   {
     badges.map((badge) => {
+      // Exception for avif files b/c they don't work w/ <Image /> for whatever reason.
+      if (badge.data.image.format === "avif") {
+        return badge.data.url ? (
+          <a href={badge.data.url} class={btnStyle}>
+            <img src={badge.data.image.src} alt={badge.data.alt} width="88" height="31" title={badge.data.alt} class="badge" />
+          </a>
+        ) : (
+          <img src={badge.data.image.src} alt={badge.data.alt} width="88" height="31" title={badge.data.alt} class="badge" />
+        );
+      }
       return badge.data.url ? (
         <a href={badge.data.url} class={btnStyle}>
           <Image src={badge.data.image} alt={badge.data.alt} width="88" height="31" title={badge.data.alt} class="badge" />

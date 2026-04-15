@@ -3,17 +3,18 @@ import type { GetStaticPaths, MarkdownHeading } from "astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import AboutBlurbLayout from "@layouts/AboutBlurbLayout.astro";
+import { render } from "astro:content";
 
 export const getStaticPaths = (async () => {
   const blurbs = await getCollection("aboutBlurbs");
   const headings = await Promise.all(
     blurbs.map(async (blurb) => {
-      const data = await blurb.render();
+      const data = await render(blurb);
       return data.headings;
     }),
   );
   return blurbs.map((blurb, index) => ({
-    params: { slug: blurb.slug },
+    params: { id: blurb.id },
     props: { blurb, headings: headings[index] },
   }));
 }) satisfies GetStaticPaths;
@@ -23,7 +24,7 @@ interface Props {
   headings: MarkdownHeading[];
 }
 const { blurb, headings } = Astro.props;
-const { Content } = await blurb.render();
+const { Content } = await render(blurb);
 ---
 
 <AboutBlurbLayout blurb={blurb} headings={headings}>

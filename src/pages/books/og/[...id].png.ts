@@ -5,8 +5,8 @@ import { ImageResponse } from "@vercel/og";
 import { getCollection } from "astro:content";
 
 import type { ReactElement } from "react";
-import { booksHtml } from "src/utils/ogGen/ogGenBooks";
-import { ogHtmlGen } from "src/utils/ogGen/ogGen";
+import { ogHtmlGen } from "@utils/ogGen/ogGen";
+import { booksHtml } from "@utils/ogGen/ogGenBooks";
 
 const blogEntries = await getCollection("books");
 
@@ -32,7 +32,7 @@ export async function getStaticPaths() {
       return coverPath;
     };
     return {
-      params: { slug: book.slug },
+      params: { id: book.id },
       props: {
         title: book.data.title,
         author: book.data.author,

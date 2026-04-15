@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import type { ImageResponseOptions } from "node_modules/@vercel/og/dist/types";
+import type { ImageResponse } from "@vercel/og";
 import type { ReactNode } from "react";
 import { html } from "satori-html";
 
@@ -8,8 +8,8 @@ interface OgHtmlGenProps {
 }
 
 // Logic referenced from: https://rumaan.dev/blog/open-graph-images-using-satori
-
-export const ogHtmlGen = ({ template }: OgHtmlGenProps): { markup: ReactNode; imgResOptions: ImageResponseOptions } => {
+// Previously, imgResOptions imported ImageResponseOptions from "node_modules/@vercel/og/dist/types";
+export const ogHtmlGen = ({ template }: OgHtmlGenProps): { markup: ReactNode; imgResOptions: any } => {
   const techHeadlines = readFileSync("./src/assets/og/Tech Headlines.otf");
   const techHeadlinesItalic = readFileSync("./src/assets/og/Tech Headlines Italic.otf");
   const goreRegular = readFileSync("./src/assets/og/Gore Regular.woff");

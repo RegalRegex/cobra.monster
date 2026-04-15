@@ -208,7 +208,7 @@ html {
 /* External Links */
 
 a.external::after {
-  content: url("/src/assets/mutantEmoji/utility/arrow_up_right.svg");
+  content: url("@assets/mutantEmoji/utility/arrow_up_right.svg");
   display: inline-block;
   width: 0.8em;
   position: relative;

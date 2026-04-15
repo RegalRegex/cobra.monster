@@ -2,6 +2,7 @@
 import BookPostLayout from "@layouts/BookPostLayout.astro";
 import type { GetStaticPaths, MarkdownHeading } from "astro";
 import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
 import { getCollection } from "astro:content";
 
 export const getStaticPaths = (async () => {
@@ -9,13 +10,13 @@ export const getStaticPaths = (async () => {
 
   const headings = await Promise.all(
     bookEntries.map(async (entry) => {
-      const data = await entry.render();
+      const data = await render(entry);
       return data.headings;
     }),
   );
 
   return bookEntries.map((entry, index) => ({
-    params: { slug: entry.slug },
+    params: { id: entry.id },
     props: { entry, headings: headings[index] },
   }));
 }) satisfies GetStaticPaths;
@@ -26,7 +27,7 @@ interface Props {
 }
 
 const { entry, headings } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <BookPostLayout bookPost={entry} headings={headings}>

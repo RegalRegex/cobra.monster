@@ -6,7 +6,7 @@ import type { MarkdownHeading } from "astro";
 import TableOfContents from "@components/TableOfContents.astro";
 import TagContents from "@components/TagContents.astro";
 import { Image } from "astro:assets";
-import { formatDateUtc } from "src/utils/stringFormatters";
+import { formatDateUtc } from "@utils/stringFormatters";
 import ChiStarRating from "@components/ImageComponents/ChiStarRating.astro";
 import Comments from "@components/Comments/Comments.astro";
 import BlogAboutMe from "@components/BlogAboutMe.astro";
@@ -21,7 +21,7 @@ interface Props {
 
 const {
   bookPost: {
-    slug,
+    id,
     data: { title, author, summary, date, rating, cover, bookTags, publishDate },
   },
   headings,
@@ -32,11 +32,11 @@ const formattedDate = formatDateUtc(date);
 // const displayTags = tags?.map((tag) => tag.id);
 const listDecoStyle = "prose-ul:before:text-white";
 
-const ogImg = `https://cobra.monster/books/og/${slug}.png`;
+const ogImg = `https://cobra.monster/books/og/${id}.png`;
 
 const getComments = async () => {
   const commentFiles = await getCollection("comments");
-  return commentFiles.find((file) => file.id === slug)?.data.comments || [];
+  return commentFiles.find((file) => file.id === id)?.data.comments || [];
 };
 
 const comments = await getComments();
@@ -111,7 +111,7 @@ const comments = await getComments();
         </div>
         <slot />
         <ChiStarHorizontalRule />
-        <Comments comments={comments} pageUrl={`/books/${slug}`} />
+        <Comments comments={comments} pageUrl={`/books/${id}`} />
         
       </Fragment>
     </>

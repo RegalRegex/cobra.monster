@@ -1,5 +1,5 @@
 {
-    "url": "https://cervine.online",
-    "image": "src/assets/badges/critters/cervineOnline.png",
-    "alt": "cervine.online"
+  "url": "https://cervine.online",
+  "image": "@assets/badges/critters/cervineOnline.png",
+  "alt": "cervine.online"
 }

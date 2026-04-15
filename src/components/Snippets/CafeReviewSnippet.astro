@@ -13,7 +13,7 @@ const { reviewName } = Astro.props;
 const reviewEntry = await getEntry("coffeeShopReviews", reviewName);
 const review = reviewEntry?.data;
 
-const url = review?.scoreOnly ? "" : `/cafe-reviews/${reviewEntry?.slug}`;
+const url = review?.scoreOnly ? "" : `/cafe-reviews/${reviewEntry?.id}`;
 ---
 
 {
@@ -21,7 +21,7 @@ const url = review?.scoreOnly ? "" : `/cafe-reviews/${reviewEntry?.slug}`;
     <section class="p-4 border-2 border-yellow bg-boxPrimary flex text-slate-200 gap-2  flex-col justify-between">
       <div class="border-b mb-4">
         {url ? (
-          <a href={`/cafe-reviews/${reviewEntry.slug}`} class="not-prose">
+          <a href={`/cafe-reviews/${reviewEntry.id}`} class="not-prose">
             <h2 class="pb-2 text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-black text-yellow not-prose">{review.title}</h2>
           </a>
         ) : (

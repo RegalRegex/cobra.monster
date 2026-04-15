@@ -5,8 +5,8 @@ import TagContents from "@components/TagContents.astro";
 import BookListLayout from "@layouts/BookListLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import { sortCollection } from "src/utils/sortCollection";
 import FilterButtons, { BOOK_DISPLAY_VIEWS } from "@components/Books/FilterButtons.astro";
+import { sortCollection } from "@utils/sortCollection";
 
 const bookReports: Array<CollectionEntry<"books">> = await getCollection("books");
 

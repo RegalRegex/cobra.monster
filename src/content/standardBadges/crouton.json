@@ -1,5 +1,5 @@
 {
   "url": "http://crouton.net",
-  "image": "src/assets/badges/miscellaneous/croutonBadge.png",
+  "image": "@assets/badges/miscellaneous/croutonBadge.png",
   "alt": "crouton.net"
 }

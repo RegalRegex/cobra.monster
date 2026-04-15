@@ -1,5 +1,5 @@
 {
   "url": "https://beeps.website",
-  "image": "src/assets/badges/critters/beeps.gif",
+  "image": "@assets/badges/critters/beeps.gif",
   "alt": "beeps.website"
 }

@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import vaporwaveArgent from "@assets/argent/vaporwaveArgent.png";
 import { getCollection } from "astro:content";
-import { sortCollection } from "src/utils/sortCollection";
+import { sortCollection } from "@utils/sortCollection";
 const blurbEntries = await getCollection("aboutBlurbs");
 const blurbs = sortCollection(blurbEntries, "title");
 ---
@@ -23,7 +23,7 @@ const blurbs = sortCollection(blurbEntries, "title");
               <h2 class="mb-2">
                 <a
                   class="text-3xl hover:underline decoration-amber-400 decoration-2 cursor-pointer text-amber-300 visited:text-amber-600 visited:decoration-amber-600 font-medium text-wrap"
-                  href={`/about/${blurb.slug}`}
+                  href={`/about/${blurb.id}`}
                 >
                   {blurb.data.title}
                 </a>

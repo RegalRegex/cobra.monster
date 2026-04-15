@@ -1,7 +1,6 @@
 import rss from "@astrojs/rss";
-import type { APIRoute, AstroGlobal } from "astro";
+import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
-import { sortCollection } from "src/utils/sortCollection";
 
 export const GET: APIRoute = async ({ site }) => {
   const blog = await getCollection("posts");
@@ -14,11 +13,11 @@ export const GET: APIRoute = async ({ site }) => {
       title: data.title,
       pubDate: data.date,
       description: data.subtitle,
-      link: `/blog/${post.slug}`,
+      link: `/blog/${post.id}`,
       categories: data.tags?.map((tag) => tag.id),
       author: "regal@cobra.monster",
       customData: `<media:image 
-      url="${site}api/posts/thumbnails/${post.slug}"
+      url="${site}api/posts/thumbnails/${post.id}"
       width="600" 
       height="315" 
       medium="image"/>`,
@@ -31,7 +30,7 @@ export const GET: APIRoute = async ({ site }) => {
       title: `Cafe Review: ${data.title}`,
       pubDate: data.date,
       description: `${Object.values(data.rating).reduce((a, b) => a + b)}/30 | ${data.summary}`,
-      link: `/cafe-reviews/${review.slug}`,
+      link: `/cafe-reviews/${review.id}`,
       author: "regal@cobra.monster",
     };
   });
@@ -42,7 +41,7 @@ export const GET: APIRoute = async ({ site }) => {
       title: `Book Review: ${data.title}`,
       pubDate: data.date,
       description: data.summary,
-      link: `/books/${bookReview.slug}`,
+      link: `/books/${bookReview.id}`,
       author: "regal@cobra.monster",
     };
   });

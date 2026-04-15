@@ -7,8 +7,8 @@ import rehypePrettyCode from "rehype-pretty-code";
 import tailwindcss from "@tailwindcss/vite";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import embeds from "astro-embed/integration";
-import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 import rehypeExternalLinks from "rehype-external-links";
+import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,10 +18,6 @@ export default defineConfig({
   // This line fixed the "Failed to scan for dependencies from entries:" error
   base: "",
 
-  vite: {
-    plugins: [tailwindcss()],
-  },
-
   image: {
     service: {
       entrypoint: "astro/assets/services/sharp",
@@ -30,6 +26,7 @@ export default defineConfig({
       },
     },
   },
+
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },
@@ -72,5 +69,10 @@ export default defineConfig({
     "/rff-swimsuit-zine-2025": "/pdfs/RFF_Zine-Swimsuit_Edition_08-2025.pdf",
     "/feed": "/rss.xml",
     "/rss": "/rss.xml",
+  },
+
+  vite: {
+    // @ts-expect-error
+    plugins: [tailwindcss()],
   },
 });

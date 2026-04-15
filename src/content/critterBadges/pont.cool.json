@@ -1,6 +1,5 @@
 {
-    "url": "https://pont.cool",
-    "image": "src/assets/badges/critters/pont.gif",
-    "alt": "pont.cool"
-  }
-  
+  "url": "https://pont.cool",
+  "image": "@assets/badges/critters/pont.gif",
+  "alt": "pont.cool"
+}

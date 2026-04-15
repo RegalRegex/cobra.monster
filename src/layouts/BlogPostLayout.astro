@@ -5,7 +5,7 @@ import TopNav from "@components/TopNav/TopNav.astro";
 import type { MarkdownHeading } from "astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import TagContents from "../components/TagContents.astro";
-import { formatDateUtc } from "src/utils/stringFormatters";
+import { formatDateUtc } from "@utils/stringFormatters";
 import BlogStyleMain from "@components/Snippets/BlogStyleMain.astro";
 import ChiStar from "@components/ImageComponents/ChiStar.astro";
 import { CommentForm } from "@components/Comments/CommentForm";
@@ -27,7 +27,7 @@ interface Props {
 
 const {
   post: {
-    slug,
+    id,
     data: { title, subtitle, date, tags, headerImg, headerImgCaption },
   },
   headings,
@@ -39,12 +39,12 @@ const formattedDate = formatDateUtc(date);
 
 const getComments = async () => {
   const commentFiles = await getCollection("comments");
-  return commentFiles.find((file) => file.id === slug)?.data.comments || [];
+  return commentFiles.find((file) => file.id === id)?.data.comments || [];
 };
 
 const comments = await getComments();
 
-const ogImg = image ? image.src : `https://cobra.monster/blog/og/${slug}.png`;
+const ogImg = image ? image.src : `https://cobra.monster/blog/og/${id}.png`;
 ---
 
 <head>
@@ -111,7 +111,7 @@ const ogImg = image ? image.src : `https://cobra.monster/blog/og/${slug}.png`;
       <!-- Filtering out "AboutBlurbs" -->
       {headerImg && 
       <ChiStarHorizontalRule />
-      <Comments comments={comments} pageUrl={`/blog/${slug}`} />}
+      <Comments comments={comments} pageUrl={`/blog/${id}`} />}
     </Fragment>
   </BlogStyleMain>
 </Layout>

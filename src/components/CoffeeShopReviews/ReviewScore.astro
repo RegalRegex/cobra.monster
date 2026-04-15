@@ -119,7 +119,7 @@ const totalScore = Object.values(cafeData.rating).reduce((a, b) => a + b);
 </script>
 <!-- For conditionally rendering an asterisk -->
 <style>
-  */ .rating-score::after {
+   .rating-score::after {
     content: "*";
     position: absolute;
     margin-left: calc(var(--spacing) * 0.5);

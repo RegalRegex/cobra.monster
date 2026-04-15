@@ -1,12 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import { sortCollection } from "src/utils/sortCollection";
+import { sortCollection } from "@utils/sortCollection";
 import ReviewScore from "./ReviewScore.astro";
 import { Image } from "astro:assets";
 import arrowRight from "@assets/mutantEmoji/utility/arrow_right.png";
 import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
-import { sliceByWord } from "src/utils/stringFormatters.ts";
+import { sliceByWord } from "@utils/stringFormatters.ts";
 
 interface Props {
   sort?: { field: "rating" | "date" | "favorites"; desc: boolean };
@@ -30,7 +30,7 @@ const reviewsSorted = (): Array<CollectionEntry<"coffeeShopReviews">> => {
   {
     reviewsSorted().map((collectionItem) => {
       const review = collectionItem.data;
-      const url = `/cafe-reviews/${collectionItem.slug}`;
+      const url = `/cafe-reviews/${collectionItem.id}`;
 
       return (
         <li class="p-4 border-2 border-yellow bg-boxPrimary flex text-slate-200 gap-2 ">

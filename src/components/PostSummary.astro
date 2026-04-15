@@ -8,7 +8,7 @@ interface Props {
 
 const {
   post: {
-    slug,
+    id,
     data: { title, subtitle, date, tags },
   },
 } = Astro.props;
@@ -21,7 +21,7 @@ const {
   </div>
   <div id="blogSummaryContainer">
     <div class="sm:ml-4 ml-0 grid grid-cols-1">
-      <a class="w-full cursor-pointer visited:text-amber-600 visited:decoration-amber-600 hover:no-underline underline" href=`/blog/${slug}`>
+      <a class="w-full cursor-pointer visited:text-amber-600 visited:decoration-amber-600 hover:no-underline underline" href=`/blog/${id}`>
         <h2 class="headerTxt text-3xl underline hover:no-underline font-medium">{title}</h2></a
       >
       <div class="block sm:hidden italic text-slate-200/70 text-sm">

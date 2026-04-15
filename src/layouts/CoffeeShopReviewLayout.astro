@@ -8,7 +8,7 @@ import ReviewScore from "@components/CoffeeShopReviews/ReviewScore.astro";
 import ChiStarHorizontalRule from "@components/ImageComponents/ChiStarHorizontalRule.astro";
 import Comments from "@components/Comments/Comments.astro";
 import { getCollection } from "astro:content";
-import { formatDateUtc } from "src/utils/stringFormatters";
+import { formatDateUtc } from "@utils/stringFormatters";
 const starMd = "<span>★</span>";
 
 interface Props {
@@ -17,11 +17,11 @@ interface Props {
 
 const { cafeCollectionItem }: Props = Astro.props;
 const cafeData = cafeCollectionItem.data;
-const ogImg = `https://cobra.monster/cafe-reviews/og/${cafeCollectionItem.slug}.png`;
+const ogImg = `https://cobra.monster/cafe-reviews/og/${cafeCollectionItem.id}.png`;
 
 const getComments = async () => {
   const commentFiles = await getCollection("comments");
-  return commentFiles.find((file) => file.id === cafeCollectionItem.slug)?.data.comments || [];
+  return commentFiles.find((file) => file.id === cafeCollectionItem.id)?.data.comments || [];
 };
 
 const comments = await getComments();
@@ -72,7 +72,7 @@ const comments = await getComments();
         <slot />
       </div>
       <ChiStarHorizontalRule />
-      <Comments comments={comments} pageUrl={`/cafe-reviews/${cafeCollectionItem.slug}`} />
+      <Comments comments={comments} pageUrl={`/cafe-reviews/${cafeCollectionItem.id}`} />
     </Fragment>
   </BlogStyleMain>
 </Layout>

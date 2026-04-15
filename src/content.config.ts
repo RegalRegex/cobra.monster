@@ -1,13 +1,16 @@
-import { z, defineCollection, reference } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
+import { defineCollection, reference } from "astro:content";
 
 const tags = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/tags" }),
   schema: z.object({
     name: z.string(),
   }),
 });
 
 const aboutBlurbs = defineCollection({
+  loader: glob({ pattern: "*.mdx", base: "./src/content/aboutBlurbs" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -16,8 +19,8 @@ const aboutBlurbs = defineCollection({
       emoji: z.preprocess((val) => `/src/assets/mutantEmoji/${val}`, image()).optional(),
     }),
 });
-
 const posts = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/content/posts" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -31,7 +34,7 @@ const posts = defineCollection({
 });
 
 const critterBadges = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/critterBadges" }),
   schema: ({ image }) =>
     z.object({
       url: z.string(),
@@ -41,7 +44,7 @@ const critterBadges = defineCollection({
 });
 
 const standardBadges = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/standardBadges" }),
   schema: ({ image }) =>
     z.object({
       url: z.string().optional(),
@@ -51,6 +54,7 @@ const standardBadges = defineCollection({
 });
 
 const books = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/content/books" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -66,14 +70,14 @@ const books = defineCollection({
 });
 
 const bookTags = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/bookTags" }),
   schema: z.object({
     name: z.string(),
   }),
 });
 
 const galleries = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/galleries" }),
   schema: ({ image }) =>
     z.object({
       cover: image(),
@@ -87,7 +91,7 @@ const galleries = defineCollection({
           imgCredit: z
             .object({
               name: z.string(),
-              link: z.string().url().optional(),
+              link: z.url().optional(),
             })
             .optional(),
           imgAlt: z.string().optional(),
@@ -97,6 +101,7 @@ const galleries = defineCollection({
 });
 
 const coffeeShopReviews = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/content/coffeeShopReviews" }),
   schema: ({ image }) =>
     z.object({
       headerImg: image(),
@@ -122,7 +127,7 @@ const coffeeShopReviews = defineCollection({
 });
 
 const comments = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/comments" }),
   schema: z.object({
     comments: z.array(
       z.object({

@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-// import { capitalizeFirst } from "src/utils/stringFormatters";
+// import { capitalizeFirst } from "@utils/stringFormatters";
 import ArgentWeary from "@assets/mutantEmoji/argent/weary.png";
 import exclamation from "@assets/mutantEmoji/utility/red_exclamation_mark.png";
 import speechBubble from "@assets/mutantEmoji/utility/speech_bubble.png";

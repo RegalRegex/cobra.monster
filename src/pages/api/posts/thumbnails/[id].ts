@@ -5,15 +5,15 @@ import { getCollection } from "astro:content";
 const blogEntries = await getCollection("posts");
 
 export const GET: APIRoute = async ({ params, request }) => {
-  const { slug } = params;
+  const { id } = params;
 
-  if (!slug) {
-    return new Response("Slug is required", {
+  if (!id) {
+    return new Response("ID is required", {
       status: 400,
     });
   }
 
-  const post = blogEntries.find((p) => p.slug === slug);
+  const post = blogEntries.find((p) => p.id === id);
 
   if (!post) {
     return new Response("Post not found", {
@@ -22,7 +22,7 @@ export const GET: APIRoute = async ({ params, request }) => {
   }
 
   const ogImage = await getImage({
-    src: post.data.headerImg,
+    src: post.data.headerImg ?? "/websiteMetaHeader.png",
     width: 600,
     height: 315,
     format: "webp",
@@ -43,7 +43,7 @@ export const GET: APIRoute = async ({ params, request }) => {
 
 export async function getStaticPaths() {
   return blogEntries.map((post) => ({
-    params: { slug: post.slug },
+    params: { id: post.id },
     props: { title: post.data.title, subtitle: post.data.subtitle, date: post.data.date },
   }));
 }

@@ -5,8 +5,8 @@ import { ImageResponse } from "@vercel/og";
 import { getCollection } from "astro:content";
 
 import type { ReactElement } from "react";
-import { blogHtml } from "src/utils/ogGen/ogGenBlog";
-import { ogHtmlGen } from "src/utils/ogGen/ogGen";
+import { blogHtml } from "@utils/ogGen/ogGenBlog";
+import { ogHtmlGen } from "@utils/ogGen/ogGen";
 
 const blogEntries = await getCollection("posts");
 
@@ -23,7 +23,7 @@ export const GET: APIRoute<Props> = ({ props }) => {
 
 export async function getStaticPaths() {
   return blogEntries.map((post) => ({
-    params: { slug: post.slug },
+    params: { id: post.id },
     props: { title: post.data.title, subtitle: post.data.subtitle, date: post.data.date },
   }));
 }

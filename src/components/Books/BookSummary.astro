@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import TagContents from "@components/TagContents.astro";
-import { formatDateUtc } from "src/utils/stringFormatters";
+import { formatDateUtc } from "@utils/stringFormatters";
 import ChiStarRating from "@components/ImageComponents/ChiStarRating.astro";
 
 import writingEmoji from "@assets/mutantEmoji/hands/writing_hand_clw_y2.png";
@@ -18,7 +18,7 @@ interface Props {
 
 const {
   book: {
-    slug,
+    id,
     data: { title, author, summary, date, rating, cover, bookTags },
   },
   view = "default",
@@ -52,7 +52,7 @@ const formattedDate = formatDateUtc(date);
         <h2>
           <a
             class="sm:text-4xl text-3xl hover:underline decoration-amber-400 decoration-2 cursor-pointer text-amber-300 visited:text-amber-600 visited:decoration-amber-600 text-wrap font-extrabold"
-            href={`/books/${slug}`}
+            href={`/books/${id}`}
           >
             {title}
           </a>
@@ -115,7 +115,7 @@ const formattedDate = formatDateUtc(date);
         <h2>
           <a
             class="text-xl xs:text-3xl hover:underline decoration-amber-400 decoration-2 cursor-pointer text-amber-300 visited:text-amber-600 visited:decoration-amber-600 font-medium text-wrap"
-            href={`/books/${slug}`}
+            href={`/books/${id}`}
           >
             {title}
           </a>

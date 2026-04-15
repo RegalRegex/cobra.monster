@@ -1,5 +1,5 @@
 {
-"url": "",
-"image": "src/assets/badges/miscellaneous/ublock_origin_now.png",
-"alt": "uBlock Origin Now"
+  "url": "",
+  "image": "@assets/badges/miscellaneous/ublock_origin_now.png",
+  "alt": "uBlock Origin Now"
 }

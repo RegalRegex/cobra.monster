@@ -1,11 +1,11 @@
 import fs from "node:fs/promises";
 
-// Credit: https://github.com/arthelokyo/astrowind/blob/main/src/utils/images.ts
+// Credit: https://github.com/arthelokyo/astrowind/blob/mai@utils/images.ts
 // Ref'd from: https://github.com/arthelokyo/astrowind/discussions/528
 const load = async function () {
   let images: Record<string, () => Promise<unknown>> | undefined = undefined;
   try {
-    images = import.meta.glob("~/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}");
+    images = import.meta.glob("@assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}");
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     // continue regardless of error
