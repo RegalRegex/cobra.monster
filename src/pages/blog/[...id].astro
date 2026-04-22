@@ -27,7 +27,7 @@ interface Props {
   headings: MarkdownHeading[];
 }
 
-const { entry, headings } = Astro.props;
+const { entry, headings }: Props = Astro.props;
 const { Content, remarkPluginFrontmatter } = await render(entry);
 
 const image = entry.data.headerOg ? ((await findImage(entry.data.headerImg)) as ImageMetadata) : null;
