@@ -1,0 +1,6 @@
+# Beep Boop
+
+User-agent: *
+Allow: /
+
+Sitemap: https://cobra.monster/sitemap-index.xml

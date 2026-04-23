@@ -10,6 +10,8 @@ import embeds from "astro-embed/integration";
 import rehypeExternalLinks from "rehype-external-links";
 import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
   output: "static",
@@ -31,37 +33,33 @@ export default defineConfig({
     remarkPlugins: [remarkReadingTime],
   },
 
-  integrations: [
-    embeds(),
-    mdx({
-      syntaxHighlight: false,
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypePrettyCode,
-          {
-            theme: "catppuccin-macchiato",
-            transformers: [
-              transformerCopyButton({
-                visibility: "always",
-                feedbackDuration: 3_000,
-              }),
-            ],
-          },
-        ],
-        [
-          rehypeExternalLinks,
-          {
-            properties: {
-              className: ["external"],
-            },
-            rel: [],
-          },
-        ],
+  integrations: [embeds(), mdx({
+    syntaxHighlight: false,
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypePrettyCode,
+        {
+          theme: "catppuccin-macchiato",
+          transformers: [
+            transformerCopyButton({
+              visibility: "always",
+              feedbackDuration: 3_000,
+            }),
+          ],
+        },
       ],
-    }),
-    react(),
-  ],
+      [
+        rehypeExternalLinks,
+        {
+          properties: {
+            className: ["external"],
+          },
+          rel: [],
+        },
+      ],
+    ],
+  }), react(), sitemap()],
 
   redirects: {
     "/books": "/books/default",
