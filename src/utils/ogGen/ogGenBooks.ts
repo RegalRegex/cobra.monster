@@ -20,8 +20,8 @@ export const booksHtml = ({ title, author, subtitle, date, rating, cover, ogImgB
   const starRatingBuilder = (): string => {
     if (rating) {
       const starSize: number = 60;
-      const emptyCalc = 4 - Math.floor(rating);
-      return `${[...Array(Math.floor(rating))]
+      const emptyCalc = 5 - Math.round(rating);
+      return `${[...Array(Math.trunc(rating))]
         .map(
           () => `<img src="${baseUrl()}/CHISTAR(yellow).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`,
         )
