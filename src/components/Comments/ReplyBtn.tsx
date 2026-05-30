@@ -7,9 +7,19 @@ interface ReplyBtnProps {
 }
 
 const ReplyBtn = ({ commentName, commentId }: ReplyBtnProps) => {
+  const scrollToForm = () => {
+    const formNode = document.getElementById("comment-form-container");
+    if (formNode) {
+      formNode.scrollIntoView();
+    }
+  };
+
   return (
     <button
-      onClick={() => commentReply.set({ name: commentName, commentId: commentId })}
+      onClick={() => {
+        commentReply.set({ name: commentName, commentId: commentId });
+        scrollToForm();
+      }}
       className="replyBtn self-start flex gap-1 text-yellow underline hover:no-underline hover:cursor-pointer"
     >
       Reply

@@ -72,7 +72,7 @@ export const CommentForm = () => {
             <div className="px-2 border border-yellow rounded-lg flex items-center gap-2">
               <img src={speechBubble.src} alt="Speech Bubble" className="w-6 not-prose" />{" "}
               <p>
-                Replying To...<span className="font-bold text-yellow">{$commentReply.name}</span>
+                Replying To <span className="font-bold text-yellow">{$commentReply.name}</span>
               </p>
               <button
                 className="hover:cursor-pointer transition-all duration-300 flex gap-1 items-center ml-auto border-b border-yellow hover:border-transparent"
