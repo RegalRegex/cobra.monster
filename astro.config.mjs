@@ -12,6 +12,8 @@ import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 
 import sitemap from "@astrojs/sitemap";
 
+import db from "@astrojs/db";
+
 // https://astro.build/config
 export default defineConfig({
   output: "static",
@@ -59,7 +61,7 @@ export default defineConfig({
         },
       ],
     ],
-  }), react(), sitemap()],
+  }), react(), sitemap(), db()],
 
   redirects: {
     "/books": "/books/default",

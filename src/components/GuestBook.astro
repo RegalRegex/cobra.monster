@@ -1,0 +1,6 @@
+---
+import { db, GuestBook } from "astro:db";
+
+// Selects all items from the GuestBook table
+const guestBook = await db.select().from(GuestBook);
+---
