@@ -1,6 +1,6 @@
 {
   "title": "Art Fight 2026",
-  "cover": "@assets/myArt/artFight2026/Nicanor.png",
+  "cover": "@assets/myArt/artFight2026/Nicanor.PNG",
   "description": "My art contributions to the 2026 Art Fight event",
   "sorting": "",
   "images": [
@@ -41,7 +41,7 @@
       }
     },
     {
-      "imgSrc": "@assets/myArt/artFight2026/Jelly.png",
+      "imgSrc": "@assets/myArt/artFight2026/Jelly.PNG",
       "imgCaption": "My friend Briva has this adorable funky worm on a string character and I just felt like I had to hold her...",
       "imgAlt": "A fuzzy green anthro worm on a string character, bashfully sitting in the palm of a yellow and pink hand, holding its tail. The background is a vague foresty background with some shelf fungus and leaves floating in the background",
       "imgCredit": {
