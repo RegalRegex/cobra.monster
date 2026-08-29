@@ -33,33 +33,38 @@ export default defineConfig({
     remarkPlugins: [remarkReadingTime],
   },
 
-  integrations: [embeds(), mdx({
-    syntaxHighlight: false,
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypePrettyCode,
-        {
-          theme: "catppuccin-macchiato",
-          transformers: [
-            transformerCopyButton({
-              visibility: "always",
-              feedbackDuration: 3_000,
-            }),
-          ],
-        },
-      ],
-      [
-        rehypeExternalLinks,
-        {
-          properties: {
-            className: ["external"],
+  integrations: [
+    embeds(),
+    mdx({
+      syntaxHighlight: false,
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypePrettyCode,
+          {
+            theme: "catppuccin-macchiato",
+            transformers: [
+              transformerCopyButton({
+                visibility: "always",
+                feedbackDuration: 3_000,
+              }),
+            ],
           },
-          rel: [],
-        },
+        ],
+        [
+          rehypeExternalLinks,
+          {
+            properties: {
+              className: ["external"],
+            },
+            rel: [],
+          },
+        ],
       ],
-    ],
-  }), react(), sitemap()],
+    }),
+    react(),
+    sitemap(),
+  ],
 
   redirects: {
     "/books": "/books/default",
@@ -70,7 +75,6 @@ export default defineConfig({
   },
 
   vite: {
-    // @ts-expect-error
     plugins: [tailwindcss()],
   },
 });
