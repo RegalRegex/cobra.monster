@@ -5,8 +5,9 @@ emoji: laptop.png
 date: 2025-04-05
 ---
 import EmojiBlockquote from "@components/EmojiBlockquote.astro";
-import Accordion from "@components/Accordion/Accordion"
-import { Image } from "astro:assets";
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro"; 
+ import { Image } from "astro:assets";
 
 import argentSmirk from "@assets/mutantEmoji/argent/smirk.png"
 import laptop from "@assets/mutantEmoji/laptop.png"
@@ -19,9 +20,10 @@ WebDev is a weird one for me because it's definitely something I'm passionate ab
 # Brief Glossary for Non-Developers
 In lieu of a Marx and Engels-length footnotes section, I'm just going to frontload a few terms for anyone who isn't in da biz.
 
-<Accordion client:idle>
+<Accordion>
+<AccordionItem>
 <span slot="title">Glossary of Tech Terms <Image src={laptop} alt='laptop' class='max-w-6 inline-block'/></span>
-<div slot="content">
+<div>
 <h2>General Terms</h2>
 - **Frontend/Backend** - General terms of convenience for talking about what part of a website/application/system someone or something touches.
 - - **Frontend** - What the end-user sees. This is the "Website" as you see and interact with it. It has visual designs, and if it's running on a browser, it is 100% HTML, CSS, and Javascript at that point. **Python, Javascript,** and **PHP** are examples of Front-end coding languages.
@@ -32,6 +34,7 @@ In lieu of a Marx and Engels-length footnotes section, I'm just going to frontlo
 - **CSS** - "Cascading Style Sheets" is how you style HTML to make text bigger, add colors, do animations...everything! It's pretty cool but a little bit clunky.
 - **Javascript** - Named "Javascript" specifically to benefit from the market share popularity of "Java" (they are otherwise unrelated). It's the ✨browser magic✨ language that lets you do fancy things like "remember my login" and complex animations and movement. Mostly it's notable for allowing an app to take input from the Website or Frontend and pass it back to the backend for more processing and fancy logic.
 </div>
+</AccordionItem>
 </Accordion>
 
 # My Specialties/Faves

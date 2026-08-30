@@ -9,7 +9,8 @@ bookTags:
 - fiction
 - sci-fi
 ---
-import Accordion from "@components/Accordion/Accordion"
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro";    
 import QuoteBlock from "@components/QuoteBlock.astro"
 
 # Spoiler-Free Synopsis
@@ -43,16 +44,15 @@ _This is the opening paragraph, and in 3 mega-efficient sentences, Wells establi
 
 The weakest part of the book if only because it is a very formulaic sci-fi story, as well as predictable, but it is certainly not a "bad" plot. I want to emphasize that the strength of this book is Wells' style, and how fun the first-person Murderbot perspective is.
 
-<Accordion client:idle>
-<span slot="title">Further Details (Spoilers)</span>
-<div slot="content">
-When it comes down to it, this is a standard "robot finds an affinity for humanity" story, and there really aren't any surprises. The book opens up with three very telling, heavy-handed foreshadow hints:
-- Murderbot's overall arc will center around its perceived hatred of humanity, but deep-down appreciation/love for humans
-- Its current mission involves guarding a bunch of amiable scientist nerds, who will surely be both awkward and intelligent in ways that serve as foils for its own character development
-- This is a "hyper-capitalism corporate sci-fi" universe, and the plot will in some way orbit around ruthless capitalist greed/penny-pinching
-
-As it goes, this evolves into a story where the mission goes wrong, foul play is suspected then confirmed, and Murderbot has to help its ragtag scientist team outsmart the baddies and get out alive.
-</div>
+<Accordion>
+<AccordionItem title="Further Details (Spoilers)"  >
+    When it comes down to it, this is a standard "robot finds an affinity for humanity" story, and there really aren't any surprises. The book opens up with three very telling, heavy-handed foreshadow hints:
+    - Murderbot's overall arc will center around its perceived hatred of humanity, but deep-down appreciation/love for humans
+    - Its current mission involves guarding a bunch of amiable scientist nerds, who will surely be both awkward and intelligent in ways that serve as foils for its own character development
+    - This is a "hyper-capitalism corporate sci-fi" universe, and the plot will in some way orbit around ruthless capitalist greed/penny-pinching
+    
+    As it goes, this evolves into a story where the mission goes wrong, foul play is suspected then confirmed, and Murderbot has to help its ragtag scientist team outsmart the baddies and get out alive.
+</AccordionItem>
 </Accordion>
 
 It's a genuinely fun story, and I can't emphasize this enough, _extremely_ stylistically delightful...but as a sci-fi nerd, I can't help but be personally bored by the lack of true intrigue or suspense.

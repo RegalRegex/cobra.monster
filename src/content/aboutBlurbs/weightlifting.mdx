@@ -6,8 +6,9 @@ date: 2025-03-18
 ---
 import EmojiBlockquote from "@components/EmojiBlockquote.astro";
 import { Image } from "astro:assets";
-import Accordion from "@components/Accordion/Accordion";
-import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro"; 
+   import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
 import QuoteBlock from "@components/QuoteBlock.astro"
 
 import wrench from "@assets/mutantEmoji/utility/wrench.png"
@@ -33,9 +34,10 @@ Nowadays the #1 reason I weightlift is for my physique. The health benefits are 
 I'm a big fan of encouraging folks' vanity-related motivations. Societal stigma gives vanity a bad name, but I think caring about your physique for your \*own\* reasons is a fantastic reason to exercise.\
 And honestly any motivation that gets you to exercise is a health win!
 
-<Accordion client:idle>
+<Accordion>
+<AccordionItem>
 <span slot="title" id="current-physique"><Image class="max-w-8 pb-2 inline-block m-auto" src={cameraFlash} alt='camera'/> Current Physique September 2025 (fursona-censored)</span>
-<div slot="content">
+<div>
 I'll update this as I can remember to, but here I'll share some physique pics I'm happy with :3
 <AccordionPhotoTemplate numImages={2}>
 <div slot="image-1">
@@ -47,8 +49,8 @@ I'll update this as I can remember to, but here I'll share some physique pics I'
 </AccordionPhotoTemplate>
 Just about the height of results from my 2025 cut diet!
 </div>
+</AccordionItem>
 </Accordion>
-<br />
 
 ## Meditation
 Growing up, I played a strange handful of sports: Golf, Tennis, Gymnastics, and Bowling. Not the most 'team-oriented' of sports. Makes sense then that as an adult, I really appreciate a sport that focuses entirely on my own skill expression and development. There's just something very relaxing about an extremely physical activity where you can close yourself off to the rest of the world for a moment, and just engage in physical connection to gravity.
@@ -93,9 +95,9 @@ In my experience it's not usually welcome advice. It feels much more exciting an
 ## Fitness YouTubers I like
 It's risky to put trust in an influencer...but these guys haven't steered me wrong yet.
 
-- [Jeff Nippard](https://www.youtube.com/@JeffNippard): The big-name "Science-based Weightlifting" YouTuber. I've been using his workout routines for years now. Huge fan.
-- [Renaissance Periodization (Dr. Mike Israetel)](https://www.youtube.com/@RenaissancePeriodization): An intense guy with incredible nuanced scientific weightlifting + muscle advice
-- [Jeremy Ethier](https://www.youtube.com/@JeremyEthier): More of a gimmicky YouTuber but good info and high production quality.
+- [Jeff Nippard](https://www.youtube.com/@JeffNippard): The big-name "Science-based Weightlifting" YouTuber. I've been using his workout routines for years now. I also use his "Macrofactor" app for dieting, and the new Workouts one for tracking my workouts. High quality videos, and great science based approach.
+- [Sean Nalewanyj](https://www.youtube.com/@Sean_Nalewanyj): Extremely knowledgeable, shorts-focused YouTuber. His style is pretty sardonic and sarcastic as he does a fair bit of non-dogpiling anti-bs takedown shorts to make a point about good practice.
+- [Squat University](https://www.youtube.com/@SquatUniversity): The absolute GOAT of Physical Therapy. I bought his book, and I credit him with 95% of my success in the last 3 years in alleviating back pain. The TL;DR of his philosophy is that most pain can be fixed with building strength in stabilization muscles (rotator cuff, hip flexors, etc.). Highly recommend if you're in any chronic joint or muscle pain.
 
 # Discord Server
 ![Argent Ming Lift](@assets/aboutPages/weightlifting/argentLift_Ming.png)_Art by [Ming](https://bsky.app/profile/fragilescales.bsky.social)_

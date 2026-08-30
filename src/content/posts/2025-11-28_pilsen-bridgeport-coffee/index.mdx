@@ -10,7 +10,8 @@ tags:
 import CafeReviewSnippet from "@components/Snippets/CafeReviewSnippet.astro"
 import EmojiBlockquote from "@components/EmojiBlockquote.astro"
 import smirk from "@assets/mutantEmoji/argent/smirk.png"
-import Accordion from '@components/Accordion/Accordion'
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro"; 
 
 Another coffee tour! This time, of the **Pilsen** and **Bridgeport** neighborhoods Southwest of the Loop. I picked a Saturday and a friend, and made the 50min bike ride in the brisk November Autumnal morning, and headed down to two neighborhoods I've barely yet visited.
 
@@ -121,9 +122,10 @@ _Cute._
 
 Full coffee flight review below, but suffice to say I was not impressed.
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
 <span slot="title">Coffee Flight Review</span>
-<div slot="content">
+<div>
 I talked to the barista, told them it was my first time here and wanted to order something that'd really show me the value of Bad Owl. They thought for a minute, and then recommended this coffee flight.\
 It had:
 - Espresso
@@ -139,6 +141,7 @@ The banana thing was like, fine. But I don't care about sweet cold brews so I'll
 
 The butter beer thing was tasty because it was a sugary non-coffee sweet drink. Again, not coffee, so /shrug. 
 </div>
+</AccordionItem>
 </Accordion>
 
 ![Yellow coffee bag with intricate coffee foliage designs around it, and a sticker on the bottom-left that looks like AI-art.](<image copy 14.png> "I've since seen more bag art and it's just GOTTA be AI. Blech.")

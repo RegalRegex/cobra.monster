@@ -11,8 +11,9 @@ tags:
 ---
 import GalleryGrid from "@components/GalleryGrid.astro"
 import EmojiBlockquote from "@components/EmojiBlockquote.astro"
-import Accordion from "@components/Accordion/Accordion"
-import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro"; 
+  import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
 import InlineArgentEmoji from "@components/ImageComponents/InlineArgentEmoji.astro"
 
 import ArgentWhine from "@assets/argent/stickers/babanasaur/whine.png"
@@ -56,9 +57,10 @@ Room for improvement:
 2. Hands
 3. Expression
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Kyrozon's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Sketchy, shirtless Argent with huge muscles holding a cuppa coffee](https://images.artfight.net/attack/9ePK4FxoxYictoh6czqnCUhVKku1JRNtJU4RNcIUoTtswi3R5fKChQKCbomK.png?t=1783921537)
@@ -66,6 +68,7 @@ Room for improvement:
         <span slot="caption">Just a lovely Argent with delightful muscles. He's got hard shapes and I'm always pleased when folks give him a shot! <a href="https://artfight.net/attack/16146838.18-coffee-time">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 2. Rieger
@@ -96,9 +99,10 @@ Room for improvement:
 1. Cobra neck looks a bit wonky
 2. Deeper shading
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Rew's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Headshot of Ristretto, my protogen, smiling and yelling off to the left](https://images.artfight.net/attack/D20UfBJN2Ml4Cd5wC2Hw0S7u4RnrzNFChknzucZ3KDlPzASvN7b0q3x7UqWu.png?t=1784742720)
@@ -106,6 +110,7 @@ Room for improvement:
         <span slot="caption">Good golly I love getting Ristretto art everyone draws him so differently! <a href="https://artfight.net/attack/17378481.speak-up">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 4. Lumie (and Kiln)
@@ -126,9 +131,10 @@ Proud of:
 Room for improvement:
 1. More thin lineart practice (for more confidence)
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Courtney's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Wilson, my anthro leech character, squatting down next to a little hermit crab playing in a sand castle](https://images.artfight.net/attack/SMwmpQNKveWGrwzjITqt5gkAkpV8nsrtytB1DF1aPLSwW5Ie2zaJwX7KsXaL.png?t=1783809653)
@@ -136,11 +142,13 @@ Room for improvement:
         <span slot="caption">Oh my god he's so cute the hermit crab destroys me \<3 <a href="https://artfight.net/attack/15927102.a-little-pal">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Oblvon's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Dyrim in Cape Verde world cup kit, confidently holding a soccer ball and smiling at the viewer](https://images.artfight.net/attack/QGjnZNiYaI8AG3qSoQEkmkwyK1AOfAO6aCct7xR73xC5qV7lRNHTymGtu04v.png?t=1785150746)
@@ -148,6 +156,7 @@ Room for improvement:
         <span slot="caption">This Dyrim piece makes me feel insane I love how Oblvon drew her so much...I definitely took some inspiration from this for my later pieces this year! <a href="https://artfight.net/attack/17889498.wyrld-cup">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 5. Jelly
@@ -170,9 +179,10 @@ Room for improvement:
 2. Expressions
 3. Shading
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Briva's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![My Grem2, Sigma, in a pinstripe suit, smiling mischievously at the viewer and extending hand in handshake.](https://images.artfight.net/attack/8m62mRb05XSo19wUNc92u9B2xxgqly6Xz4hHho19RQWnUs9khOWio0wIYt4h.png?t=1783962474)
@@ -180,6 +190,7 @@ Room for improvement:
         <span slot="caption">An insanely cool piece and pose. I keep coming back to look at it it's so unqiue and powerful. <a href="https://artfight.net/attack/16201084.shall-we-shake-on-it">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 6. Levi
@@ -201,9 +212,10 @@ Room for improvement:
 2. Posing
 3. Stylization and scalie features
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Rayzr's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![A vertical spread of two of my characters, Vesuvius a red dragonborn, and Quelrin a Golden dragonborn. The top is Vesuvius showing off his muscular back, the bottom is Quelrin preparing a warlock spell. In the center of the explosive spread the two of them are kissing real hard it's awesome.](https://images.artfight.net/attack/5WSxEgnbMmmQHn082G1460pe4j026IAREHxy1gwfrSIK7AYqJ77GU64SC9PR.jpg?t=1785018474)
@@ -211,6 +223,7 @@ Room for improvement:
         <span slot="caption">What can you possibly say about this other than holy shit <a href="https://artfight.net/attack/17728633.twin-flames">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 7. Lorwell Locksmith
@@ -241,9 +254,10 @@ Simply a cool protogen I wanted to draw! I don't actually have a lot to say abou
 
 I just like their design, and I tried a bit of brighter shading than normal to help bring out their color :3
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Comintoo's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Fullbody chibi of Ristretto (brown coffee themed protogen) standing next to a big frappe type drink, smiling](https://images.artfight.net/attack/ekCnUh6lkZ9kpzxblWhUOMXe64vkbV6011r6IhQ5CZQKejRMlOx0g0swaYF1.png?t=1785377352)
@@ -251,6 +265,7 @@ I just like their design, and I tried a bit of brighter shading than normal to h
         <span slot="caption">I love love love getting Ristretto art, especially when folks lean into the coffee theme :3 <a href="https://artfight.net/attack/18193792.coffee-enjoyer">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 Proud of:
@@ -276,9 +291,10 @@ I really want to come up with my own type of silly animal mascot character like 
 
 Anyways, art wise not a lot to say lol. I worked hard to ensure the markings etc. were accurate but I very much beefed the anatomy on purpose :3
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Girlfriend Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![My cyberpunk dinosaur character, Dahlia, lounging in a dark purple room holding a martini glass, grinning at the viewer](https://images.artfight.net/attack/87ls7qIkCd1t54ZxFou1fjYJEBOMUD3QzCAEaCrtfoMilM26CrgwzkIDJuwL.jpeg?t=1785289850)
@@ -286,6 +302,7 @@ Anyways, art wise not a lot to say lol. I worked hard to ensure the markings etc
         <span slot="caption">I love the gf's style so much she's just tremendously cool and awesome <a href="https://artfight.net/attack/18077794.queen-of-clubs">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 Proud of:
@@ -309,9 +326,10 @@ I'm very proud of myself for pushing the muscle anatomy a bit past my comfort zo
 
 I also think I did a good job with the facial expression! Komodo dragon character (mine included) have pretty simple faces, so I'm happy with how much personality I was able to impart with the few details I was working with.
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Kairune's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Fullbody piece of Wilson, my blue and green anthro leech character sipping a juice box](https://images.artfight.net/attack/GpvThYeviDuegMKbeRykOZUDJH0dsrotOZQJW1GaHceOjGM74NOpAs94u33l.png?t=1785607845)
@@ -319,6 +337,7 @@ I also think I did a good job with the facial expression! Komodo dragon characte
         <span slot="caption">Such a plaintive, cute, innocent Wilson piece! Him sippy <a href="https://artfight.net/attack/18515967.leech-on-a-beach-whatll-he-do">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 Proud of:
@@ -346,9 +365,10 @@ Even though it was a tough pose, I vibed it out pretty well. There really weren'
 
 Also shout out to [Rayzr](https://bsky.app/profile/did:plc:vcvmi6adbzn6rtksqhjogq73) whose advice on how to draw decent scalie feet keeps proving useful. It wasn't the focus of this piece, but I think it really helped shore up a BIG weakness of mine.
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Kairune's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Argent holding a coffee in his tail, a communist paper in his hand, and pointing with his other hand out the window of the train he's riding](https://images.artfight.net/attack/JaAayPPJHOXZkz79dHojEaVUEg332iLmihdkohg6HAOSAAz0Jk2WyGQr8Nsc.png?t=1785658557)
@@ -356,6 +376,7 @@ Also shout out to [Rayzr](https://bsky.app/profile/did:plc:vcvmi6adbzn6rtksqhjog
         <span slot="caption">Somite draws the most indulgent art for me I'm so blessed. Communism, coffee, Chicago, transit, AND gratuitous muscle all in one! <a href="https://artfight.net/attack/18625812.commuting-coffee-cobra-pointing-cccp">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 Proud of:

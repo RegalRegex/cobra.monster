@@ -11,7 +11,8 @@ import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate
 import InlineArgentEmoji from "@components/ImageComponents/InlineArgentEmoji.astro"
 import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro"
 import EmojiBlockquote from "@components/EmojiBlockquote.astro"
-import Accordion from "@components/Accordion/Accordion"
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro";
 import { Image } from "astro:assets";
 
 import iceCream from "@assets/mutantEmoji/ice_cream.png"
@@ -131,9 +132,10 @@ _I didn't get better pictures than this, but there are many more tables and couc
 
 Very cool. As for drink, I took my barista's recommendation and ordered a sweet latte drink...it was *$7.00* and consisted of espresso, chai, and various syrups. It was an overwhelming sweet mess, and demonstrations the classic Cafe Syrup Issue.
 
-<Accordion client:idle>
+<Accordion>
+<AccordionItem>
 <span slot="title"><InlineEmoji emoji={iceCream} />Cafes and Coffee Syrups</span>
-<div slot="content">
+<div>
 The **Cafe Syrup Issue** is what I call it when I find a cafe that has tons of flavor syrups *and* specifically leans heavily into them as a standout feature of their coffee quality.
 
 This is from a cafe I visited during a road trip:
@@ -145,6 +147,7 @@ I understand that people can find these kinds of drinks tasty, but to me it just
 
 And to be clear, neither *The Lost Hours* nor any of the cafes on this list today are *THAT* bad. There's an element of this issue, but it's much much worse elsewhere I assure you.
 </div>
+</AccordionItem>
 </Accordion>
 
 Apparently they source their coffee from local roaster, [Happy Monday Coffee](https://happymondaycoffee.com/), which popped up in my initial search but I quickly moved past mostly due to the fact that they only sell coffee blends and no single-origin coffees.

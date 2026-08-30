@@ -16,8 +16,9 @@ import smirk from "@assets/mutantEmoji/argent/smirk.png"
 import smile from "@assets/mutantEmoji/argent/smile.png"
 import weary from "@assets/mutantEmoji/argent/weary.png"
 import triumph from "@assets/mutantEmoji/argent/triumph.png"
-import Accordion from '@components/Accordion/Accordion'
-import relief from "@assets/argent/stickers/babanasaur/relief.png"
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro"; 
+ import relief from "@assets/argent/stickers/babanasaur/relief.png"
 import uwu from "@assets/argent/stickers/babanasaur/uwu.png"
 import yikes from "@assets/argent/stickers/babanasaur/yikes.png"
 import frustrated from "@assets/argent/stickers/maxadisasta/frustrated.png"
@@ -496,9 +497,10 @@ Unsurprisingly, I had a lot of fun with the visual and UX design elements of the
 
 ![The New Transaction modal pop-up in my take home app. It just lists the fields from the table in a pleasing way as an interactive form.](<image copy 18.png>)
 
-<Accordion client:idle>
+<Accordion>
+<AccordionItem>
 <span slot="title"><InlineEmoji emoji={CrtGreen}/> Some of my PHP code</span>
-<div slot="content">
+<div>
 ```php title="Auth.php"
 <?php
 session_start();
@@ -546,6 +548,7 @@ try {
 }
 ```
 </div>
+</AccordionItem>
 </Accordion>
 
 Honestly just getting a local PHP server running on my computer was hard enough, but yeah this was a struggle. I didn't fall in love with PHP. But it was cool and genuinely exciting to learn something new like this.
@@ -570,9 +573,10 @@ It's shorthand but only rewards people who already know what they're doing. This
 
 I did some very cool things. I'm particularly proud of the "New Transaction" modal (pictured above), and the clever way I handled the fact that the `GetTransactions` API endpoint returned over 12,000 records over the course of 12 seconds <InlineArgentEmoji emoji="flushed"/>
 
-<Accordion client:idle>
+<Accordion>
+<AccordionItem>
 <span slot="title"><InlineEmoji emoji={CrtGreen}/> My Modal's JS Code</span>
-<div slot="content">
+<div>
 ```javascript title="modal.js"
 import { showSection } from "./cssHelpers.js";
 
@@ -714,13 +718,15 @@ function resetNewTransactionForm(isSuccess = false) {
 }
 ```
 </div>
+</AccordionItem>
 </Accordion>
 
 I built a form AND implemented some simple-but-useful form validation :3 Not bad for a guy who has only ever done that with a full Angular or React framework!
 
-<Accordion client:idle>
+<Accordion>
+<AccordionItem>
 <span slot="title"><InlineEmoji emoji={CrtGreen}/> My Table-Chunking JS Code</span>
-<div slot="content">
+<div>
 ```javascript title="createTable.js"
 import { formatAmount, setNoRecordsFound } from "./dataUtils.js";
 
@@ -788,6 +794,7 @@ export function createTable(data) {
 }
 ```
 </div>
+</AccordionItem>
 </Accordion>
 
 I don't know why I kept with the word "Chunk" to describe what is clearly "Batching"...Anyways. Yeah I've never used `requestAnimationFrame()` before! I felt super clever for figuring this out AND I cleverly used this to create an intuitive and honest loading bar (see first screenshot above) :3\
@@ -907,9 +914,10 @@ _\*sad pew pew sounds*_
 
 I got as far as making the laser. I could probably eke out turning the asteroids red, but I was trying to be extra fair just in case. Idk. I clearly \*can* do it. Just nerves.
 
-<Accordion client:idle>
+<Accordion>
+<AccordionItem>
 <span slot="title"><InlineEmoji emoji={CrtGreen}/> My Asteroids Code...Remember, 30 min time limit!!</span>
-<div slot="content">
+<div>
 ```javascript title="main.js"
 $(document).ready(function () {
   const N = Math.floor(Math.random() * (55 - 10) + 10);
@@ -1096,6 +1104,7 @@ let trackedPos;
 // return Math.random() * (max - min) + min;
 ```
 </div>
+</AccordionItem>
 </Accordion>
 
 # Final Thoughts/Sobs

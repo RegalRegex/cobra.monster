@@ -11,8 +11,9 @@ tags:
 ---
 import GalleryGrid from "@components/GalleryGrid.astro"
 import EmojiBlockquote from "@components/EmojiBlockquote.astro"
-import Accordion from "@components/Accordion/Accordion"
-import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro"; 
+ import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
 import InlineArgentEmoji from "@components/ImageComponents/InlineArgentEmoji.astro"
 
 import ArgentWhine from "@assets/argent/stickers/babanasaur/whine.png"
@@ -76,9 +77,10 @@ Room for improvement:
 2. Shading
 3. Anthro cat faces/anatomy
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Jasper's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Slick angled drawing of Argent shredding with a sick bicycle move](https://images.artfight.net/attack/BUv1VxAVTwPb4O2KHgpJJyDHtoSQ6Aeik1UUgw3xE8AK896i6mkp7X64s7d0.png?t=1753214731)
@@ -86,6 +88,7 @@ Room for improvement:
         <span slot="caption">Jasper's style is so fucking sick. I only wish I could look even half as cool on a bike <InlineArgentEmoji emoji="weary"/> <a href="https://artfight.net/attack/11928960.bike-back">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 2. Alaska
@@ -135,9 +138,10 @@ Room for improvement:
 This might be my most personally-significant piece this year because this is for a good friend I'm finally re-connecting with after almost 10 years. [Pinecone](https://bsky.app/profile/pineconethedeer.bsky.social) has just recently more fully joined the furry fandom, and most impressively, took me up on my suggestion [to do art fight](https://artfight.net/~PineconeTheDeer)!!\
 I've linked his Art Fight above but if you don't have an account to view them, I need to share a few of his here:
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
 <span slot="title">Some of Pinecone's Art Fight 2025 Attacks + Revenge <InlineArgentEmoji emoji="smile"/></span>
-<div slot="content">
+<div>
 My man did ***20*** attacks in his first ever Art Fight and they're all tremendous! These 2 might be my overall faves though:
 <AccordionPhotoTemplate numImages={2} numCaptions={2}>
 <div slot="image-1">
@@ -163,6 +167,7 @@ But of course, he also did me the incredible honor of attacking me back for draw
 
 I'm just so delighted and impressed by him. I can't wait to see what else he does! :3
 </div>
+</AccordionItem>
 </Accordion>
 
 With that context, this piece kind of speaks for itself. The Rainbow Dash plushie is a nod to our shared Brony past, and the fact that not only is she best pony (according to him 💎) but he actually sewed his own RD plush all those years ago!\
@@ -224,9 +229,10 @@ Room for improvement:
 2. Wolf teeth/mouth
 3. Clothing
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Revenge for Harley's attack! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Super goofy image of Argent YELLING as he does an Atlas ball squat, lifting up a gorgeously rendered, comically huge golden boulder](https://images.artfight.net/attack/afJEIl543hnVHD9gx58N4KN8Og6k54xLT34NfchGn5w2b6GaZqmMX2ztURcg.png?t=1751508562)
@@ -234,6 +240,7 @@ Room for improvement:
         <span slot="caption">Getting this piece so early into Art Fight was fucking hilarious. It definitely set a mood. I'm infinitely amused and delighted :3 <a href="https://artfight.net/attack/9239141.lift-gold">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 7. Raca Rumrazza
@@ -256,9 +263,10 @@ Room for improvement:
 2. BG way too boring
 3. Hands feel funky
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Revenge for Hammond's attacks! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={2} numCaptions={2}>
         <div slot="image-1">
 ![Extremely saturated, colorful Argent doing sick skateboard tricks!](https://images.artfight.net/attack/3fK2WUEkpRdrStGMAbeFzYCrUFXiL1g7xU04itxhs0vWIVnenF4tJhhc1nnS.png?t=1751548957)
@@ -270,6 +278,7 @@ Room for improvement:
         <span slot="caption-2">I can't believe he attacked me _again_ barely after I caught my breath...Grateful that Dio got some attention :3 <a href="https://artfight.net/attack/12522527.over-it">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 8. Sammy
@@ -290,9 +299,10 @@ Room for improvement:
 2. Hair color, texture
 3. Lineart cleanliness
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Genziao's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Aesthetic silly headshot of my protogen, Ristretto, throwing a peace sign and smiling](https://images.artfight.net/attack/hX7AAXC4FUVVhRCkjxXDSAjYJmG14F51qB0rrty1rstAnkOwQfyFstvTEbb7.jpeg?t=1753489602)
@@ -300,6 +310,7 @@ Room for improvement:
         <span slot="caption">My precious beautiful little silly guy Ristretto...Genziao responded with this insanely quickly and yet it's so quality! Powerful...<a href="https://artfight.net/attack/12182614.ristretto">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 9. Sarc
@@ -318,9 +329,10 @@ Proud of:
 
 Room for improvement: **N/A**
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Sarc's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Incredibly physical depiction of Argent doing cable-based exercises in 3 different poses in front of a Vaporwave background screenshot from one of my own websites](https://images.artfight.net/attack/3zQl33T6Xrei2W0IsSi0KpJqzd4TLaitXnZoMd3lZo7ZsXogKcUFrh8hEXAh.jpeg?t=1753484378)
@@ -328,6 +340,7 @@ Room for improvement: **N/A**
         <span slot="caption">Just speechless. Even still. Each pose is so powerful and sensual. I'm utterly flattered. <a href="https://artfight.net/attack/12176684.so-anyway-i-started-blastin">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 10. Donnie
@@ -434,9 +447,10 @@ Room for improvement:
 2. Better face/head shape
 3. Outfit textures/lighting
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Ed's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Black and white drawing of Argent and Diamondback at a coffee shop--Argent is waving to someone off screen, Di is covetously measuring Argent's bicep with tailor's tape](https://images.artfight.net/attack/Cci7JlPgxAW9ZvTNnSTTg4EFv5CvONceWMqyXcRmLP32e70JuxiGW0YUFQbe.jpg?t=1754022507)
@@ -444,6 +458,7 @@ Room for improvement:
         <span slot="caption">I can't believe Ed had time to bash out this incredible revenge...but also one so good?? The musculature is crazy good and the energy of Di is hilarious <a href="https://artfight.net/attack/12776362.coffee-after">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ### 15. Ruheg
@@ -466,9 +481,10 @@ Room for improvement:
 2. Less obvious "didn't have time to draw a 2nd hand" pose
 3. Whatever is going on below the waist of a naga <InlineArgentEmoji emoji="thinking"/>
 
-<Accordion client:visible>
+<Accordion>
+<AccordionItem>
     <span slot="title">Somite's Revenge! ⚔️</span>
-    <div slot="content">
+    <div>
     <AccordionPhotoTemplate numImages={1} numCaptions={1}>
         <div slot="image">
 ![Daneer, an anthro male deer with golden antlers, teeing off in golf swing, prominent booty facing the camera](https://images.artfight.net/attack/tPwqZIV5APyrs2C7Kj3Cltv1m0ITgJVnxoNrtUYOVTPqza8MTYDt7bBGOL5d.png?t=1754071205)
@@ -476,6 +492,7 @@ Room for improvement:
         <span slot="caption">Absolutely unbelievable that Somite had time to put this out. The timestamp literally lists it as 5 seconds _past_ the end of the event...absolute madlad. Incredible pose and quality for that time!! So delighted to get a last-minute Daneer piece :3 <a href="https://artfight.net/attack/12913473.revenge">Artfight Link</a></span>
     </AccordionPhotoTemplate>
     </div>
+</AccordionItem>
 </Accordion>
 
 ## Closing Thoughts

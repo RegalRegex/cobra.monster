@@ -1,0 +1,26 @@
+---
+/**
+ * Accordion and AccordionItem inspired by @link https://free-astro-components.vercel.app/components/accordion
+ */
+---
+
+<div class="@container/accordion accordion flex flex-col my-5 border-l-8 border-yellow">
+  <slot />
+</div>
+
+<script>
+  import { DOMLoaded, handleResize, hasViewportWidthChanged } from "@utils/jsUtils";
+  import { setAccordionHeight } from "@utils/accordion";
+
+  DOMLoaded(() => {
+    const accordions = document.querySelectorAll<HTMLDetailsElement>("[data-accordion-item]");
+
+    setAccordionHeight(accordions);
+
+    handleResize(() => {
+      if (hasViewportWidthChanged()) {
+        setAccordionHeight(accordions);
+      }
+    });
+  });
+</script>

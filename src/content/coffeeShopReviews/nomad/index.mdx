@@ -16,8 +16,9 @@ lastUpdated: 2025-10-04
 summary: A girly boutique + coffee shop that does not compromise on the coffee quality. You'll step in, wondering which part of the business (coffee or boutique sales) is the supporting actor for the other, but never really find the answer.
 orderSuggestion: A specialty latte if you have the money, otherwise any pour-over
 ---
-import Accordion from "@components/Accordion/Accordion"
-import InlineEmoji from '@components/ImageComponents/InlineEmoji.astro'
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro"; 
+   import InlineEmoji from '@components/ImageComponents/InlineEmoji.astro'
 import EmojiBlockquote from "@components/EmojiBlockquote.astro"
 
 import hot_drink from "@assets/mutantEmoji/hot_drink.png"
@@ -29,21 +30,23 @@ Not only a full-coffee bar with genuinely interesting custom lattes on offer, bu
 
 They serve Metric Coffee, the best 'large-ish'-scale cafe supplier in the city. I had a Colombian pour-over, and while it was definitely solid, I think it lands solidly in the bottom tier of pour-over quality I can get in Chicago.
 
-<Accordion client:idle>
-<span slot="title"><InlineEmoji emoji={hot_drink}/> Pour-overs in Chicago</span>
-<div slot="content">
-To-date (10.4.25), I have only visited 6 cafes in Chicago that server pour-overs, and I'd rank them like so (drink quality only; ignoring price):
-
-1. Dayglow
-2. Side Practice/DRIP (same owners)
-3. [THRD](/cafe-reviews/thrd-coffee)
-4. Pedestrian Coffee
-5. Nomad
-6. Avondale Coffee Club
-
-I'll add that there is a _gulf_ of quality between #3 and #4. Pour-overs are rare...as they should be, because they're time and labor intensive.\
-You'll be hard-pressed to get a _bad_ pour-over. But in my opinion, they are the pinnacle of 3rd wave coffee preparation, and if you are being offered a truly incredible cup of coffee 9 times out of 10 it will be a pour-over. 
-</div>
+<Accordion>
+<AccordionItem>    
+    <span slot="title"><InlineEmoji emoji={hot_drink}/> Pour-overs in Chicago</span>
+    <div>
+    To-date (10.4.25), I have only visited 6 cafes in Chicago that server pour-overs, and I'd rank them like so (drink quality only; ignoring price):
+    
+    1. Dayglow
+    2. Side Practice/DRIP (same owners)
+    3. [THRD](/cafe-reviews/thrd-coffee)
+    4. Pedestrian Coffee
+    5. Nomad
+    6. Avondale Coffee Club
+    
+    I'll add that there is a _gulf_ of quality between #3 and #4. Pour-overs are rare...as they should be, because they're time and labor intensive.\
+    You'll be hard-pressed to get a _bad_ pour-over. But in my opinion, they are the pinnacle of 3rd wave coffee preparation, and if you are being offered a truly incredible cup of coffee 9 times out of 10 it will be a pour-over.
+    </div>
+</AccordionItem>
 </Accordion>
 
 My girlfriend got a hot "Pumpkin Pie Latte":

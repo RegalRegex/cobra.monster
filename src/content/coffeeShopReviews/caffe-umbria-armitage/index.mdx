@@ -16,7 +16,8 @@ lastUpdated: 2025-09-27
 summary: A roastery & cafe space with art deco & industrial vibes. Mediocre Italian espresso with above average chocolate. Overall a cool space in a good location that I wish had better coffee.
 orderSuggestion: 12oz Mocha
 ---
-import Accordion from "@components/Accordion/Accordion"
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro";   
 import InlineEmoji from '@components/ImageComponents/InlineEmoji.astro'
 import hot from "@assets/mutantEmoji/hot.png"
 
@@ -26,21 +27,23 @@ Mediocre at best, generally pretty sub-par. I've had their light roast as drip a
 
 They roast their coffee there in the cafe, and the fact that their roasting equipment is just open to the air of the cafe, including the often-busy entrance door wafting in whatever temperature air is outside is certainly a choice coffee-quality wise but it is undeniably cool from an aesthetic point of view.
 
-<Accordion client:idle>
-<span slot="title"><InlineEmoji emoji={hot}/> Open-air coffee roastery rant</span>
-<div slot="content">
-**Disclaimer:** I am not a coffee professional. This is info I've picked up from talking *to* coffee professionals (3rd-wave roasters and baristas)
-
-Coffee is chemistry; the final product of "drinkable bean juice" is an amalgamation of all of the thermodynamic factors that go into its growth, collection, processing, roasting, grinding, and brewing. With non-specialty coffee you have a lot of wiggle-room for all of these factors. That coffee only has so much potential to begin with.\
-Even still, any decent roaster or coffee shop should make attempts to isolate those variables from things outside their control (like the weather) as much as possible!
-
-Where am I going with this? Well, most quality roasteries are built with temperature isolation in mind. Building glass or plexiglass barriers around your roasting equipment still gives it the "roasting in the cafe" mystique but also allows you to fully temperature-control your process.\
-How do you expect to produce consistent batches of roasted coffee if your roasting temperature is dependent on how cold it outside or whether the door was propped open by the weekly sanitation-mat cleaning service replacing your cafe's mats? (I watched this happen on a roast day lol)
-
-![argent yikes](@assets/argent/stickers/babanasaur/yikes.png)
-
-I could go on because this *also* applies to daily espresso-machine dialing in but another time...suffice to say, Umbria is cool and I love seeing their equipment but it's not a great sign to me that they don't seem to value isolating their equipment.
-</div>
+<Accordion>
+<AccordionItem>
+    <span slot="title"><InlineEmoji emoji={hot}/> Open-air coffee roastery rant</span>
+    <div>
+    **Disclaimer:** I am not a coffee professional. This is info I've picked up from talking *to* coffee professionals (3rd-wave roasters and baristas)
+    
+    Coffee is chemistry; the final product of "drinkable bean juice" is an amalgamation of all of the thermodynamic factors that go into its growth, collection, processing, roasting, grinding, and brewing. With non-specialty coffee you have a lot of wiggle-room for all of these factors. That coffee only has so much potential to begin with.\
+    Even still, any decent roaster or coffee shop should make attempts to isolate those variables from things outside their control (like the weather) as much as possible!
+    
+    Where am I going with this? Well, most quality roasteries are built with temperature isolation in mind. Building glass or plexiglass barriers around your roasting equipment still gives it the "roasting in the cafe" mystique but also allows you to fully temperature-control your process.\
+    How do you expect to produce consistent batches of roasted coffee if your roasting temperature is dependent on how cold it outside or whether the door was propped open by the weekly sanitation-mat cleaning service replacing your cafe's mats? (I watched this happen on a roast day lol)
+    
+    ![argent yikes](@assets/argent/stickers/babanasaur/yikes.png)
+    
+    I could go on because this *also* applies to daily espresso-machine dialing in but another time...suffice to say, Umbria is cool and I love seeing their equipment but it's not a great sign to me that they don't seem to value isolating their equipment.
+    </div>
+</AccordionItem>
 </Accordion>
 
 ## Cafe

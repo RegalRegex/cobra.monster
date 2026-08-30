@@ -7,7 +7,8 @@ emoji: hot_drink.png
 import { Image } from "astro:assets";
 
 import EmojiBlockquote from "@components/EmojiBlockquote.astro";
-import Accordion from "@components/Accordion/Accordion"
+import Accordion from "@components/Accordion/Accordion.astro"
+import AccordionItem from "@components/Accordion/AccordionItem.astro";
 import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
 import ArgentYikes from "@assets/argent/stickers/babanasaur/yikes.png";
 import ArgentUwu from "@assets/argent/stickers/babanasaur/uwu.png"
@@ -24,13 +25,17 @@ Length Warning: This is probably my TOP passion. Please use the **Table of Conte
 </EmojiBlockquote>
 
 # Recommendations
+
 These change over time, but I consistently look for top-tier consumer-level roasters, equipment, and techniques.\
 First off, I review a bunch of coffee shops over on the [Cafe Reviews](/cafe-reviews) page!
+
 ## Types of Drinks
+
 In order, these are my 3 favorite ways of preparing coffee:
-<Accordion client:idle>
+<Accordion >
+<AccordionItem>
 <span slot="title"><span className="text-yellow mr-1">1.</span> Pour Overs</span>
-<div slot="content">
+<div>
 Specifically a ceramic V60 or Origami dripper. There are a lot of great pour-over cones, but these two have been the best for me personally.
 <AccordionPhotoTemplate numImages={2} numCaptions={2}>
             <div slot="image-1">
@@ -46,10 +51,10 @@ I used to not love pour-overs, but having practiced more I'm very pleased by how
 
 Also "Ceramic" is important, because while plastic is pretty convenient, it's not a safe material to use in such a thermodynamic food prep process. I replaced mine with a ceramic once a friend pointed out that the small cracks I was seeing in my plastic dripper were likely harboring bacteria.
 </div>
-</Accordion>
-<Accordion client:idle>
+</AccordionItem>
+<AccordionItem>
 <span slot="title"><span className="text-yellow mr-1">2.</span> Espresso Drinks</span>
-<div slot="content">
+<div>
 I'm a fiend for good espresso. While I love it on its own, espresso drinks don't last very long! So I have a few favorites...Americanos and Macchiatos at the top!
 <AccordionPhotoTemplate numImages={2} numCaptions={2}>
             <div slot="image-1">
@@ -73,22 +78,23 @@ Every other espresso drink is just \*something else\* with espresso added to it:
 - **Latte** = A little bit of espresso, and a lot of steamed milk. Often sweetened with syrups (caramel latte, mocha latte, etc.)
 I may have put Espresso as #2 but with the sheer variety of drink options it offers, it's a pretty dang close 2nd.
 </div>
-</Accordion>
-<Accordion client:idle>
+</AccordionItem>
+<AccordionItem>
 <span slot="title"><span className="text-yellow mr-1">3.</span> Aeropress</span>
-<div slot="content">
-Aeropress is such a funky device. It used to be my #1 brewer just for the combination of Ease + Quality it produced. And even now it's my #1 recommendation for someone wanting to get into better homebrewed coffee.\
-It's just a plastic tube w/ a rubber gasket to make a simple pump. Cap it with a filter, fill with water and coffee, and just push liquid coffee into your cup. Simple!
-<AccordionPhotoTemplate numImages={1} numCaptions={1}>
-            <div slot="image">
-           ![Aeropress Brew](@assets/aboutPages/coffee/aeropress-goran-ivos-unsplash.jpg)
-            </div>
-            <span slot="caption">_Photo by <a href="https://unsplash.com/@goran_ivos">Goran Ivos</a> on <a href="https://unsplash.com/photos/white-and-black-coffee-cup-on-white-ceramic-plate-kQIaF3iPLS4">Unsplash</a>_</span>
-            
-</AccordionPhotoTemplate>
-For like, $30 it's pretty hard to beat. [Also the inventor's story is pretty cool.](https://aeropress.com/pages/about)
-Overall I'd say that the aeropress can make an extremely consistent "above-average" brew. If you really mess w/ it, you can make amazing things. But for me it's the lazy-man's pour-over quality 1-cup haha.
+<div>
+    Aeropress is such a funky device. It used to be my #1 brewer just for the combination of Ease + Quality it produced. And even now it's my #1 recommendation for someone wanting to get into better homebrewed coffee.\
+    It's just a plastic tube w/ a rubber gasket to make a simple pump. Cap it with a filter, fill with water and coffee, and just push liquid coffee into your cup. Simple!
+    <AccordionPhotoTemplate numImages={1} numCaptions={1}>
+                <div slot="image">
+               ![Aeropress Brew](@assets/aboutPages/coffee/aeropress-goran-ivos-unsplash.jpg)
+                </div>
+                <span slot="caption">_Photo by <a href="https://unsplash.com/@goran_ivos">Goran Ivos</a> on <a href="https://unsplash.com/photos/white-and-black-coffee-cup-on-white-ceramic-plate-kQIaF3iPLS4">Unsplash</a>_</span>
+    
+    </AccordionPhotoTemplate>
+    For like, $30 it's pretty hard to beat. [Also the inventor's story is pretty cool.](https://aeropress.com/pages/about)
+    Overall I'd say that the aeropress can make an extremely consistent "above-average" brew. If you really mess w/ it, you can make amazing things. But for me it's the lazy-man's pour-over quality 1-cup haha.
 </div>
+</AccordionItem>
 </Accordion>
 
 ## Roasters

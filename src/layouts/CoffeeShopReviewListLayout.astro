@@ -2,7 +2,8 @@
 import TopNav from "@components/TopNav/TopNav.astro";
 import Layout from "./Layout.astro";
 import PageHeader from "@components/PageHeader.astro";
-import Accordion from "@components/Accordion/Accordion";
+import Accordion from "@components/Accordion/Accordion.astro";
+import AccordionItem from "@components/Accordion/AccordionItem.astro";
 import InlineArgentEmoji from "@components/ImageComponents/InlineArgentEmoji.astro";
 import TextDeco from "@components/TextDeco.astro";
 
@@ -22,25 +23,27 @@ const starMd = "<span>★</span>";
       </div>
 
       <!-- @ts-ignore -->
-      <Accordion client:visible bgRed={false}>
-        <span slot="title" class="text-slate-200">Reviews & Rating System Context</span>
-        <div slot="content" class="text-slate-200">
-          <hr />
-          <ul class="flex flex-col gap-2 mt-4">
-            <li>
-              1. <strong>Most importantly</strong> I am a <TextDeco url="/about/coffee">coffee-obsessed nerd</TextDeco>, and coffee quality is paramount to me.
-              This is reflected by the coffee score being the only score weighted out of 10 on my rating system.
-            </li>
-            <li>
-              2. I'm a work-from-home <TextDeco url="/about/webdev">web-developer</TextDeco> and a hobbyist artist who enjoys working out of coffee shops to code
-              or draw.
-            </li>
-            <li>
-              3. I'm an <TextDeco url="/about/urbanism">urbanist</TextDeco>, and am drawn to places that reflect the character of their neighborhood, and make
-              an attempt to bolster local community.
-            </li>
-          </ul>
-        </div>
+      <Accordion>
+        <AccordionItem>
+          <span slot="title" class="text-slate-200">Reviews & Rating System Context</span>
+          <div class="text-slate-200">
+            <hr />
+            <ul class="flex flex-col gap-2 mt-4">
+              <li>
+                1. <strong>Most importantly</strong> I am a <TextDeco url="/about/coffee">coffee-obsessed nerd</TextDeco>, and coffee quality is paramount to
+                me. This is reflected by the coffee score being the only score weighted out of 10 on my rating system.
+              </li>
+              <li>
+                2. I'm a work-from-home <TextDeco url="/about/webdev">web-developer</TextDeco> and a hobbyist artist who enjoys working out of coffee shops to code
+                or draw.
+              </li>
+              <li>
+                3. I'm an <TextDeco url="/about/urbanism">urbanist</TextDeco>, and am drawn to places that reflect the character of their neighborhood, and make
+                an attempt to bolster local community.
+              </li>
+            </ul>
+          </div>
+        </AccordionItem>
       </Accordion>
       <slot name="sort" />
     </header>
