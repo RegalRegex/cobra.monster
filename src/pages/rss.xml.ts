@@ -31,7 +31,7 @@ export const GET: APIRoute = async (context) => {
   return rss({
     title: "Regal's Blog",
     description: "A communist cobra's blog posts.",
-    site: context.site!,
+    site: new URL(`/blog`, context.url.origin).toString(),
     items,
     xmlns: {
       atom: "http://www.w3.org/2005/Atom",
