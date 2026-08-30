@@ -15,7 +15,7 @@ const { open, title, name, class: className } = Astro.props;
 <details data-accordion-item class:list={["ac-accordion-item bg-[#510505] p-4", className]} name={name} open={open}>
   <summary class="ac-accordion-item-title">
     <span>{title}<slot name="title" /></span>
-    <Image class={`w-6 not-prose transform duration-500 ease arrow`} src={arrowRight} alt="arrow" />
+    <Image class={`max-w-6 not-prose transform duration-500 ease arrow`} src={arrowRight} alt="arrow" />
   </summary>
   <div class="ac-accordion-item-content">
     <slot />
