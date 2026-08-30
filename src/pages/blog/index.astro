@@ -8,8 +8,6 @@ const tags = await getCollection("tags");
 ---
 
 <BlogLayout>
-  <TagContents slot="tag-list" pageUrl="/blog/tagged/" tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
-  <Fragment slot="post-list">
-    <PostList />
-  </Fragment>
+  <TagContents pageUrl="/blog/tagged/" tagIds={tags.sort((a, b) => a.id.localeCompare(b.id)).map((tag) => tag.id)} />
+  <PostList />
 </BlogLayout>

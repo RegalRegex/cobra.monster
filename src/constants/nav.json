@@ -13,6 +13,10 @@
       {
         "display": "Cafe Reviews",
         "url": "cafe-reviews"
+      },
+      {
+        "display": "RSS Feed",
+        "url": "rss.xml"
       }
     ]
   },
