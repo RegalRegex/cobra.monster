@@ -4,7 +4,6 @@ import Link from "@components/Link.astro";
 import BadgeDisplay from "@components/BadgeDisplay.astro";
 import CobraLogo from "@components/ImageComponents/CobraLogo.astro";
 import RssFeedBtn from "./RssFeedBtn.astro";
-import cobraMonster from "@assets/cobra.monster.gif";
 import ArgentDerp from "@assets/argent/ArgentDerpSticker.png"
 import InlineEmoji from "./ImageComponents/InlineEmoji.astro";
 import ArrowLeft from "@assets/mutantEmoji/utility/arrow_left.png"
@@ -14,6 +13,7 @@ import muscle from "@assets/mutantEmoji/muscle_clw_y2.png"
 import NavLinks from "./TopNav/NavLinks.astro";
 import ArgentSymmetrical from "@assets/argent/SymmetricalArgent_Orion.png";
 import CRT from "@assets/mutantEmoji/crt_green_lines.png"
+import { baseUrl } from "@utils/baseUrl";
 
 interface Props {
   homePage?: boolean;
@@ -95,7 +95,7 @@ const { homePage } = Astro.props;
       <BadgeDisplay collection="critterBadges" />
       <div class="flex w-full">
         <span class="grow border-b border-yellow mb-4"></span>
-        <Image src={cobraMonster} alt={"cobra.monster 88x31"} class={"badge m-auto mx-2"} format="gif"/>
+        <img src={`"${baseUrl()}cobra.monster.gif"`} alt={"cobra.monster 88x31"} class={"badge m-auto mx-2"} />
         <span class="grow border-b border-yellow mb-4"></span>
       </div>
       <BadgeDisplay collection="standardBadges" />
