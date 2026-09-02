@@ -8,14 +8,16 @@ import EmojiBlockquote from "@components/EmojiBlockquote.astro";
 import { Image } from "astro:assets";
 import Accordion from "@components/Accordion/Accordion.astro";
 import AccordionItem from "@components/Accordion/AccordionItem.astro"; 
-                         import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
+                                         import AccordionPhotoTemplate from "@components/Accordion/AccordionPhotoTemplate.astro"
 import QuoteBlock from "@components/QuoteBlock.astro"
+import InlineEmoji from "@components/ImageComponents/InlineEmoji.astro";
 
 import wrench from "@assets/mutantEmoji/utility/wrench.png"
 import cameraFlash from "@assets/mutantEmoji/utility/camera_with_flash.png"
 import argentThink from "@assets/mutantEmoji/argent/thinking.png"
 import uwu from "@assets/argent/stickers/babanasaur/uwu.png"
 import eyy from "@assets/argent/stickers/babanasaur/eyy.png"
+import sparkles from "@assets/mutantEmoji/sparkles.png"
 
 
 ![Argent Svend Press](@assets/aboutPages/weightlifting/ArgentSvendSketch_Lasko.jpg)_Art by <a href="https://bsky.app/profile/laskerfox.redshift7.studio">Lasker</a>_
@@ -57,13 +59,9 @@ Just about the height of results from my 2025 cut diet!
 </AccordionItem>
 </Accordion>
 
-## Meditation
-
-Growing up, I played a strange handful of sports: Golf, Tennis, Gymnastics, and Bowling. Not the most 'team-oriented' of sports. Makes sense then that as an adult, I really appreciate a sport that focuses entirely on my own skill expression and development. There's just something very relaxing about an extremely physical activity where you can close yourself off to the rest of the world for a moment, and just engage in physical connection to gravity.
-
 # Regal's Weightlifting Advice
 
-![Argent pointing excitedly at his large flexed bicep, shirtless, in front of a blue and orange abstract background with heart motifs](@assets/aboutPages/weightlifting/Bicep-point_Sukoyiko(transparent).png)_Art by [Sukoyiko](https://bsky.app/profile/sukkosukoyiko.bsky.social)_
+![Argent pointing excitedly at his large flexed bicep, shirtless, in front of a blue and orange abstract background with heart motifs](@assets/aboutPages/weightlifting/Bicep-point_Sukoyiko(transparent).png "How can you NOT want to listen to this guy? Look how excited he is to talk to you about his latest biceps exercises!")_Art by [Sukoyiko](https://bsky.app/profile/sukkosukoyiko.bsky.social)_
 
 This is a non-exhaustive mini-blog post of important fitness and nutrition info.\
 By no means an expert, I'm a big nerd who's had his fair share of fitness + nutrition successes and failures.
@@ -72,28 +70,21 @@ By no means an expert, I'm a big nerd who's had his fair share of fitness + nutr
 
 I need to impress upon you that you do NOT need a fancy gym membership (or gym at all) to make significant weightlifting/muscle/aesthetic gains. It is fully possible to meaningfully improve your physical ability through bodyweight exercises alone.
 
-{/* <EmojiBlockquote emoji={uwu} size="sticker">
-Small note: to avoid this becoming a beast of a guide, I'm going to make a few assumptions:
-
-1. You specifically want to lift weights, either at home or at a gym
-2. You're already prepared to weigh your expectations against the reality of your starting point
-</EmojiBlockquote> */}
-
 ### Building or Choosing a Routine
 
 This is the area that will stop most folks. It's very intimidating going or even thinking of going to a gym, just to see 100 machines and pieces of equipment and not knowing where at all to start.
 
 And of course if you try and google this, you'll just find endless fitness influencers trying to sell you *their* program.\
-I can help for free!
+Some of them do have pretty solid routines, but you really don't need to spend money to organize exercises that'll help you reach your goals.
 
-> Small note, I'm assuming from here on that you have access to a full gym. Box gym, local, whatever.
+> Small note, I'm assuming from here on that you have access to a full gym. Box gym, local, etc. Calisthenics and bodyweight exercises are tremendous, but they're not my wheelhouse
 
 #### Choosing a Split
 
 First and simply, you need to decide how many days you want to lift weights a week, and then divide up your muscles into groups for that. This is called a "workout split". The idea of which is to maximize muscle growth *and* proper rest, depending on how often you lift.
 
 <EmojiBlockquote emoji={eyy} size="sticker">
-TL;DR if you want to skip ahead:
+Recommendations TL;DR if you want to skip ahead:
 
 - **2-3 days:** Full Body
 - **4 Days:** Upper/Lower
@@ -133,7 +124,7 @@ This is my personal favorite split for three big reasons:
 2. Many lifters, myself included tend to overemphasize chest or back training compared to legs, and this forces a more appropriate split of effort
 3. 4 Days of lifting is *plenty* of weightlifting. I personally think it's the sweet spot, allowing for plenty of rest and not making this hobby consume your life.
 
-![Argent performing a bicep curl while cheekily looking back at the viewer](@assets/argent/ArgentCheekyFlex-ArtFight2024_Maxadisasta.png)_Art by: [maxadisasta](https://bsky.app/profile/did:plc:rpdr2mllqtkyl6wpgufwjqof)_
+![Argent performing a bicep curl while cheekily looking back at the viewer](@assets/argent/ArgentCheekyFlex-ArtFight2024_Maxadisasta.png "Oh? You're challenging me? Come to out-curl this cobra?")_Art by: [maxadisasta](https://bsky.app/profile/did:plc:rpdr2mllqtkyl6wpgufwjqof)_
 
 Currently (September 2026) I run this split with a 5th day on the weekend dedicated to just arms and shoulders. The 5th day is totally unnecessary for the average lifter but I add it because I love weightlifting and I prefer to replace the biceps & triceps exercises in my "Upper" days with more large muscle movements.
 
@@ -151,14 +142,38 @@ I ran this split many times in my early days, and the best thing I can say about
 
 Evil. Bad. Nasty.
 
-Look. Everyone has (or will find) their favorite muscle or muscle group to train. For me it's chest. I'm an absolute chest goblin. Having an entire day to JUST do chest exercises? Insanely gratifying.
+Look. Everyone has their favorite muscle or muscle group to train. For me it's chest. I'm an absolute chest goblin. Having an entire day to JUST do chest exercises? Insanely gratifying.
 
-But don't do it. Resist the siren's call...this split will waste your time.
+But don't do it. Resist the siren's call...this split will waste your time. Why? Because spending 5 days a week training every muscle exactly once is incredibly inefficient.\
+Training a single muscle to death in a workout produces diminishing results as the fatigue breaks down form, and your muscle hits its limit for constructive breakdown. Rest is a vital component of muscle growth and development; working a high-priority muscle 2-3 days a week with 1-2 exercises each of those days will produce much more consistent growth.
 
-![Argent looking directly at you, extremely concerned](@assets/argent/ArgentConcerned_Gees.jpg)_Please. Don't do it.\
-Art by [Gees](https://bsky.app/profile/geezz.bsky.social)_
+Try the Bro Split if you want...it *is* kinda fun. But be good to yourself and don't stick to it.
 
-#### The Machine Circuit
+![Argent looking directly at you, extremely concerned](@assets/argent/ArgentConcerned_Gees.jpg)_Art by [Gees](https://bsky.app/profile/geezz.bsky.social)_
+
+
+#### Which Exercises?
+
+So you've picked a workout split. Good job! Now comes the fun part: choosing which exercises to do.
+
+There are many ways to do this! If you can ask an experienced friend, go with that. Otherwise I recommend just going to your gym and looking around. Seriously! Just walk around, peek at machines, try them out. Or even just watch others doing exercises and decide if that looks fun to you.
+
+If you're just starting out then your #1 goal the gym is to get yourself to enjoy being at the gym. Even just a little bit. Optimization can come later. Very few exercises at the gym are \*bad.\* At worst they're just not *efficient.* And that's okay.
+
+##### The Machine Circuit
+
+If you're a beginner, are intimidated by the options and want somewhere to start where the instructions are clearly laid out without having to talk to anyone, then may I introduce...
+
+<InlineEmoji emoji={sparkles}/> The Machine Circuit <InlineEmoji emoji={sparkles}/>
+
+![10 Matrix weightlifting machines](@assets/aboutPages/weightlifting/machineCircuit.png)_An example of a single-brand "circuit" of lifting machines_
+
+[Gold's Gym](https://www.goldsgym.com/blog/gym-machine-workout-routine/) has a pretty solid guide on this, actually! But it's really pretty simple: nearly every medium or larger gym will inevitably have a selection of hyper-specific weightlifting machines, often of a single brand. Your workout routine is simply going through these machines, and performing the ones that fit your plan for that day!
+
+Leg day? Find the leg press, the leg extension, and the hamstring curl machine. Oh? Spotted a calf raise? That's legs, try that too! "Leg Abduction...?" Heck, try that too!\
+Most of these machines have the instructions printed right on them, so you won't even have to ask anyone for help.
+
+### Gym Culture
 
 ### Tracking Progress
 
