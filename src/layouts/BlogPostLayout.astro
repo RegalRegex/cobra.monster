@@ -28,7 +28,7 @@ interface Props {
 const {
   post: {
     id,
-    data: { title, subtitle, date, tags, headerImg, headerImgCaption },
+    data: { title, subtitle, date, tags, headerImg, headerImgCaption, headingCap },
   },
   headings,
   image,
@@ -91,7 +91,7 @@ const ogImg = image ? image.src : `https://cobra.monster/blog/og/${id}.png`;
       <span class="flex justify-around xl:text-3xl">
         <ChiStar /><ChiStar /><ChiStar /><ChiStar />
       </span>
-      {headings.length > 0 && <TableOfContents headings={headings} />}
+      {headings.length > 0 && <TableOfContents headings={headings} headingCap={headingCap} />}
     </Fragment>
     <Fragment slot="main">
       {

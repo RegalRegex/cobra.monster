@@ -4,8 +4,9 @@ import ChiStar from "@components/ImageComponents/ChiStar.astro";
 
 interface Props {
   headings: MarkdownHeading[];
+  headingCap?: number;
 }
-const { headings } = Astro.props;
+const { headings, headingCap } = Astro.props;
 const filteredHeadings = headings.filter((heading) => heading.text !== "Footnotes");
 ---
 
@@ -14,6 +15,11 @@ const filteredHeadings = headings.filter((heading) => heading.text !== "Footnote
   <ul class="md:max-h-[85vh] text-lg" id="table-of-contents-list">
     {
       filteredHeadings.map((heading, i, arr) => {
+        console.log("heading level: ", heading.depth);
+        if (headingCap && heading.depth > headingCap) {
+          console.log("skipping");
+          return;
+        }
         if (heading.depth > 1) {
           return (
             <li class="my-1 last-of-type:border-b-4 border-yellow has-[+.buffer]:pb-2 text-amber-300">
