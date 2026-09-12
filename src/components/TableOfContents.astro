@@ -15,7 +15,6 @@ const filteredHeadings = headings.filter((heading) => heading.text !== "Footnote
   <ul class="md:max-h-[85vh] text-lg" id="table-of-contents-list">
     {
       filteredHeadings.map((heading, i, arr) => {
-        console.log("heading level: ", heading.depth);
         if (headingCap && heading.depth > headingCap) {
           console.log("skipping");
           return;
