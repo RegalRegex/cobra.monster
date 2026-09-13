@@ -16,6 +16,7 @@ const aboutBlurbs = defineCollection({
       title: z.string(),
       subtitle: z.string(),
       date: z.date(),
+      headingCap: z.number().optional(),
       emoji: z.preprocess((val) => `/src/assets/mutantEmoji/${val}`, image()).optional(),
     }),
 });
@@ -30,6 +31,7 @@ const posts = defineCollection({
       headerImg: image().optional(),
       headerImgCaption: z.string().optional(),
       headerOg: z.boolean().optional(),
+      headingCap: z.number().optional(),
     }),
 });
 
