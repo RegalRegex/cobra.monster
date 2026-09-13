@@ -115,7 +115,7 @@ const sortAllComments = () => {
                         <span>{formatLocalDate(comment.date)}</span>
                       </a>
                     </span>
-                    <p set:html={comment.text} />
+                    <p class="whitespace-pre-wrap" set:html={comment.text} />
                     {!comment.replyId && <ReplyBtn client:idle commentName={comment.name} commentId={comment.id} />}
                   </div>
                 </div>
