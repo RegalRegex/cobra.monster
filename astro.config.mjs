@@ -1,16 +1,12 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
-import mdx from "@astrojs/mdx";
-import rehypeSlug from "rehype-slug";
-import rehypePrettyCode from "rehype-pretty-code";
 import tailwindcss from "@tailwindcss/vite";
-import { transformerCopyButton } from "@rehype-pretty/transformers";
-import embeds from "astro-embed/integration";
-import rehypeExternalLinks from "rehype-external-links";
-import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
-
+import satteriExternalLinks from "satteri-external-links";
 import sitemap from "@astrojs/sitemap";
+import { satteri } from "@astrojs/markdown-satteri";
+import { mdastReadingTimePlugin } from "@utils/mdast-reading-time";
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
@@ -30,40 +26,30 @@ export default defineConfig({
   },
 
   markdown: {
-    remarkPlugins: [remarkReadingTime],
+    shikiConfig: {
+      theme: "catppuccin-macchiato",
+    },
+    processor: satteri({
+      features: {
+        gfm: {
+          footnotes: {
+            backContent: "↩",
+            backLabel: "Back to reference {reference}",
+            label: "Footnotes",
+          },
+        },
+      },
+      hastPlugins: [satteriExternalLinks()],
+      mdastPlugins: [mdastReadingTimePlugin],
+    }),
   },
 
   integrations: [
-    embeds(),
-    mdx({
-      syntaxHighlight: false,
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypePrettyCode,
-          {
-            theme: "catppuccin-macchiato",
-            transformers: [
-              transformerCopyButton({
-                visibility: "always",
-                feedbackDuration: 3_000,
-              }),
-            ],
-          },
-        ],
-        [
-          rehypeExternalLinks,
-          {
-            properties: {
-              className: ["external"],
-            },
-            rel: [],
-          },
-        ],
-      ],
-    }),
     react(),
     sitemap(),
+    mdx({
+      shikiConfig: { theme: "catppuccin-macchiato" },
+    }),
   ],
 
   redirects: {

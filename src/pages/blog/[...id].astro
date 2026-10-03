@@ -28,11 +28,13 @@ interface Props {
 }
 
 const { entry, headings }: Props = Astro.props;
-const { Content, remarkPluginFrontmatter } = await render(entry);
+// const { minutesRead } = Astro.props.frontmatter;
+const { Content } = await render(entry);
 
 const image = entry.data.headerOg ? ((await findImage(entry.data.headerImg)) as ImageMetadata) : null;
 ---
 
-<BlogPostLayout post={entry} headings={headings} image={image} minutesRead={remarkPluginFrontmatter.minutesRead}>
+<BlogPostLayout post={entry} headings={headings} image={image}>
+  <!-- <BlogPostLayout post={entry} headings={headings} image={image} minutesRead={minutesRead}> -->
   <Content />
 </BlogPostLayout>

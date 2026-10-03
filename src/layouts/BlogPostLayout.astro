@@ -35,6 +35,7 @@ const {
   minutesRead
 } = Astro.props;
 
+
 const formattedDate = formatDateUtc(date);
 
 const getComments = async () => {
@@ -53,7 +54,7 @@ const ogImg = image ? image.src : `https://cobra.monster/blog/og/${id}.png`;
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
   <meta property="og:title" content={title} />
-  <meta property="og:description" content={`${subtitle}${minutesRead ? ' -' + minutesRead : ''}`} />
+  <!-- <meta property="og:description" content={`${subtitle}${minutesRead ? ' -' + minutesRead : ''}`} /> -->
   <meta property="og:image" content={ogImg} />
   <title>{title}</title>
 </head>
@@ -75,10 +76,11 @@ const ogImg = image ? image.src : `https://cobra.monster/blog/og/${id}.png`;
             <h3 class="font-medium text-2xl">{"Published"}</h3>
             <p>{formattedDate}</p>
           </div>
-          {minutesRead && 
+          <!-- {minutesRead && 
           <div class="text-base mt-3">
-         {minutesRead} <InlineEmoji emoji={watch} styles="w-6" /> 
-        </div>}
+         {minutesRead} <InlineEmoji emoji={watch} styles="w-6" />
+        </div>
+        } -->
         </div>
         {
           tags && (
@@ -103,7 +105,6 @@ const ogImg = image ? image.src : `https://cobra.monster/blog/og/${id}.png`;
         ) : (
           <div class="mb-16">
             <Image src={WrexPlaceholder} alt={`Wrex Placeholder`} />
-            <em>Ooooh he long boy</em>
           </div>
         )
       }
