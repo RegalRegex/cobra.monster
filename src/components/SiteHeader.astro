@@ -25,7 +25,7 @@ const starXs = "<span>★</span>";
         <div class=`xs:hidden bg-clip-text ${chromeAnim} text-transparent flex place-content-evenly `>
           <h1 class="headerTxt self-center ml-2 text-6xl">☭</h1>
           <div class="flex flex-col justify-center gap-1">
-            <h1 class="headerTxt text-cente text-5xl">COBRA</h1>
+            <h1 class="headerTxt text-center text-5xl">COBRA</h1>
             <h1 class="headerTxt text-6xl">
               <Fragment set:html={starXs} />
             </h1>
@@ -34,7 +34,7 @@ const starXs = "<span>★</span>";
           <h1 class="headerTxt self-center mr-2 text-6xl">☭</h1>
         </div>
         <!-- Lorge Header -->
-        <div class=`hidden bg-clip-text ${chromeAnim} text-transparent xs:flex place-content-evenly`>
+        <div class=`hidden bg-clip-text ${chromeAnim} text-transparent xs:flex place-content-evenly `>
           <h1 class="headerTxt flex items-center p-2"><span>☭COBRA</span><Fragment set:html={starMd} /><span>MONSTER☭</span></h1>
         </div>
       </div>
@@ -44,6 +44,6 @@ const starXs = "<span>★</span>";
 </div>
 <style>
   h1 {
-    font-family: "Gore Regular", sans-serif;
+    font-family: var(--font-gore);
   }
 </style>

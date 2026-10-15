@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
+import { Font } from "astro:assets";
 
 interface OpenGraphObj {
   title: string;
@@ -49,10 +50,16 @@ const bgSettings = () => {
     <meta property="description" content={customOg ? customOg.description : "A communist coffee cobra's personal website"}/>
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>COBRA.MONSTER</title>
+    <Font cssVariable="--font-mars-attack"/>
+    <Font cssVariable="--font-gore"/>
+    <Font cssVariable="--font-roboto"/>
+    <Font cssVariable="--font-prospekt"/>
+    <Font cssVariable="--font-big-shoulders"/>
+    <Font cssVariable="--font-snake-chan"/>
     <ClientRouter />
     <script is:inline>
-  delete window.onscrollend;
-</script>
+      delete window.onscrollend;
+    </script>
   </head>
 
   <body>

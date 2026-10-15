@@ -13,6 +13,36 @@ export const cafeReviewHtml = ({ reviewData }: OgGenCafeReviewProps): string => 
       })} ${reviewData.date.toLocaleDateString("en-US", { year: "numeric", timeZone: "UTC" })}`
     : "<></>";
 
+  const starRatingBuilder = (): string => {
+    let rating = Math.round(Object.values(reviewData.rating).reduce((a, b) => a + b) / 3) / 2;
+    if (rating) {
+      const starSize: number = 60;
+      const emptyCalc = 5 - Math.round(rating);
+      return `${[...Array(Math.trunc(rating))]
+        .map(
+          () => `<img src="${baseUrl()}/CHISTAR(yellow).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`,
+        )
+        .concat()
+        .join("")} ${
+        rating % 1 !== 0
+          ? `<img src="${baseUrl()}/CHISTAR(yellow)_half-full.png" width="${starSize}px" height="${starSize}px" alt={"Half of a Chicago Star"} className="aspect-square " />`
+          : ""
+      } 
+      ${
+        emptyCalc > 0
+          ? [...Array(emptyCalc)]
+              .map(
+                () =>
+                  `<img src="${baseUrl()}/CHISTAR(yellow)(outline).png" alt={"Chicago Star"} width="${starSize}px" height="${starSize}px" className="aspect-square " />`,
+              )
+              .concat()
+              .join("")
+          : ""
+      }`;
+    }
+    return "";
+  };
+
   return `
     <!-- Container -->
   <div class="w-[1200px] h-[630px] flex">
@@ -26,6 +56,7 @@ export const cafeReviewHtml = ({ reviewData }: OgGenCafeReviewProps): string => 
         <div class="flex flex-col w-[700px] h-[474px] justify-center pt-5">
           <h1 class="${reviewData.title.length > 30 ? "text-6xl" : "text-7xl"} leading-[1.25] ">${reviewData.title}</h1>
           <span class="border-b-4 border-[#eab308] pb-2 text-2xl">${reviewData.location}</span>
+          <h3 class="text-2xl pt-2">${starRatingBuilder()}</h3>
         </div>
         <!-- Image -->
         <div class="flex max-w-[600px] h-[474px] right-10 bottom-12">
@@ -45,16 +76,16 @@ export const cafeReviewHtml = ({ reviewData }: OgGenCafeReviewProps): string => 
   <style>
     @font-face {
       font-family: "Tech Headlines";
-      src: url("./src/assets/og/Tech Headlines.otf");
+      src: url("./src/assets/fonts/Tech Headlines.otf");
     }
     @font-face {
       font-family: "Tech Headlines Italic";
-      src: url("./src/assets/og/Tech Headlines Italic.otf");
+      src: url("./src/assets/fonts/Tech Headlines Italic.otf");
       style: "italic";
     }
     @font-face {
       font-family: "Gore Regular";
-      src: url("./src/assets/og/Gore Regular.woff");
+      src: url("./src/assets/fonts/Gore Regular.woff");
     }
     * {
       font-family: "Tech Headlines";

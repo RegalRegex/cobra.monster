@@ -25,16 +25,13 @@ const { open, title, name, class: className } = Astro.props;
 <style>
   .ac-accordion-item {
     margin: 0;
-    font-family: var(--ac-font-sans);
     height: var(--ac-accordion-item-collapsed);
     overflow: hidden;
 
     &[open] {
-      height: var(--ac-accordion-item-expanded);
+      height: var(--ac-accordion-i tem-expanded);
 
       .ac-accordion-item-title {
-        color: rgb(var(--ac-color-700));
-
         & > .arrow {
           transform: rotate(90deg);
         }
@@ -48,22 +45,11 @@ const { open, title, name, class: className } = Astro.props;
 
   .ac-accordion-item-title {
     align-items: center;
-    color: rgb(var(--ac-color-500));
     cursor: pointer;
     display: flex;
-    font-size: var(--ac-text-lg);
-    font-weight: var(--ac-font-medium);
-    gap: var(--ac-spacing-3);
     justify-content: space-between;
-    line-height: var(--ac-leading-normal);
     list-style-type: none;
-    padding: var(--ac-accordion-spacing) 0;
     transition: color 0.3s ease-in-out;
-
-    &:hover,
-    &:focus {
-      color: rgb(var(--ac-color-700));
-    }
 
     &::marker,
     &::-webkit-details-marker {
@@ -75,14 +61,7 @@ const { open, title, name, class: className } = Astro.props;
     }
 
     & > svg {
-      width: var(--ac-spacing-6);
-      height: var(--ac-spacing-6);
       transition: transform 0.3s ease-in-out;
-      color: rgb(var(--ac-color-400));
     }
-  }
-
-  .ac-accordion-item-content {
-    padding: 0 0 var(--ac-accordion-spacing);
   }
 </style>

@@ -17,7 +17,7 @@ import ReviewsPreview from "@components/ReviewsPreview.astro";
 <Layout homePage={true}>
   <SiteHeader homePage={true} />
   <div class="text-center py-2">
-    <span id="monsterTxt" class="headerTxt Qt text-white text-4xl md:text-6xl italic tracking-wide">
+    <span id="monsterTxt" class="headerTxt Qt text-white text-4xl md:text-6xl italic tracking-wide font-mars-attack">
       The Crisis of Capitalism unearths a MONSTER
       <span class="text-nowrap">. . . </span><span class="headerTxt Qt text-white text-4xl tracking-wide italic">uwu</span>
     </span>
@@ -53,9 +53,7 @@ import ReviewsPreview from "@components/ReviewsPreview.astro";
     <HomeContentBox columns={["md:col-start-2", "md:col-span-10", "col-start-1", "col-span-12"]}>
       <div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
-          <h2 class="headerTxt font-prospekt xs:text-7xl text-5xl xl:text-8xl mb-10 underline decoration-yellow text-center md:text-left flex lg:col-span-2">
-            About Regal
-          </h2>
+          <h2 class="headerTxt xs:text-7xl text-5xl xl:text-8xl mb-10 underline decoration-yellow text-center md:text-left flex lg:col-span-2">About Regal</h2>
           <div class="text-2xl font-light flex flex-col gap-3 justify-around">
             <p>
               I'm a Chicago-based frontend software dev who spends most of his free time not doing software dev. I love my city and interacting with it and my
@@ -86,16 +84,6 @@ import ReviewsPreview from "@components/ReviewsPreview.astro";
       </div>
     </HomeContentBox>
   </HomeSection>
-
-  <style>
-    h2,
-    h3 {
-      font-family: "Prospekt Regular", sans-serif;
-    }
-    .Qt {
-      font-family: "MarsAttack", script;
-    }
-  </style>
 </Layout>
 
 <script>
@@ -105,10 +93,10 @@ import ReviewsPreview from "@components/ReviewsPreview.astro";
       window.scrollTo(0, 0);
       const page = document.getElementById("main");
       if (page) {
-        page.style.fontFamily = "Snake Chan";
+        page.classList.add("snake-chan");
       }
       const headerEls = Array.from(document.getElementsByClassName("headerTxt") as HTMLCollectionOf<HTMLElement>);
-      headerEls.forEach((header) => (header.style.fontFamily = "Snake Chan"));
+      headerEls.forEach((header) => header.classList.add("snake-chan"));
     });
   }
   activateSnakeMode();

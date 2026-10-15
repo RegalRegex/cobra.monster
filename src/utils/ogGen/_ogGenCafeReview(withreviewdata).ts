@@ -104,17 +104,17 @@ export const cafeReviewHtml = ({ reviewData }: OgGenCafeReviewProps): string => 
   <style>
     @font-face {
       font-family: "Tech Headlines";
-      src: url("./src/assets/og/Tech Headlines.otf");
+      src: url("./src/assets/fonts/Tech Headlines.otf");
     }
     @font-face {
       font-family: "Tech Headlines Italic";
-      src: url("./src/assets/og/Tech Headlines Italic.otf");
-      src: url("./src/assets/og/Tech Headlines Italic.otf");
+      src: url("./src/assets/fonts/Tech Headlines Italic.otf");
+      src: url("./src/assets/fonts/Tech Headlines Italic.otf");
       style: "italic";
     }
     @font-face {
       font-family: "Gore Regular";
-      src: url("./src/assets/og/Gore Regular.woff");
+      src: url("./src/assets/fonts/Gore Regular.woff");
     }
     * {
       font-family: "Tech Headlines";

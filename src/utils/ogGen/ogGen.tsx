@@ -10,9 +10,9 @@ interface OgHtmlGenProps {
 // Logic referenced from: https://rumaan.dev/blog/open-graph-images-using-satori
 // Previously, imgResOptions imported ImageResponseOptions from "node_modules/@vercel/og/dist/types";
 export const ogHtmlGen = ({ template }: OgHtmlGenProps): { markup: ReactNode; imgResOptions: any } => {
-  const techHeadlines = readFileSync("./src/assets/og/Tech Headlines.otf");
-  const techHeadlinesItalic = readFileSync("./src/assets/og/Tech Headlines Italic.otf");
-  const goreRegular = readFileSync("./src/assets/og/Gore Regular.woff");
+  const techHeadlines = readFileSync("./src/assets/fonts/Tech Headlines.otf");
+  const techHeadlinesItalic = readFileSync("./src/assets/fonts/Tech Headlines Italic.otf");
+  const goreRegular = readFileSync("./src/assets/fonts/Gore Regular.woff");
 
   return {
     markup: html(template) as ReactNode,
