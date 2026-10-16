@@ -91,6 +91,7 @@
   --font-prospekt: var(--font-prospekt);
   --font-big-shoulders: var(--font-big-shoulders);
   --font-snake-chan: var(--font-snake-chan);
+  --font-eternal: var(--font-eternal);
 }
 
 /* @font-face {
@@ -179,7 +180,7 @@ body {
 html {
   background-color: #450a0a;
   scrollbar-color: #eab308 #000;
-  font-family: "Roboto-VariableFont_wdth,wght", sans-serif;
+  font-family: var(--font-roboto), sans-serif;
 }
 
 .stripedBg {

@@ -152,5 +152,20 @@ export default defineConfig({
         ],
       },
     },
+    {
+      provider: fontProviders.local(),
+      name: "Eternal",
+      cssVariable: "--font-eternal",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/Eternal.otf"],
+            weight: "normal",
+            style: "normal",
+            display: "swap",
+          },
+        ],
+      },
+    },
   ],
 });

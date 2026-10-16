@@ -19,6 +19,11 @@
   --breakpoint-2xl: 1600px;
 }
 
+@theme inline {
+  --font-eternal: var(--font-eternal);
+  --font-roboto: var(--font-roboto);
+}
+
 @layer base {
   html {
     color: theme(--color-text-main);
@@ -125,9 +130,10 @@ body {
   margin: 0;
   height: 100%;
   color: theme(--color-text-main);
+  font-family: var(--font-roboto), sans-serif;
 }
 
-@font-face {
+/* @font-face {
   font-family: "Roboto";
   src: url("/fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype supports variations"),
     url("/fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype-variations");
@@ -139,4 +145,4 @@ body {
 @font-face {
   font-family: "Eternal";
   src: url("/fonts/Eternal.otf");
-}
+} */
