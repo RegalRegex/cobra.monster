@@ -22,14 +22,14 @@ const {
   <div id="blogSummaryContainer">
     <div class="sm:ml-4 ml-0 grid grid-cols-1">
       <a class="w-full cursor-pointer visited:text-amber-600 visited:decoration-amber-600 hover:no-underline underline" href=`/blog/${id}`>
-        <h2 class="headerTxt text-3xl underline hover:no-underline font-medium">{title}</h2></a
+        <h2 class="headerTxt text-3xl underline hover:no-underline font-medium font-roboto">{title}</h2></a
       >
       <div class="block sm:hidden italic text-slate-200/70 text-sm">
         <span>{date.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" })}</span>
         <span>{date.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}</span>
         <span>{date.toLocaleDateString("en-US", { year: "numeric", timeZone: "UTC" })}</span>
       </div>
-      <h3 class="headerTxt text-lg text-slate-100">↳ {subtitle}</h3>
+      <h3 class="headerTxt text-lg text-slate-100 font-roboto">↳ {subtitle}</h3>
       {
         tags && (
           <div class="flex mt-2 text-md">

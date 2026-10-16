@@ -7,13 +7,11 @@ import { sortCollection } from "@utils/sortCollection";
 const blogEntries = await getCollection("posts");
 
 const blogPosts: Array<CollectionEntry<"posts">> = blogEntries;
-const blogPostsSorted = sortCollection(blogPosts, "date");
+const blogPostsSorted = sortCollection(blogPosts, "date").slice(0, 3);
 ---
 
 {
-  blogPostsSorted.map((post, i) => {
-    if (i < 3) {
-      return <PostSummary post={post} />;
-    }
+  blogPostsSorted.map((post) => {
+    return <PostSummary post={post} />;
   })
 }
