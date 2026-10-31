@@ -67,7 +67,7 @@ const comments = await getComments();
     </Fragment>
     <Fragment slot="main">
       {cafeData.headerImg && <Image src={cafeData.headerImg} alt={`${cafeData.title} header photo`} />}
-      {cafeData.headerImgCaption && <figcaption class="italic">{cafeData.headerImgCaption}</figcaption>}
+      {cafeData.headerImgCaption && <em>{cafeData.headerImgCaption}</em>}
       <div class="prose-h2:mt-0 prose-h2:first:mt-5 prose-p:last:mb-0">
         <slot />
       </div>
